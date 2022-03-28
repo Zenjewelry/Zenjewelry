@@ -8,10 +8,10 @@
 	<resultMap  id="productMap1" type="java.util.HashMap"></resultMap>
 	<resultMap  id="productMap2" type="java.util.HashMap"></resultMap>
 	
-	<select id="getBestNewProduct" statement="CALLABLE" resultMap="java.util.HashMap">
-		{CALL getBestNewProduct(
-			#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1},
-			#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap2}
+	<select id="getBestNewProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBestNewProduct_zen(
+			#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1},<!-- best -->
+			#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap2}<!-- new -->
 		)}
 	</select>
 	
