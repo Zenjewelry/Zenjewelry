@@ -98,6 +98,7 @@ public class OrderController {
 			
 			oseq = Integer.parseInt(paramMap.get("oseq").toString());
 			System.out.println(oseq);
+			System.out.println(oseq);
 			return "redirect:/orderList?oseq="+oseq;
 		}
 	}	
