@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zen.project.dao.IOrderDao">
+	
+	<resultMap  id="orderMap" type="java.util.HashMap"></resultMap>
+	
+
+	<select id="listOrderByIdIng" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL listOrderByIdIng_zen ( 
+		#{id}, 
+		#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap} )  } 
+	</select>
+	
+	<select id="listOrderByOseq" statementType="CALLABLE" parameterType="java.util.HashMap"> 
+		{ CALL listOrderByOseq_zen(
+			#{oseq},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+		)}
+	</select>
+	
+	<insert id="insertOrder" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL insertOrder_zen ( 
+		#{id}, 
+		#{oseq, mode=OUT, jdbcType=INTEGER} )  } 
+	</insert>
+	
+	<select id="listOrderByIdAll" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL listOrderByIdAll_zen ( 
+		#{id}, 
+		#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap} )  } 
+	</select>
+	
+	
+</mapper>
