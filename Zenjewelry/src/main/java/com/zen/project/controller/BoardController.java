@@ -73,9 +73,9 @@ public class BoardController {
 		
 		for(HashMap<String, Object> list : boardList) {
 			System.out.println(0);
-			System.out.println(list.get("num"));
+			System.out.println(list.get("NUM"));
 			System.out.println(1);
-			paramMap.put("boardnum", (int)list.get("num"));
+			paramMap.put("boardnum", (int)list.get("NUM"));
 			paramMap.put("replycnt", 0);
 			bs.getReplyCnt(paramMap);
 			list.put("REPLYCOUNT", paramMap.get("replycnt"));
