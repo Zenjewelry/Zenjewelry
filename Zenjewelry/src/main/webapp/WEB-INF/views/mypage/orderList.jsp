@@ -9,7 +9,7 @@
 	<tr><th>상품명</th><th>수 량</th><th>가 격</th><th>주문일</th><th>진행상태</th></tr>
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr><td>
-			<a href="shop.do?command=productDetail&pseq=${orderVO.PSEQ}">
+			<a href="productDetail&pseq=${orderVO.PSEQ}">
 			<h3>${orderVO.PNAME}</h3></td>
 			<td> ${orderVO.QUANTITY}</td>
 			
@@ -31,4 +31,4 @@
 </form>	
 </article>
 
-<%@ include file="../footer.jsp" %> 
+<%@ include file="../include/headerfooter/footer.jsp" %>

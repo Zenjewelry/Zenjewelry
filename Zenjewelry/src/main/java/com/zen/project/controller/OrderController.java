@@ -37,9 +37,9 @@ public class OrderController {
 			
 			// 현재 로그인 중인 유저의 진행중인 주문번호 리스트 조회
 			HashMap<String, Object>paramMap1 = new HashMap<String,Object>();
-			paramMap1.put("id",loginUser.get("USERID"));
+			paramMap1.put("id",loginUser.get("ID"));
 			paramMap1.put("ref_cursor",null); 
-			
+			// System.out.println(paramMap1);
 			os.listOrderByIdIng(paramMap1);  // 현재 로그인 유저의 진행중인 주문들의 "주문번호들 조회"
 			
 			ArrayList<HashMap<String,Object>> oseqList
@@ -49,10 +49,10 @@ public class OrderController {
 				int oseq = Integer.parseInt(result.get("OSEQ").toString()); // 주문번호 1개 추출
 				
 				HashMap<String, Object>paramMap2 = new HashMap<String,Object>();
-				paramMap1.put("oseq",oseq);
-				paramMap1.put("reg_cursor",null); 
+				paramMap2.put("oseq",oseq);
+				paramMap2.put("reg_cursor",null); 
 				os.listOrderByOseq(paramMap2); // 추출할 주문번호를 이용하여 주문 내역(상품들)조회
-				
+				// System.out.println(paramMap2);
 				ArrayList<HashMap<String, Object>> orderListByOseq
 				= (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
 				
@@ -70,6 +70,7 @@ public class OrderController {
 			}
 			mav.addObject("orderList",finalList);
 		}
+		
 		mav.addObject("title", "진행중인 주문내역");
 		mav.setViewName("mypage/mypage");
 		return mav;
@@ -185,4 +186,38 @@ public class OrderController {
 		}
 		return mav;
 	}
+		
+		
+		@RequestMapping(value="/orderDetail")
+		public ModelAndView orderAll (HttpServletRequest request, Model model, 
+				@RequestParam("oseq") int oseq) {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
+			
+			HashMap<String, Object> loginUser
+			= (HashMap<String, Object> ) session.getAttribute("loginUser");
+			
+			if(loginUser == null) {
+				mav.addObject("member/login");
+			} else {
+				HashMap<String, Object> paramMap	= new HashMap<String, Object> ();
+				paramMap.put("oseq", oseq);
+				paramMap.put("ref_cursor", null);
+				os.listOrderByOseq(paramMap);
+				
+				ArrayList<HashMap<String, Object>> orderListByOseq
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+				int totalPrice = 0;
+				for( HashMap<String, Object> order : orderListByOseq ) 
+					totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
+									* Integer.parseInt( order.get("PRICE2").toString());
+					mav.addObject("totalPrice",totalPrice);
+					mav.addObject("orderList",orderListByOseq);
+					mav.addObject("orderDetail",orderListByOseq.get(0));
+					mav.setViewName("mypage/orderDetailList");
+				
+			}
+			return mav;
+			
+		}
 }

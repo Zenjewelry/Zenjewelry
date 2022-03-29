@@ -10,7 +10,7 @@
     	<tr ><td><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
         	<td>${orderVO.OSEQ} </td><td>${orderVO.PNAME} </td>
         	<td><fmt:formatNumber value="${orderVO.PRICE2}" type="currency"/></td>
-        	<td><a href="shop.do?command=orderDetail&oseq=${orderVO.OSEQ}">조회</a></td>
+        	<td><a href="orderDetail?oseq=${orderVO.OSEQ}">조회</a></td>
 			<td>
 				<c:if test="${orderVO.RESULT=='1'}">미처리</c:if>
 				<c:if test="${orderVO.RESULT=='2'}">완료</c:if>
