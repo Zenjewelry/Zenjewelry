@@ -22,7 +22,7 @@ public class BoardController {
 	BoardService bs;
 	
 	@RequestMapping("boardList")
-	public ModelAndView boardList(@RequestParam("sub") String sub, HttpServletRequest request) {
+	public ModelAndView boardList(@RequestParam(value="sub", required=false) String sub, HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
 		

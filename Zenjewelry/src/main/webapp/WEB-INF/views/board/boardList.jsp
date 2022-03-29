@@ -6,7 +6,7 @@
 <table id="cartList">
 	<tr><th>글 번호</th><th>제목</th><th>글쓴이</th><th>조회수</th><th>작성일자</th></tr>
 	<c:forEach items="${boardList}" var="bvo">
-		<tr><td>${bvo.NUM}</td><td><a href="boardDetail&num=${bvo.NUM}&readcount=${bvo.READCOUNT}">${bvo.TITLE}&nbsp;[${bvo.REPLYCOUNT}]</a></td><td>${bvo.USERID}</td><td>${bvo.READCOUNT}</td><td>${bvo.WRITEDATE}</td></tr>
+		<tr><td>${bvo.NUM}</td><td><a href="boardDetail&num=${bvo.NUM}">${bvo.TITLE}&nbsp;[${bvo.REPLYCOUNT}]</a></td><td>${bvo.USERID}</td><td>${bvo.READCOUNT}</td><td>${bvo.WRITEDATE}</td></tr>
 	</c:forEach>
 </table>
 <form method="post" name="bdfrm">
