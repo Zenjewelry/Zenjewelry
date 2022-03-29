@@ -12,6 +12,25 @@ end;
 
 
 
-select * from products
+CREATE OR REPLACE PROCEDURE getMember_zen(
+    p_id IN members.id%TYPE, 
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM member WHERE id=p_id;
+END;
 
-drop table products
+
+CREATE OR REPLACE PROCEDURE getAdminMember_zen(
+    p_id IN workers.id%TYPE, 
+    p_rc OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_rc FOR SELECT * FROM workers WHERE id=p_id;
+END;
+
+
+
+
