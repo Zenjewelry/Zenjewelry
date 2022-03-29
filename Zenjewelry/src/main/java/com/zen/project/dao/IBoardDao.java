@@ -10,4 +10,5 @@ public interface IBoardDao {
 	void getAllCount(HashMap<String, Object> paramMap);
 	void getBoardList(HashMap<String, Object> paramMap);
 	void getReplyCnt(HashMap<String, Object> paramMap);
+	void getBoard(HashMap<String, Object> paramMap);
 }

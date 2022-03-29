@@ -25,4 +25,8 @@ public class BoardService {
 		bdao.getReplyCnt(paramMap);
 	}
 
+	public void getBoard(HashMap<String, Object> paramMap) {
+		bdao.getBoard(paramMap);
+	}
+
 }

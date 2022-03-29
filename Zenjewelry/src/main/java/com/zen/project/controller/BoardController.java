@@ -37,8 +37,8 @@ public class BoardController {
 		}
 		
 		if(request.getParameter("page") != null) {
-			session.setAttribute("page", page);
 			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
 		}else if(session.getAttribute("page") != null) {
 			page = (Integer)session.getAttribute("page");
 		}else {
@@ -46,16 +46,13 @@ public class BoardController {
 		}
 		
 		if(request.getParameter("key") != null) {
-			session.setAttribute("key", key);
 			key = request.getParameter("key");
+			session.setAttribute("key", key);
 		}else if(session.getAttribute("key") != null) {
 			key = (String)session.getAttribute("key");
 		}else {
 			session.removeAttribute("key");
 		}
-		
-		System.out.println(key);
-		System.out.println(page);
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		
@@ -75,7 +72,6 @@ public class BoardController {
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 		
 		for(HashMap<String, Object> list : boardList) {
-			System.out.println(list.get("NUM"));
 			paramMap.put("boardnum", Integer.parseInt(list.get("NUM").toString()));
 			paramMap.put("replycnt", 0);
 			bs.getReplyCnt(paramMap);
@@ -86,6 +82,29 @@ public class BoardController {
 		mav.addObject("paging", paging);
 		mav.addObject("key", key);
 		mav.setViewName("board/boardList");
+		
+		return mav;
+	}
+	
+	@RequestMapping("boardDetail")
+	public ModelAndView boardDetail(@RequestParam("num") int num) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("num", num);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		bs.getBoard(paramMap);
+		
+		ArrayList<HashMap<String, Object>> boardVO
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
+		ArrayList<HashMap<String, Object>> replyVO
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
+		
+		mav.addObject("boardVO", boardVO.get(0));
+		mav.addObject("replyVO", replyVO);
+		mav.setViewName("board/boardDetail");
 		
 		return mav;
 	}

@@ -39,10 +39,9 @@ begin
         select * from (
             select * from (
                 select rownum as rn, b.* from
-                   ((select * from boards where title like '%'||p_key||'%') b)
+                   ((select * from boards where title like '%'||p_key||'%' order by num desc) b)
             ) where rn>=p_startNum
         ) where rn<=p_endNum;
-    
 end;
 
 
@@ -58,6 +57,22 @@ begin
     select count(*) into v_replycnt from board_replys where boardnum = p_boardnum;
         
     p_replycnt := v_replycnt;
+end;
+
+
+
+
+create or replace procedure getBoard_zen(
+    p_num in boards.num%type,
+    p_cur1 out sys_refcursor,
+    p_cur2 out sys_refcursor
+)
+is
+begin
+    open p_cur1 for
+        select * from boards where num = p_num;
+    open p_cur2 for
+        select * from board_replys where boardnum = p_num;
 end;
 
 
