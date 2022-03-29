@@ -12,7 +12,86 @@ end;
 
 
 
-select * from products;
+
+create or replace procedure getAllCount_zen(
+    p_key in varchar2,
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from boards where title like '%'||p_key||'%';
+    p_cnt := v_cnt;
+end;
+
+
+
+
+create or replace procedure getBoardList_zen(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, b.* from
+                   ((select * from boards where title like '%'||p_key||'%') b)
+            ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+    
+end;
+
+
+
+
+create or replace procedure getReplyCnt_zen(
+    p_boardnum in number,
+    p_replycnt out sys_refcursor
+)
+is
+begin
+    open p_replycnt for
+        select count(*) from board_replys where boardnum = p_boardnum;
+end;
+
+
+select * from board_replys
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

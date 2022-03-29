@@ -478,3 +478,4 @@ update products set newyn='y';
 update products set bestyn='y';
 
 
+SELECT * FROM BOARDS
