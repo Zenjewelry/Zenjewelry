@@ -13,17 +13,13 @@ function loginCheck(){
 }
 
 
-function go_next(){
-	// 자바스크립트에서 jsp 페이지 내의 radio 버튼을 바라볼때, 같은 name의 okin 인것이 여러개라면 name  값에 의한 배열로 인식되어 사용됩니다.   
-	// 동의함 버튼 : okon[0],  동의안함  버튼 : okon[1]  
-	if( document.contractFrm.okon[1].checked == true ){ 
-	 	/* 동의 안함 버튼이 선택된 상태  */
-		alert("회원약관에 동의하셔야 회원으로 가입이 가능합니다");
-	} else {
-		// contractFrm 폼에  action 도 없고 submit 버튼도 없는 것을 스크립트 명령으로 설정하고 submit 까지 실행합니다 
-		document.contractFrm.action = "shop.do?command=joinForm";
-		document.contractFrm.submit();
-	}
+function go_next() {
+	if (document.formm.okon[0].checked == true) {
+    	document.formm.action = "joinForm";
+    	document.formm.submit();
+  	} else if (document.formm.okon[1].checked == true) {
+    	alert('약관에 동의하셔야만 합니다.');
+  	}
 }
 
 

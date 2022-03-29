@@ -12,7 +12,7 @@ public class MemberVO {
 
 	@NotNull (message="id를 입력하세요")
 	@NotEmpty(message="id를 입력하세요")
-	private String userid;
+	private String id;
 	@NotNull(message="비밀번호를 입력하세요")
 	@NotEmpty(message="비밀번호를 입력하세요")
     private String pwd;     
@@ -27,7 +27,7 @@ public class MemberVO {
 	private String phone;
     private String zip_num;
     private String address;
-    private String address2;
+
 
     
 }
