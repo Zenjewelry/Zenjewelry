@@ -479,3 +479,5 @@ update products set bestyn='y';
 
 
 SELECT * FROM BOARDS
+
+select * from board_replys
