@@ -3,12 +3,11 @@
 
 <article>
 <h1>로그인</h1>
-<form method="post" action="shop.do" name="loginFrm">
-	<input type="hidden" name="command" value="login">
+<form method="post" action="login" name="loginFrm">
 
 	<fieldset class="input-box">
 		<legend></legend>
-			<label>User ID</label><input id="username" name="id" type="text"><br> 
+			<label>User ID</label><input id="username" name="id" type="text" value="${dto.id}"><br> 
 	        <label>Password</label><input id="password" name="pwd" type="password"><br>
 	</fieldset >
 

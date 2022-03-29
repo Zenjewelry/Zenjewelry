@@ -14,4 +14,18 @@
 		)  }
 	</select>
 	
+	<select id="getAddress" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getAddress_zen( 
+			#{dong},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)  }
+	</select>
+	
+	
+	<insert id="insertMember" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL insertMember_zen( 
+		#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{zip_num} , #{address} 
+		) }
+	</insert>
+	
 </mapper>
