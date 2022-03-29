@@ -12,6 +12,7 @@ end;
 
 
 
-select * from products
+select * from products;
 
-drop table products
+
+

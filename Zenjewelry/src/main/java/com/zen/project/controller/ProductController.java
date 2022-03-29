@@ -32,6 +32,8 @@ public class ProductController {
 		
 		model.addAttribute("newList", newList);
 		model.addAttribute("bestList", bestList);
+		model.addAttribute("newListSize", newList.size()*320);
+		model.addAttribute("bestListSize", bestList.size()*320);
 		
 		return "main";
 	}
