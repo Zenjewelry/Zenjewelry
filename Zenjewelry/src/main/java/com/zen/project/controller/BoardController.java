@@ -54,6 +54,9 @@ public class BoardController {
 			session.removeAttribute("key");
 		}
 		
+		System.out.println(key);
+		System.out.println(page);
+		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		
 		Paging paging = new Paging();
@@ -72,10 +75,8 @@ public class BoardController {
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 		
 		for(HashMap<String, Object> list : boardList) {
-			System.out.println(0);
 			System.out.println(list.get("NUM"));
-			System.out.println(1);
-			paramMap.put("boardnum", (int)list.get("NUM"));
+			paramMap.put("boardnum", Integer.parseInt(list.get("NUM").toString()));
 			paramMap.put("replycnt", 0);
 			bs.getReplyCnt(paramMap);
 			list.put("REPLYCOUNT", paramMap.get("replycnt"));
