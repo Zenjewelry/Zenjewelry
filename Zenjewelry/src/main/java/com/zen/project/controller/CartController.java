@@ -20,6 +20,34 @@ public class CartController {
 	@Autowired
 	CartService cs;
 	
+	@RequestMapping("/cartList")
+	public ModelAndView cartList(HttpServletRequest request, Model model) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+			= (HashMap<String, Object>) session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			mav.setViewName("member/login");
+		} else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("id", loginUser.get("ID"));
+			paramMap.put("ref_cursor",null);
+			cs.listCart(paramMap);
+			ArrayList<HashMap<String,Object>> list
+				= (ArrayList<HashMap<String,Object>>) paramMap.get("ref_cursor");
+			mav.addObject("cartList", list);
+			
+			int totalPrice = 0;
+			for(HashMap<String,Object> cart:list) {
+				totalPrice += Integer.parseInt(cart.get("QUANTITY").toString())
+						* Integer.parseInt(cart.get("PRICE2").toString());
+			}
+			mav.addObject("totalPrice", totalPrice);
+			mav.setViewName("mypage/cartList");
+		}
+		return mav;
+	}
 	
 	
 }

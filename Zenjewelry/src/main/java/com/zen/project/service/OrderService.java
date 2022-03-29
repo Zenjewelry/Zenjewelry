@@ -33,4 +33,9 @@ public class OrderService {
 		
 	}
 
+	public void insertOrderOne(HashMap<String, Object> paramMap) {
+		odao.insertOrderOne(paramMap);
+		
+	}
+
 }

@@ -33,5 +33,11 @@
 		#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap} )  } 
 	</select>
 	
+	<insert id="insertOrderOne" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL insertOrderOne_zen( 
+		#{id}, #{pseq}, #{quantity},
+		#{oseq, mode=OUT, jdbcType=INTEGER } 
+		)} 
+	</insert>
 	
 </mapper>

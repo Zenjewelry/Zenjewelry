@@ -7,6 +7,12 @@
 	
 	<resultMap  id="CartMap" type="java.util.HashMap"></resultMap>
 	
+	<select id="listCart" statementType="CALLABLE" parameterType="java.util.HashMap"> 
+		{ CALL listCart_zen(
+			#{id},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=CartMap}
+		)}
+	</select>
 	
 	
 </mapper>

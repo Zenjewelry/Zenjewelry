@@ -220,4 +220,35 @@ public class OrderController {
 			return mav;
 			
 		}
+		
+		@RequestMapping(value="/orderInsertOne")
+		public String orderInsertOne(HttpServletRequest request, 
+				@RequestParam("pseq") int pseq,
+				@RequestParam("quantity") int quantity) {
+			
+			int oseq = 0;
+			
+			HttpSession session = request.getSession();
+			HashMap<String, Object> loginUser
+				= (HashMap<String, Object>)session.getAttribute("loginUser");
+			
+			if(loginUser==null) {
+				return "member/login";
+			} else {
+				HashMap<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("id", loginUser.get("ID"));
+				paramMap.put("oseq", 0);
+				paramMap.put("pseq", pseq);
+				paramMap.put("quantity", quantity);
+				
+				os.insertOrderOne(paramMap);
+				
+				oseq = Integer.parseInt(paramMap.get("oseq").toString());
+				
+			}
+			return "redirect:/orderList?oseq="+oseq;
+			
+		}
+		
+		
 }
