@@ -2,7 +2,7 @@
 <%@ include file="../include/headerfooter/header.jsp" %>
 
 <article>
-<form method="post" name="joinForm" id="join" action="join">
+<form method="post" name="formm" id="join" action="join">
 	<fieldset class="input-box"><legend>회원가입</legend>
 		<label>User ID</label><input id="username" type="text" name="id" size="12" value="${dto.id}">
 		<input id="username" type="hidden" name="reid" value="${reid}">
