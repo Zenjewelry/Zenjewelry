@@ -50,12 +50,14 @@ end;
 
 create or replace procedure getReplyCnt_zen(
     p_boardnum in number,
-    p_replycnt out sys_refcursor
+    p_replycnt out number
 )
 is
+    v_replycnt number;
 begin
-    open p_replycnt for
-        select count(*) from board_replys where boardnum = p_boardnum;
+    select count(*) into v_replycnt from board_replys where boardnum = p_boardnum;
+        
+    p_replycnt := v_replycnt;
 end;
 
 

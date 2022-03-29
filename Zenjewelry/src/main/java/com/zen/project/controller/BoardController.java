@@ -79,7 +79,7 @@ public class BoardController {
 			paramMap.put("boardnum", Integer.parseInt(list.get("NUM").toString()));
 			paramMap.put("replycnt", 0);
 			bs.getReplyCnt(paramMap);
-			list.put("REPLYCOUNT", Integer.parseInt(paramMap.get("replycnt").toString()));
+			list.put("REPLYCOUNT", paramMap.get("replycnt"));
 		}
 		
 		mav.addObject("boardList", boardList);

@@ -24,7 +24,7 @@
 	<select id="getReplyCnt" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL getReplyCnt_zen(
 			#{boardnum},
-			#{replycnt, mode=OUT, jdbcType=CURSOR, javaType=resultSet, resultMap=boardMap}
+			#{replycnt, mode=OUT, jdbcType=INTEGER}
 		)}
 	</select>
 	
