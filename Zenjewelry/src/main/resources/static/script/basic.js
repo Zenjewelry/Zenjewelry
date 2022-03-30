@@ -54,8 +54,8 @@ function writeReply(){
 function delete_Board(){
    var answer = confirm("게시글을 삭제하시겠습니까?");
    if( answer ){
-    document.formm.action= "shop.do?command=deleteBoard";
-   document.formm.submit();   
+	document.formm.action= "deleteBoard";
+	document.formm.submit();   
    }
 }
 

@@ -29,4 +29,8 @@ public class BoardService {
 		bdao.getBoard(paramMap);
 	}
 
+	public void deleteBoard(int num) {
+		bdao.deleteBoard(num);
+	}
+
 }

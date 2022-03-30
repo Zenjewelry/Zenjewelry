@@ -210,6 +210,18 @@ END;
 
 
 
+create or replace procedure deleteBoard_zen(
+    p_num in boards.num%type
+)
+is
+begin
+    delete from boards where num = p_num;
+    commit;
+end;
+
+
+
+
 
 
 

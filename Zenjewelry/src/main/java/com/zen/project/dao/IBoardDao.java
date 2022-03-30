@@ -11,4 +11,5 @@ public interface IBoardDao {
 	void getBoardList(HashMap<String, Object> paramMap);
 	void getReplyCnt(HashMap<String, Object> paramMap);
 	void getBoard(HashMap<String, Object> paramMap);
+	void deleteBoard(int num);
 }

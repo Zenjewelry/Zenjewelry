@@ -37,4 +37,8 @@
 		)}
 	</select>
 	
+	<delete id="deleteBoard" statementType="CALLABLE">
+		{CALL deleteBoard_zen(#{param1})}
+	</delete>
+	
 </mapper>
