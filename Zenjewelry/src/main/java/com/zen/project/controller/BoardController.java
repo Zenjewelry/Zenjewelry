@@ -192,7 +192,7 @@ public class BoardController {
 		paramMap.put("ref_cursor1", null);
 		paramMap.put("ref_cursor2", null);
 		
-		bs.getBoard(paramMap);
+		bs.getBoardWithoutCount(paramMap);
 		
 		ArrayList<HashMap<String, Object>> dto
 			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
@@ -204,9 +204,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/go_editBoard", method=RequestMethod.POST)
-	public ModelAndView go_editBoard(@ModelAttribute("dto") BoardVO dto) {
+	public ModelAndView go_editBoard(@ModelAttribute("dto") @Valid BoardVO dto,
+			BindingResult result) {
 		
 		ModelAndView mav = new ModelAndView();
+		
+		if(result.getFieldError("title")!=null)
+			mav.addObject("message", result.getFieldError("title").getDefaultMessage());
+		else if(result.getFieldError("content")!=null)
+			mav.addObject("message", result.getFieldError("content").getDefaultMessage());
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("dto", dto);
@@ -239,6 +245,25 @@ public class BoardController {
 		mav.setViewName("board/boardDetail");
 		
 		return mav;
+	}
+	
+	@RequestMapping("writeReply")
+	public String writeReply(@RequestParam("reply") String content, @RequestParam("num") int num,
+			HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginUser")==null) {
+			return "member/login";
+		}
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("content", content);
+		paramMap.put("boardnum", num);
+		bs.insertReply(paramMap);
+		
+		model.addAttribute(num);
+		
+		return "redirect:/boardDetailWithoutCount";
 	}
 	
 }

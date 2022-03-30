@@ -47,5 +47,9 @@ public class BoardService {
 		bdao.editBoard(paramMap);
 	}
 
+	public void insertReply(HashMap<String, Object> paramMap) {
+		bdao.insertReply(paramMap);
+	}
+
 
 }

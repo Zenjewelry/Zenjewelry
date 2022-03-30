@@ -39,7 +39,7 @@ function writeReply(){
 	if(document.rpfrm.reply.value==""){
 		alert("댓글을 작성해주세요.");
 	}else{
-		document.rpfrm.action = 'shop.do?command=writeReply';
+		document.rpfrm.action = 'writeReply';
 		document.rpfrm.submit();
 	}
 }
