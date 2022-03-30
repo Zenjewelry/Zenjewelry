@@ -18,8 +18,7 @@
 		
 		<img src="images/arrow_prev.png" class="rolBtn" id="prev" />
 		<div id="mainView">
-			<%-- <div id="itemsbox" style="width:${newListSize}px;"> --%>
-			<div id="itemsbox" style="width:2000px;">
+			<div id="itemsbox" style="width:${newListSize}px;">
 				<c:forEach items="${newList}" var="nList">
 					<a href="productDetail?pseq=${nList.pseq}">
 						<div id="items">
@@ -48,8 +47,7 @@
 		
 		<img src="images/arrow_prev.png" class="rolBtn" id="prev1" />
 		<div id="mainView">
-			<%-- <div id="itemsbox1" style="width:${bestListSize}px;"> --%>
-			<div id="itemsbox1" style="width:2000px;">
+			<div id="itemsbox1" style="width:${bestListSize}px;">
 				<c:forEach items="${bestList}" var="bList">
 					<a href="productDetail?pseq=${bList.pseq}">
 						<div id="items">

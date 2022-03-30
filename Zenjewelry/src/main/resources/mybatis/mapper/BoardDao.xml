@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zen.project.dao.IBoardDao">
+	
+	<resultMap  id="boardMap" type="java.util.HashMap"></resultMap>
+	<resultMap  id="boardMap2" type="java.util.HashMap"></resultMap>
+	
+	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCount_zen(
+			#{key},
+			#{count, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getBoardList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBoardList_zen(
+			#{key}, #{startNum}, #{endNum},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=resultSet, resultMap=boardMap}
+		)}
+	</select>
+	
+	<select id="getReplyCnt" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getReplyCnt_zen(
+			#{boardnum},
+			#{replycnt, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getBoard" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBoard_zen(
+			#{num},
+			#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=resultSet, resultMap=boardMap},
+			#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=resultSet, resultMap=boardMap2}
+		)}
+	</select>
+	
+</mapper>

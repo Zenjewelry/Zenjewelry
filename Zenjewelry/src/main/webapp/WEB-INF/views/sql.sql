@@ -278,6 +278,7 @@ create table boards(
 	writedate date default sysdate		-- 작성일자
 );
 
+drop sequence boards_seq
 create sequence boards_seq start with 1 increment by 1;
 
 create table board_replys(
@@ -478,3 +479,14 @@ update products set newyn='y';
 update products set bestyn='y';
 
 
+SELECT * FROM BOARDS
+
+select * from board_replys
+
+select * from (
+            select * from (
+                select rownum as rn, b.* from
+                   ((select * from boards where title like '%'||''||'%') b)
+            ) where rn>=1
+        ) where rn<=100;
+delete from boards
