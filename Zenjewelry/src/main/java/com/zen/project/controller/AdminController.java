@@ -57,7 +57,7 @@ public class AdminController {
 		}else if( workPwd.equals( (String)resultMap.get("PWD") ) ) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginAdmin", resultMap);
-			return "redirect:/productList";
+			return "redirect:/adminproductList";
 		}else {
 			model.addAttribute("message" , "비번이 안맞아요");
 			return "admin/adminLoginForm";
@@ -76,7 +76,7 @@ public class AdminController {
 	
 	
 
-	@RequestMapping(value="/productList")
+	@RequestMapping(value="/adminproductList")
 	public ModelAndView product_list(HttpServletRequest request, Model model) {
 		ModelAndView mav = new ModelAndView();
 		
