@@ -14,18 +14,18 @@
 		<div id="boxtext1">NEW PRODUCT</div><br>
 		<div id="boxtext2">A NEW DESING</div>
 		
-	
+		
 		
 		<img src="images/arrow_prev.png" class="rolBtn" id="prev" />
 		<div id="mainView">
 			<div id="itemsbox" style="width:${newListSize}px;">
 				<c:forEach items="${newList}" var="nList">
-					<a href="productDetail?pseq=${nList.pseq}">
+					<a href="productDetail?pseq=${nList.PSEQ}">
 						<div id="items">
-							<img src="product_images/${nList.image}" id="imgtest"/>
-							<div class="listText">${nList.name}</div>
-							<div class="listText1">${nList.content}</div><br>
-							<div class="listText2"><fmt:formatNumber value="${nList.price2}" type="currency"/></div>
+							<img src="product_images/${nList.IMAGE}" id="imgtest"/>
+							<div class="listText">${nList.NAME}</div>
+							<div class="listText1">${nList.CONTENT}</div><br>
+							<div class="listText2"><fmt:formatNumber value="${nList.PRICE2}" type="currency"/></div>
 						
 						</div>
 					</a>
@@ -49,12 +49,12 @@
 		<div id="mainView">
 			<div id="itemsbox1" style="width:${bestListSize}px;">
 				<c:forEach items="${bestList}" var="bList">
-					<a href="productDetail?pseq=${bList.pseq}">
+					<a href="productDetail?pseq=${bList.PSEQ}">
 						<div id="items">
-							<img src="product_images/${bList.image}" id="imgtest"/>
-							<div class="listText">${bList.name}</div>
-							<div class="listText1">${bList.content}</div><br>
-							<div class="listText2"><fmt:formatNumber value="${bList.price2}" type="currency"/></div>
+							<img src="product_images/${bList.IMAGE}" id="imgtest"/>
+							<div class="listText">${bList.NAME}</div>
+							<div class="listText1">${bList.CONTENT}</div><br>
+							<div class="listText2"><fmt:formatNumber value="${bList.PRICE2}" type="currency"/></div>
 						</div>
 					</a>
 				</c:forEach>
