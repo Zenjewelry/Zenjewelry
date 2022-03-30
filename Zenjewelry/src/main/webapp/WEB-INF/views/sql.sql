@@ -494,7 +494,7 @@ select * from (
         ) where rn<=100;
 delete from boards
 
-select * from members
+select * from boards
 
 --------- 수정 --------------
 

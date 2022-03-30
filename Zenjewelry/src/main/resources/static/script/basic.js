@@ -17,17 +17,10 @@ function go_write(com){
 }
 
 function go_save1(com){
-	var actions = 'shop.do?command=go_' + com + 'Board';
-	if(document.wbfrm.title.value==""){
-		alert("제목을 입력해주세요.");
-	}else if(document.wbfrm.content.value==""){
-		alert("내용을 입력해주세요.");
-	}else{
-		document.wbfrm.method = "post";
-		document.wbfrm.enctype = "multipart/form-data";
-		document.wbfrm.action = actions;
-		document.wbfrm.submit();
-	}
+	var actions = 'go_' + com + 'Board';
+	document.wbfrm.method = "post";
+	document.wbfrm.action = actions;
+	document.wbfrm.submit();
 }
 
 function go_mov1(com){
@@ -157,7 +150,7 @@ $(function(){
 
 
 function uploadImg(){
-	var opt = "toolbar=no, menubar=no, resizable=no, width=450, height=200";
+	var opt = "toolbar=no, menubar=no, resizable=no, width=550, height=300";
 	window.open('uploadImg', '이미지 업로드', opt);
 }
 

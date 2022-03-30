@@ -16,7 +16,7 @@
 
 <div id="buttons">
 	<c:if test="${loginUser.ID == boardVO.USERID}">
-		<input class="submit" type="button" value="수정" onClick="location.href='editBoard?boardnum=${boardVO.NUM}'" />
+		<input class="submit" type="button" value="수정" onClick="location.href='editBoard?num=${boardVO.NUM}'" />
 		<input class="cancel" type="button" value="삭제" onClick="delete_Board()" />
 	</c:if>
 	<input class="cancel" type="button" value="되돌아가기" onClick="go_mov1('List');" />

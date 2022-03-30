@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/shopping.css">
-<script src="admin/product/product.js"></script>
+<script type="text/javascript" src="../admin/product.js"></script>
 </head>
 <body>
 
