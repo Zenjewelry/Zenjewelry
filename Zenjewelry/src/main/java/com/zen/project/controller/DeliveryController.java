@@ -48,12 +48,14 @@ public class DeliveryController {
 			ArrayList< HashMap<String, Object> > list
 			= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
 			
-			mav.addObject("orderList",list);
+			mav.addObject("orderList",list.get(0));
 			
-			for(String key : paramMap.keySet()) {
-				String value = paramMap.get(key).toString();
-				System.out.println(key+":"+value);
-			}
+			int totalPrice = 0;
+			for( HashMap<String, Object> cart : list) {
+				totalPrice += Integer.parseInt(cart.get("QUANTITY").toString() )
+								* Integer.parseInt( cart.get("PRICE2").toString() );
+		}  // 리스트의 내용으로 총금액 계산
+			mav.addObject("totalPrice",totalPrice);
 			
 			
 			mav.setViewName("mypage/deliveryForm");

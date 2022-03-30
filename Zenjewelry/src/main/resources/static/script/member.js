@@ -87,7 +87,7 @@ function go_save(){
 
 function find_account(){
 
-	var url = "shop.do?command=findAccount";
+	var url = "findAccount";
 	var opt = "toolbar=no, menubar=no, scrollbars=no, resizable=no, width=700,";
 	opt = opt + "height=500, top=300, left=300";
 	window.open(url, "Find Id/Pw", opt);
