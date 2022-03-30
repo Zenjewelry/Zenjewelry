@@ -48,7 +48,7 @@ public class DeliveryController {
 			ArrayList< HashMap<String, Object> > list
 			= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
 			
-			mav.addObject("orderList",list);
+			mav.addObject("orderList",list.get(0));
 			
 			int totalPrice = 0;
 			for( HashMap<String, Object> cart : list) {
