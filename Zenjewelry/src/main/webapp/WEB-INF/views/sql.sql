@@ -141,7 +141,7 @@ where c.pseq = p.pseq and c.id = m.id;
 create or replace view order_views
 as
 select d.odseq, o.oseq, o.indate,  o.id, 
-         m.name as mname, m.zip_num, m.address, m.phone, 
+         m.name as mname, m.zip_num, m.address, m.phone, m.address2,
          d.pseq,  p.name as pname, p.price2, d.quantity, d.result
 from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
@@ -494,10 +494,24 @@ select * from (
         ) where rn<=100;
 delete from boards
 
-select * from members
+select * from boards
+
+--------- 수정 --------------
 
 alter table members add address2 varchar(100);
 
 
+alter table orders_details add address2 varchar(100);
+
+-- address2 때문에 수정
+create or replace view order_views
+as
+select d.odseq, o.oseq, o.indate,  o.id, 
+         m.name as mname, m.zip_num, m.address, m.phone, d.address2,
+         d.pseq,  p.name as pname, p.price2, d.quantity, d.result
+from orderss o, orders_details d, members m, products p
+where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
+
+select * from order_views;
 
 

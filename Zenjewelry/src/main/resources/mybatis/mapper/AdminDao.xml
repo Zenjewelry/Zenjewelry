@@ -17,6 +17,20 @@
 	</select>
 	
 	
+	<select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getProductList_zen( 
+			#{startNum}, #{endNum}, #{key},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)  }
+	</select>
+	
+	<select id="getAllCountProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getAllCountProduct_zen( 
+			#{key},
+			#{cnt , mode=OUT, jdbcType=INTEGER }
+		)  }
+	</select>
+	
 	
 	
 	

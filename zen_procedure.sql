@@ -1,4 +1,4 @@
-
+-- product
 CREATE OR REPLACE PROCEDURE getBestNewProduct_zen(
     p_cur1 OUT SYS_REFCURSOR, 
     p_cur2 OUT SYS_REFCURSOR   )
@@ -13,7 +13,7 @@ END;
 
 
 
-
+-- member
 CREATE OR REPLACE PROCEDURE getMember_zen(
     p_id IN members.id%TYPE, 
     p_curvar OUT SYS_REFCURSOR
@@ -23,7 +23,7 @@ BEGIN
     OPEN p_curvar FOR SELECT * FROM members WHERE id=p_id;
 END;
 
-
+-- order
 CREATE OR REPLACE PROCEDURE listOrderByIdIng_zen(
    p_id IN orderss.id%TYPE,
    p_curvar OUT SYS_REFCURSOR
@@ -32,7 +32,7 @@ IS
 BEGIN
     OPEN p_curvar FOR 
     SELECT distinct oseq FROM order_views WHERE id=p_id and result='1' order by oseq desc;
-    -- ?��?�� ?��치에?�� 커서?�� ?��?��?�� fetch ?���? ?��?��?�� 반복?��?��?�� fetch?�� ?���? ?��?��?��?��. 
+    -- ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ì¹ì?ï¿½ï¿½ ì»¤ì?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë°ë³µ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch?ï¿½ï¿½ ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½. 
 END;
 
 select * from orderss;
@@ -47,7 +47,7 @@ CREATE OR REPLACE PROCEDURE listOrderByOseq_zen(
 IS
 BEGIN
     OPEN p_curvar FOR SELECT * FROM order_views WHERE oseq=p_oseq;
-    -- ?��?�� ?��치에?�� 커서?�� ?��?��?�� fetch ?���? ?��?��?�� 반복?��?��?�� fetch?�� ?���? ?��?��?��?��. 
+    -- ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ì¹ì?ï¿½ï¿½ ì»¤ì?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë°ë³µ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch?ï¿½ï¿½ ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½. 
 END;
 
 select * from boards;
@@ -64,22 +64,22 @@ IS
       v_pseq carts.pseq%TYPE;
       v_quantity carts.quantity%TYPE;
 BEGIN
-        -- orders ?��?��블에 ?��코드 추�? 
+      
         insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-        -- orders ?��?��블에?�� �??�� ?�� oseq 조회 
+       
         select MAX(oseq) into v_oseq from orderss;
-        -- cart ?��?��블에?�� id �? 목록조회 
+    
         OPEN temp_cur FOR select cseq, pseq, quantity from carts where id=p_id AND result='1';
-        -- 목록�? oseq �? order_detail ?��?��블에 ?��코드 추�?
+       
         LOOP 
-            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  -- 조회?�� 카트?�� 목록?��?�� ?��?��?�� 꺼내?�� 처리 
-            EXIT WHEN temp_cur%NOTFOUND;  -- 조회?�� 카트?�� 목록?�� 모두 ?��진할?��까�? 
+            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  
+            EXIT WHEN temp_cur%NOTFOUND; 
             INSERT INTO orders_details ( odseq, oseq, pseq, quantity) 
-            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity );  -- order_detail ?��?��블에 ?��코드 추�? 
+            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity );  
             DELETE FROM CARTS WHERE cseq = v_cseq;
         END LOOP;
         COMMIT;
-        -- oseq 값을 out �??��?�� ???��
+    
         p_oseq := v_oseq;
 END;
 
@@ -116,6 +116,7 @@ END;
 select * from cart;
 select * from cart_views;
 
+-- cart
 
 CREATE OR REPLACE PROCEDURE listCart_zen(
    p_id IN carts.id%TYPE,
@@ -124,8 +125,10 @@ CREATE OR REPLACE PROCEDURE listCart_zen(
 IS
 BEGIN
     OPEN p_curvar FOR SELECT * FROM cart_views WHERE id=p_id;
-    -- ?��?�� ?��치에?�� 커서?�� ?��?��?�� fetch ?���? ?��?��?�� 반복?��?��?�� fetch?�� ?���? ?��?��?��?��. 
+   
 END;
+
+-- board
 
 create or replace procedure getAllCount_zen(
     p_key in varchar2,
@@ -137,8 +140,6 @@ begin
     select count(*) into v_cnt from boards where title like '%'||p_key||'%';
     p_cnt := v_cnt;
 end;
-
-
 
 
 create or replace procedure getBoardList_zen(
@@ -195,8 +196,20 @@ select * from board_replys
 
 
 
+create or replace procedure plusCount_zen(
+    p_num in boards.num%type
+)
+is
+begin
+    update boards set readcount = readcount + 1 where num = p_num;
+    commit;
+end;
 
 
+
+
+
+-- admin
 
 CREATE OR REPLACE PROCEDURE getAdminMember_zen(
     p_id IN workers.id%TYPE, 
@@ -207,7 +220,9 @@ BEGIN
     OPEN p_rc FOR SELECT * FROM workers WHERE id=p_id;
 END;
 
+-- 3/30 
 
+-- member
 CREATE OR REPLACE PROCEDURE getMember_zen(
     p_id IN members.id%TYPE, 
     p_curvar OUT SYS_REFCURSOR
@@ -241,7 +256,7 @@ BEGIN
     commit;    
 END;
 
-
+-- board 
 create or replace procedure deleteBoard_zen(
     p_num in boards.num%type
 )
@@ -250,6 +265,63 @@ begin
     delete from boards where num = p_num;
     commit;
 end;
+
+
+
+create or replace procedure insertBoard_zen(
+    p_userid in boards.userid%type,
+    p_title in boards.title%type,
+    p_content in boards.content%type,
+    p_pictureurl in boards.pictureurl%type
+)
+is
+begin
+    insert into boards(num, userid, title, content, pictureurl)
+    values(boards_seq.nextVal, p_userid, p_title, p_content, p_pictureurl);
+    commit;
+end;
+
+
+
+
+create or replace procedure editBoard_zen(
+    p_num in boards.num%type,
+    p_title in boards.title%type,
+    p_content in boards.content%type,
+    p_pictureurl in boards.pictureurl%type
+)
+is
+begin
+    update boards set title = p_title, content = p_content, pictureurl = p_pictureurl where num = p_num;
+    commit;
+end;
+
+
+-- delivery
+
+CREATE OR REPLACE PROCEDURE updateAddress_zen(
+   p_oseq IN orders_details.oseq%TYPE,
+    p_zip_num IN orders_details.zip_num%TYPE,
+    p_address IN orders_details.address%TYPE,
+    p_address2 IN orders_details.address2%TYPE
+    )
+IS
+BEGIN
+    update orders_details set zip_num=p_zip_num, address=p_address, address2=p_address2
+    where oseq=p_oseq;
+    commit;
+END;
+
+
+CREATE OR REPLACE PROCEDURE deliveryList_zen(
+   p_oseq IN orderss.oseq%TYPE,
+   p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM order_views WHERE oseq=p_oseq;
+END;
+
 
 
 

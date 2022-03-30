@@ -1,3 +1,4 @@
+
 package com.zen.project.controller;
 
 import java.util.ArrayList;
@@ -34,12 +35,14 @@ public class QnaController {
 		HttpSession session = request.getSession();
 		HashMap<String, Object> id 
 			= (HashMap<String, Object>)session.getAttribute("id");
+
 		if( id == null ) {
 
 			mav.setViewName("member/login");
 
 		}else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+
 			paramMap.put("id", id.get("id") );
 			paramMap.put("ref_cursor", null);
 			qs.listQna( paramMap );
@@ -114,3 +117,4 @@ public class QnaController {
 		}
 
 }
+
