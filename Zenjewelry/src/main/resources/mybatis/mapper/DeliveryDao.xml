@@ -14,5 +14,11 @@
 		)}
 	</select>
 	
+	<update id="updateAddress"  statementType="CALLABLE" parameterType="java.util.HashMap">
+		{ CALL updateAddress_zen(
+			#{oseq},#{zip_num},#{address},#{address2}
+		)}
+	</update>
+	
 	
 </mapper>
