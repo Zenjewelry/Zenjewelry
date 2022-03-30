@@ -1,17 +1,23 @@
 package com.zen.project.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.zen.project.dto.Paging;
 import com.zen.project.service.BoardService;
 
@@ -20,6 +26,9 @@ public class BoardController {
 
 	@Autowired
 	BoardService bs;
+	
+	@Autowired
+	ServletContext context;
 	
 	@RequestMapping("boardList")
 	public ModelAndView boardList(@RequestParam(value="sub", required=false) String sub, HttpServletRequest request) {
@@ -108,4 +117,41 @@ public class BoardController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value = "deleteBoard", method = RequestMethod.POST)
+	public String deleteBoard(@RequestParam("num") int num) {
+		
+		bs.deleteBoard(num);
+		
+		return "redirect:/boardList";
+	}
+	
+	@RequestMapping("writeBoardForm")
+	public String writeBoardForm(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("loginUser") == null) return "member/login";
+		else return "board/writeBoard";
+	}
+	
+	@RequestMapping("/uploadImg")
+	public String uploadImg() {
+		return "board/uploadImg";
+	}
+	
+	@RequestMapping(value="/uploadFile", method=RequestMethod.POST)
+	public String uploadFile(HttpServletRequest request, Model model) {
+		
+		String path = context.getRealPath("/board_images");
+		
+		try {
+			MultipartRequest multi
+				= new MultipartRequest(request, path, 5*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
+			model.addAttribute("image", multi.getFilesystemName("image"));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return "board/completeImg";
+	}
+	
 }
