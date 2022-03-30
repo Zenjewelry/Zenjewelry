@@ -58,7 +58,7 @@ public class AdminController {
 			return "redirect:/";
 		}else {
 			model.addAttribute("message" , "비번이 안맞아요");
-			return "admin/adminLogin";
+			return "admin/adminLoginForm";
 		}
 	}
 	
