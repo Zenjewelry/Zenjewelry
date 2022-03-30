@@ -9,4 +9,6 @@ public interface IDeliveryDao {
 
 	void deliveryList(HashMap<String, Object> paramMap);
 
+	void updateAddress(HashMap<String, Object> paramMap);
+
 }
