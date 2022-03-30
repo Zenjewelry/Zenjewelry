@@ -23,7 +23,7 @@
 	
 	<insert id="insertMember" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ CALL insertMember_zen( 
-		#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{zip_num} , #{address} , #{addess2}
+		#{id}, #{pwd}, #{name}, #{email}, #{phone}, #{zip_num} , #{address} , #{address2}
 		) }
 	</insert>
 	

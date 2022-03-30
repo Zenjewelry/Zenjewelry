@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zen.project.dto.QnasVO;
+import com.zen.project.service.QnaService;
+
 
 
 @Controller
 public class QnaController {
 
-	/*
+
 	@Autowired
 	QnaService qs;
 	
@@ -32,7 +35,9 @@ public class QnaController {
 		HashMap<String, Object> Id 
 			= (HashMap<String, Object>)session.getAttribute("Id");
 		if( Id == null ) {
-			mav.setViewName("members/login");
+
+			mav.setViewName("member/login");
+
 		}else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("userid", Id.get("USERID") );
@@ -63,7 +68,7 @@ public class QnaController {
 				
 				ArrayList<HashMap<String, Object>> list 
 				= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_curser");
-				
+
 				mav.addObject("QnasVO", list.get(0) );		
 				mav.setViewName("qnas/qnaView");
 			}
@@ -107,5 +112,5 @@ public class QnaController {
 		    }
 			return mav;
 		}
-		*/
+
 }
