@@ -13,7 +13,7 @@ function go_search(frm){
 }
 
 function go_write(com){
-	location.href = "shop.do?command=write" + com;
+	location.href = "write" + com + "Form";
 }
 
 function go_save1(com){
@@ -54,8 +54,8 @@ function writeReply(){
 function delete_Board(){
    var answer = confirm("게시글을 삭제하시겠습니까?");
    if( answer ){
-    document.formm.action= "shop.do?command=deleteBoard";
-   document.formm.submit();   
+	document.formm.action= "deleteBoard";
+	document.formm.submit();   
    }
 }
 
@@ -153,3 +153,25 @@ $(function(){
       }
    );
 });
+
+
+
+function uploadImg(){
+	var opt = "toolbar=no, menubar=no, resizable=no, width=450, height=200";
+	window.open('uploadImg', '이미지 업로드', opt);
+}
+
+function uploadedImg(){
+	document.frm.submit();
+}
+
+
+
+
+
+
+
+
+
+
+

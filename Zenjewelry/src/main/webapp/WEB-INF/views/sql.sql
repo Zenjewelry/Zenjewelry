@@ -494,5 +494,7 @@ select * from (
         ) where rn<=100;
 delete from boards
 
-select * from products
+select * from boards
+
+
 
