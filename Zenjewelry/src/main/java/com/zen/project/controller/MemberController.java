@@ -243,4 +243,8 @@ public class MemberController {
 		return "member/findAccount";
 	}
 	
+	@RequestMapping(value="/findIdForm")
+	public String findIdForm() {
+		return "member/findIdForm";
+	}
 }

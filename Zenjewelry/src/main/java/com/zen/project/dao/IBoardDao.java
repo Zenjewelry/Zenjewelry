@@ -16,4 +16,5 @@ public interface IBoardDao {
 	void deleteBoard(int num);
 	void insertBoard(BoardVO dto);
 	void plusCount(HashMap<String, Object> paramMap);
+	void editBoard(HashMap<String, Object> paramMap);
 }

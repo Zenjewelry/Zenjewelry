@@ -53,17 +53,17 @@ function go_order(){
 
 
 function zip_update_delivery(){
-	if(document.updateDelivery.pwd.value != document.updateDelivery.pwdCheck.value){
+	if(document.formm.pwd.value != document.formm.pwdCheck.value){
 		alert("비밀번호가 틀렸습니다.");
-	}else if(document.updateDelivery.zip_num.value==""){
+	}else if(document.formm.zip_num.value==""){
 		alert("우편번호를 확인하세요.");
-	}else if(document.updateDelivery.addr1.value==""){
+	}else if(document.formm.address.value==""){
 		alert("기본주소를 확인하세요.");
-	}else if(document.updateDelivery.addr2.value==""){
+	}else if(document.formm.address2.value==""){
 		alert("상세주소를 확인하세요.");
 	}else{
-		document.updateDelivery.action = "shop.do?command=zipUpdate";
-		document.updateDelivery.submit();
+		document.formm.action = "zipUpdate";
+		document.formm.submit();
 	}
 }
 
