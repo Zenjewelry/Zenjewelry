@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	opener.wbfrm.fictureurl.value='${image}';
+	opener.wbfrm.pictureurl.value='${image}';
 	opener.document.getElementById('previewText').innerHTML = '${image}';
 	opener.document.getElementById('previewImg').setAttribute('src', '/board_images/' + '${image}');
 	opener.document.getElementById('previewImg').style.display='inline';

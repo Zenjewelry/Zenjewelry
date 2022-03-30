@@ -148,12 +148,10 @@ public class BoardController {
 			MultipartRequest multi
 				= new MultipartRequest(request, path, 5*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			model.addAttribute("image", multi.getFilesystemName("image"));
-			
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		return "board/completeImg";
 	}
-	
 	
 }
