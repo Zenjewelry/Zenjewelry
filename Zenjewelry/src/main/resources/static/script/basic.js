@@ -13,21 +13,14 @@ function go_search(frm){
 }
 
 function go_write(com){
-	location.href = "shop.do?command=write" + com;
+	location.href = "write" + com + "Form";
 }
 
 function go_save1(com){
-	var actions = 'shop.do?command=go_' + com + 'Board';
-	if(document.wbfrm.title.value==""){
-		alert("제목을 입력해주세요.");
-	}else if(document.wbfrm.content.value==""){
-		alert("내용을 입력해주세요.");
-	}else{
-		document.wbfrm.method = "post";
-		document.wbfrm.enctype = "multipart/form-data";
-		document.wbfrm.action = actions;
-		document.wbfrm.submit();
-	}
+	var actions = 'go_' + com + 'Board';
+	document.wbfrm.method = "post";
+	document.wbfrm.action = actions;
+	document.wbfrm.submit();
 }
 
 function go_mov1(com){
@@ -54,8 +47,8 @@ function writeReply(){
 function delete_Board(){
    var answer = confirm("게시글을 삭제하시겠습니까?");
    if( answer ){
-    document.formm.action= "shop.do?command=deleteBoard";
-   document.formm.submit();   
+	document.formm.action= "deleteBoard";
+	document.formm.submit();   
    }
 }
 
@@ -153,3 +146,25 @@ $(function(){
       }
    );
 });
+
+
+
+function uploadImg(){
+	var opt = "toolbar=no, menubar=no, resizable=no, width=550, height=300";
+	window.open('uploadImg', '이미지 업로드', opt);
+}
+
+function uploadedImg(){
+	document.frm.submit();
+}
+
+
+
+
+
+
+
+
+
+
+

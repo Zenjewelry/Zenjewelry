@@ -27,8 +27,7 @@ public class MemberVO {
 	private String phone;
     private String zip_num;
     private String address;
-
-
+    private String address2;
     
 }
 

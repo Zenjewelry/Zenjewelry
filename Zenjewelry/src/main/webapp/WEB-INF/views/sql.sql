@@ -494,5 +494,10 @@ select * from (
         ) where rn<=100;
 delete from boards
 
-select * from products
+select * from boards
+
+alter table members add address2 varchar(100);
+
+
+
 

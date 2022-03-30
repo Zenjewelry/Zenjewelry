@@ -2,7 +2,7 @@
 <%@ include file="../include/headerfooter/header.jsp" %>
 
 
-<article>
+<article >
 
 
 <form name="cartList" method="post">
@@ -19,12 +19,14 @@
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
 			<input  type="hidden" name="oseq" value="${orderVO.OSEQ}">
-			<td>${id}</td>
+			<td>${orderVO.ID}</td>
 			<td>${orderVO.PNAME}</td>
 			<td>${orderVO.QUANTITY}</td>
        		<td><fmt:formatNumber value="${orderVO.PRICE2*orderVO.QUANTITY}" type="currency"/></td>  
        		<td><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
-       		<td>${ZIP_NUM}${ADDRESS}</td>
+       		<td>${orderVO.ZIP_NUM}${orderVO.ADDRESS}</td>
+       		
+       		
        	</tr>
 	</c:forEach>
 	
@@ -38,9 +40,10 @@
 <table id="cartList3">
 <tr>
 	<td>	
-  	  <input type="button" value="마이 페이지" class="cancel" onclick="myPage'">   
+	 <%--  <input  type="hidden" name="oseq" value="${orderVO.OSEQ}"> --%>
+  	  <input type="button" value="마이 페이지" class="cancel" onclick="history.go(-1)">   
   	  <input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='/'">   
-   	  <input type="button" value="배송지 변경" class="cancel" onclick="deliveryForm&oseq=${oseq}'">
+   	  <input type="button" value="배송지 변경" class="cancel" onclick="location.href='deliveryForm?oseq=${param.oseq}'">
 	  <input type="button"  value="주문 취소하기"  class="cancel" onclick="delete_order()">
    	</td>
 </tr>

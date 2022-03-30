@@ -14,8 +14,8 @@
 	    <label>Phone Number</label><input id="username"  type="text" name="phone" value="${dto.phone}"><br>
 	    <label>Zip Code</label><input id="username" type="text" name="zip_num"   size="10" >      
 	    <input  id="nbutton" type="button" value="주소 찾기" class="dup" onclick="post_zip()"><br>
-		<label>Address</label><input id="username" type="text" name="addr1"   size="50"><br>
-		<label>&nbsp;</label><input id="username" type="text" name="addr2"   size="25">
+		<label>Address</label><input id="username" type="text" name="address"   size="50"><br>
+		<label>&nbsp;</label><input id="username" type="text" name="address2"   size="25">
 	</fieldset>
 	<div class="clear"></div>
 	<div id="buttons">
