@@ -481,6 +481,7 @@ update products set bestyn='y';
 
 select * from products
 
+
 SELECT * FROM BOARDS
 
 select * from board_replys
@@ -492,3 +493,6 @@ select * from (
             ) where rn>=1
         ) where rn<=100;
 delete from boards
+
+select * from products
+
