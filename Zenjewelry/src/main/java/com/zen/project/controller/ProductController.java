@@ -14,7 +14,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.zen.project.dto.Paging;
 import com.zen.project.service.ProductService;
 
 @Controller
@@ -39,8 +42,11 @@ public class ProductController {
 		
 		model.addAttribute("newList", newList);
 		model.addAttribute("bestList", bestList);
+		model.addAttribute("newListSize", newList.size()*320);
+		model.addAttribute("bestListSize", bestList.size()*320);
 		
 		return "main";
 	}
 	
+
 }

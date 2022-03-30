@@ -3,10 +3,10 @@ function go_search(frm){
 	else if(frm=="hdfrm" && document.hdfrm.searchProduct.value == "") alert("검색어를 입력하세요.");
 	else{
 		if(frm=="bdfrm"){
-			document.bdfrm.action = "shop.do?command=boardList";
+			document.bdfrm.action = "boardList";
 			document.bdfrm.submit();
 		}else if(frm=="hdfrm"){
-			document.hdfrm.action = "shop.do?command=productList";
+			document.hdfrm.action = "productList";
 			document.hdfrm.submit();
 		}
 	}
@@ -32,10 +32,14 @@ function go_save1(com){
 
 function go_mov1(com){
 	if(com=="Detail"){
-		location.href = "shop.do?command=board" + com + "&num=" + document.wbfrm.boardnum.value;
+		location.href = "board" + com + "?num=" + document.wbfrm.boardnum.value;
 	}else{
-		location.href = "shop.do?command=board" + com;
+		location.href = "board" + com;
 	}
+}
+
+function go_mov_All(com){
+	location.href="board" + com + "?sub='y'";
 }
 
 function writeReply(){
