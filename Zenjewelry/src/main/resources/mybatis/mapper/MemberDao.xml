@@ -14,8 +14,8 @@
 		)  }
 	</select>
 	
-	<select id="getAddress" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{  CALL getAddress_zen( 
+	<select id="selectAddressByDong" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL selectAddressByDong_zen( 
 			#{dong},
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
 		)  }

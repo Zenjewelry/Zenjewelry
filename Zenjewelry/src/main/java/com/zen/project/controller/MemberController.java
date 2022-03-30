@@ -113,14 +113,14 @@ public class MemberController {
 		if(dong != null && dong.trim().equals("")==false){			
 			paramMap.put( "ref_cursor", null );
 			paramMap.put("dong", dong);
-			System.out.println(paramMap);
+			// System.out.println(paramMap);
 
 			ms.selectAddressByDong(paramMap);
 			
 			ArrayList< HashMap<String,Object> > list 
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			
-			System.out.println(list.size() + dong);
+			//System.out.println(list.size() + dong);
 			
 			model.addAttribute("addressList" , list);
 		}
@@ -135,11 +135,10 @@ public class MemberController {
 			HttpServletRequest request,
 			Model model ) {
 		
-		// 밸리데이션 적용후 해쉬맵에 내용을 담아서 회원가입을 실행합니다.
 		model.addAttribute("reid", reid);
 				
-		if( result.getFieldError("userid") != null ) {
-			model.addAttribute("message", result.getFieldError("userid").getDefaultMessage() );
+		if( result.getFieldError("id") != null ) {
+			model.addAttribute("message", result.getFieldError("id").getDefaultMessage() );
 			return "member/joinForm";
 		} else if( result.getFieldError("pwd") != null ) {
 			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
@@ -162,7 +161,7 @@ public class MemberController {
 		}
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("userid", membervo.getId() );
+		paramMap.put("id", membervo.getId() );
 		paramMap.put("pwd", membervo.getPwd() );
 		paramMap.put("name", membervo.getName() );
 		paramMap.put("email", membervo.getEmail() );
