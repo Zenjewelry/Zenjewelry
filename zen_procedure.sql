@@ -32,7 +32,7 @@ IS
 BEGIN
     OPEN p_curvar FOR 
     SELECT distinct oseq FROM order_views WHERE id=p_id and result='1' order by oseq desc;
-    -- ?��?�� ?��치에?�� 커서?�� ?��?��?�� fetch ?���? ?��?��?�� 반복?��?��?�� fetch?�� ?���? ?��?��?��?��. 
+    -- ?��?�� ?��치에?�� 커서?�� ?��?��?�� fetch ?���?? ?��?��?�� 반복?��?��?�� fetch?�� ?���?? ?��?��?��?��. 
 END;
 
 select * from orderss;
@@ -47,7 +47,7 @@ CREATE OR REPLACE PROCEDURE listOrderByOseq_zen(
 IS
 BEGIN
     OPEN p_curvar FOR SELECT * FROM order_views WHERE oseq=p_oseq;
-    -- ?��?�� ?��치에?�� 커서?�� ?��?��?�� fetch ?���? ?��?��?�� 반복?��?��?�� fetch?�� ?���? ?��?��?��?��. 
+    -- ?��?�� ?��치에?�� 커서?�� ?��?��?�� fetch ?���?? ?��?��?�� 반복?��?��?�� fetch?�� ?���?? ?��?��?��?��. 
 END;
 
 select * from boards;
@@ -66,11 +66,11 @@ IS
 BEGIN
         -- orders ?��?��블에 ?��코드 추�? 
         insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-        -- orders ?��?��블에?�� �??�� ?�� oseq 조회 
+        -- orders ?��?��블에?�� �???�� ?�� oseq 조회 
         select MAX(oseq) into v_oseq from orderss;
-        -- cart ?��?��블에?�� id �? 목록조회 
+        -- cart ?��?��블에?�� id �?? 목록조회 
         OPEN temp_cur FOR select cseq, pseq, quantity from carts where id=p_id AND result='1';
-        -- 목록�? oseq �? order_detail ?��?��블에 ?��코드 추�?
+        -- 목록�?? oseq �?? order_detail ?��?��블에 ?��코드 추�?
         LOOP 
             FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  -- 조회?�� 카트?�� 목록?��?�� ?��?��?�� 꺼내?�� 처리 
             EXIT WHEN temp_cur%NOTFOUND;  -- 조회?�� 카트?�� 목록?�� 모두 ?��진할?��까�? 
@@ -79,7 +79,7 @@ BEGIN
             DELETE FROM CARTS WHERE cseq = v_cseq;
         END LOOP;
         COMMIT;
-        -- oseq 값을 out �??��?�� ???��
+        -- oseq 값을 out �???��?�� ???��
         p_oseq := v_oseq;
 END;
 
@@ -124,7 +124,7 @@ CREATE OR REPLACE PROCEDURE listCart_zen(
 IS
 BEGIN
     OPEN p_curvar FOR SELECT * FROM cart_views WHERE id=p_id;
-    -- ?��?�� ?��치에?�� 커서?�� ?��?��?�� fetch ?���? ?��?��?�� 반복?��?��?�� fetch?�� ?���? ?��?��?��?��. 
+    -- ?��?�� ?��치에?�� 커서?�� ?��?��?�� fetch ?���?? ?��?��?�� 반복?��?��?�� fetch?�� ?���?? ?��?��?��?��. 
 END;
 
 create or replace procedure getAllCount_zen(
@@ -195,6 +195,18 @@ select * from board_replys
 
 
 
+create or replace procedure plusCount_zen(
+    p_num in boards.num%type
+)
+is
+begin
+    update boards set readcount = readcount + 1 where num = p_num;
+    commit;
+end;
+
+
+
+
 
 
 
@@ -248,6 +260,22 @@ create or replace procedure deleteBoard_zen(
 is
 begin
     delete from boards where num = p_num;
+    commit;
+end;
+
+
+
+
+create or replace procedure insertBoard_zen(
+    p_userid in boards.userid%type,
+    p_title in boards.title%type,
+    p_content in boards.content%type,
+    p_pictureurl in boards.pictureurl%type
+)
+is
+begin
+    insert into boards(num, userid, title, content, pictureurl)
+    values(boards_seq.nextVal, p_userid, p_title, p_content, p_pictureurl);
     commit;
 end;
 

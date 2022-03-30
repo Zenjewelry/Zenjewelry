@@ -37,8 +37,19 @@
 		)}
 	</select>
 	
+	<update id="plusCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL plusCount_zen(#{num})}
+	</update>
+	
 	<delete id="deleteBoard" statementType="CALLABLE">
 		{CALL deleteBoard_zen(#{param1})}
 	</delete>
+	
+	<insert id="insertBoard" statementType="CALLABLE" parameterType="com.zen.project.dto.BoardVO">
+		{CALL insertBoard_zen(
+			#{userid}, #{title}, #{content}, #{pictureurl}
+		)}
+	</insert>
+	
 	
 </mapper>

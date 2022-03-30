@@ -7,10 +7,13 @@ import java.util.HashMap;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.zen.project.dto.BoardVO;
 import com.zen.project.dto.Paging;
 import com.zen.project.service.BoardService;
 
@@ -153,5 +157,57 @@ public class BoardController {
 		}
 		return "board/completeImg";
 	}
+	
+	@RequestMapping(value="go_writeBoard", method=RequestMethod.POST)
+	public String go_writeBoard(@ModelAttribute("dto") @Valid BoardVO dto,
+			BindingResult result, Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		if(result.getFieldError("title")!=null)
+			model.addAttribute("message", result.getFieldError("title").getDefaultMessage());
+		else if(result.getFieldError("content")!=null)
+			model.addAttribute("message", result.getFieldError("content").getDefaultMessage());
+		
+		bs.insertBoard(dto);
+		session.removeAttribute("page");
+		session.removeAttribute("key");
+		
+		return "redirect:/boardList";
+	}
+	
+	@RequestMapping("/editBoard")
+	public ModelAndView editBoard(@RequestParam("num") int num,
+			HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("loginUser") == null) {
+			mav.setViewName("member/login");
+		}
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("num", num);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		
+		bs.getBoard(paramMap);
+		
+		ArrayList<HashMap<String, Object>> dto
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
+		
+		mav.addObject("boardVO", dto.get(0));
+		mav.setViewName("board/editBoard");
+		
+		return mav;
+	}
+	
+//	@RequestMapping(value="/go_editBoard", method=RequestMethod.POST)
+//	public ModelAndView go_editBoard(@ModelAttribute("dto") BoardVO dto) {
+//		
+//		ModelAndView mav = new ModelAndView();
+//		
+//	}
 	
 }
