@@ -56,7 +56,7 @@ IS
 BEGIN
     OPEN p_curvar FOR 
     SELECT distinct oseq FROM order_views WHERE id=p_id and result='1' order by oseq desc;
-    -- í˜„ì¬ ìœ„ì¹˜ì—ì„œ ì»¤ì„œì˜ ë‚´ìš©ì„ fetch í• ê²Œ ì•„ë‹ˆë¼ ë°˜ë³µì‹¤í–‰ë„ fetchë„ ì“°ì§€ ì•ŠìŠµë‹ˆë‹¤. 
+    -- ?˜„?¬ ?œ„ì¹˜ì—?„œ ì»¤ì„œ?˜ ?‚´?š©?„ fetch ?• ê²? ?•„?‹ˆ?¼ ë°˜ë³µ?‹¤?–‰?„ fetch?„ ?“°ì§? ?•Š?Šµ?‹ˆ?‹¤. 
 END;
 
 select * from orderss;
@@ -71,7 +71,7 @@ CREATE OR REPLACE PROCEDURE listOrderByOseq_zen(
 IS
 BEGIN
     OPEN p_curvar FOR SELECT * FROM order_views WHERE oseq=p_oseq;
-    -- í˜„ì¬ ìœ„ì¹˜ì—ì„œ ì»¤ì„œì˜ ë‚´ìš©ì„ fetch í• ê²Œ ì•„ë‹ˆë¼ ë°˜ë³µì‹¤í–‰ë„ fetchë„ ì“°ì§€ ì•ŠìŠµë‹ˆë‹¤. 
+    -- ?˜„?¬ ?œ„ì¹˜ì—?„œ ì»¤ì„œ?˜ ?‚´?š©?„ fetch ?• ê²? ?•„?‹ˆ?¼ ë°˜ë³µ?‹¤?–‰?„ fetch?„ ?“°ì§? ?•Š?Šµ?‹ˆ?‹¤. 
 END;
 
 select * from boards;
@@ -88,22 +88,22 @@ IS
       v_pseq carts.pseq%TYPE;
       v_quantity carts.quantity%TYPE;
 BEGIN
-        -- orders í…Œì´ë¸”ì— ë ˆì½”ë“œ ì¶”ê°€ 
+        -- orders ?…Œ?´ë¸”ì— ? ˆì½”ë“œ ì¶”ê? 
         insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-        -- orders í…Œì´ë¸”ì—ì„œ ê°€ì¥ í° oseq ì¡°íšŒ 
+        -- orders ?…Œ?´ë¸”ì—?„œ ê°??¥ ?° oseq ì¡°íšŒ 
         select MAX(oseq) into v_oseq from orderss;
-        -- cart í…Œì´ë¸”ì—ì„œ id ë¡œ ëª©ë¡ì¡°íšŒ 
+        -- cart ?…Œ?´ë¸”ì—?„œ id ë¡? ëª©ë¡ì¡°íšŒ 
         OPEN temp_cur FOR select cseq, pseq, quantity from carts where id=p_id AND result='1';
-        -- ëª©ë¡ê³¼ oseq ë¡œ order_detail í…Œì´ë¸”ì— ë ˆì½”ë“œ ì¶”ê°€
+        -- ëª©ë¡ê³? oseq ë¡? order_detail ?…Œ?´ë¸”ì— ? ˆì½”ë“œ ì¶”ê?
         LOOP 
-            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  -- ì¡°íšŒí•œ ì¹´íŠ¸ì˜ ëª©ë¡ì—ì„œ í•˜ë‚˜ì”© êº¼ë‚´ì„œ ì²˜ë¦¬ 
-            EXIT WHEN temp_cur%NOTFOUND;  -- ì¡°íšŒí•œ ì¹´íŠ¸ì˜ ëª©ë¡ì´ ëª¨ë‘ ì†Œì§„í• ë•Œê¹Œì§€ 
+            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  -- ì¡°íšŒ?•œ ì¹´íŠ¸?˜ ëª©ë¡?—?„œ ?•˜?‚˜?”© êº¼ë‚´?„œ ì²˜ë¦¬ 
+            EXIT WHEN temp_cur%NOTFOUND;  -- ì¡°íšŒ?•œ ì¹´íŠ¸?˜ ëª©ë¡?´ ëª¨ë‘ ?†Œì§„í• ?•Œê¹Œì? 
             INSERT INTO orders_details ( odseq, oseq, pseq, quantity) 
-            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity );  -- order_detail í…Œì´ë¸”ì— ë ˆì½”ë“œ ì¶”ê°€ 
+            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity );  -- order_detail ?…Œ?´ë¸”ì— ? ˆì½”ë“œ ì¶”ê? 
             DELETE FROM CARTS WHERE cseq = v_cseq;
         END LOOP;
         COMMIT;
-        -- oseq ê°’ì„ out ë³€ìˆ˜ì— ì €ì¥
+        -- oseq ê°’ì„ out ë³??ˆ˜?— ???¥
         p_oseq := v_oseq;
 END;
 
@@ -148,7 +148,7 @@ CREATE OR REPLACE PROCEDURE listCart_zen(
 IS
 BEGIN
     OPEN p_curvar FOR SELECT * FROM cart_views WHERE id=p_id;
-    -- í˜„ì¬ ìœ„ì¹˜ì—ì„œ ì»¤ì„œì˜ ë‚´ìš©ì„ fetch í• ê²Œ ì•„ë‹ˆë¼ ë°˜ë³µì‹¤í–‰ë„ fetchë„ ì“°ì§€ ì•ŠìŠµë‹ˆë‹¤. 
+    -- ?˜„?¬ ?œ„ì¹˜ì—?„œ ì»¤ì„œ?˜ ?‚´?š©?„ fetch ?• ê²? ?•„?‹ˆ?¼ ë°˜ë³µ?‹¤?–‰?„ fetch?„ ?“°ì§? ?•Š?Šµ?‹ˆ?‹¤. 
 END;
 
 create or replace procedure getAllCount_zen(
@@ -219,6 +219,25 @@ select * from board_replys
 
 
 
+
+CREATE OR REPLACE PROCEDURE getMember_zen(
+    p_id IN members.id%TYPE, 
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM member WHERE id=p_id;
+END;
+
+
+CREATE OR REPLACE PROCEDURE getAdminMember_zen(
+    p_id IN workers.id%TYPE, 
+    p_rc OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_rc FOR SELECT * FROM workers WHERE id=p_id;
+END;
 
 
 
