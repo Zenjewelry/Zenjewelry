@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/shopping.css">
 </head>
 <body>
-<div id="wrap" align="center" style="width:100%;">
+<div style=text-align:center>
 	
 	<form name="frm" action="uploadFile" method="post" enctype="multipart/form-data">
 		<h1>이미지 불러오기</h1>

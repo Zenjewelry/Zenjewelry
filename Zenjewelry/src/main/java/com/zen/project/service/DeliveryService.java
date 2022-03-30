@@ -18,4 +18,9 @@ public class DeliveryService {
 		
 	}
 
+	public void updateAddress(HashMap<String, Object> paramMap) {
+		ddao.updateAddress(paramMap);
+		
+	}
+
 }

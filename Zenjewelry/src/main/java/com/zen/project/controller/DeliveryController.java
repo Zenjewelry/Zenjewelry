@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.zen.project.dto.MemberVO;
 import com.zen.project.service.DeliveryService;
 
 @Controller
@@ -42,13 +42,12 @@ public class DeliveryController {
 			paramMap.put("ref_cursor", null);
 		
 			ds.deliveryList(paramMap);
-			System.out.println(paramMap);
-			System.out.println(oseq);
+			
 			
 			ArrayList< HashMap<String, Object> > list
 			= (ArrayList< HashMap<String, Object> >) paramMap.get("ref_cursor");
 			
-			mav.addObject("orderList",list);
+			mav.addObject("orderList",list.get(0));
 			
 			int totalPrice = 0;
 			for( HashMap<String, Object> cart : list) {
@@ -65,6 +64,27 @@ public class DeliveryController {
 		
 		
 	}
+	
+	@RequestMapping(value="/zipUpdate", method=RequestMethod.POST)
+	public String memberUpdate(HttpServletRequest request, Model model,
+			@RequestParam("address") String address,
+			@RequestParam("address2") String address2,
+			@RequestParam("oseq") int oseq,
+			@RequestParam("zip_num") String zip_num
+			) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("oseq", oseq);
+		paramMap.put("zip_num", oseq);
+		paramMap.put("address",address);
+		paramMap.put("address2",address2);
+		
+		ds.updateAddress(paramMap);
+		
+		return "redirect:/orderDetail?oseq="+oseq;
+		
+	}
+	
 	
 
 }

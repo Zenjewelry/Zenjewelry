@@ -15,7 +15,7 @@
 
 </table>
 <table id="cartList2">	
-	<tr><th>주문자<th>상품명</th><th>주문수량</th><th>상품가격</th><th>주문일자</th><th>배송주소</th></tr>
+	<tr><th>주문자<th>상품명</th><th>주문수량</th><th>상품가격</th><th>주문일자</th><th>배송주소</th><th>상세주소</th></tr>
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
 			<input  type="hidden" name="oseq" value="${orderVO.OSEQ}">
@@ -24,8 +24,9 @@
 			<td>${orderVO.QUANTITY}</td>
        		<td><fmt:formatNumber value="${orderVO.PRICE2*orderVO.QUANTITY}" type="currency"/></td>  
        		<td><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
-       		<td>${orderVO.ZIP_NUM}${orderVO.ADDRESS}</td>
-       		<input type="button" value="배송지 변경" class="cancel" onclick="location.href='deliveryForm?oseq=${orderVO.OSEQ}'">
+       		<td>${orderVO.ZIP_NUM}   ${orderVO.ADDRESS}</td>
+       		<td>${orderVO.ADDRESS2}</td>
+       		
        		
        	</tr>
 	</c:forEach>
@@ -42,7 +43,7 @@
 	<td>	
   	  <input type="button" value="마이 페이지" class="cancel" onclick="history.go(-1)">   
   	  <input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='/'">   
-   	  
+   	  <input type="button" value="배송지 변경" class="cancel" onclick="location.href='deliveryForm?oseq=${param.oseq}'">
 	  <input type="button"  value="주문 취소하기"  class="cancel" onclick="delete_order()">
    	</td>
 </tr>
