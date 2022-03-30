@@ -24,6 +24,7 @@ import com.zen.project.service.QnaService;
 @Controller
 public class QnaController {
 
+
 	@Autowired
 	QnaService qs;
 	
@@ -34,7 +35,9 @@ public class QnaController {
 		HashMap<String, Object> Id 
 			= (HashMap<String, Object>)session.getAttribute("Id");
 		if( Id == null ) {
+
 			mav.setViewName("member/login");
+
 		}else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("userid", Id.get("USERID") );
@@ -64,8 +67,8 @@ public class QnaController {
 				qs.getQna( paramMap );
 				
 				ArrayList<HashMap<String, Object>> list 
-			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_curser");
-				
+				= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_curser");
+
 				mav.addObject("QnasVO", list.get(0) );		
 				mav.setViewName("qnas/qnaView");
 			}
@@ -109,5 +112,5 @@ public class QnaController {
 		    }
 			return mav;
 		}
-		
+
 }
