@@ -15,7 +15,7 @@
 	    <label>Zip Code</label><input id="username" type="text" name="zip_num" size="10" value="${dto.zip_num}">      
 	    <input id="nbutton" type="button" value="주소 찾기" class="dup" onclick="post_zip()"><br>
 	    <label>Address</label><input id="username" type="text" name="address"   size="50" value="${dto.address}"><br>
-	    <label>&nbsp;</label>	<input id="username" type="text" name="address2"   size="25" ><br>
+	    <label>&nbsp;</label>	<input id="username" type="text" name="address2"   size="25" value="${dto.address2}"><br>
 	</fieldset><div class="clear"></div>
 	<div id="buttons"><input type="submit" value="정보수정" class="submit"> 
 		<input type="reset" value="취소" class="cancel"></div>

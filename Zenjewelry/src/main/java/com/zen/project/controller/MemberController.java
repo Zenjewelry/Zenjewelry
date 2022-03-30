@@ -168,6 +168,7 @@ public class MemberController {
 		paramMap.put("phone", membervo.getPhone() );
 		paramMap.put("zip_num", membervo.getZip_num() );
 		paramMap.put("address", membervo.getAddress() );
+		paramMap.put("address2", membervo.getAddress2() );
 		
 		ms.insertMember( paramMap );
 		
@@ -188,6 +189,7 @@ public class MemberController {
 		dto.setPhone( (String)loginUser.get("PHONE") );
 		dto.setZip_num( (String)loginUser.get("ZIP_NUM") );
 		dto.setAddress( (String)loginUser.get("ADDRESS") );
+		dto.setAddress2( (String)loginUser.get("ADDRESS2") );
 		
 		model.addAttribute("dto" , dto);
 		
@@ -226,6 +228,7 @@ public class MemberController {
 		paramMap.put("PHONE", membervo.getPhone() );
 		paramMap.put("ZIP_NUM", membervo.getZip_num() );
 		paramMap.put("ADDRESS", membervo.getAddress() );
+		paramMap.put("ADDRESS2", membervo.getAddress2() );
 		
 		ms.updateMember( paramMap );
 		
