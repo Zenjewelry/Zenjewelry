@@ -282,6 +282,22 @@ end;
 
 
 
+create or replace procedure editBoard_zen(
+    p_num in boards.num%type,
+    p_title in boards.title%type,
+    p_content in boards.content%type,
+    p_pictureurl in boards.pictureurl%type
+)
+is
+begin
+    update boards set title = p_title, content = p_content, pictureurl = p_pictureurl where num = p_num;
+    commit;
+end;
+
+
+
+
+
 
 
 

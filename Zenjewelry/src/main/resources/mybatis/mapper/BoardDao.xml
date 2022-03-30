@@ -53,7 +53,7 @@
 	
 	<update id="editBoard" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL editBoard_zen(
-			#{dto.num}
+			#{dto.num}, #{dto.title}, #{dto.content}, #{dto.pictureurl}
 		)}
 	</update>
 	

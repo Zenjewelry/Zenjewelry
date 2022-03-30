@@ -210,9 +210,9 @@ public class BoardController {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("dto", dto);
-		paramMap.put("ref_cursor", null);
 		bs.editBoard(paramMap);
-		
+
+		mav.addObject("num", dto.getNum());
 		mav.setViewName("redirect:/boardDetailWithoutCount");
 		
 		return mav;

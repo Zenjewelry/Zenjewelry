@@ -33,15 +33,15 @@ public class QnaController {
 	public ModelAndView qna_list(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		HashMap<String, Object> Id 
-			= (HashMap<String, Object>)session.getAttribute("Id");
-		if( Id == null ) {
+		HashMap<String, Object> id 
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		if( id == null ) {
 
 			mav.setViewName("member/login");
 
 		}else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("userid", Id.get("USERID") );
+			paramMap.put("userid", id.get("ID") );
 			paramMap.put("ref_cursor", null);
 			qs.listQna( paramMap );
 
