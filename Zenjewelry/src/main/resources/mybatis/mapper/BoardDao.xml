@@ -57,4 +57,9 @@
 		)}
 	</update>
 	
+	<insert id="insertReply" statementType="CALLABLE" parameterType="com.zen.project.dto.BoardVO">
+		{CALL insertBoard_zen(
+			#{userid}, #{title}, #{content}, #{pictureurl}
+		)}
+	</insert>
 </mapper>
