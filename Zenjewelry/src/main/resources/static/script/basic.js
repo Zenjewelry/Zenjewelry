@@ -13,7 +13,7 @@ function go_search(frm){
 }
 
 function go_write(com){
-	location.href = "shop.do?command=write" + com;
+	location.href = "write" + com + "Form";
 }
 
 function go_save1(com){
@@ -153,3 +153,25 @@ $(function(){
       }
    );
 });
+
+
+
+function uploadImg(){
+	var opt = "toolbar=no, menubar=no, resizable=no, width=450, height=200";
+	window.open('uploadImg', '이미지 업로드', opt);
+}
+
+function uploadedImg(){
+	document.frm.submit();
+}
+
+
+
+
+
+
+
+
+
+
+
