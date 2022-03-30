@@ -203,11 +203,42 @@ public class BoardController {
 		return mav;
 	}
 	
-//	@RequestMapping(value="/go_editBoard", method=RequestMethod.POST)
-//	public ModelAndView go_editBoard(@ModelAttribute("dto") BoardVO dto) {
-//		
-//		ModelAndView mav = new ModelAndView();
-//		
-//	}
+	@RequestMapping(value="/go_editBoard", method=RequestMethod.POST)
+	public ModelAndView go_editBoard(@ModelAttribute("dto") BoardVO dto) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("dto", dto);
+		paramMap.put("ref_cursor", null);
+		bs.editBoard(paramMap);
+		
+		mav.setViewName("redirect:/boardDetailWithoutCount");
+		
+		return mav;
+	}
+	
+	@RequestMapping("boardDetailWithoutCount")
+	public ModelAndView boardDetailWithoutCount(@RequestParam("num") int num) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("num", num);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		bs.getBoardWithoutCount(paramMap);
+		
+		ArrayList<HashMap<String, Object>> boardVO
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
+		ArrayList<HashMap<String, Object>> replyVO
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
+		
+		mav.addObject("boardVO", boardVO.get(0));
+		mav.addObject("replyVO", replyVO);
+		mav.setViewName("board/boardDetail");
+		
+		return mav;
+	}
 	
 }
