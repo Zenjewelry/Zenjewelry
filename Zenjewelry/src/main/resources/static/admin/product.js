@@ -97,19 +97,15 @@ function go_mod_save(){
 
 
 
-function go_search( comm ){
-	if( document.frm.key.value == "" ){
-		alert("검색버튼 사용시에는 검색어 입력이 필수입니다");
-	 	return;
-	 }
-	var url = "comm?page=1";   // 검색어로 검색한 결과의 1페이지로 이동
-	document.frm.action = url;
+function go_search(){
+	if( document.frm.key.value=="") return;
+	document.frm.action = "adminproductList?page=1";
 	document.frm.submit();
 }
 
-function go_total( comm ){
+function go_total(){
 	document.frm.key.value="";
-	document.frm.action = "comm?page=1";
+	document.frm.action = "adminproductList?page=1";
 	document.frm.submit();
 }
 
