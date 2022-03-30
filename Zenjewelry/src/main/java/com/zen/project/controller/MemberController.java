@@ -175,4 +175,69 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	@RequestMapping(value = "/editForm")
+	public String memberEditForm( HttpServletRequest request, Model model ) {
+		
+		MemberVO dto = new MemberVO();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser 
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		dto.setId( (String)loginUser.get("ID") );
+		dto.setName( (String)loginUser.get("NAME") );
+		dto.setEmail( (String)loginUser.get("EMAIL") );
+		dto.setPhone( (String)loginUser.get("PHONE") );
+		dto.setZip_num( (String)loginUser.get("ZIP_NUM") );
+		dto.setAddress( (String)loginUser.get("ADDRESS") );
+		
+		model.addAttribute("dto" , dto);
+		
+		return "member/memberUpdateForm";
+	}
+	
+	@RequestMapping(value = "/memberUpdate", method=RequestMethod.POST)
+	public String memberUpdate( @ModelAttribute("dto") @Valid MemberVO membervo,
+			BindingResult result,
+			@RequestParam(value="pwdCheck", required=false) String pwdCheck,
+			HttpServletRequest request,
+			Model model ) {
+		
+		if( result.getFieldError("pwd") != null ) {
+			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
+			return "member/memberUpdateForm";
+		} else if( result.getFieldError("name") != null ) {
+			model.addAttribute("message", result.getFieldError("name").getDefaultMessage() );
+			return "member/memberUpdateForm";
+		} else if( result.getFieldError("email") != null ) {
+			model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
+			return "member/memberUpdateForm";
+		} else if( result.getFieldError("phone") != null ) {
+			model.addAttribute("message", result.getFieldError("phone").getDefaultMessage() );
+			return "member/memberUpdateForm";
+		} else if( pwdCheck == null || (  pwdCheck != null && !pwdCheck.equals(membervo.getPwd() ) ) ) {
+			model.addAttribute("message", "비밀번호 확인 일치하지 않습니다");
+			return "member/memberUpdateForm";
+		}
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("ID", membervo.getId() );
+		paramMap.put("PWD", membervo.getPwd() );
+		paramMap.put("NAME", membervo.getName() );
+		paramMap.put("EMAIL", membervo.getEmail() );
+		paramMap.put("PHONE", membervo.getPhone() );
+		paramMap.put("ZIP_NUM", membervo.getZip_num() );
+		paramMap.put("ADDRESS", membervo.getAddress() );
+		
+		ms.updateMember( paramMap );
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("loginUser", paramMap);
+
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/findAccount")
+	public String findAccount() {
+		return "member/findAccount";
+	}
+	
 }

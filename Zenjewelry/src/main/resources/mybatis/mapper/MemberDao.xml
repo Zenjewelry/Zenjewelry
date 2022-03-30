@@ -27,4 +27,10 @@
 		) }
 	</insert>
 	
+	<insert id="updateMember" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL updateMember_zen( 
+		#{ID}, #{PWD}, #{NAME}, #{EMAIL}, #{PHONE}, #{ZIP_NUM} , #{ADDRESS} 
+		) }
+	</insert>
+	
 </mapper>
