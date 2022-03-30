@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zen.project.service.CartService;
@@ -47,6 +48,40 @@ public class CartController {
 			mav.setViewName("mypage/cartList");
 		}
 		return mav;
+	}
+	
+	
+	@RequestMapping(value="/cartInsert")
+	public String cartInsert(HttpServletRequest request, Model model, 
+			@RequestParam("pseq") int pseq, 
+			@RequestParam("quantity") int quantity) {
+		HttpSession session = request.getSession();
+		HashMap<String,Object> loginUser
+			= (HashMap<String, Object>) session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			return "member/login";
+		} else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("id", loginUser.get("ID"));
+			paramMap.put("pseq", pseq);
+			paramMap.put("quantity", quantity);
+			
+			cs.insertCart(paramMap);
+		}
+		return "redirect:/cartList";
+	}
+	
+	@RequestMapping("/cartDelete")
+	public String cartInsert(HttpServletRequest request,
+			@RequestParam("cseq") String[] cseqArr) {
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		for(String cseq : cseqArr) {
+			paramMap.put("cseq",cseq);
+			cs.deleteCart(paramMap);
+		}
+		return "redirect:/cartList";
 	}
 	
 	

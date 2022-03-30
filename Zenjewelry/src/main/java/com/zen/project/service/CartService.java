@@ -17,4 +17,14 @@ public class CartService {
 		cdao.listCart(paramMap);
 		
 	}
+
+	public void insertCart(HashMap<String, Object> paramMap) {
+		cdao.insertCart(paramMap);
+		
+	}
+
+	public void deleteCart(HashMap<String, Object> paramMap) {
+		cdao.deleteCart(paramMap);
+		
+	}
 }

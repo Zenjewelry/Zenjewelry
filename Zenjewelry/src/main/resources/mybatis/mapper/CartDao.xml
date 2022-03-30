@@ -14,5 +14,12 @@
 		)}
 	</select>
 	
+	<insert id="insertCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL insertCart_zen ( #{id}, #{pseq} , #{quantity}  )  } 
+	</insert>
+	
+	<delete id="deleteCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL deleteCart_zen ( #{cseq} )  } 
+	</delete>
 	
 </mapper>
