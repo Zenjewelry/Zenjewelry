@@ -34,14 +34,16 @@ public class QnaController {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		HashMap<String, Object> id 
-			= (HashMap<String, Object>)session.getAttribute("loginUser");
+			= (HashMap<String, Object>)session.getAttribute("id");
+
 		if( id == null ) {
 
 			mav.setViewName("member/login");
 
 		}else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("userid", id.get("ID") );
+
+			paramMap.put("id", id.get("id") );
 			paramMap.put("ref_cursor", null);
 			qs.listQna( paramMap );
 
@@ -57,14 +59,14 @@ public class QnaController {
 				@RequestParam("qseq") int qseq) {
 			ModelAndView mav = new ModelAndView();
 			HttpSession session = request.getSession();
-			HashMap<String, Object> Id 
-				= (HashMap<String, Object>)session.getAttribute("Id");
-			if( Id == null ) {
-				mav.setViewName("members/login");
+			HashMap<String, Object> id 
+				= (HashMap<String, Object>)session.getAttribute("id");
+			if( id == null ) {
+				mav.setViewName("member/login");
 			}else {
 				HashMap<String, Object> paramMap = new HashMap<String, Object>();
 				paramMap.put("qseq", qseq );
-				paramMap.put("ref_curser", null);
+				paramMap.put("ref_cursor", null);
 				qs.getQna( paramMap );
 				
 				ArrayList<HashMap<String, Object>> list 
@@ -78,9 +80,9 @@ public class QnaController {
 		@RequestMapping(value="/qnaWriteForm")
 		public String qna_writre_form( HttpServletRequest request) {
 			HttpSession session = request.getSession();
-			HashMap<String, Object> Id
-				= (HashMap<String, Object>)session.getAttribute("Id");
-			if( Id == null ) return "members/login";
+			HashMap<String, Object> id
+				= (HashMap<String, Object>)session.getAttribute("id");
+			if( id == null ) return "member/login";
 			
 		    return "Qnas/QnaWrite";
 		}
@@ -90,9 +92,9 @@ public class QnaController {
 				BindingResult result,  HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
 			HttpSession session = request.getSession();
-			HashMap<String, Object> Id 
-				= (HashMap<String, Object>) session.getAttribute("Id");
-		    if (Id == null) 
+			HashMap<String, Object> id 
+				= (HashMap<String, Object>) session.getAttribute("id");
+		    if (id == null) 
 		    	mav.setViewName("member/login");
 		    else {
 				if(result.getFieldError("subject") != null ) {
@@ -105,7 +107,7 @@ public class QnaController {
 					return mav;
 				}
 				HashMap<String, Object> paramMap = new HashMap<String, Object>();
-				paramMap.put("userid", Id.get("USERID") );
+				paramMap.put("id", id.get("id") );
 				paramMap.put("subject", qnasvo.getSubject() );
 				paramMap.put("content", qnasvo.getContent() );
 				qs.insertQna( paramMap );

@@ -297,6 +297,32 @@ begin
 end;
 
 
+-- delivery
+
+CREATE OR REPLACE PROCEDURE updateAddress_zen(
+   p_oseq IN orders_details.oseq%TYPE,
+    p_zip_num IN orders_details.zip_num%TYPE,
+    p_address IN orders_details.address%TYPE,
+    p_address2 IN orders_details.address2%TYPE
+    )
+IS
+BEGIN
+    update orders_details set zip_num=p_zip_num, address=p_address, address2=p_address2
+    where oseq=p_oseq;
+    commit;
+END;
+
+
+CREATE OR REPLACE PROCEDURE deliveryList_zen(
+   p_oseq IN orderss.oseq%TYPE,
+   p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM order_views WHERE oseq=p_oseq;
+END;
+
+
 
 
 
