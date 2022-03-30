@@ -30,7 +30,7 @@
 
 	<nav id="catagory_menu">
 		<ul>
-			<li><a class="LmR"  href='adminProductList?sub=y'>상품리스트</a></li>
+			<li><a class="LmR"  href="adminProductList?sub='y'">상품리스트</a></li>
 			<li><a class="LmR" href='adminOrderList?sub=y'>주문리스트</a></li>
 			<li><a class="LmR" href='adminMemberList?sub=y'>회원리스트</a></li>
 			<li><a class="LmR" href='adminQnaList?sub=y'>Q&amp;A리스트</a></li>
