@@ -7,7 +7,7 @@
 <script type="text/javascript">
 	opener.wbfrm.fictureurl.value='${image}';
 	opener.document.getElementById('previewText').innerHTML = '${image}';
-	opener.document.getElementById('previewImg').setAttribute('src', '/upload/' + '${image}');
+	opener.document.getElementById('previewImg').setAttribute('src', '/board_images/' + '${image}');
 	opener.document.getElementById('previewImg').style.display='inline';
 	self.close();
 </script>
