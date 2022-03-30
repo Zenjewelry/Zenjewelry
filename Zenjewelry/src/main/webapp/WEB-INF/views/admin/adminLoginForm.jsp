@@ -15,7 +15,7 @@ function workerCheck(){
 	     	alert("비밀번호를 입력하세요.");
 	      	return false;
 	  }
-	  return true;  
+	  return true;
 }
 </script>
 

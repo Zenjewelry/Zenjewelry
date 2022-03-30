@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.zen.project.dto.Paging;
 import com.zen.project.service.AdminService;
 import com.zen.project.service.ProductService;
 
@@ -55,11 +57,79 @@ public class AdminController {
 		}else if( workPwd.equals( (String)resultMap.get("PWD") ) ) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginAdmin", resultMap);
-			return "redirect:/";
+			return "redirect:/productList";
 		}else {
 			model.addAttribute("message" , "비번이 안맞아요");
 			return "admin/adminLoginForm";
 		}
+	}
+	
+
+	@RequestMapping(value="/adminLogout")
+	public String adminlogout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("loginAdmin");
+		return "redirect:/admin";
+	}
+	
+	
+	
+	
+
+	@RequestMapping(value="/productList")
+	public ModelAndView product_list(HttpServletRequest request, Model model) {
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginAdmin")==null) mav.setViewName("admin/adminLoginForm");
+		else {
+			int page = 1;
+			String key = "";
+			if( request.getParameter("first") != null ) {
+				session.removeAttribute("page");
+				session.removeAttribute("key");
+			}
+			if( request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			}else if( session.getAttribute("page") != null ) {
+				page = (Integer)session.getAttribute("page");
+			}else {
+				session.removeAttribute("page");
+			}
+			if( request.getParameter("key") != null ) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if( session.getAttribute("key")!= null ) {
+				key = (String)session.getAttribute("key");
+			} else {
+				session.removeAttribute("key");
+			}
+			Paging paging = new Paging();
+			paging.setPage(page);
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put( "cnt", 0 );
+			paramMap.put("key", key);
+			as.getAllCountProduct( paramMap );
+			int cnt = Integer.parseInt( paramMap.get("cnt").toString() );
+			paging.setTotalCount( cnt );
+			paging.paging();
+			
+			paramMap.put("startNum" , paging.getStartNum() );
+			paramMap.put("endNum", paging.getEndNum() );
+			paramMap.put("key", key);
+			paramMap.put( "ref_cursor", null );
+			as.getProductList( paramMap );
+			
+			ArrayList< HashMap<String,Object> > list 
+				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			
+			mav.addObject("productList", list);
+			mav.addObject("paging" , paging);
+			mav.addObject("key", key);
+			mav.setViewName("admin/product/productList");
+		}
+		return mav;
 	}
 	
 	
