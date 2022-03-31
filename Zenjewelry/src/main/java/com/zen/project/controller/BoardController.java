@@ -248,22 +248,36 @@ public class BoardController {
 	}
 	
 	@RequestMapping("writeReply")
-	public String writeReply(@RequestParam("reply") String content, @RequestParam("num") int num,
+	public String writeReply(@RequestParam("reply") String content, @RequestParam("boardnum") int boardnum,
 			HttpServletRequest request, Model model) {
 		
 		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(session.getAttribute("loginUser")==null) {
 			return "member/login";
 		}
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("content", content);
-		paramMap.put("boardnum", num);
+		paramMap.put("boardnum", boardnum);
+		paramMap.put("userid", loginUser.get("ID"));
 		bs.insertReply(paramMap);
 		
-		model.addAttribute(num);
+		return "redirect:/boardDetailWithoutCount?num=" + boardnum;
+	}
+	
+	@RequestMapping("/deleteReply")
+	public String deleteReply(@RequestParam("reply_num") int reply_num,
+			@RequestParam("boardnum") int boardnum, HttpServletRequest request) {
 		
-		return "redirect:/boardDetailWithoutCount";
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginUser")==null) {
+			return "member/login";
+		}
+		
+		bs.deleteReply(reply_num);
+		
+		return "redirect:/boardDetailWithoutCount?num=" + boardnum;
 	}
 	
 }

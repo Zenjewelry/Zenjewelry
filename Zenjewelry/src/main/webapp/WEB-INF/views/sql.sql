@@ -518,7 +518,7 @@ where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
 
 --------------3/31
 
-select * from orders_details;
+select * from board_replys;
 
 select * from products;
 select * from order_views;

@@ -18,4 +18,5 @@ public interface IBoardDao {
 	void plusCount(HashMap<String, Object> paramMap);
 	void editBoard(HashMap<String, Object> paramMap);
 	void insertReply(HashMap<String, Object> paramMap);
+	void deleteReply(int reply_num);
 }
