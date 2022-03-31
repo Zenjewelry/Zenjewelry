@@ -50,4 +50,17 @@
 		)}
 	</select>
 	
+	<insert id="insertProductQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL insertProductQna_zen(
+			#{id}, #{pqvo.pwd}, #{pqvo.pseq}, #{pqvo.subject}, #{pqvo.content}
+		)}
+	</insert>
+	
+	<select id="getProductQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProductQna_zen(
+		#{qna_num},
+		#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
 </mapper>

@@ -24,14 +24,6 @@
 		<span style="float: left; margin-right:20px;">
 			<img  src="product_images/${productVO.DETAIL_IMAGE}" 
 			style="width: 700px;  object-fit: cover;"/></span>   
-		<%-- <c:choose>
-	<c:when test="${loginUser.id != null}">
-		<div><input type="button" value="Q&A 작성하기" onClick="go_productqna();" /></div>
-	</c:when>
-	<c:otherwise>
-		<div><input type="button" value="Q&A 작성하기" onClick="go_login();" /></div>
-	</c:otherwise>
-	</c:choose> --%>
 	</div>
 </form>
 </div>
@@ -41,12 +33,12 @@
 <h2> Q&A </h2>
 
 <h3> 제품에 대한 질문을 운영자가 답변을 드립니다.</h3>
-<form name="formmm" method="post" action="shop.do">
+<form name="formm" method="post">
 <table id="cartList">
 	<tr>	<th>번호</th><th>제목</th><th>내용</th><th>등록일</th><th>답변 여부</th></tr>
 		<c:forEach items="${product_QnaVO}" var="product_QnaVO">
 		<tr ><td><input  type="hidden" name="qnanum"  value="${product_QnaVO.QNA_NUM}"> ${product_QnaVO.QNA_NUM}</td>    
-    		<td><a href="productQnaView?qnanum=${product_QnaVO.QNA_NUM}">${product_QnaVO.SUBJECT}</a></td>   
+    		<td><a href="productQnaView?qna_num=${product_QnaVO.QNA_NUM}">${product_QnaVO.SUBJECT}</a></td>   
     		<td>${product_QnaVO.CONTENT}</td>      
        		<td><fmt:formatDate value="${product_QnaVO.INDATE}" type="date"/></td>
        		<td><c:choose>
@@ -59,34 +51,22 @@
 </table>
 <br>
 <br>
-<%-- <div class="clear"></div>
-<div id="buttons" style="float:right">
-	<c:choose>
-	<c:when test="${loginUser.id != null}">
-		<div><input type="button" value="Q&A 작성하기" class="submit" onClick="go_productqna();" /></div>
-	</c:when>
-	<c:otherwise>
-		<div><input type="button" value="Q&A 작성하기" class="submit" onClick="go_login();" /></div>
-	</c:otherwise>
-	</c:choose>
-	<input type="button"    value="쇼핑 계속하기"  class="cancel" 	onclick="location.href='shop.do?command=index'">  
-</div> --%>
 </form>
-<form method="post" name="product_qna" style="bottom:1000px;">
-<input type="hidden" name="command" value="writeProductqna" />
+<form method="post" action="writeProductqna" style="bottom:1000px;">
 <h2>Q&A 작성</h2>
 <fieldset> 
-		 <label>Title</label><input type="text" name="subject"  size="60" ><br>
-		<label>Content</label><textarea rows="8" cols="65" name="content"></textarea>
-		<label>Q&A pwd</label><input type="password" name="qnapwd"  size="30" ><br>
-		<input  type="hidden" name="pseq"	 value="${productVO.pseq}">
+	<label>Title</label><input type="text" name="subject"  size="60" ><br>
+	<label>Content</label><textarea rows="8" cols="65" name="content"></textarea>
+	<label>Q&A password</label><input type="password" name="pwd"  size="30" ><br>
+	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}">
 		
-	</fieldset>
-	<input type="button" value="Q&A 등록" class="submit" onClick='save_product_qna();'>
-	<input type="reset"   value="취소"     class="cancel">
-	<!-- <input type="button" value="목록" class="submit"  onClick='go_mov1();'> -->
+</fieldset>
+<input type="submit" value="Q&A 등록" class="submit" />
+<input type="reset"   value="취소"     class="cancel">
 	
-</form></article>
+</form>
+
+</article>
 
 <br><br><br><br>
 <%@ include file="../include/headerfooter/footer.jsp" %>

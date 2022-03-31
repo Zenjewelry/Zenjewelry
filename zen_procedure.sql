@@ -490,6 +490,36 @@ end;
 
 
 
+create or replace procedure insertProductQna_zen(
+    p_id in product_qna.id%type,
+    p_pwd in product_qna.pwd%type,
+    p_pseq in product_qna.pseq%type,
+    p_subject in product_qna.subject%type,
+    p_content in product_qna.content%type
+)
+is
+begin
+    insert into product_qna(qna_num, id, pwd, pseq, subject, content)
+    values(qna_num_seq.nextVal, p_id, p_pwd, p_pseq, p_subject, p_content);
+    commit;
+end;
+
+
+
+create or replace procedure getProductQna_zen(
+    p_qnum in product_qna.qna_num%type,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from product_qna where qna_num = p_qnum;
+end;
+
+
+
+
+
 
 
 

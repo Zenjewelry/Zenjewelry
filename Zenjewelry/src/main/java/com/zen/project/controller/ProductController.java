@@ -5,22 +5,17 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zen.project.dto.Paging;
+import com.zen.project.dto.Product_QnaVO;
 import com.zen.project.service.ProductService;
 
 @Controller
@@ -177,6 +172,43 @@ public class ProductController {
 		mav.addObject("productVO", productVO.get(0));
 		mav.addObject("product_QnaVO", product_QnaVO);
 		mav.setViewName("product/productDetail");
+		
+		return mav;
+	}
+	
+	@RequestMapping("writeProductqna")
+	public String writeProductqna(@ModelAttribute("product_QnaVO") Product_QnaVO pqvo, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		if(loginUser==null) {
+			return "member/login";
+		}
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("pqvo", pqvo);
+		paramMap.put("id", loginUser.get("ID"));
+		ps.insertProductQna(paramMap);
+		
+		return "redirect:/productDetail?pseq=" + pqvo.getPseq();
+	}
+	
+	@RequestMapping("/productQnaView")
+	public ModelAndView productQnaView(@RequestParam("qna_num") int qna_num) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("qna_num", qna_num);
+		paramMap.put("ref_cursor", null);
+		ps.getProductQna(paramMap);
+		
+		ArrayList<HashMap<String, Object>> pqvo
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+		
+		mav.addObject("product_QnaVO", pqvo);
+		mav.setViewName("product/product_qna_view");
 		
 		return mav;
 	}
