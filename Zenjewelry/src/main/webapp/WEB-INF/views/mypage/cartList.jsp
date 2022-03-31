@@ -13,7 +13,7 @@
 					<c:forEach items="${cartList}" var="cartVO">
 						<tr><td><input type="checkbox" name="cseq" value="${cartVO.CSEQ}"></td>
 						<td><a href="productDetail?pseq=${cartVO.PSEQ}" target="_blank" >
-						<img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/>
+						<img src="product_images/${cartVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/>
 						</a></td>
 						<td><a href="productDetail?pseq=${cartVO.PSEQ}" target="_blank" >
 							<h3> ${cartVO.PNAME} </h3></a></td><td> ${cartVO.QUANTITY} </td>
