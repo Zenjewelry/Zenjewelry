@@ -500,8 +500,10 @@ select * from boards
 
 alter table members add address2 varchar(100);
 
-
+alter table orders_details add zip_num varchar(100);
+alter table orders_details add address varchar(100);
 alter table orders_details add address2 varchar(100);
+
 
 -- address2 때문에 수정
 create or replace view order_views
@@ -513,5 +515,7 @@ from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
 
 select * from order_views;
+
+select * from orders_details;
 
 
