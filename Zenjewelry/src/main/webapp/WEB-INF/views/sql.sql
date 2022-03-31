@@ -520,14 +520,15 @@ where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
 
 select * from orders_details;
 
+select * from products;
+select * from order_views;
 
-
--- address, zip_num 수정 
+-- address, zip_num, image 수정 
 
 create or replace view order_views
 as
 select d.odseq, o.oseq, o.indate,  o.id, 
          m.name as mname, d.zip_num, d.address, m.phone, d.address2,
-         d.pseq,  p.name as pname, p.price2, d.quantity, d.result
+         d.pseq,  p.name as pname, p.price2, d.quantity, d.result , p.image
 from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
