@@ -332,6 +332,43 @@ END;
 
 
 
+-- 3/31
+-- board
+
+create or replace procedure insertReply_zen(
+    p_userid in board_replys.userid%type,
+    p_boardnum in board_replys.boardnum%type,
+    p_content in board_replys.content%type
+)
+is
+begin
+    insert into board_replys(reply_num, boardnum, userid, content)
+    values(board_replys_seq.nextVal, p_boardnum, p_userid, p_content);
+    
+    commit;
+end;
+
+
+create or replace procedure deleteReply_zen(
+    p_reply_num in board_replys.reply_num%type
+)
+is
+begin
+    delete from board_replys where reply_num = p_reply_num;
+    
+    commit;
+end;
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -58,8 +58,13 @@
 	</update>
 	
 	<insert id="insertReply" statementType="CALLABLE" parameterType="com.zen.project.dto.BoardVO">
-		{CALL insertBoard_zen(
-			#{userid}, #{title}, #{content}, #{pictureurl}
+		{CALL insertReply_zen(
+			#{userid}, #{boardnum}, #{content} 
 		)}
 	</insert>
+	
+	<delete id="deleteReply" statementType="CALLABLE">
+		{CALL deleteReply_zen(#{param1})}
+	</delete>
+	
 </mapper>
