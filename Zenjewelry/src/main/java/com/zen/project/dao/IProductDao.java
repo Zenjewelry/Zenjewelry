@@ -12,5 +12,6 @@ public interface IProductDao {
 	void getAllCount(HashMap<String, Object> paramMap);
 	void getBestProductList(HashMap<String, Object> paramMap);
 	void getBestAllCount(HashMap<String, Object> paramMap);
+	void getProduct(HashMap<String, Object> paramMap);
 
 }

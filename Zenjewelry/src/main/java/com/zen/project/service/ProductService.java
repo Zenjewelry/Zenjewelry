@@ -32,4 +32,8 @@ public class ProductService {
 	public void getBestAllCount(HashMap<String, Object> paramMap) {
 		pdao.getBestAllCount(paramMap);
 	}
+
+	public void getProduct(HashMap<String, Object> paramMap) {
+		pdao.getProduct(paramMap);
+	}
 }

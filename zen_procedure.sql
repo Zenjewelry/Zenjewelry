@@ -465,6 +465,22 @@ end;
 
 
 
+create or replace procedure getProduct_zen(
+    p_pseq in products.pseq%type,
+    p_cur1 out sys_refcursor,
+    p_cur2 out sys_refcursor
+)
+is
+begin
+    open p_cur1 for
+        select * from products where pseq = p_pseq;
+    
+    open p_cur2 for
+        select * from product_qna where pseq = p_pseq;
+end;
+
+
+
 
 
 
