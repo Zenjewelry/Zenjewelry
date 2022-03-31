@@ -28,7 +28,7 @@ function go_cart_delete(){
 	if( count == 0 ){
 		alert("삭제할 항목을 선택해주세요");
 	} else{
-		document.formm.action = "shop.do?command=cartDelete";
+		document.formm.action = "cartDelete";
 	    document.formm.submit();
 	}
 }
@@ -37,7 +37,7 @@ function go_cart_delete(){
 
 function go_order_insert(){
 
-	document.formm.action ="shop.do?command=orderInsert";
+	document.formm.action ="orderInsert";
 	document.formm.submit();
 	
 }
@@ -46,7 +46,7 @@ function go_order_insert(){
 
 
 function go_order(){
-	document.formm.action = "shop.do?command=orderOne";
+	document.formm.action = "orderOne";
 	document.formm.submit();
 }
 
@@ -84,14 +84,14 @@ function result1( zipNum, sido, gugun, dong){
 
 
 function go_orderDetail(){
-	document.updateDelivery.action = "shop.do?command=orderDetail";
+	document.updateDelivery.action = "orderDetail";
 	document.updateDelivery.submit();
 }
 
 function delete_order(){
 	var answer = confirm("주문을 취소하시겠습니까?");
 	if( answer ){
-	document.cartList.action= "shop.do?command=deleteOrder";
+	document.cartList.action= "deleteOrder";
 	document.cartList.submit();	
    }
 }

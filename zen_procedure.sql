@@ -360,9 +360,15 @@ begin
 end;
 
 
+-- cart
 
-
-
+create or replace PROCEDURE deleteCart_zen(
+    p_cseq IN carts.cseq%TYPE )
+IS
+BEGIN
+   Delete From carts where cseq = p_cseq;
+    commit;
+END;
 
 
 

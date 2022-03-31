@@ -15,8 +15,8 @@
     	
         <%-- 	<td>${orderVO.OSEQ} </td> --%>
 			<td style="width:400px;">
-				<c:if test="${orderVO.RESULT=='1'}">배송준비중</c:if>
-				<c:if test="${orderVO.RESULT=='2'}">베송완료</c:if>
+				<c:if test="${orderVO.RESULT=='1'}">배송준비 중</c:if>
+				<c:if test="${orderVO.RESULT=='2'}">배송 완료</c:if>
 				</td>
 		</tr>
 		
@@ -25,7 +25,7 @@
     </c:forEach>  
 </table><div class="clear"></div>
 <div id="buttons" style="float:left">
-   <input type="button"  value="총 주문 내역"  class="cancel" onclick="orderAll'"></div>
+   <input type="button"  value="총 주문 내역"  class="cancel" onclick="location.href='/orderAll'"></div>
 <div id="buttons" style="float:left">
    <input type="button"  value="뒤로가기"  class="cancel" onclick="history.go(-1)'"></div>
 <div id="buttons" style="float:right">
