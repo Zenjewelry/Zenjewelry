@@ -479,7 +479,7 @@ update products set newyn='y';
 update products set bestyn='y';
 
 
-select * from products
+select * from orders_details;
 
 
 SELECT * FROM BOARDS
@@ -509,13 +509,25 @@ alter table orders_details add address2 varchar(100);
 create or replace view order_views
 as
 select d.odseq, o.oseq, o.indate,  o.id, 
-         m.name as mname, m.zip_num, m.address, m.phone, d.address2,
+         m.name as mname, d.zip_num, d.address, m.phone, d.address2,
          d.pseq,  p.name as pname, p.price2, d.quantity, d.result
 from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
 
-select * from order_views;
+
+
+--------------3/31
 
 select * from board_replys;
 
 
+
+-- address, zip_num 수정 
+
+create or replace view order_views
+as
+select d.odseq, o.oseq, o.indate,  o.id, 
+         m.name as mname, d.zip_num, d.address, m.phone, d.address2,
+         d.pseq,  p.name as pname, p.price2, d.quantity, d.result
+from orderss o, orders_details d, members m, products p
+where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;

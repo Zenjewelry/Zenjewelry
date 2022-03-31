@@ -75,7 +75,7 @@ public class DeliveryController {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("oseq", oseq);
-		paramMap.put("zip_num", oseq);
+		paramMap.put("zip_num", zip_num);
 		paramMap.put("address",address);
 		paramMap.put("address2",address2);
 		
