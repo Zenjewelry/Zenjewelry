@@ -324,8 +324,50 @@ END;
 
 
 ----------------- 3/31
+----------------  admin
+
+CREATE OR REPLACE PROCEDURE insertProduct_zen(
+    p_name IN products.name%TYPE,
+    p_kind  IN products.kind%TYPE,
+    p_price1  IN products.price1%TYPE,
+    p_price2  IN products.price2%TYPE,
+    p_content IN products.content%TYPE,
+    p_image IN products.image%TYPE,
+    p_newyn IN products.newyn%TYPE,
+    p_bestyn IN products.bestyn%TYPE,
+    p_indate IN products.indate%TYPE
+IS
+BEGIN
+    insert into products(name, kind, price1, price2, content, image, newyn, bestyn, indate) 
+    values( p_name, p_kind, p_price1, p_price2, p_content, p_image, p_newyn, p_bestyn, p_indate );
+    commit;    
+END;
 
 
+CREATE OR REPLACE PROCEDURE getAllCountProduct_zen (  
+    p_key IN products.name%TYPE,
+    p_cnt  OUT NUMBER  )
+IS
+    v_cnt NUMBER;
+BEGIN
+    SELECT count(*) as cnt into v_cnt FROM PRODUCTS WHERE name like '%'||p_key||'%';
+    p_cnt := v_cnt;
+END;
+
+CREATE OR REPLACE PROCEDURE getProductList (
+    p_startNum NUMBER,
+    p_endNum NUMBER,
+    p_key PRODUCTS.NAME%TYPE,
+    p_rc   OUT     SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_rc FOR
+        select * from (
+        select * from (
+        select rownum as rn, p.* from((select * from products where name like '%'||p_key||'%' order by pseq desc) p)
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+END;
 
 
 
