@@ -16,4 +16,24 @@ public class ProductService {
 	public void getBestNewProduct(HashMap<String, Object> paramMap) {
 		pdao.getBestNewProduct(paramMap);
 	}
+
+	public void getProductList(HashMap<String, Object> paramMap) {
+		pdao.getProductList(paramMap);
+	}
+
+	public void getAllCount(HashMap<String, Object> paramMap) {
+		pdao.getAllCount(paramMap);
+	}
+
+	public void getBestProductList(HashMap<String, Object> paramMap) {
+		pdao.getBestProductList(paramMap);
+	}
+
+	public void getBestAllCount(HashMap<String, Object> paramMap) {
+		pdao.getBestAllCount(paramMap);
+	}
+
+	public void getProduct(HashMap<String, Object> paramMap) {
+		pdao.getProduct(paramMap);
+	}
 }

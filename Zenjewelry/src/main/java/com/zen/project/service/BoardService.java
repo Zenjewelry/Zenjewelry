@@ -51,5 +51,9 @@ public class BoardService {
 		bdao.insertReply(paramMap);
 	}
 
+	public void deleteReply(int reply_num) {
+		bdao.deleteReply(reply_num);
+	}
+
 
 }

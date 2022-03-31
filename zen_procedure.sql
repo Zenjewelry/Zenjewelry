@@ -323,7 +323,170 @@ BEGIN
 END;
 
 
+----------------- 3/31
+----------------  admin
 
+CREATE OR REPLACE PROCEDURE insertProduct_zen(
+    p_name IN products.name%TYPE,
+    p_kind  IN products.kind%TYPE,
+    p_price1  IN products.price1%TYPE,
+    p_price2  IN products.price2%TYPE,
+    p_content IN products.content%TYPE,
+    p_image IN products.image%TYPE,
+    p_newyn IN products.newyn%TYPE,
+    p_bestyn IN products.bestyn%TYPE,
+    p_indate IN products.indate%TYPE
+IS
+BEGIN
+    insert into products(name, kind, price1, price2, content, image, newyn, bestyn, indate) 
+    values( p_name, p_kind, p_price1, p_price2, p_content, p_image, p_newyn, p_bestyn, p_indate );
+    commit;    
+END;
+
+
+CREATE OR REPLACE PROCEDURE getAllCountProduct_zen (  
+    p_key IN products.name%TYPE,
+    p_cnt  OUT NUMBER  )
+IS
+    v_cnt NUMBER;
+BEGIN
+    SELECT count(*) as cnt into v_cnt FROM PRODUCTS WHERE name like '%'||p_key||'%';
+    p_cnt := v_cnt;
+END;
+
+CREATE OR REPLACE PROCEDURE getProductList (
+    p_startNum NUMBER,
+    p_endNum NUMBER,
+    p_key PRODUCTS.NAME%TYPE,
+    p_rc   OUT     SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_rc FOR
+        select * from (
+        select * from (
+        select rownum as rn, p.* from((select * from products where name like '%'||p_key||'%' order by pseq desc) p)
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+END;
+
+
+
+
+
+
+-- 3/31
+-- board
+
+create or replace procedure insertReply_zen(
+    p_userid in board_replys.userid%type,
+    p_boardnum in board_replys.boardnum%type,
+    p_content in board_replys.content%type
+)
+is
+begin
+    insert into board_replys(reply_num, boardnum, userid, content)
+    values(board_replys_seq.nextVal, p_boardnum, p_userid, p_content);
+    commit;
+end;
+
+
+create or replace procedure deleteReply_zen(
+    p_reply_num in board_replys.reply_num%type
+)
+is
+begin
+    delete from board_replys where reply_num = p_reply_num;
+    commit;
+end;
+
+
+-- cart
+
+
+create or replace PROCEDURE deleteCart_zen(
+    p_cseq IN carts.cseq%TYPE )
+IS
+BEGIN
+   Delete From carts where cseq = p_cseq;
+    commit;
+END;
+
+-- product
+
+create or replace procedure getProductList_zen(
+    p_comm in number,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, p.* from
+                    ((select * from products where kind = p_comm) p)
+            ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
+
+
+
+create or replace procedure getBestProductList_zen(
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, p.* from
+                    ((select * from products where bestyn = 'y') p)
+            ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
+
+
+
+create or replace procedure getAllCountProduct_zen(
+    p_comm in number,
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from products where kind = p_comm;
+    p_cnt := v_cnt;
+end;
+
+
+create or replace procedure getAllCountBestProduct_zen(
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from products where bestyn = 'y';
+    p_cnt := v_cnt;
+end;
+
+
+
+create or replace procedure getProduct_zen(
+    p_pseq in products.pseq%type,
+    p_cur1 out sys_refcursor,
+    p_cur2 out sys_refcursor
+)
+is
+begin
+    open p_cur1 for
+        select * from products where pseq = p_pseq;
+    
+    open p_cur2 for
+        select * from product_qna where pseq = p_pseq;
+end;
 
 
 

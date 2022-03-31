@@ -479,7 +479,7 @@ update products set newyn='y';
 update products set bestyn='y';
 
 
-select * from products
+select * from orders_details;
 
 
 SELECT * FROM BOARDS
@@ -500,18 +500,54 @@ select * from boards
 
 alter table members add address2 varchar(100);
 
-
+alter table orders_details add zip_num varchar(100);
+alter table orders_details add address varchar(100);
 alter table orders_details add address2 varchar(100);
+
 
 -- address2 때문에 수정
 create or replace view order_views
 as
 select d.odseq, o.oseq, o.indate,  o.id, 
-         m.name as mname, m.zip_num, m.address, m.phone, d.address2,
+         m.name as mname, d.zip_num, d.address, m.phone, d.address2,
          d.pseq,  p.name as pname, p.price2, d.quantity, d.result
 from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
 
+
+
+--------------3/31
+
+select * from board_replys;
+
+select * from products;
 select * from order_views;
+
+-- address, zip_num, image 수정 
+
+create or replace view order_views
+as
+select d.odseq, o.oseq, o.indate,  o.id, 
+         m.name as mname, d.zip_num, d.address, m.phone, d.address2,
+         d.pseq,  p.name as pname, p.price2, d.quantity, d.result , p.image
+from orderss o, orders_details d, members m, products p
+where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
+
+
+-- image 수정
+create or replace view cart_views
+as
+select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, p.price2, c.result, c.indate, p.image
+from carts c, products p, members m
+where c.pseq = p.pseq and c.id = m.id;
+
+
+
+
+
+
+
+
+
 
 

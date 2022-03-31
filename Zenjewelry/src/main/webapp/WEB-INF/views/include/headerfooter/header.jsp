@@ -51,11 +51,11 @@
 	<nav id="catagory_menu"><!-- 카테고리 메뉴 Heels Boots Sandals 등-->
 		<ul>
 			<li><img class="Lm" id="hmBtn" src="images/Hbutton.png" style="cursor:pointer" width="70" height="70" /></li>
-			<li><a class="Lm" href="productList?best=y">BEST</a></li>
-			<li><a class="Lm" href="productList?kind=1">RING</a></li>
-			<li><a class="Lm" href="productList?kind=2">EARRINGS</a></li>
-			<li><a class="Lm" href="productList?kind=3">NECKLACE</a></li>
-			<li><a class="Lm" href="productList?kind=4">BRACELET</a></li>
+			<li><a class="Lm" href="bestProductList?sub='y'">BEST</a></li>
+			<li><a class="Lm" href="productList?kind=1&sub='y'">RING</a></li>
+			<li><a class="Lm" href="productList?kind=2&sub='y'">EARRINGS</a></li>
+			<li><a class="Lm" href="productList?kind=3&sub='y'">NECKLACE</a></li>
+			<li><a class="Lm" href="productList?kind=4&sub='y'">BRACELET</a></li>
 			<li><a class="LmR" href="cartList">CART</a></li>
 			<li><a class="LmR" href="boardList?sub='y'">BOARD</a></li>
 			<li><a class="LmR" href="qnaList" >Q&amp;A</a></li>
@@ -65,11 +65,11 @@
 	
 	<!-- 햄버거 카테고리 수직메뉴(드롭다운) -->
 <div class="dropdown">    
-	<div class="ddBtn"><a href="productList?best=y">&nbsp;&nbsp;&nbsp;BEST</a></div>
-	<div class="ddBtn"><a href="productList?kind=1">&nbsp;&nbsp;&nbsp;RING</a></div>
-	<div class="ddBtn"><a href="productList?kind=2">&nbsp;&nbsp;&nbsp;EARRINGS</a></div>
-	<div class="ddBtn"><a href="productList?kind=3">&nbsp;&nbsp;&nbsp;NECKLACE</a></div>
-	<div class="ddBtn"><a href="productList?kind=4">&nbsp;&nbsp;&nbsp;BRACELET</a></div>
+	<div class="ddBtn"><a href="bestProductList?sub='y'">&nbsp;&nbsp;&nbsp;BEST</a></div>
+	<div class="ddBtn"><a href="productList?kind=1&sub='y'">&nbsp;&nbsp;&nbsp;RING</a></div>
+	<div class="ddBtn"><a href="productList?kind=2&sub='y'">&nbsp;&nbsp;&nbsp;EARRINGS</a></div>
+	<div class="ddBtn"><a href="productList?kind=3&sub='y'">&nbsp;&nbsp;&nbsp;NECKLACE</a></div>
+	<div class="ddBtn"><a href="productList?kind=4&sub='y'">&nbsp;&nbsp;&nbsp;BRACELET</a></div>
 	<div class="ddBtn"><a href="cartList">&nbsp;&nbsp;&nbsp;CART</a></div>
 	<div class="ddBtn"><a href="boardList?sub='y'">&nbsp;&nbsp;&nbsp;BOARD</a></div>
 	<div class="ddBtn"><a href="qnaList">&nbsp;&nbsp;&nbsp;Q&amp;A</a></div>
