@@ -531,3 +531,11 @@ select d.odseq, o.oseq, o.indate,  o.id,
          d.pseq,  p.name as pname, p.price2, d.quantity, d.result
 from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
+
+
+
+
+
+
+
+

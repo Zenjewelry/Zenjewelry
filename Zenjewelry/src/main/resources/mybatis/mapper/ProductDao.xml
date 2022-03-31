@@ -15,4 +15,31 @@
 		)}
 	</select>
 	
+	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCountProduct_zen(
+			#{command},
+			#{count, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProductList_zen(
+			#{command}, #{startNum}, #{endNum}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
+	<select id="getBestAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCountBestProduct_zen(
+			#{count, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getBestProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBestProductList_zen(
+			#{startNum}, #{endNum}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
 </mapper>

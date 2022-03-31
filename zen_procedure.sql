@@ -344,7 +344,6 @@ is
 begin
     insert into board_replys(reply_num, boardnum, userid, content)
     values(board_replys_seq.nextVal, p_boardnum, p_userid, p_content);
-    
     commit;
 end;
 
@@ -355,9 +354,75 @@ create or replace procedure deleteReply_zen(
 is
 begin
     delete from board_replys where reply_num = p_reply_num;
-    
     commit;
 end;
+
+
+
+
+-- product
+
+create or replace procedure getProductList_zen(
+    p_comm in number,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, p.* from
+                    ((select * from products where kind = p_comm) p)
+            ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
+
+
+
+create or replace procedure getBestProductList_zen(
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, p.* from
+                    ((select * from products where bestyn = 'y') p)
+            ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
+
+
+
+create or replace procedure getAllCountProduct_zen(
+    p_comm in number,
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from products where kind = p_comm;
+    p_cnt := v_cnt;
+end;
+
+
+create or replace procedure getAllCountBestProduct_zen(
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from products where bestyn = 'y';
+    p_cnt := v_cnt;
+end;
+
+
+
 
 
 
