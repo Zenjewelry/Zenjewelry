@@ -2,41 +2,45 @@
 <%@ include file="../include/headerfooter/header.jsp" %>
 
 
-<article >
-
-
-<form name="cartList" method="post">
-
-<center><h1> 주문상세 </h1></center> 
+<article style=width:1000px;>
+<form name="cartList" method="post" style=width:1000px>
+<h2> 주문 상세정보 </h2>
+<h2><fmt:formatDate value="${orderVO.INDATE}" type="date"/></h2>
 <br>
 
 
-<table id="cartList2">
-
-</table>
-<table id="cartList2">	
-	<tr><th>주문자<th>상품명</th><th>주문수량</th><th>상품가격</th><th>주문일자</th><th>배송주소</th><th>상세주소</th></tr>
+<table id="cartList" style=width:1000px>	
+	<tr><th>상품 정보</th><th>상품금액</th><th>주문금액</th></tr>
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
 			<input  type="hidden" name="oseq" value="${orderVO.OSEQ}">
-			<td>${orderVO.ID}</td>
-			<td>${orderVO.PNAME}</td>
-			<td>${orderVO.QUANTITY}</td>
+			<td ><a href="orderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a>        
+			<a href="orderDetail?oseq=${orderVO.OSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a></td>
+			
+			<td><fmt:formatNumber value="${orderVO.PRICE2}" type="currency"/>( ${orderVO.QUANTITY}건 )</td>
        		<td><fmt:formatNumber value="${orderVO.PRICE2*orderVO.QUANTITY}" type="currency"/></td>  
-       		<td><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
-       		<td>${orderVO.ZIP_NUM}   ${orderVO.ADDRESS}</td>
-       		<td>${orderVO.ADDRESS2}</td>
-       		
-       		
+       		<%-- ${orderVO.ZIP_NUM}   ${orderVO.ADDRESS}
+       		${orderVO.ADDRESS2} --%>
        	</tr>
 	</c:forEach>
 	
 </table>
-<table id="cartList2">	
+<table id="cartList">	
 	<tr><th width="20%"> 총 액 </th>
        	<td><fmt:formatNumber value="${totalPrice}" type="currency"/></td></tr>	
 </table>
 
+<table id="cartList" style="text:left">	
+<h2> 배송지 정보 </h2>
+
+	<tr><th width="20%"> 수령인 </th>
+       	<td style="text-align:left;">${orderDetail.MNAME}</td></tr>	
+    <tr><th width="20%"> 연락처 </th>
+       	<td style="text-align:left;">${orderDetail.PHONE}</td></tr>
+    <tr><th width="20%"> 배송지 </th>
+       	<td style="text-align:left;">${orderDetail.ZIP_NUM} ${orderDetail.ADDRESS} ${orderDetail.ADDRESS2}</td></tr>	
+
+</table>
 
 <table id="cartList3">
 <tr>
@@ -48,11 +52,9 @@
    	</td>
 </tr>
 </table>
- 
 
 </form>	
 </article>
-
 
 
 <%@ include file="../include/headerfooter/footer.jsp" %>

@@ -400,7 +400,16 @@ begin
 end;
 
 
+-- cart
 
+
+create or replace PROCEDURE deleteCart_zen(
+    p_cseq IN carts.cseq%TYPE )
+IS
+BEGIN
+   Delete From carts where cseq = p_cseq;
+    commit;
+END;
 
 -- product
 
@@ -506,12 +515,6 @@ begin
     open p_cur for
         select * from product_qna where qna_num = p_qnum;
 end;
-
-
-
-
-
-
 
 
 

@@ -534,6 +534,15 @@ from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
 
 
+-- image 수정
+create or replace view cart_views
+as
+select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, p.price2, c.result, c.indate, p.image
+from carts c, products p, members m
+where c.pseq = p.pseq and c.id = m.id;
+
+
+
 
 
 
