@@ -13,5 +13,7 @@ public interface IProductDao {
 	void getBestProductList(HashMap<String, Object> paramMap);
 	void getBestAllCount(HashMap<String, Object> paramMap);
 	void getProduct(HashMap<String, Object> paramMap);
+	void insertProductQna(HashMap<String, Object> paramMap);
+	void getProductQna(HashMap<String, Object> paramMap);
 
 }

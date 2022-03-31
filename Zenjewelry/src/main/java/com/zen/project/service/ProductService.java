@@ -36,4 +36,12 @@ public class ProductService {
 	public void getProduct(HashMap<String, Object> paramMap) {
 		pdao.getProduct(paramMap);
 	}
+
+	public void insertProductQna(HashMap<String, Object> paramMap) {
+		pdao.insertProductQna(paramMap);
+	}
+
+	public void getProductQna(HashMap<String, Object> paramMap) {
+		pdao.getProductQna(paramMap);
+	}
 }
