@@ -1,20 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/headerfooter/header.jsp" %>
 
-<article>
+<article style=width:1000px>
 <h2>${title}</h2>
 <form>
-<table id="cartList">
-	<tr><th>주문일자</th><th>주문번호</th><th>상품명</th><th>결제 금액</th><th>주문 상세</th><th>처리상태</th></tr>
+<table  id="cartList" style=width:1000px>
+	<tr></tr>
     <c:forEach items="${orderList}"  var="orderVO">
-    	<tr ><td><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
-        	<td>${orderVO.OSEQ} </td><td>${orderVO.PNAME} </td>
-        	<td><fmt:formatNumber value="${orderVO.PRICE2}" type="currency"/></td>
-        	<td><a href="orderDetail?oseq=${orderVO.OSEQ}">조회</a></td>
-			<td>
-				<c:if test="${orderVO.RESULT=='1'}">미처리</c:if>
-				<c:if test="${orderVO.RESULT=='2'}">완료</c:if>
-		</td></tr>
+    <tr style="margin-top: 100px">
+    	<td style="margin:30px auto"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 200px; height: 200px; object-fit: cover;"/>
+    	<td style="width:1000px; margin-left:50px"><a href="orderDetail?oseq=${orderVO.OSEQ}"><h3>${orderVO.PNAME}</h3></a>
+    	<td style=width:700px><fmt:formatNumber value="${orderVO.PRICE2}" type="currency" /></td>
+    	<td style=width:700px><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
+    	
+        <%-- 	<td>${orderVO.OSEQ} </td> --%>
+			<td style="width:400px;">
+				<c:if test="${orderVO.RESULT=='1'}">배송준비중</c:if>
+				<c:if test="${orderVO.RESULT=='2'}">베송완료</c:if>
+				</td>
+		</tr>
+		
+		<tr></tr>
+	
     </c:forEach>  
 </table><div class="clear"></div>
 <div id="buttons" style="float:left">
