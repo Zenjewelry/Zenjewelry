@@ -3,19 +3,19 @@
 
 
 <article style=width:1000px;>
-<form name="cartList" method="post" style=width:1000px>
+<form name="cartList1" method="post" style=width:1000px>
 <h2> 주문 상세정보 </h2>
-<h2><fmt:formatDate value="${orderVO.INDATE}" type="date"/></h2>
+<h2><fmt:formatDate value="${orderDetail.INDATE}" type="date"/></h2>
 <br>
 
 
 <table id="cartList" style=width:1000px>	
-	<tr><th>상품 정보</th><th>상품금액</th><th>주문금액</th></tr>
+	<tr><th colspan="2">상품 정보</th><th>상품금액</th><th>주문금액</th></tr>
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
 			<input  type="hidden" name="oseq" value="${orderVO.OSEQ}">
-			<td ><a href="orderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a>        
-			<a href="orderDetail?oseq=${orderVO.OSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a></td>
+			<td ><a href="orderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a></td>        
+			<td><a href="orderDetail?oseq=${orderVO.OSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a></td>
 			
 			<td><fmt:formatNumber value="${orderVO.PRICE2}" type="currency"/>( ${orderVO.QUANTITY}건 )</td>
        		<td><fmt:formatNumber value="${orderVO.PRICE2*orderVO.QUANTITY}" type="currency"/></td>  
@@ -30,7 +30,8 @@
        	<td><fmt:formatNumber value="${totalPrice}" type="currency"/></td></tr>	
 </table>
 
-<br><br>
+<br>
+
 <table id="cartList" style="text:left">	
 
 <h2> 배송지 정보 </h2>

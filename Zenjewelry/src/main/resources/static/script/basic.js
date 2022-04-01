@@ -160,6 +160,25 @@ function uploadedImg(){
 
 
 
+function deleteProductQna_test(){
+	var con = confirm('상품문의를 삭제하시겠습니까 ?');
+	var pseq = document.qnalist.pseq.value;
+	var qna_num = document.qnalist.qna_num.value;
+	if(con)
+		location.href="'deleteProductQna?qna_num=' + qna_num + '&pseq=' + pseq";
+}
+
+function deleteProductQna(){
+	var con = confirm('상품문의를 삭제하시겠습니까 ?');
+	if(con){
+		document.qnalist.action = 'deleteProductQna';
+		document.qnalist.submit();
+	}
+}
+
+
+
+
 
 
 
