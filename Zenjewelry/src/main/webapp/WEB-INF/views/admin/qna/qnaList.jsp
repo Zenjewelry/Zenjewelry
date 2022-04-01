@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/adminheaderfooter/header.jsp" %>
+<%@ include file="../../include/adminheaderfooter/header.jsp" %>
 <article>
 <h1>Q&amp;A 게시글 리스트</h1><br>
 <form name="frm" method="post">
@@ -29,4 +29,4 @@
 	<jsp:param name="command" value="shop.do?command=adminQnaList" />
 </jsp:include>
 </article>
-<%@ include file="../include/adminheaderfooter/footer.jsp" %>
+<%@ include file="../../include/adminheaderfooter/footer.jsp" %>

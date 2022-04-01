@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="getAllCountProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{  CALL getAllCountProduct_zen( 
+		{  CALL getAllCountAdminProduct_zen( 
 			#{key},
 			#{cnt , mode=OUT, jdbcType=INTEGER }
 		)  }
@@ -36,8 +36,8 @@
 			#{name}, #{kind}, #{price1}, #{price2}, #{price3}, #{content} , #{image} 
 		) }
 	</insert>
-	
-	
-	
-	
+
+
+
+
 </mapper>
