@@ -553,3 +553,5 @@ select * from qnas where subject like '%'||'다'||'%' or content like '%'||'다'
 
 
 
+
+

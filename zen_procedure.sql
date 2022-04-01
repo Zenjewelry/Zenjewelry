@@ -564,7 +564,7 @@ begin
         select * from (
             select * from (
                 select rownum as rn, q.* from
-                   ((select * from qnas where subject = p_key or content = p_key order by qseq) q)
+                   ((select * from qnas where subject like '%'||p_key||'%' or content like '%'||p_key||'%' order by qseq) q)
             ) where rn >= p_startNum
         ) where rn <= p_endNum;
 end;

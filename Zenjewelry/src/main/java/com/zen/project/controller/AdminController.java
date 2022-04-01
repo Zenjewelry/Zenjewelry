@@ -186,6 +186,10 @@ public class AdminController {
 		ArrayList<HashMap<String, Object>> qnaList
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 		
+		for(HashMap<String, Object> list : qnaList) {
+			System.out.println("QSEQ : " + list.get("QSEQ"));
+		}
+		
 		mav.addObject("qnaList", qnaList);
 		mav.addObject("paging", paging);
 		mav.addObject("key", key);
