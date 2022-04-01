@@ -29,8 +29,11 @@
 	<tr><th width="20%"> 총 액 </th>
        	<td><fmt:formatNumber value="${totalPrice}" type="currency"/></td></tr>	
 </table>
+
 <br>
+
 <table id="cartList" style="text:left">	
+
 <h2> 배송지 정보 </h2>
 
 	<tr><th width="20%"> 수령인 </th>
@@ -41,7 +44,7 @@
        	<td style="text-align:left;">${orderDetail.ZIP_NUM} ${orderDetail.ADDRESS} ${orderDetail.ADDRESS2}</td></tr>	
 
 </table>
-
+<br>
 <table id="cartList3">
 <tr>
 	<td>	

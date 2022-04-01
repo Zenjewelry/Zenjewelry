@@ -5,8 +5,9 @@
 	<form name="frm" method="post" enctype="multipart/form-data">
 			<fieldset class="input-box"><legend>상품등록</legend>
 			<label>상품분류</label><select name="kind"><option value="">선택</option>				
-					<c:forEach items="${KINDLIST}" var="kind" varStatus="status">
-		    				<option value="${STATUS.COUNT}">${KIND}</option>
+					<c:forEach items="${kindList}" var="kind" varStatus="status">
+		    				<option value="${status.count}">${kind}</option>
+
 		   				</c:forEach>
 					</select>
 				<br><hr>
