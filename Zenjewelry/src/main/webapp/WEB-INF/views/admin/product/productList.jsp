@@ -40,7 +40,7 @@
 <br>
 
 <jsp:include page="../../include/page/pagingForProduct.jsp">
-	<jsp:param name="command" value="adminProductList" />	
+	<jsp:param name="command" value="adminproductList" />	
 </jsp:include>
 <!-- include 로  paging.jsp 를 불러오면서 그페이지안에  command  값을 파라미터로 전송해줍니다 -->
 <br /><br />
