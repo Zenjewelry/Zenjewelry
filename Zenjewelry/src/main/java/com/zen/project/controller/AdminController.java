@@ -186,10 +186,6 @@ public class AdminController {
 		ArrayList<HashMap<String, Object>> qnaList
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 		
-		for(HashMap<String, Object> list : qnaList) {
-			System.out.println("QSEQ : " + list.get("QSEQ"));
-		}
-		
 		mav.addObject("qnaList", qnaList);
 		mav.addObject("paging", paging);
 		mav.addObject("key", key);
@@ -221,5 +217,44 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping("/adminQnaDetail")
+	public String adminQnaDetail(HttpServletRequest request, Model model,
+			@RequestParam("qseq") int qseq) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) model.addAttribute("adminLoginForm");
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("qseq", qseq);
+		paramMap.put("ref_cursor", null);
+		as.getAdminQna(paramMap);
+		
+		ArrayList<HashMap<String, Object>> qvo
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+		
+		model.addAttribute("qnaVO", qvo.get(0));
+		
+		return "admin/qna/adminQnaDetail";
+	}
+	
+	@RequestMapping("/adminQnaRepSave")
+	public ModelAndView adminQnaRepSave(HttpServletRequest request,
+			@RequestParam("qseq") int qseq, @RequestParam("reply") String reply) {
+		
+		ModelAndView mav = new ModelAndView ();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("qseq", qseq);
+		paramMap.put("reply", reply);
+		as.insertQnaReply(paramMap);
+		
+		mav.addObject("qseq", qseq);
+		mav.setViewName("redirect:/adminQnaDetail");
+		
+		return mav;
+	}
 	
 }

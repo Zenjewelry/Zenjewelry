@@ -32,6 +32,12 @@ public class AdminService {
 	public void getAdminQnaList(HashMap<String, Object> paramMap) {
 		adao.getAdminQnaList(paramMap);
 	}
+	public void getAdminQna(HashMap<String, Object> paramMap) {
+		adao.getAdminQna(paramMap);
+	}
+	public void insertQnaReply(HashMap<String, Object> paramMap) {
+		adao.insertQnaReply(paramMap);
+	}
 	
 		
 }	

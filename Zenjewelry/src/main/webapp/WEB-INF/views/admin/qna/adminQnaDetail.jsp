@@ -24,7 +24,7 @@
 		<table id="cartList"><tr><th width="20%">댓글</th><td>${qnaVO.REPLY}</td></tr></table>
 	</c:otherwise>
 </c:choose>
-<input type="button" class="btn" value="목록" onClick="location.href='shop.do?command=adminQnaList'">
+<input type="button" class="btn" value="목록" onClick="location.href='adminQnaList'">
 </form>
 </article>
 <%@ include file="../../include/adminheaderfooter/footer.jsp" %>

@@ -599,6 +599,29 @@ END;
 
 
 
+create or replace procedure getAdminQna_zen(
+    p_qseq in qnas.qseq%type,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from qnas where qseq = p_qseq;
+end;
+
+
+create or replace procedure insertQnaReply_zen(
+    p_qseq in number,
+    p_reply in varchar2
+)
+is
+begin
+    update qnas set reply = p_reply, rep=2 where qseq = p_qseq;
+    commit;
+end;
+
+
+
 
 
 
