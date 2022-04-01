@@ -207,8 +207,24 @@ public class ProductController {
 		ArrayList<HashMap<String, Object>> pqvo
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 		
-		mav.addObject("product_QnaVO", pqvo);
+		mav.addObject("product_QnaVO", pqvo.get(0));
 		mav.setViewName("product/product_qna_view");
+		return mav;
+	}
+	
+	@RequestMapping("/deleteProductQna")
+	public ModelAndView deleteProductQna(@RequestParam("qna_num") int qna_num,
+			@RequestParam("pseq") int pseq, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println(pseq);
+		System.out.println(qna_num);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginUser") == null) mav.setViewName("member/login");
+		
+		ps.deleteProductQna(qna_num);
+		
+		mav.addObject("pseq", pseq);
+		mav.setViewName("redirect:/productDetail");
 		
 		return mav;
 	}

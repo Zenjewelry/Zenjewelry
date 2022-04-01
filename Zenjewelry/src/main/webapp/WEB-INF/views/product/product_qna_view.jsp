@@ -2,8 +2,9 @@
 <%@ include file="../include/headerfooter/header.jsp" %>
 
 <article>
-<form name="qnalist" method="post" action="shop.do">
+<form name="qnalist">
 <input  type="hidden" name="pseq" value="${product_QnaVO.PSEQ}">
+<input  type="hidden" name="qna_num" value="${product_QnaVO.QNA_NUM}">
 <table id="cartList">
 <tr><th>글 번호</th><td width="500" style="text-align:left;">${product_QnaVO.QNA_NUM}</td></tr>
 <tr><th>작성일 </th><td width="500" style="text-align:left;">${product_QnaVO.INDATE}</td></tr>
@@ -15,6 +16,12 @@
 				<c:when test="${product_QnaVO.REP==1}"> 답변예정 </c:when>
 				<c:when test="${product_QnaVO.REP==2}"><span style="font-weight:bold; color:red; text-align:left;" > 답변완료 </span></c:when>
 			</c:choose></td></tr>
+<tr><td colspan="2">
+	<input type="button" value="되돌아가기" onClick="location.href='productDetail?pseq=${product_QnaVO.PSEQ}'" />
+	<c:if test="${loginUser.ID == product_QnaVO.ID}">
+		<input type="button" value="문의 삭제하기" onClick="deleteProductQna();" />
+	</c:if>
+</td></tr>
 </table>
 </form>
 </article>

@@ -336,6 +336,7 @@ CREATE OR REPLACE PROCEDURE insertProduct_zen(
     p_newyn IN products.newyn%TYPE,
     p_bestyn IN products.bestyn%TYPE,
     p_indate IN products.indate%TYPE
+)
 IS
 BEGIN
     insert into products(name, kind, price1, price2, content, image, newyn, bestyn, indate) 
@@ -514,6 +515,23 @@ is
 begin
     open p_cur for
         select * from product_qna where qna_num = p_qnum;
+end;
+
+
+
+
+
+
+-- 04/01
+
+-- product
+create or replace procedure deleteProductQna_zen(
+    p_qnum in product_qna.qna_num%type
+)
+is
+begin
+    delete from product_qna where qna_num = p_qnum;
+    commit;
 end;
 
 
