@@ -3,9 +3,9 @@
 <article>
 <form name="frm" method="post" enctype="multipart/form-data">
 	<fieldset class="input-box"><h2>상품수정${productVO.kind}</h2>
-	<input type="hidden" name="pseq" value="${productVO.pseq}">
-	<input type="hidden" name="oldImage" value="${productVO.image}">
-	<input type="hidden" name="oldDetail_image" value="${productVO.detail_image}">
+	<input type="hidden" name="pseq" value="${productVO.PSEQ}">
+	<input type="hidden" name="oldImage" value="${productVO.IMAGE}">
+	<input type="hidden" name="oldDetail_image" value="${productVO.DETAIL_IMAGE}">
 	<label>상품분류</label><select name="kind">
 				<c:forEach items="${kindList}" var="kind" varStatus="status">
 					<c:choose>
@@ -17,12 +17,12 @@
 				</c:forEach>
 			</select>
 			<hr>
-	<label>상품명</label><input type="text" name="name" size="47" maxlength="100"	value="${productVO.name}">
-	<label>원가[A]</label><input type="text" name="price1" size="11" value="${productVO.price1}">
-	<label>판매가[B]</label><input type="text" name="price2" size="11" value="${productVO.price2}">
+	<label>상품명</label><input type="text" name="name" size="47" maxlength="100"	value="${productVO.NAME}">
+	<label>원가[A]</label><input type="text" name="price1" size="11" value="${productVO.PRICE1}">
+	<label>판매가[B]</label><input type="text" name="price2" size="11" value="${productVO.PRICE2}">
 	<label>베스트상품</label>
 		 <c:choose>
-	  			<c:when test='${productVO.bestyn=="y"}'><input type="checkbox" name="bestyn" value="chk" checked="checked">	</c:when>
+	  			<c:when test='${productVO.BESTYN=="y"}'><input type="checkbox" name="bestyn" value="chk" checked="checked">	</c:when>
 				<c:otherwise><input type="checkbox" name="bestyn" value="chk"></c:otherwise>
 			</c:choose>
 			<hr>
