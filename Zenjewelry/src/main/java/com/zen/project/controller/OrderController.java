@@ -222,7 +222,7 @@ public class OrderController {
 			
 		}
 		
-		@RequestMapping(value="/orderInsertOne")
+		@RequestMapping(value="/orderOne")
 		public String orderInsertOne(HttpServletRequest request, 
 				@RequestParam("pseq") int pseq,
 				@RequestParam("quantity") int quantity) {
