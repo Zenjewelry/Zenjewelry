@@ -51,4 +51,17 @@
 		)}
 	</select>
 	
+	<select id="getAdminQna"  statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAdminQna_zen(
+			#{qseq},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
+	</select>
+	
+	<update id="insertQnaReply" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL insertQnaReply_zen( 
+			#{qseq}, #{reply} 
+		) }
+	</update>
+	
 </mapper>

@@ -140,7 +140,7 @@ function go_view( qseq ){
 
 
 
-function go_rep( qseq ){
+function go_rep(){
 	document.frm.action="adminQnaRepSave";
 	document.frm.submit();
 	// 답변 글 등록 & rep 필드를 2로 업데이트
