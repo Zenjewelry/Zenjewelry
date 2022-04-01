@@ -344,8 +344,8 @@ BEGIN
     commit;    
 END;
 
-
-CREATE OR REPLACE PROCEDURE getAllCountProduct_zen (  
+select * from products;
+CREATE OR REPLACE PROCEDURE getAllCountAdminProduct_zen (  
     p_key IN products.name%TYPE,
     p_cnt  OUT NUMBER  )
 IS
