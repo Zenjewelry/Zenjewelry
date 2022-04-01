@@ -136,7 +136,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/adminProductWriteForm")
 	public String product_write_form( HttpServletRequest request, Model model) {
-		String kindList[] = { "BEST", "NEW", "RING", "EARRINGS", "NECKLACE",  "BRACELET" };
+		String kindList[] = { "", "RING", "EARRINGS", "NECKLACE",  "BRACELET" };
 		model.addAttribute("kindList", kindList);
 		return "admin/product/productWrite";
 	}

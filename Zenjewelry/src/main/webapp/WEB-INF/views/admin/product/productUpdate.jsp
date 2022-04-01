@@ -2,14 +2,14 @@
 <%@ include file="../../include/adminheaderfooter/header.jsp" %>
 <article>
 <form name="frm" method="post" enctype="multipart/form-data">
-	<fieldset class="input-box"><h2>상품수정${productVO.KIND}</h2>
+	<fieldset class="input-box"><h2>상품수정${productVO.kind}</h2>
 	<input type="hidden" name="pseq" value="${productVO.PSEQ}">
 	<input type="hidden" name="oldImage" value="${productVO.IMAGE}">
 	<input type="hidden" name="oldDetail_image" value="${productVO.DETAIL_IMAGE}">
 	<label>상품분류</label><select name="kind">
 				<c:forEach items="${kindList}" var="kind" varStatus="status">
 					<c:choose>
-						<c:when test="${productVO.KIND==status.count}">
+						<c:when test="${productVO.KIND==status.COUNT}">
 							<option value="${status.COUNT}" selected="selected">${kind}</option>
 						</c:when>
 	          			<c:otherwise><option value="${status.COUNT}">${kind}</option></c:otherwise>
