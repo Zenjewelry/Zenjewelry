@@ -539,6 +539,44 @@ end;
 
 
 
+-- admin
+create or replace procedure getAllCountAdminQna_zen(
+    p_key in varchar2,
+    p_count out number
+)
+is
+    v_count number;
+begin
+    select count(*) into v_count from qnas where subject = p_key or content = p_key;
+    p_count := v_count;
+end;
+
+
+create or replace procedure getAdminQnaList_zen(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, q.* from
+                   ((select * from qnas where subject = p_key or content = p_key order by qseq) q)
+            ) where rn >= p_startNum
+        ) where rn <= p_endNum;
+end;
+
+select * from qnas;
+
+
+
+
+
+
+
 
 
 

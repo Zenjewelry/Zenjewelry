@@ -542,10 +542,12 @@ from carts c, products p, members m
 where c.pseq = p.pseq and c.id = m.id;
 
 
-select * from product_qna
+select * from qnas;
 
 
 
+
+select * from qnas where subject like '%'||'다'||'%' or content like '%'||'다'||'%';
 
 
 

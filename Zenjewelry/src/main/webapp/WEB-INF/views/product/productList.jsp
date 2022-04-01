@@ -8,7 +8,7 @@
 <div style="margin-left:100px;">
 <c:forEach items="${productList}"  var="productVO" >
 	<div id="item"  style="position:relative; width: 350px; height: 400px; margin:32px auto;">
-		<a href="productDetail&pseq=${productVO.PSEQ}">
+		<a href="productDetail?pseq=${productVO.PSEQ}">
 			<img src="product_images/${productVO.IMAGE}" />
 			<h3>${productVO.NAME} </h3>        
 			<p><fmt:formatNumber value="${productVO.PRICE2}" type="currency"/></p>

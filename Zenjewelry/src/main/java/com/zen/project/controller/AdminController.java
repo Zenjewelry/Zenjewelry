@@ -139,5 +139,58 @@ public class AdminController {
 		return "admin/product/productWrite";
 	}
 	
+	@RequestMapping("/adminQnaList")
+	public ModelAndView adminQnaList(HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		int page = 1;
+		String key = "";
+		
+		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		}else if(session.getAttribute("page") != null) {
+			page = (Integer)session.getAttribute("page");
+		}else {
+			session.removeAttribute("page");
+		}
+		
+		if(request.getParameter("key") != null) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		}else if(session.getAttribute("key") != null) {
+			key = (String)session.getAttribute("key");
+		}else {
+			session.removeAttribute("key");
+		}
+		
+		Paging paging = new Paging();
+		paging.setPage(page);
+		paramMap.put("key", key);
+		paramMap.put("count", 0);
+		as.getAllCountAdminQna(paramMap);
+		paging.setTotalCount((Integer)paramMap.get("count"));
+		paging.paging();
+		paramMap.put("startNum", paging.getStartNum());
+		paramMap.put("endNum", paging.getEndNum());
+		paramMap.put("ref_cursor", null);
+		as.getAdminQnaList(paramMap);
+		
+		ArrayList<HashMap<String, Object>> qnaList
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+		
+		mav.addObject("qnaList", qnaList);
+		mav.addObject("paging", paging);
+		mav.addObject("key", key);
+		mav.setViewName("admin/qna/adminQnaList");
+		
+		return mav;
+	}
+	
 	
 }
