@@ -7,6 +7,7 @@
 			<label>상품분류</label><select name="kind"><option value="">선택</option>				
 					<c:forEach items="${kindList}" var="kind" varStatus="status">
 		    				<option value="${status.count}">${kind}</option>
+
 		   				</c:forEach>
 					</select>
 				<br><hr>

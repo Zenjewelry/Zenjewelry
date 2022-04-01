@@ -26,6 +26,12 @@ public class AdminService {
 	public void insertProduct(HashMap<String, Object> paramMap) {
 		adao.insertProduct( paramMap );
 	}
+	public void getAllCountAdminQna(HashMap<String, Object> paramMap) {
+		adao.getAllCountAdminQna(paramMap);
+	}
+	public void getAdminQnaList(HashMap<String, Object> paramMap) {
+		adao.getAdminQnaList(paramMap);
+	}
 	
 		
 }	

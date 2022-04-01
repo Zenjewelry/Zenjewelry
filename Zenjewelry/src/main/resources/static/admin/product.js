@@ -97,15 +97,15 @@ function go_mod_save(){
 
 
 
-function go_search(){
+function go_search(comm){
 	if( document.frm.key.value=="") return;
-	document.frm.action = "adminproductList?page=1";
+	document.frm.action = comm + "?page=1";
 	document.frm.submit();
 }
 
-function go_total(){
+function go_total(comm){
 	document.frm.key.value="";
-	document.frm.action = "adminproductList?page=1";
+	document.frm.action =  comm + "?page=1";
 	document.frm.submit();
 }
 

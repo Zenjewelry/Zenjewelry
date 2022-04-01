@@ -9,10 +9,10 @@
 	<label>상품분류</label><select name="kind">
 				<c:forEach items="${kindList}" var="kind" varStatus="status">
 					<c:choose>
-						<c:when test="${productVO.kind==status.count}">
-							<option value="${status.count}" selected="selected">${kind}</option>
+						<c:when test="${productVO.KIND==status.count}">
+							<option value="${status.COUNT}" selected="selected">${kind}</option>
 						</c:when>
-	          			<c:otherwise><option value="${status.count}">${kind}</option></c:otherwise>
+	          			<c:otherwise><option value="${status.COUNT}">${kind}</option></c:otherwise>
 					</c:choose>
 				</c:forEach>
 			</select>
@@ -29,20 +29,20 @@
 	<label>신상유무</label>
 			
 			<c:choose>
-		     	<c:when test='${productVO.newyn=="y"}'><input type="checkbox" name="newyn" value="chk" checked="checked"></c:when>
+		     	<c:when test='${productVO.NEWYN=="y"}'><input type="checkbox" name="newyn" value="chk" checked="checked"></c:when>
 		      	<c:otherwise><input type="checkbox" name="newyn" value="chk"></c:otherwise>
 		    </c:choose>
 		    <hr>
-	<label>상세설명</label><textarea name="content" rows="8" cols="70" >${productVO.content}</textarea>
+	<label>상세설명</label><textarea name="content" rows="8" cols="70" >${productVO.CONTENT}</textarea>
 	<hr>
-	<label>상품이미지</label><img src="product_images/${productVO.image}" width="200pt"><input type="file" name="image">
+	<label>상품이미지</label><img src="product_images/${productVO.IMAGE}" width="200pt"><input type="file" name="image">
 	<hr> 
-	<label>상품 상세 이미지</label><img src="product_images/${productVO.detail_image}" width="200pt"><input type="file" name="detail_image">
+	<label>상품 상세 이미지</label><img src="product_images/${productVO.DETAIL_IMAGE}" width="200pt"><input type="file" name="detail_image">
 </fieldset>
 	
 	<div id="buttons">
 		<input class="submit" type="button" value="수정" onClick="go_mod_save()">           
-		<input class="cancel" type="button" value="취소"  onClick="location.href='shop.do?command=adminProductDetail&pseq=${productVO.pseq}'">
+		<input class="cancel" type="button" value="취소"  onClick="location.href='shop.do?command=adminProductDetail&pseq=${productVO.PSEQ}'">
 	</div>
 	
 </form>
