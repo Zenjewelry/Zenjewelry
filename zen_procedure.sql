@@ -355,7 +355,7 @@ BEGIN
     p_cnt := v_cnt;
 END;
 
-CREATE OR REPLACE PROCEDURE getProductList (
+CREATE OR REPLACE PROCEDURE getAdminProductList_zen (
     p_startNum NUMBER,
     p_endNum NUMBER,
     p_key PRODUCTS.NAME%TYPE,
@@ -430,6 +430,9 @@ begin
             ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
+
+
+
 
 
 

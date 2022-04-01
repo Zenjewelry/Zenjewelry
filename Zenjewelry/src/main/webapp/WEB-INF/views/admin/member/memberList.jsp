@@ -9,10 +9,10 @@
 	<tr><th width="60">아이디</th><th width="70"> 이름 </th><th width="120">이메일</th><th width="90">우편번호</th><th width="400">주소</th><th width="130">전화</th><th width="100">가입일</th></tr>
 	
 	
-   <c:forEach items="${memberList}" var="memberVO">  
-	    <tr><td>${memberVO.id} </td>
-	    	<td>${memberVO.name}</td><td>${memberVO.email}</td><td>${memberVO.zip_num}</td><td>${memberVO.address}</td>
-	    	<td>${memberVO.phone}</td><td><fmt:formatDate value="${memberVO.indate}"/></td></tr>
+   <c:forEach items="${memberlist}" var="memberVO">  
+	    <tr><td>${memberVO.ID} </td>
+	    	<td>${memberVO.NAME}</td><td>${memberVO.EMAIL}</td><td>${memberVO.ZIP_NUM}</td><td>${memberVO.ADDRESS}</td>
+	    	<td>${memberVO.PHONE}</td><td><fmt:formatDate value="${memberVO.INDATE}"/></td></tr>
   </c:forEach>
 </table>
 
