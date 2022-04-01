@@ -569,7 +569,35 @@ begin
         ) where rn <= p_endNum;
 end;
 
-select * from qnas;
+
+
+
+CREATE OR REPLACE PROCEDURE getAllCountAdminProduct_zen (  
+    p_key IN products.name%TYPE,
+    p_cnt  OUT NUMBER  )
+IS
+    v_cnt NUMBER;
+BEGIN
+    SELECT count(*) as cnt into v_cnt FROM PRODUCTS WHERE name like '%'||p_key||'%';
+    p_cnt := v_cnt;
+END;
+
+CREATE OR REPLACE PROCEDURE getAdminProductList_zen (
+    p_startNum NUMBER,
+    p_endNum NUMBER,
+    p_key PRODUCTS.NAME%TYPE,
+    p_rc   OUT     SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN p_rc FOR
+        select * from (
+        select * from (
+        select rownum as rn, p.* from((select * from products where name like '%'||p_key||'%' order by pseq desc) p)
+        ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+END;
+
+
 
 
 
