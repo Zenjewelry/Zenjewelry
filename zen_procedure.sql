@@ -620,7 +620,42 @@ begin
     commit;
 end;
 
+-- order
 
+CREATE OR REPLACE PROCEDURE insertOrder_zen(
+    p_id IN orderss.id%TYPE,
+    p_oseq out orderss.oseq%TYPE)
+IS  
+      v_oseq orderss.oseq%TYPE;
+      temp_cur SYS_REFCURSOR;
+      v_cseq carts.cseq%TYPE;
+      v_pseq carts.pseq%TYPE;
+      v_quantity carts.quantity%TYPE;
+      temp_cur2 SYS_REFCURSOR;
+      v_zip_num orders_details.zip_num%TYPE;
+      v_address orders_details.address%TYPE;
+      v_address2 orders_details.address2%TYPE;
+     
+BEGIN
+        -- orders 테이블에 레코드 추가 
+        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
+        -- orders 테이블에서 가장 큰 oseq 조회 
+        select MAX(oseq) into v_oseq from orderss;
+        -- cart 테이블에서 id 로 목록조회 
+        OPEN temp_cur FOR select cseq, pseq, quantity from carts where id=p_id AND result='1';
+        -- 목록과 oseq 로 order_detail 테이블에 레코드 추가
+        OPEN temp_cur2 FOR select zip_num, address, address2 from members where id=p_id;
+        LOOP 
+            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  -- 조회한 카트의 목록에서 하나씩 꺼내서 처리 
+            EXIT WHEN temp_cur%NOTFOUND;  -- 조회한 카트의 목록이 모두 소진할때까지 
+            INSERT INTO orders_details ( odseq, oseq, pseq, quantity, zip_num, address, address2) 
+            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity, v_zip_num, v_address, v_address2);  -- order_detail 테이블에 레코드 추가
+            DELETE FROM CARTS WHERE cseq = v_cseq;
+        END LOOP;
+        COMMIT;
+        -- oseq 값을 out 변수에 저장
+        p_oseq := v_oseq;
+END;
 
 
 

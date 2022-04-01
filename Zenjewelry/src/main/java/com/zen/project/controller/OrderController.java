@@ -89,16 +89,19 @@ public class OrderController {
 		} else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID"));
-			paramMap.put("oseq", 0);  // OUT 변수로 적용되어서 돌아올 방금 주문한 주문의 주문번호
 			
+
+			paramMap.put("oseq", 0);  // OUT 변수로 적용되어서 돌아올 방금 주문한 주문의 주문번호
+			System.out.println(paramMap);
 			os.insertOrder(paramMap);
+			System.out.println(paramMap);
 			// 아이디로 카트 검색 
 			// 검색내용으로 orders 와 order_detail 테이블에 레코드 추가 
 			// oseq 에 주문번호를 넣어 갖고 되돌아옵니다. 
 			
 			oseq = Integer.parseInt(paramMap.get("oseq").toString());
 			System.out.println(oseq);
-			System.out.println(oseq);
+
 			return "redirect:/orderList?oseq="+oseq;
 		}
 	}	

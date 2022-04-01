@@ -46,7 +46,7 @@
        <input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='/'">   
    </div>
    <div id="buttons" style="float: right">
-       <input type="button" value="배송지 변경" class="cancel" onclick="deliveryForm&oseq=${param.OSEQ}'">   
+       <input type="button" value="배송지 변경" class="cancel" onclick="location.href='deliveryForm?oseq=${param.oseq}'">
    </div>
   
 </form>	

@@ -2,7 +2,7 @@
 <%@ include file="../include/headerfooter/header.jsp" %>
 <article style=width:1000px;>
 <h2> 장바구니 </h2>
-<form name="formm" method="post">
+<form name="formm" method="post" action="orderInsert">
 	<c:choose>
 		<c:when test="${cartList.size() == 0}">
 			<h3 style="color: red;text-align: center;">장바구니가 비었습니다.</h3> 
@@ -30,7 +30,7 @@
 <div id="buttons" style="float: right">
     <input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='/'">    
     <c:if test= "${cartList.size() != 0}">
-   		<input type="button" value="주문하기"  class="submit" onclick="go_order_insert();">
+   		<input type="submit" value="주문하기"  class="submit">
     </c:if>
 </div>
 </form>

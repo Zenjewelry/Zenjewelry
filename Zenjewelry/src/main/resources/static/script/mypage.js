@@ -1,10 +1,10 @@
 function go_cart(){
-	if (document.formm.quantity.value == "") {
+	if (document.formmm.quantity.value == "") {
 	    alert("수량을 입력하여 주세요.");
-	    document.formm.quantity.focus();
+	    document.formmm.quantity.focus();
 	}else{
-		document.formm.action ="cartInsert";
-		document.formm.submit();
+		document.formmm.action ="cartInsert";
+		document.formmm.submit();
 	}
 }
 
@@ -33,22 +33,23 @@ function go_cart_delete(){
 	}
 }
 
-
+/*
 
 function go_order_insert(){
 
-	document.formm.action ="/orderInsert";
+	document.formm.action ="orderInsert";
 	document.formm.submit();
 	
 	
 }
+*/
 
 
 
 
-function go_order(){
-	document.formm.action ="/orderOne";
-	document.formm.submit();
+function go_order_one(){
+	document.formmm.action ="orderOne";
+	document.formmm.submit();
 }
 
 

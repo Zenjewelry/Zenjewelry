@@ -4,7 +4,7 @@
 <article style="width: 700px;" >
 <div id="itemdetail"  style="float:left;">
 <h1>Item</h1>
-<form  method="post" name="formm">
+<form  method="post" name="formmm">
 	<fieldset>	<legend> Item detail Info</legend>
 		<span style="float: left; margin-right:20px;">
 			<img  src="product_images/${productVO.IMAGE}" 
@@ -17,8 +17,10 @@
 	</fieldset>
 	<div class="clear"></div>
 	<div id="buttons">
-		<input type="button" value="장바구니에 담기" class="aaa" onClick="go_cart();">
-		<input type="button" value="즉시 구매" class="aaa" onClick="go_order();"> 
+		<!-- <input type="button" value="장바구니에 담기"  onClick="go_cart();"> -->
+		<input class="cancel" type="button" value="장바구니에 담기" onClick="go_cart()" />
+		<input class="cancel" type="button" value="즉시 구매" onClick="go_order_one()" />
+	<!-- 	<input type="button" value="즉시 구매"  onClick="go_order();">  -->
 		<input type="reset"  value="취소" 	class="cancel">
 		<br><br><br><br>
 		<span style="float: left; margin-right:20px;">
