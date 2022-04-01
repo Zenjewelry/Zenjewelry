@@ -33,7 +33,7 @@
 	
 	<insert id="insertProduct" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ CALL insertProduct_zen( 
-			#{name}, #{kind}, #{price1}, #{price2}, #{price3}, #{content} , #{image} 
+			#{name}, #{kind}, #{price1}, #{price2}, #{content} , #{image} 
 		) }
 	</insert>
 	
