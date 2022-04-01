@@ -18,7 +18,7 @@
 	
 	
 	<select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{  CALL getProductList_zen( 
+		{  CALL getAdminProductList_zen( 
 			#{startNum}, #{endNum}, #{key},
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
 		)  }

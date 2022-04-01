@@ -11,16 +11,16 @@
 	<tr><th>주문번호(처리)</th><th>주문자</th><th>상품명</th><th>수량</th><th>우편</th><th>주소</th><th>전화</th><th>주문일</th></tr>
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr><td><c:choose>
-			<c:when test='${orderVO.result=="1"}'>
-				<span style="font-weight: bold; color: blue">${orderVO.oseq}</span>
-				(<input type="checkbox" name="result" value="${orderVO.odseq}">미처리)</c:when>
+			<c:when test='${orderVO.RESULT=="1"}'>
+				<span style="font-weight: bold; color: blue">${orderVO.OSEQ}</span>
+				(<input type="checkbox" name="result" value="${orderVO.ODSEQ}">미처리)</c:when>
 	    	<c:otherwise>
-       			<span style="font-weight: bold; color: red">${orderVO.oseq}</span>
+       			<span style="font-weight: bold; color: red">${orderVO.OSEQ}</span>
       			(<input type="checkbox" checked="checked" disabled="disabled">처리완료)</c:otherwise>
 			</c:choose></td>
-			<td>${orderVO.mname}</td><td>${orderVO.pname}</td><td>${orderVO.quantity}</td>
-			<td>${orderVO.zip_num}</td><td>${orderVO.address}</td> <td>${orderVO.phone}</td>
-			<td><fmt:formatDate value="${orderVO.indate}" /></td></tr>
+			<td>${orderVO.MNAME}</td><td>${orderVO.PNAME}</td><td>${orderVO.QUANTITY}</td>
+			<td>${orderVO.ZIP_NUM}</td><td>${orderVO.ADDRESS}</td> <td>${orderVO.PHONE}</td>
+			<td><fmt:formatDate value="${orderVO.INDATE}" /></td></tr>
 	</c:forEach>
 </table>
 

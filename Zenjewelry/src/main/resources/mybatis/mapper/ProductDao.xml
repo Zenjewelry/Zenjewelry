@@ -63,4 +63,8 @@
 		)}
 	</select>
 	
+	<delete id="deleteProductQna" statementType="CALLABLE">
+		{CALL deleteProductQna_zen(#{param1})}
+	</delete>
+	
 </mapper>

@@ -44,4 +44,8 @@ public class ProductService {
 	public void getProductQna(HashMap<String, Object> paramMap) {
 		pdao.getProductQna(paramMap);
 	}
+
+	public void deleteProductQna(int qna_num) {
+		pdao.deleteProductQna(qna_num);
+	}
 }
