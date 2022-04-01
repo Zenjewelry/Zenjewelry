@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/adminheaderfooter/header.jsp" %>
+<%@ include file="../../include/adminheaderfooter/header.jsp" %>
 <article>
 
 <h1 style="text-align:center;">Q&amp;A 게시판</h1><br>
@@ -27,4 +27,4 @@
 <input type="button" class="btn" value="목록" onClick="location.href='shop.do?command=adminQnaList'">
 </form>
 </article>
-<%@ include file="../include/adminheaderfooter/footer.jsp" %>
+<%@ include file="../../include/adminheaderfooter/footer.jsp" %>
