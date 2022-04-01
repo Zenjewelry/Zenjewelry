@@ -2,7 +2,7 @@
 <%@ include file="../../include/adminheaderfooter/header.jsp" %>
 <article>
 <form name="frm" method="post" enctype="multipart/form-data">
-	<fieldset class="input-box"><h2>상품수정${productVO.KIND}</h2>
+	<fieldset class="input-box"><h2>상품수정${productVO.kind}</h2>
 	<input type="hidden" name="pseq" value="${productVO.PSEQ}">
 	<input type="hidden" name="oldImage" value="${productVO.IMAGE}">
 	<input type="hidden" name="oldDetail_image" value="${productVO.DETAIL_IMAGE}">

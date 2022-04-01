@@ -25,8 +25,8 @@
 </table>
 </form>
 <br>
-<jsp:include page="/admin/paging/paging.jsp">
-	<jsp:param name="command" value="shop.do?command=adminQnaList" />
+<jsp:include page="../../include/page/paging.jsp">
+	<jsp:param name="command" value="adminQnaList" />
 </jsp:include>
 </article>
 <%@ include file="../../include/adminheaderfooter/footer.jsp" %>

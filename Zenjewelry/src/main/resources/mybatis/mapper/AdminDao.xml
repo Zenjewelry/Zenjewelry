@@ -36,8 +36,19 @@
 			#{name}, #{kind}, #{price1}, #{price2}, #{price3}, #{content} , #{image} 
 		) }
 	</insert>
-
-
-
-
+	
+	<select id="getAllCountAdminQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCountAdminQna_zen(
+			#{key},
+			#{count, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getAdminQnaList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAdminQnaList_zen(
+			#{key}, #{startNum}, #{endNum},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
+	</select>
+	
 </mapper>

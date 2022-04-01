@@ -11,6 +11,7 @@ public interface IAdminDao {
 	void getAllCountProduct(HashMap<String, Object> paramMap);
 	void getProductList(HashMap<String, Object> paramMap);
 	void insertProduct(HashMap<String, Object> paramMap);
-	
+	void getAllCountAdminQna(HashMap<String, Object> paramMap);
+	void getAdminQnaList(HashMap<String, Object> paramMap);
 	
 }
