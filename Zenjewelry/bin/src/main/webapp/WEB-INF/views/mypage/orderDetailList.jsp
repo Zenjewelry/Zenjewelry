@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../include/headerfooter/header.jsp" %>
+
+
+<article style=width:1000px;>
+<form name="cartList1" method="post" style=width:1000px>
+<h2> 주문 상세정보 </h2>
+<h2><fmt:formatDate value="${orderDetail.INDATE}" type="date"/></h2>
+<br>
+
+
+<table id="cartList" style=width:1000px>	
+	<tr><th colspan="2">상품 정보</th><th>상품금액</th><th>주문금액</th></tr>
+	<c:forEach items="${orderList}" var="orderVO">
+		<tr>
+			<input  type="hidden" name="oseq" value="${orderVO.OSEQ}">
+			<td ><a href="orderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a></td>        
+			<td><a href="orderDetail?oseq=${orderVO.OSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a></td>
+			
+			<td><fmt:formatNumber value="${orderVO.PRICE2}" type="currency"/>( ${orderVO.QUANTITY}건 )</td>
+       		<td><fmt:formatNumber value="${orderVO.PRICE2*orderVO.QUANTITY}" type="currency"/></td>  
+       		<%-- ${orderVO.ZIP_NUM}   ${orderVO.ADDRESS}
+       		${orderVO.ADDRESS2} --%>
+       	</tr>
+	</c:forEach>
+	
+</table>
+<table id="cartList">	
+	<tr><th width="20%"> 총 액 </th>
+       	<td><fmt:formatNumber value="${totalPrice}" type="currency"/></td></tr>	
+</table>
+
+<br>
+
+<table id="cartList" style="text:left">	
+
+<h2> 배송지 정보 </h2>
+
+	<tr><th width="20%"> 수령인 </th>
+       	<td style="text-align:left;">${orderDetail.MNAME}</td></tr>	
+    <tr><th width="20%"> 연락처 </th>
+       	<td style="text-align:left;">${orderDetail.PHONE}</td></tr>
+    <tr><th width="20%"> 배송지 </th>
+       	<td style="text-align:left;">${orderDetail.ZIP_NUM} ${orderDetail.ADDRESS} ${orderDetail.ADDRESS2}</td></tr>	
+
+</table>
+<br>
+<table id="cartList3">
+<tr>
+	<td>	
+  	  <input type="button" value="마이 페이지" class="cancel" onclick="history.go(-1)">   
+  	  <input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='/'">   
+   	  <input type="button" value="배송지 변경" class="cancel" onclick="location.href='deliveryForm?oseq=${param.oseq}'">
+	  <input type="button"  value="주문 취소하기"  class="cancel" onclick="delete_order()">
+   	</td>
+</tr>
+</table>
+
+</form>	
+</article>
+
+
+<%@ include file="../include/headerfooter/footer.jsp" %>

@@ -12,29 +12,8 @@ function go_wrt(){
 
 
 function go_save(){
-	var frm = document.frm;
-	if( frm.kind.value =="" ){
-		alert("상품분류를 선택하세요");
-		frm.kind.focus();
-	}else if (frm.name.value == "") {
-		alert('상품명을 입력하세요.'); 	
-		frm.name.focus();	
-	} else if (frm.price1.value == "") {
-		alert('원가를 입력하세요.'); 		
-		frm.price1.focus();
-	} else if (frm.price2.value == "") {
-		alert('판매가를 입력하세요.'); 		
-		frm.price2.focus();
-	} else if (frm.content.value == "") {
-		alert('상품상세를 입력하세요.'); 		
-		frm.content.focus();
-	} else if (frm.image.value == "") {
-		alert('상품이미지들 입력하세요.'); 	
-		frm.image.focus();	
-	} else{
-		frm.action = "adminProductWrite";
-		frm.submit();
-	}
+	document.frm.action = "adminProductWrite";
+	document.frm.submit();
 }
 
 
@@ -54,7 +33,7 @@ function go_detail( pseq ){
 
 
 function go_mov(){
-	location.href = "adminProductList";
+	location.href = "adminproductList";
 }
 
 
@@ -172,6 +151,22 @@ function delete_mod(){
 	}
 
 }
+
+function uploadAdminImg(comm){
+	var opt = "toolbar=no, menubar=no, resizable=no, width=550, height=300";
+	var mapping = 'upload' + comm + 'Img';
+	window.open(mapping, '대표이미지 업로드', opt);
+}
+
+function uploadedThumbImg(){
+	document.frm.submit();
+}
+
+function uploadedDetailImg(){
+	document.frm.submit();
+}
+
+
 
 
 

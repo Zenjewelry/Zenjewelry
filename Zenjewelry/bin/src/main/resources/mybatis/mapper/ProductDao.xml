@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zen.project.dao.IProductDao">
+	
+	<resultMap  id="productMap1" type="java.util.HashMap"></resultMap>
+	<resultMap  id="productMap2" type="java.util.HashMap"></resultMap>
+	
+	<select id="getBestNewProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBestNewProduct_zen(
+			#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1},<!-- best -->
+			#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap2}<!-- new -->
+		)}
+	</select>
+	
+	<select id="getAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCountProduct_zen(
+			#{command},
+			#{count, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProductList_zen(
+			#{command}, #{startNum}, #{endNum}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
+	<select id="getBestAllCount" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCountBestProduct_zen(
+			#{count, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getBestProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getBestProductList_zen(
+			#{startNum}, #{endNum}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
+	<select id="getProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProduct_zen(
+			#{pseq}, 
+			#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1},
+			#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap2}
+		)}
+	</select>
+	
+	<insert id="insertProductQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL insertProductQna_zen(
+			#{id}, #{pqvo.pwd}, #{pqvo.pseq}, #{pqvo.subject}, #{pqvo.content}
+		)}
+	</insert>
+	
+	<select id="getProductQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProductQna_zen(
+		#{qna_num},
+		#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
+	<delete id="deleteProductQna" statementType="CALLABLE">
+		{CALL deleteProductQna_zen(#{param1})}
+	</delete>
+	
+</mapper>

@@ -33,8 +33,8 @@ alter table products modify detail_image varchar2(500)
 
 alter table products add detail_image varchar2(50);
 
-drop sequence product_seq;
-create sequence products_seq start with 1;
+drop sequence products_seq;
+create sequence products_seq start with 5 increment by 1;
 
 select * from products;
 
@@ -201,23 +201,23 @@ insert into members(id, pwd, name, zip_num, address, phone, email)values
 
 -- 상품
 insert into products(pseq, name, kind, price1, price2, content, image) 
-values(product_seq.nextval, '반지', '1', 40000, 50000,  '삐까뻔쩍 반지입니다.', 'ring1.jpg');
+values(products_seq.nextval, '반지', '1', 40000, 50000,  '삐까뻔쩍 반지입니다.', 'ring1.jpg');
 insert into products(pseq, name, kind, price1, price2, content, image) 
-values(product_seq.nextval, '반지', '1', 35000, 45000,  '삐까 반지입니다.', 'ring2.jpg');
+values(products_seq.nextval, '반지', '1', 35000, 45000,  '삐까 반지입니다.', 'ring2.jpg');
 insert into products(pseq, name, kind, price1, price2, content, image) 
-values(product_seq.nextval, '반지', '1', 30000, 40000,  '뻔쩍 반지입니다.', 'ring3.jpg');
+values(products_seq.nextval, '반지', '1', 30000, 40000,  '뻔쩍 반지입니다.', 'ring3.jpg');
 insert into products(pseq, name, kind, price1, price2, content, image) 
-values(product_seq.nextval, '반지', '1', 25000, 35000,  '반지입니다.', 'ring4.jpg');
+values(products_seq.nextval, '반지', '1', 25000, 35000,  '반지입니다.', 'ring4.jpg');
 insert into products(pseq, name, kind, price1, price2, content, image) 
-values(product_seq.nextval, '반지', '1', 20000, 30000,  '반반지입니다.', 'ring5.jpg');
+values(products_seq.nextval, '반지', '1', 20000, 30000,  '반반지입니다.', 'ring5.jpg');
 
 
 insert into products(pseq, name, kind, price1, price2, content, image, bestyn) 
-values(product_seq.nextval, '목걸이', '2', 40000, 50000,'삐까뻔쩍 목걸이입니다.', 'necklace1.jpg', 'n');
+values(products_seq.nextval, '목걸이', '2', 40000, 50000,'삐까뻔쩍 목걸이입니다.', 'necklace1.jpg', 'n');
 insert into products(pseq,  name, kind, price1, price2, content, image, bestyn) 
-values(product_seq.nextval, '귀걸이', '3', 10000, 12000, '삐까뻔쩍 귀걸이입니다', 'earring1.jpg', 'n');
+values(products_seq.nextval, '귀걸이', '3', 10000, 12000, '삐까뻔쩍 귀걸이입니다', 'earring1.jpg', 'n');
 insert into products(pseq,  name, kind, price1, price2, content, image, bestyn)
-values(product_seq.nextval, '팔찌', '4', 5000, 5500, '팔에걸면 팔찌 발에걸먼 발찌입니다', 'bracelet1.jpg', 'y');
+values(products_seq.nextval, '팔찌', '4', 5000, 5500, '팔에걸면 팔찌 발에걸먼 발찌입니다', 'bracelet1.jpg', 'y');
 
 
 -- 카트 추가
@@ -504,6 +504,7 @@ alter table orders_details add zip_num varchar(100);
 alter table orders_details add address varchar(100);
 alter table orders_details add address2 varchar(100);
 
+select * from orders_details
 
 -- address2 때문에 수정
 create or replace view order_views
@@ -553,5 +554,6 @@ select * from qnas where subject like '%'||'다'||'%' or content like '%'||'다'
 
 
 
-
+select * from products
+alter table products add detail_image varchar2(100);
 

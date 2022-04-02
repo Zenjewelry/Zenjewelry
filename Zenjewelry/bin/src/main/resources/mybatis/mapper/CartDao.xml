@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zen.project.dao.ICartDao">
+	
+	<resultMap  id="CartMap" type="java.util.HashMap"></resultMap>
+	
+	<select id="listCart" statementType="CALLABLE" parameterType="java.util.HashMap"> 
+		{ CALL listCart_zen(
+			#{id},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=CartMap}
+		)}
+	</select>
+	
+	<insert id="insertCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL insertCart_zen ( #{id}, #{pseq} , #{quantity}  )  } 
+	</insert>
+	
+	<delete id="deleteCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL deleteCart_zen ( #{cseq} )  } 
+	</delete>
+	
+</mapper>

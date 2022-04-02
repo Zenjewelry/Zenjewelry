@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.zen.project.dao.IAdminDao">
+
+	<resultMap  id="adminMap" type="java.util.HashMap"></resultMap>
+	
+	
+	<select id="getAdmin" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getAdminMember_zen( 
+			#{workId},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)  }
+	</select>
+	
+	
+	<select id="getProductList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getAdminProductList_zen( 
+			#{startNum}, #{endNum}, #{key},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)  }
+	</select>
+	
+	<select id="getAllCountProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getAllCountAdminProduct_zen( 
+			#{key},
+			#{cnt , mode=OUT, jdbcType=INTEGER }
+		)  }
+	</select>
+	
+	<insert id="insertProduct" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL insertProduct_zen( 
+			#{name}, #{kind}, #{price1}, #{price2}, #{content} , #{image} 
+		) }
+	</insert>
+	
+	<select id="getAllCountAdminQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCountAdminQna_zen(
+			#{key},
+			#{count, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getAdminQnaList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAdminQnaList_zen(
+			#{key}, #{startNum}, #{endNum},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
+	</select>
+	
+	<select id="getAdminQna"  statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAdminQna_zen(
+			#{qseq},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
+	</select>
+	
+	<update id="insertQnaReply" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL insertQnaReply_zen( 
+			#{qseq}, #{reply} 
+		) }
+	</update>
+	
+</mapper>

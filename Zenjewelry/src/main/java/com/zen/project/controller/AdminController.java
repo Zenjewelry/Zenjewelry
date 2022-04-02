@@ -1,21 +1,28 @@
 package com.zen.project.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.zen.project.dto.Paging;
+import com.zen.project.dto.ProductVO;
 import com.zen.project.service.AdminService;
 import com.zen.project.service.ProductService;
 
@@ -133,37 +140,6 @@ public class AdminController {
 		return mav;
 	}
 	
-	
-	
-	
-	@RequestMapping(value="/adminProductWriteForm")
-	public String product_write_form( HttpServletRequest request, Model model) {
-		String kindList[] = { "", "RING", "EARRINGS", "NECKLACE",  "BRACELET" };
-		model.addAttribute("kindList", kindList);
-		return "admin/product/productWrite";
-	}
-	
-	@RequestMapping(value="adminProductWrite" , method = RequestMethod.POST)
-	   public String productWrite(
-	         Model model ,  HttpServletRequest request) {
-	      
-	      HashMap<String, Object> paramMap = new HashMap<String, Object>();
-	      
-	      paramMap.put("name", request.getParameter("name") );
-	      paramMap.put("kind", request.getParameter("kind") );
-	      paramMap.put("price1", Integer.parseInt( request.getParameter("price1") ) );
-	      paramMap.put("price2", Integer.parseInt( request.getParameter("price2") ) );
-	      paramMap.put("content", request.getParameter("content") );
-	      paramMap.put("image", request.getParameter("image") );
-	      System.out.println(request.getParameter("image"));
-	      as.insertProduct( paramMap);
-	      
-	      return "redirect:/admin/product/productList";
-	   }
-	
-	
-	
-	
 	@RequestMapping("/adminQnaList")
 	public ModelAndView adminQnaList(HttpServletRequest request) {
 		
@@ -276,6 +252,86 @@ public class AdminController {
 		
 		mav.addObject("qseq", qseq);
 		mav.setViewName("redirect:/adminQnaDetail");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/adminProductWriteForm")
+	public String product_write_form( HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) return "adminLoginForm";
+		
+		String kindList[] = {"RING", "EARRINGS", "NECKLACE",  "BRACELET"};
+		model.addAttribute("kindList", kindList);
+		return "admin/product/productWrite";
+	}
+	
+	@RequestMapping("/uploadThumbImg")
+	public String uploadThumbImg() {
+		return "admin/product/uploadThumbImg";
+	}
+	
+	@RequestMapping("/uploadDetailImg")
+	public String uploadDetailImg() {
+		return "admin/product/uploadDetailImg";
+	}
+	
+	@RequestMapping(value="/uploadThumbFile", method=RequestMethod.POST)
+	public String uploadThumbFile(HttpServletRequest request, Model model) {
+		
+		String path = context.getRealPath("/product_images");
+		
+		try {
+			MultipartRequest multi
+				= new MultipartRequest(request, path, 5*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
+			model.addAttribute("thumbImage", multi.getFilesystemName("thumbImage"));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return "admin/product/completeThumbImg";
+	}
+	
+	@RequestMapping(value="/uploadDetailFile", method=RequestMethod.POST)
+	public String uploadDetailFile(HttpServletRequest request, Model model) {
+		
+		String path = context.getRealPath("/product_images");
+		
+		try {
+			MultipartRequest multi
+				= new MultipartRequest(request, path, 5*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
+			model.addAttribute("detailImage", multi.getFilesystemName("detailImage"));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return "admin/product/completeDetailImg";
+	}
+	
+	@RequestMapping(value="adminProductWrite" , method = RequestMethod.POST)
+	public ModelAndView productWrite(@ModelAttribute("dto") @Valid ProductVO pvo,
+			HttpServletRequest request, BindingResult result) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginUser")==null) mav.setViewName("adminLoginForm");
+		
+		mav.setViewName("admin/product/productWrite");
+		
+		if(result.getFieldError("name")!=null) {
+			mav.addObject("message", result.getFieldError("name").getDefaultMessage());
+			return mav;
+		}else if(result.getFieldError("kind")!=null) {
+			mav.addObject("message", result.getFieldError("kind").getDefaultMessage());
+			return mav;
+		}
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("pvo", pvo);
+		as.insertProduct(paramMap);
+		
+		mav.setViewName("redirect:/adminproductList");
 		
 		return mav;
 	}
