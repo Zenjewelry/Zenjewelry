@@ -666,6 +666,27 @@ END;
 
 
 
+CREATE OR REPLACE PROCEDURE updateProduct_zen(
+    p_pseq IN products.pseq%TYPE,
+    p_name IN products.name%TYPE,
+    p_kind  IN products.kind%TYPE,
+    p_price1  IN products.price1%TYPE,
+    p_price2  IN products.price2%TYPE,
+    p_content IN products.content%TYPE,
+    p_image IN products.image%TYPE,
+    p_detail_image IN products.detail_image%TYPE,
+    p_newyn IN products.newyn%TYPE,
+    p_bestyn IN products.bestyn%TYPE
+)
+IS
+BEGIN
+    update products set name=p_name, kind=p_kind, price1=p_price1, price2=p_price2, content=p_content, image=p_image, detail_image=p_detail_image, newyn=p_newyn, bestyn=p_bestyn 
+    where pseq=p_pseq;
+    commit;    
+END;
+
+
+
 
 
 

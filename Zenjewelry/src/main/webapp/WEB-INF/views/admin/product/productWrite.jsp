@@ -17,11 +17,11 @@
 			<label>상세 설명</label><textarea name="content" rows="8" cols="70">${dto.content}</textarea>
 			<label>대표이미지</label><input type="button" value="대표이미지 업로드" onClick="uploadAdminImg('Thumb');">
 			<label>대표이미지 파일명</label><div id="previewThumbText" >${dto.image}</div>
-			<label>Preview</label><img src="" id="previewThumbImg" width="300" height="300" style="display:none;" value="/product_images/${dto.image}"/><br />
+			<label>Preview</label><img src="/product_images/${dto.image}" id="previewThumbImg" width="300" height="300" style="display:none;" /><br />
 			<input type="hidden" name="image" value="${dto.image}"/>
 			<label>상세이미지</label><input type="button" value="상품상세이미지 업로드" onClick="uploadAdminImg('Detail');">
 			<label>상세이미지 파일명</label><div id="previewDetailText">${dto.detail_image}</div>
-			<label>Preview</label><img src="" id="previewDetailImg" width="300" height="300" style="display:none;"  value="/product_images/${dto.detail_image}"/><br />
+			<label>Preview</label><img src="/product_images/${dto.detail_image}" id="previewDetailImg" width="300" height="300" style="display:none;"/><br />
 			<input type="hidden" name="detail_image" value="${dto.detail_image}"/> 
 			<label>신상품 유무</label><div style="float:left;" >Y</div><input type="checkbox" style="float:left;" name="newyn" value="y" checked="checked" />
 				<div style="float:left;" >N</div><input type="checkbox" name="newyn" value="n" />

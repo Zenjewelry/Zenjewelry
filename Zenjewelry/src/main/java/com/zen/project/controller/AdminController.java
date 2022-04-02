@@ -314,7 +314,7 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("loginUser")==null) mav.setViewName("adminLoginForm");
+		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
 		
 		mav.setViewName("admin/product/productWrite");
 		
@@ -332,6 +332,58 @@ public class AdminController {
 		as.insertProduct(paramMap);
 		
 		mav.setViewName("redirect:/adminproductList");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/adminProductUpdateForm")
+	public String adminProductUpdateForm(HttpServletRequest request, Model model,
+			@RequestParam("pseq") int pseq) {
+		System.out.println(0);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) return "adminLoginForm";
+		
+		String kindList[] = {"RING", "EARRINGS", "NECKLACE",  "BRACELET"};
+		model.addAttribute("kindList", kindList);
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("pseq", pseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		ps.getProduct(paramMap);
+		
+		ArrayList<HashMap<String, Object>> pvo
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
+		
+		model.addAttribute("productVO", pvo.get(0));
+		
+		return "admin/product/productUpdate";
+	}
+	
+	@RequestMapping("/adminProductUpdate")
+	public ModelAndView adminProductUpdate(@ModelAttribute("productVO") @Valid ProductVO pvo,
+			HttpServletRequest request, BindingResult result) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
+		
+		mav.setViewName("admin/product/productUpdate");
+		
+		if(result.getFieldError("name")!=null) {
+			mav.addObject("message", result.getFieldError("name").getDefaultMessage());
+			return mav;
+		}else if(result.getFieldError("kind")!=null) {
+			mav.addObject("message", result.getFieldError("kind").getDefaultMessage());
+			return mav;
+		}
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("pvo", pvo);
+		as.updateProduct(paramMap);
+		mav.setViewName("redirect:/adminProductDetail?pseq=" + pvo.getPseq());
 		
 		return mav;
 	}

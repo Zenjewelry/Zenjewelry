@@ -38,6 +38,9 @@ public class AdminService {
 	public void insertQnaReply(HashMap<String, Object> paramMap) {
 		adao.insertQnaReply(paramMap);
 	}
+	public void updateProduct(HashMap<String, Object> paramMap) {
+		adao.updateProduct(paramMap);
+	}
 	
 		
 }	

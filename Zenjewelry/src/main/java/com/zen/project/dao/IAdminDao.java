@@ -15,5 +15,6 @@ public interface IAdminDao {
 	void getAdminQnaList(HashMap<String, Object> paramMap);
 	void getAdminQna(HashMap<String, Object> paramMap);
 	void insertQnaReply(HashMap<String, Object> paramMap);
+	void updateProduct(HashMap<String, Object> paramMap);
 	
 }

@@ -65,4 +65,11 @@
 		) }
 	</insert>
 	
+	<insert id="updateProduct" statementType="CALLABLE" parameterType="java.util.HashMap" >
+		{ CALL updateProduct_zen( 
+			#{pvo.pseq}, #{pvo.name}, #{pvo.kind}, #{pvo.price1}, #{pvo.price2}, #{pvo.content},
+			#{pvo.image}, #{pvo.detail_image}, #{pvo.newyn}, #{pvo.bestyn}
+		) }
+	</insert>
+	
 </mapper>

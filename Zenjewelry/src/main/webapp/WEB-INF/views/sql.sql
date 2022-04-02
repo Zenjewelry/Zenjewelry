@@ -210,8 +210,6 @@ insert into products(pseq, name, kind, price1, price2, content, image)
 values(products_seq.nextval, '반지', '1', 25000, 35000,  '반지입니다.', 'ring4.jpg');
 insert into products(pseq, name, kind, price1, price2, content, image) 
 values(products_seq.nextval, '반지', '1', 20000, 30000,  '반반지입니다.', 'ring5.jpg');
-
-
 insert into products(pseq, name, kind, price1, price2, content, image, bestyn) 
 values(products_seq.nextval, '목걸이', '2', 40000, 50000,'삐까뻔쩍 목걸이입니다.', 'necklace1.jpg', 'n');
 insert into products(pseq,  name, kind, price1, price2, content, image, bestyn) 
