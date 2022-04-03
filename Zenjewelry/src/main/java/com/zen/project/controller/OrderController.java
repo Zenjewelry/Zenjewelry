@@ -127,6 +127,7 @@ public class OrderController {
 				ArrayList<HashMap<String,Object>> list
 				 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 				mav.addObject("orderList",list);
+				mav.addObject("orderListMember",list.get(0));
 				
 				int totalPrice = 0;
 				
@@ -136,6 +137,7 @@ public class OrderController {
 				}  // 리스트의 내용으로 총금액 계산
 				mav.addObject("totalPrice",totalPrice);
 				mav.setViewName("mypage/orderList");
+				mav.addObject("orderDetail",list);
 			}
 			return mav;
 		}
@@ -233,7 +235,7 @@ public class OrderController {
 		}
 		
 		@RequestMapping(value="/orderOne")
-		public String orderInsertOne(HttpServletRequest request, 
+		public ModelAndView orderInsertOne(HttpServletRequest request, 
 				@RequestParam("pseq") int pseq,
 				@RequestParam("quantity") int quantity) {
 			
@@ -242,12 +244,15 @@ public class OrderController {
 			HttpSession session = request.getSession();
 			HashMap<String, Object> loginUser
 				= (HashMap<String, Object>)session.getAttribute("loginUser");
-			
+			ModelAndView mav = new ModelAndView();
 			if(loginUser==null) {
-				return "member/login";
+				mav.setViewName("member/login");
 			} else {
 				HashMap<String, Object> paramMap = new HashMap<String, Object>();
 				paramMap.put("id", loginUser.get("ID"));
+				paramMap.put("address", loginUser.get("ADDRESS"));
+				paramMap.put("zip_num", loginUser.get("ZIP_NUM"));
+				paramMap.put("address2", loginUser.get("ADDRESS2"));
 				paramMap.put("oseq", 0);
 				paramMap.put("pseq", pseq);
 				paramMap.put("quantity", quantity);
@@ -256,8 +261,11 @@ public class OrderController {
 				
 				oseq = Integer.parseInt(paramMap.get("oseq").toString());
 				
+				
+				mav.setViewName("redirect:/orderList?oseq="+oseq);
+				
 			}
-			return "redirect:/orderList?oseq="+oseq;
+			return mav;
 			
 		}
 		

@@ -35,7 +35,7 @@
 	
 	<insert id="insertOrderOne" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{  CALL insertOrderOne_zen( 
-		#{id}, #{pseq}, #{quantity},
+		#{id}, #{address}, #{zip_num}, #{address2}, #{pseq}, #{quantity},
 		#{oseq, mode=OUT, jdbcType=INTEGER } 
 		)} 
 	</insert>
