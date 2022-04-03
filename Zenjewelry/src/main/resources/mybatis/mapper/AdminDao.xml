@@ -137,4 +137,9 @@
 		)}
 	</select>
 	
+	<update id="saveOrder" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL saveOrder_zen(#{param1})}
+	</update>
+	
+	
 </mapper>

@@ -832,10 +832,23 @@ begin
         select * from (
             select * from (
                 select rownum as rn, q.* from
-                   ((select * from order_views where mname like '%'||p_key||'%' order by oseq desc) q)
+                   ((select * from order_views where mname like '%'||p_key||'%' order by result, oseq desc) q)
             ) where rn >= p_startNum
         ) where rn <= p_endNum;
 end;
+
+
+
+create or replace procedure saveOrder_zen(
+    p_odseq number
+)
+is
+begin
+    update orders_details set result = 2 where odseq = p_odseq;
+    commit;
+end;
+
+
 
 
 

@@ -623,4 +623,17 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping("/adminOrderSave")
+	public String adminOrderSave(HttpServletRequest request,
+			@RequestParam("result") int [] result) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) return "adminLoginForm";
+		
+		for(int odseq : result)
+			as.saveOrder(odseq);
+		
+		return "redirect:/adminOrderList?sub="+"'y'";
+	}
+	
 }

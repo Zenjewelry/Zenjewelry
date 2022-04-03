@@ -71,6 +71,9 @@ public class AdminService {
 	public void getOrderList(HashMap<String, Object> paramMap) {
 		adao.getOrderList(paramMap);
 	}
+	public void saveOrder(int odseq) {
+		adao.saveOrder(odseq);
+	}
 	
 		
 }	
