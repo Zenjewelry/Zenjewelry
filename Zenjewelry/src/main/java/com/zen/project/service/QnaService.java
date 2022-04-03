@@ -14,13 +14,16 @@ public class QnaService {
 	@Autowired
 	IQnaDao qdao;
 
-	public void listQna(HashMap<String, Object> paramMap) {
-		qdao.listQna( paramMap );		
+	public void getQnaList(HashMap<String, Object> paramMap) {
+		qdao.getQnaList( paramMap );		
 	}
-	public void getQna(HashMap<String, Object> paramMap) {
-		qdao.getQna( paramMap );		
+	public void getQnaDetail(HashMap<String, Object> paramMap) {
+		qdao.getQnaDetail( paramMap );		
 	}
 	public void insertQna(HashMap<String, Object> paramMap) {
 		qdao.insertQna( paramMap );			
+	}
+	public void getAllCountQna(HashMap<String, Object> paramMap) {
+		qdao.getAllCountQna(paramMap);
 	}	
 }

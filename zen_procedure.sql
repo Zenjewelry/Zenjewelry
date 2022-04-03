@@ -840,7 +840,7 @@ end;
 
 
 create or replace procedure saveOrder_zen(
-    p_odseq number
+    p_odseq in number
 )
 is
 begin
@@ -852,6 +852,49 @@ end;
 
 
 
+-- qna
+create or replace procedure getQnaList_zen(
+    p_id in qnas.id%type,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, q.* from
+                   ((select * from qnas where id = p_id order by qseq desc) q)
+            ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
+
+
+
+create or replace procedure getAllCountQna_zen(
+    p_id in varchar2,
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from qnas where id = p_id;
+    p_cnt := v_cnt;
+end;
+
+
+
+
+create or replace procedure getQnaDetail_zen(
+    p_qseq in qnas.qseq%type,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from qnas where qseq = p_qseq;
+end;
 
 
 

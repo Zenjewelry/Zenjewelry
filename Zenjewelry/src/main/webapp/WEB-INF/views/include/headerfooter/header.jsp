@@ -58,7 +58,7 @@
 			<li><a class="Lm" href="productList?kind=4&sub='y'">BRACELET</a></li>
 			<li><a class="LmR" href="cartList">CART</a></li>
 			<li><a class="LmR" href="boardList?sub='y'">BOARD</a></li>
-			<li><a class="LmR" href="qnaList" >Q&amp;A</a></li>
+			<li><a class="LmR" href="qnaList?sub='y'" >Q&amp;A</a></li>
 		</ul>
 	    
 	</nav>
@@ -72,7 +72,7 @@
 	<div class="ddBtn"><a href="productList?kind=4&sub='y'">&nbsp;&nbsp;&nbsp;BRACELET</a></div>
 	<div class="ddBtn"><a href="cartList">&nbsp;&nbsp;&nbsp;CART</a></div>
 	<div class="ddBtn"><a href="boardList?sub='y'">&nbsp;&nbsp;&nbsp;BOARD</a></div>
-	<div class="ddBtn"><a href="qnaList">&nbsp;&nbsp;&nbsp;Q&amp;A</a></div>
+	<div class="ddBtn"><a href="qnaList?sub='y'">&nbsp;&nbsp;&nbsp;Q&amp;A</a></div>
 </div>	
 </header>
 
