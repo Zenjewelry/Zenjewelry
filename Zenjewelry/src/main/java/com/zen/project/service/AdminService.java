@@ -56,6 +56,12 @@ public class AdminService {
 	public void deleteProductQna(int qnum) {
 		adao.deleteProductQna(qnum);
 	}
+	public void deleteProduct(int pseq) {
+		adao.deleteProduct(pseq);
+	}
+	public void getAllCountMember(HashMap<String, Object> paramMap) {
+		adao.getAllCountMember(paramMap);
+	}
 	
 		
 }	

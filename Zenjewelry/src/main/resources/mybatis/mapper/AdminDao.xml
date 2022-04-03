@@ -105,4 +105,15 @@
 		{CALL deleteProductQna_zen(#{param1})}
 	</delete>
 	
+	<delete id="deleteProduct" statementType="CALLABLE">
+		{CALL deleteProduct_zen(#{param1})}
+	</delete>
+	
+	<select id="getAllCountMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCountMember_zen( 
+			#{key},
+			#{count , mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
 </mapper>

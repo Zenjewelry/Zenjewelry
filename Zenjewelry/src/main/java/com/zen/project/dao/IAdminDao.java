@@ -21,5 +21,7 @@ public interface IAdminDao {
 	void getProductQnaDetail(HashMap<String, Object> paramMap);
 	void adminProductQnaReplySave(HashMap<String, Object> paramMap);
 	void deleteProductQna(int qnum);
+	void deleteProduct(int pseq);
+	void getAllCountMember(HashMap<String, Object> paramMap);
 	
 }

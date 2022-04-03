@@ -11,7 +11,7 @@
 		<img src="product_images/${productVO.IMAGE}" style="width: 350px; height: 350px; object-fit: cover;"></span>
 	<h2>${productVO.NAME}</h2>
 	<label>상품분류 : </label><p>${productVO.KIND}</p>
-	<label>원가 [A] : </label><p>${productVO.PRICE1} 원</p>      
+	<label>원가 [A] : </label><p>${productVO.PRICE1} 원</p>
 	<label>판매가 [B] : </label><p>${productVO.PRICE2} 원</p>
 	<label>제품설명 : </label><label>${productVO.CONTENT}</label><br>
 	<img src="product_images/${productVO.DETAIL_IMAGE}" style="width: 780px; height: 780px;">

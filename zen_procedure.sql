@@ -764,6 +764,28 @@ begin
 end;
 
 
+create or replace procedure deleteProduct_zen(
+    p_pseq in product.pseq%type
+)
+is
+begin
+    delete from products where pseq = p_pseq;
+    commit;
+end;
+
+
+create or replace procedure getAllCountMember_zen(
+    p_key in varchar2,
+    p_cnt out number
+)
+IS
+    v_cnt NUMBER;
+BEGIN
+    SELECT count(*) into v_cnt FROM members where name like '%'||p_key||'%';
+    p_cnt:=v_cnt;
+END;
+
+
 
 
 

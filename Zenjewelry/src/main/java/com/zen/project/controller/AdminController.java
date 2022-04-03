@@ -493,4 +493,66 @@ public class AdminController {
 		return "redirect:/adminProduct_Qna";
 	}
 	
+	@RequestMapping(value="/adminDeleteProduct", method=RequestMethod.POST)
+	public String adminDeleteProduct(HttpServletRequest request,
+			@RequestParam("pseq") int pseq) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) return "adminLoginForm";
+		
+		as.deleteProduct(pseq);
+		
+		return "redirect:/adminproductList";
+	}
+	
+	@RequestMapping("/adminMemberList")
+	public ModelAndView adminMemberList(HttpServletRequest request,
+			@RequestParam("sub") String sub) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
+		
+		if(sub!=null) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}
+		
+		int page = 1;
+		String key = "";
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		}else if(session.getAttribute("page") != null) {
+			page = (Integer)session.getAttribute("page");
+		}else {
+			session.removeAttribute("page");
+		}
+		
+		if(request.getParameter("key") != null) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		}else if(session.getAttribute("key") != null) {
+			key = (String)session.getAttribute("key");
+		}else {
+			session.removeAttribute("key");
+		}
+		
+		Paging paging = new Paging();
+		paging.setPage(page);
+		paramMap.put("key", key);
+		paramMap.put("count", 0);
+		as.getAllCountMember(paramMap);
+		paging.setTotalCount((Integer)paramMap.get("count"));
+		paging.paging();
+		paramMap.put("startNum", paging.getStartNum());
+		paramMap.put("endNum", paging.getEndNum());
+		paramMap.put("ref_cursor", null);
+		as.getMemberList(paramMap);
+		
+	}
+	
 }
