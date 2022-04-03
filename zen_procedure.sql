@@ -50,9 +50,9 @@ BEGIN
     -- ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ì¹ì?ï¿½ï¿½ ì»¤ì?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë°ë³µ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch?ï¿½ï¿½ ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½. 
 END;
 
-select * from boards;
 
-select * from orders_details;
+select * from order_views;
+
 
 CREATE OR REPLACE PROCEDURE insertOrder_zen(
     p_id IN orderss.id%TYPE,
@@ -910,10 +910,30 @@ begin
     commit;
 end;
 
-select * from qnas;
+
+
+create or replace procedure insertCart_zen(
+    p_id in orderss.id%type,
+    p_pseq in orders_details.pseq%type,
+    p_quan in orders_details.quantity%type
+)
+is
+begin
+    insert into carts(cseq, id, pseq, quantity)
+    values(carts_seq.nextVal, p_id, p_pseq, p_quan);
+    commit;
+end;
 
 
 
+create or replace procedure deleteOrder_zen(
+    p_oseq in orderss.oseq%type
+)
+is
+begin
+    delete from orders_details where oseq = p_oseq;
+    delete from orderss where oseq = p_oseq;
+end;
 
 
 

@@ -38,4 +38,8 @@ public class OrderService {
 		
 	}
 
+	public void deleteOrder(int oseq) {
+		odao.deleteOrder(oseq);
+	}
+
 }

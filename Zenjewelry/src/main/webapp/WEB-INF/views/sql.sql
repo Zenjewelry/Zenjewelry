@@ -544,7 +544,8 @@ where c.pseq = p.pseq and c.id = m.id;
 
 select * from qnas where subject like '%'||'다'||'%' or content like '%'||'다'||'%';
 
-select * from qnas
+select * from orderss;
+select * from orders_details;
 
 
 

@@ -106,221 +106,212 @@ public class OrderController {
 			return "redirect:/orderList?oseq="+oseq;
 		}
 	}	
-		@RequestMapping(value="/orderList")
-		public ModelAndView orderList (HttpServletRequest request, Model model,
-				@RequestParam("oseq") int oseq) {
-			ModelAndView mav = new ModelAndView();
-			
-			HttpSession session = request.getSession();
-			HashMap<String, Object> loginUser
-				= (HashMap<String,Object>) session.getAttribute("loginUser");
-			
-			if(loginUser == null) {
-				mav.setViewName("member/login");
-			} else {
-				HashMap<String,Object> paramMap = new HashMap<String, Object>();
-				paramMap.put("oseq", oseq);
-				paramMap.put("ref_cursor", null);
-				
-				os.listOrderByOseq(paramMap); // 주문번호에 의한 주문목록 조회
-				
-				ArrayList<HashMap<String,Object>> list
-				 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-				mav.addObject("orderList",list);
-				
-				int totalPrice = 0;
-				
-				for( HashMap<String,Object> cart : list) {
-					totalPrice += Integer.parseInt(cart.get("QUANTITY").toString())
-							* Integer.parseInt(cart.get("PRICE2").toString());
-				}  // 리스트의 내용으로 총금액 계산
-				mav.addObject("totalPrice",totalPrice);
-				mav.setViewName("mypage/orderList");
-			}
-			return mav;
-		}
+	@RequestMapping(value="/orderList")
+	public ModelAndView orderList (HttpServletRequest request, Model model,
+			@RequestParam("oseq") int oseq) {
+		ModelAndView mav = new ModelAndView();
 		
-		@RequestMapping(value="/orderAll")
-		public ModelAndView orderAll(HttpServletRequest request, Model model) {
-			HttpSession session = request.getSession();
-			HashMap<String, Object> loginUser
-				= (HashMap<String,Object>) session.getAttribute("loginUser");
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String,Object>) session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			mav.setViewName("member/login");
+		} else {
+			HashMap<String,Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("oseq", oseq);
+			paramMap.put("ref_cursor", null);
 			
-			ModelAndView mav = new ModelAndView();
+			os.listOrderByOseq(paramMap); // 주문번호에 의한 주문목록 조회
 			
-			if(loginUser == null) {
-				mav.addObject("member/login");
-			} else {
-				ArrayList<HashMap<String, Object>> finalList
-				= new ArrayList<HashMap<String, Object>> ();
-				
-				// 현재 로그인 중인 유저의 진행중인 주문번호 리스트 조회
-				HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
-				paramMap1.put("id", loginUser.get("ID"));
-				paramMap1.put("ref_cursor", null);
-				
-				os.listOrderByIdAll(paramMap1); // 현재 로그인 유저의 진행중인 주문들의 "주문번호들 조회"
-				
-				ArrayList<HashMap<String, Object>> oseqList
-				= (ArrayList<HashMap<String,Object>>) paramMap1.get("ref_cursor");
-				// 주문번호별 주문내역을 조회
-				for( HashMap<String, Object> result : oseqList) {
-				int oseq = Integer.parseInt( result.get("OSEQ").toString());  // 주문번호 1개 추출
-				HashMap<String,Object> paramMap2 = new HashMap<String,Object>();
-				paramMap2.put("oseq", oseq);
-				paramMap2.put("reg_cursor", null);
-				os.listOrderByOseq(paramMap2);
-				
-				ArrayList<HashMap<String, Object>> orderListByOseq
-				= (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
-				HashMap<String,Object> orderFirst = orderListByOseq.get(0);  // 주문 상품들 중 첫번째 주문 추출
-				orderFirst.put("PNAME",(String)orderFirst.get("PNAME")+"포함" + orderListByOseq.size()+"건");
-				// 추출한 첫번째 상품의 상품명을 "XXX 포함 X건"이라고 수정
-				int totalPrice = 0;
-				for( HashMap<String, Object> order : orderListByOseq ) {
-					totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
-									* Integer.parseInt( order.get("PRICE2").toString());
-				}
-				orderFirst.put("PRICE2",totalPrice); // 추출한 첫번째 상품의 가격을 총 가격으로 수정
-				//  주변 번호별 대표 상품 (첫번째 상품)을 별도의 리스트로 모아서 model 에 저장
-				finalList.add(orderFirst);
-			}
-		mav.addObject("orderList",finalList);
-		mav.addObject("title", "전체 주문내역");
-		mav.setViewName("mypage/mypage");
+			ArrayList<HashMap<String,Object>> list
+			 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			mav.addObject("orderList",list);
+			
+			int totalPrice = 0;
+			
+			for( HashMap<String,Object> cart : list) {
+				totalPrice += Integer.parseInt(cart.get("QUANTITY").toString())
+						* Integer.parseInt(cart.get("PRICE2").toString());
+			}  // 리스트의 내용으로 총금액 계산
+			mav.addObject("totalPrice",totalPrice);
+			mav.setViewName("mypage/orderList");
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value="/orderAll")
+	public ModelAndView orderAll(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String,Object>) session.getAttribute("loginUser");
 		
+		ModelAndView mav = new ModelAndView();
 		
-		@RequestMapping(value="/orderDetail")
-		public ModelAndView orderAll (HttpServletRequest request, Model model, 
-				@RequestParam("oseq") int oseq) {
-			ModelAndView mav = new ModelAndView();
-			HttpSession session = request.getSession();
+		if(loginUser == null) {
+			mav.addObject("member/login");
+		} else {
+			ArrayList<HashMap<String, Object>> finalList
+			= new ArrayList<HashMap<String, Object>> ();
 			
-			HashMap<String, Object> loginUser
-			= (HashMap<String, Object> ) session.getAttribute("loginUser");
+			// 현재 로그인 중인 유저의 진행중인 주문번호 리스트 조회
+			HashMap<String, Object> paramMap1 = new HashMap<String, Object>();
+			paramMap1.put("id", loginUser.get("ID"));
+			paramMap1.put("ref_cursor", null);
 			
-			if(loginUser == null) {
-				mav.addObject("member/login");
-			} else {
-				HashMap<String, Object> paramMap	= new HashMap<String, Object> ();
-				paramMap.put("oseq", oseq);
-				paramMap.put("ref_cursor", null);
-				os.listOrderByOseq(paramMap);
-				
-				ArrayList<HashMap<String, Object>> orderListByOseq
-				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
-				int totalPrice = 0;
-				int odseq = 0;
-				for( HashMap<String, Object> order : orderListByOseq ) {
-					totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
-									* Integer.parseInt( order.get("PRICE2").toString());
-					odseq = Integer.parseInt(order.get("ODSEQ").toString()); 
-					}
-				
-					mav.addObject("totalPrice",totalPrice);
-					mav.addObject("orderList",orderListByOseq);
-					mav.addObject("odseq",odseq);
-					System.out.println(odseq);
-					mav.addObject("orderDetail",orderListByOseq.get(0));
-					mav.setViewName("mypage/orderDetailList");
-				
+			os.listOrderByIdAll(paramMap1); // 현재 로그인 유저의 진행중인 주문들의 "주문번호들 조회"
+			
+			ArrayList<HashMap<String, Object>> oseqList
+			= (ArrayList<HashMap<String,Object>>) paramMap1.get("ref_cursor");
+			// 주문번호별 주문내역을 조회
+			for( HashMap<String, Object> result : oseqList) {
+			int oseq = Integer.parseInt( result.get("OSEQ").toString());  // 주문번호 1개 추출
+			HashMap<String,Object> paramMap2 = new HashMap<String,Object>();
+			paramMap2.put("oseq", oseq);
+			paramMap2.put("reg_cursor", null);
+			os.listOrderByOseq(paramMap2);
+			
+			ArrayList<HashMap<String, Object>> orderListByOseq
+			= (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
+			HashMap<String,Object> orderFirst = orderListByOseq.get(0);  // 주문 상품들 중 첫번째 주문 추출
+			orderFirst.put("PNAME",(String)orderFirst.get("PNAME")+"포함" + orderListByOseq.size()+"건");
+			// 추출한 첫번째 상품의 상품명을 "XXX 포함 X건"이라고 수정
+			int totalPrice = 0;
+			for( HashMap<String, Object> order : orderListByOseq ) {
+				totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
+								* Integer.parseInt( order.get("PRICE2").toString());
 			}
-			return mav;
-			
+			orderFirst.put("PRICE2",totalPrice); // 추출한 첫번째 상품의 가격을 총 가격으로 수정
+			//  주변 번호별 대표 상품 (첫번째 상품)을 별도의 리스트로 모아서 model 에 저장
+			finalList.add(orderFirst);
 		}
+	mav.addObject("orderList",finalList);
+	mav.addObject("title", "전체 주문내역");
+	mav.setViewName("mypage/mypage");
+	}
+	return mav;
+}
+	
+	
+	@RequestMapping(value="/orderDetail")
+	public ModelAndView orderAll (HttpServletRequest request, Model model, 
+			@RequestParam("oseq") int oseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
 		
-		@RequestMapping(value="/orderOne")
-		public String orderInsertOne(HttpServletRequest request, 
-				@RequestParam("pseq") int pseq,
-				@RequestParam("quantity") int quantity) {
-			
-			int oseq = 0;
-			
-			HttpSession session = request.getSession();
-			HashMap<String, Object> loginUser
-				= (HashMap<String, Object>)session.getAttribute("loginUser");
-			
-			if(loginUser==null) {
-				return "member/login";
-			} else {
-				HashMap<String, Object> paramMap = new HashMap<String, Object>();
-				paramMap.put("id", loginUser.get("ID"));
-				paramMap.put("oseq", 0);
-				paramMap.put("pseq", pseq);
-				paramMap.put("quantity", quantity);
-				
-				os.insertOrderOne(paramMap);
-				
-				oseq = Integer.parseInt(paramMap.get("oseq").toString());
-				
-			}
-			return "redirect:/orderList?oseq="+oseq;
-			
-		}
+		HashMap<String, Object> loginUser
+		= (HashMap<String, Object> ) session.getAttribute("loginUser");
 		
-		
-		@RequestMapping(value="/deleteOrder")
-		public ModelAndView deleteOrder(@RequestParam(value="odseq", required=false) String odseq) {
+		if(loginUser == null) {
+			mav.addObject("member/login");
+		} else {
+			HashMap<String, Object> paramMap	= new HashMap<String, Object> ();
+			paramMap.put("oseq", oseq);
+			paramMap.put("ref_cursor", null);
+			os.listOrderByOseq(paramMap);
 			
-			String odseq1 = null;
-			
-			odseq1 = odseq;
-			ModelAndView mav = new ModelAndView();
-			System.out.println(odseq1);
-			System.out.println(odseq);
-//			mav.addObject("odseq",odseq);
-//			mav.setViewName( "mypage/deleteOrder");
-			mav.setViewName("redirect:/deleteOrderPassWord?" + odseq1 );
-			System.out.println(odseq);
-			return mav;
-		}
-		
-		
-		
-		@RequestMapping(value="/deleteOrderPassWord")
-		public String deleteOrderPassWord(HttpServletRequest request, 
-				 Model model, 
-				@RequestParam(value="repassword", required=false) String repassword,
-				@RequestParam(value="odseq", required=false) String odseq
-				) {
-			ModelAndView mav = new ModelAndView();
-			HttpSession session = request.getSession();
-			System.out.println("1.1");
-			HashMap<String, Object> loginUser
-				= (HashMap<String, Object>)session.getAttribute("loginUser");
-			
-			if(loginUser==null) {
-//				mav.setViewName("member/login");
-				return "member/login";
-			} 
-				System.out.println("1.12");
-				if(repassword == "") {
-					System.out.println(repassword);
-				model.addAttribute("message", "비밀번호를 입력해주세요");
-				return "mypage/deleteOrder";
-				
-				} else if(repassword == (String)loginUser.get("PWD")) {
-					
-					
-					
-				} else if(repassword != (String)loginUser.get("PWD")){
-					System.out.println(repassword);
-					model.addAttribute("message", "비밀번호가 다릅니다.");
-					return "mypage/deleteOrder";
-					
+			ArrayList<HashMap<String, Object>> orderListByOseq
+			= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+			int totalPrice = 0;
+			int odseq = 0;
+			for( HashMap<String, Object> order : orderListByOseq ) {
+				totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
+								* Integer.parseInt( order.get("PRICE2").toString());
+				odseq = Integer.parseInt(order.get("ODSEQ").toString()); 
 				}
-//				 ( pwdCheck == null || (  pwdCheck != null && !pwdCheck.equals(membervo.getPwd() ) ) ) {
-//						model.addAttribute("message", "비밀번호 확인 일치하지 않습니다");
-//						return "member/joinForm";
-//					}
-				
 			
-			return "member/login";
+				mav.addObject("totalPrice",totalPrice);
+				mav.addObject("orderList",orderListByOseq);
+				mav.addObject("orderDetail",orderListByOseq.get(0));
+				mav.setViewName("mypage/orderDetailList");
 			
 		}
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/orderOne")
+	public String orderInsertOne(HttpServletRequest request, 
+			@RequestParam("pseq") int pseq,
+			@RequestParam("quantity") int quantity) {
+		
+		int oseq = 0;
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		if(loginUser==null) {
+			return "member/login";
+		} else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("id", loginUser.get("ID"));
+			paramMap.put("oseq", 0);
+			paramMap.put("pseq", pseq);
+			paramMap.put("quantity", quantity);
+			
+			os.insertOrderOne(paramMap);
+			
+			oseq = Integer.parseInt(paramMap.get("oseq").toString());
+			
+		}
+		return "redirect:/orderList?oseq="+oseq;
+		
+	}
+	
+	
+//		@RequestMapping(value="/deleteOrder")
+//		public ModelAndView deleteOrder(@RequestParam(value="odseq", required=false) String odseq) {
+//			
+//			ModelAndView mav = new ModelAndView();
+//			mav.setViewName("redirect:/deleteOrderPassWord?odseq" + odseq );
+//			return mav;
+//		}
+	
+	
+	
+	@RequestMapping(value="/deleteOrderPassWord")
+	public String deleteOrderPassWord(HttpServletRequest request, 
+			 Model model,
+			@RequestParam("oseq") int oseq) {
+		
+		HttpSession session = request.getSession();
+		
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		model.addAttribute("loginUser", loginUser);
+		model.addAttribute("oseq", oseq);
+		
+		if(loginUser==null) return "member/login";
+		
+		return "mypage/deleteOrder";
+		
+//		model.addAttribute("oseq", oseq);
+//		if(repassword == "" || repassword == null ) {
+//			model.addAttribute("message", "비밀번호를 입력해주세요");
+//			return "mypage/deleteOrder";
+//		}else if(!repassword.equals(loginUser.get("PWD").toString())){
+//			model.addAttribute("message", "비밀번호가 다릅니다.");
+//			return "mypage/deleteOrder";
+//		}
+//		
+//		os.deleteOrder(oseq);
+//		
+//		return "mypage/completeDeleteOrder";
+	}
+	
+	@RequestMapping("/deleteOrder")
+	public String deleteOrder(HttpServletRequest request, Model model,
+			@RequestParam("oseq") int oseq) {
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("loginUser")==null) return "member/login";
+		
+		os.deleteOrder(oseq);
+		
+		return "redirect:/myPage";
+	}
 		
 		
 }

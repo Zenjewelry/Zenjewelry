@@ -17,4 +17,6 @@ public interface IOrderDao {
 
 	void insertOrderOne(HashMap<String, Object> paramMap);
 
+	void deleteOrder(int oseq);
+
 }

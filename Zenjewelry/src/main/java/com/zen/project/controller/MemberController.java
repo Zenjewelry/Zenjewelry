@@ -35,7 +35,6 @@ public class MemberController {
 			BindingResult result, 
 			HttpServletRequest request,
 			Model model) {
-		System.out.println(membervo.getId());
 		if( result.getFieldError("id") != null ) {
 			model.addAttribute("message" , "아이디를 입력하세요");
 			return "member/login";

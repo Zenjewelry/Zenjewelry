@@ -40,4 +40,8 @@
 		)} 
 	</insert>
 	
+	<delete id="deleteOrder" statementType="CALLABLE">
+		{CALL deleteOrder_zen(#{param1})}
+	</delete>
+	
 </mapper>
