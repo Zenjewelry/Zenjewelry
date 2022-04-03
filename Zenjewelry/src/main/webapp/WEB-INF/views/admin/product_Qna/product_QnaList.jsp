@@ -12,7 +12,7 @@
 		<tr ><td><input  type="hidden" name="qnanum" value="${productList.QNA_NUM}"> ${productList.QNA_NUM}</td>    
     		<td>${productList.ID}</td>  
     		<td>${productList.PSEQ}</td>  
-    		<td><a href="shop.do?command=adminProductQnaView&qnanum=${productList.QNA_NUM}">${productList.SUBJECT}</a></td>   
+    		<td><a href="adminProductQnaView?qna_num=${productList.QNA_NUM}">${productList.SUBJECT}</a></td>
     		<td>${productList.CONTENT}</td>      
     		<td>${productList.REPLY}</td>      
        		<td><fmt:formatDate value="${productList.INDATE}" type="date"/></td>
@@ -25,7 +25,7 @@
 </table>
 
 <table id="cartList2">
-	<tr><td width="670">검색<input type="text" name="key" value="${key}" >
+	<tr><td width="670">검색 (제목+내용) <input type="text" name="key" value="${key}" >
 		<input class="btn" type="button" value="검색" 	onClick="go_search('adminProduct_Qna');">
 		<input class="btn" type="button" name="btn_total" value="전체보기 " onClick="go_total('adminProduct_Qna');">
 		</td></tr>
@@ -34,8 +34,8 @@
 <br>
 
 
-<jsp:include page="/admin/paging/paging.jsp" >
-	<jsp:param name="command" value="shop.do?command=adminProduct_Qna"/>
+<jsp:include page="../../include/page/paging.jsp" >
+	<jsp:param name="command" value="adminProduct_Qna"/>
 </jsp:include>
 
 </article>

@@ -126,6 +126,10 @@ function go_rep(){
 }
 
 function save_rep(qna_num){
+	if(document.frm.reply.value=="") {
+		alert('메세지를 작성해주세요');
+		return;
+	}
 	document.frm.action="adminProductQnaSave";
 	document.frm.submit();
 }

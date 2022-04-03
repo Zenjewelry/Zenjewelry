@@ -41,6 +41,21 @@ public class AdminService {
 	public void updateProduct(HashMap<String, Object> paramMap) {
 		adao.updateProduct(paramMap);
 	}
+	public void getAllCountAdminProductQna(HashMap<String, Object> paramMap) {
+		adao.getAllCountAdminProductQna(paramMap);
+	}
+	public void getProductQnaList(HashMap<String, Object> paramMap) {
+		adao.getProductQnaList(paramMap);
+	}
+	public void getProductQnaDetail(HashMap<String, Object> paramMap) {
+		adao.getProductQnaDetail(paramMap);
+	}
+	public void adminProductQnaReplySave(HashMap<String, Object> paramMap) {
+		adao.adminProductQnaReplySave(paramMap);
+	}
+	public void deleteProductQna(int qnum) {
+		adao.deleteProductQna(qnum);
+	}
 	
 		
 }	

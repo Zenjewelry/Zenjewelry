@@ -7,6 +7,7 @@
 <mapper namespace="com.zen.project.dao.IAdminDao">
 
 	<resultMap  id="adminMap" type="java.util.HashMap"></resultMap>
+	<resultMap  id="adminMap2" type="java.util.HashMap"></resultMap>
 	
 	
 	<select id="getAdmin" statementType="CALLABLE" parameterType="java.util.HashMap">
@@ -71,5 +72,37 @@
 			#{pvo.image}, #{pvo.detail_image}, #{pvo.newyn}, #{pvo.bestyn}
 		) }
 	</insert>
+	
+	<select id="getAllCountAdminProductQna" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getAllCountAdminProductQna_zen(
+			#{key},
+			#{count, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getProductQnaList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProductQnaList_zen(
+			#{key}, #{startNum}, #{endNum},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
+	</select>
+	
+	<select id="getProductQnaDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProductQnaDetail_zen(
+			#{qna_num},
+			#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap},
+			#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap2}
+		)}
+	</select>
+	
+	<update id="adminProductQnaReplySave" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL adminProductQnaReplySave_zen(
+			#{qna_num}, #{reply}
+		)}
+	</update>
+	
+	<delete id="deleteProductQna" statementType="CALLABLE">
+		{CALL deleteProductQna_zen(#{param1})}
+	</delete>
 	
 </mapper>

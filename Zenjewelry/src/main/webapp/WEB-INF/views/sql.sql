@@ -541,17 +541,28 @@ from carts c, products p, members m
 where c.pseq = p.pseq and c.id = m.id;
 
 
-select * from qnas;
-
-
-
 
 select * from qnas where subject like '%'||'다'||'%' or content like '%'||'다'||'%';
 
+select * from product_qna
 
 
 
 
-select * from products
-alter table products add detail_image varchar2(100);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -339,7 +339,7 @@ public class AdminController {
 	@RequestMapping("/adminProductUpdateForm")
 	public String adminProductUpdateForm(HttpServletRequest request, Model model,
 			@RequestParam("pseq") int pseq) {
-		System.out.println(0);
+		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginAdmin")==null) return "adminLoginForm";
 		
@@ -386,6 +386,111 @@ public class AdminController {
 		mav.setViewName("redirect:/adminProductDetail?pseq=" + pvo.getPseq());
 		
 		return mav;
+	}
+	
+	@RequestMapping("/adminProduct_Qna")
+	public String adminProduct_Qna(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) return "adminLoginForm";
+		
+		int page = 1;
+		String key = "";
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		}else if(session.getAttribute("page") != null) {
+			page = (Integer)session.getAttribute("page");
+		}else {
+			session.removeAttribute("page");
+		}
+		
+		if(request.getParameter("key") != null) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		}else if(session.getAttribute("key") != null) {
+			key = (String)session.getAttribute("key");
+		}else {
+			session.removeAttribute("key");
+		}
+		
+		Paging paging = new Paging();
+		paging.setPage(page);
+		paramMap.put("key", key);
+		paramMap.put("count", 0);
+		as.getAllCountAdminProductQna(paramMap);
+		paging.setTotalCount((Integer)paramMap.get("count"));
+		paging.paging();
+		paramMap.put("startNum", paging.getStartNum());
+		paramMap.put("endNum", paging.getEndNum());
+		paramMap.put("ref_cursor", null);
+		as.getProductQnaList(paramMap);
+		
+		ArrayList<HashMap<String, Object>> list
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+		
+		model.addAttribute("productList", list);
+		model.addAttribute("paging", paging);
+		model.addAttribute("key", key);
+		
+		return "admin/product_Qna/product_QnaList";
+	}
+	
+	@RequestMapping("/adminProductQnaView")
+	public ModelAndView adminProductQnaView(HttpServletRequest request,
+			@RequestParam("qna_num") int qna_num) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("qna_num", qna_num);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		as.getProductQnaDetail(paramMap);
+		
+		ArrayList<HashMap<String, Object>> productVO
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
+		ArrayList<HashMap<String, Object>> product_qnaVO
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
+		
+		mav.addObject("productVO", productVO.get(0));
+		mav.addObject("qnaVO", product_qnaVO.get(0));
+		mav.setViewName("admin/product_Qna/adminQnaDetailview");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/adminProductQnaSave", method=RequestMethod.POST)
+	public String adminProductQnaSave(HttpServletRequest request,
+			@RequestParam("qna_num") int qnum,
+			@RequestParam("reply") String reply) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) return "adminLoginForm";
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("qna_num", qnum);
+		paramMap.put("reply", reply);
+		as.adminProductQnaReplySave(paramMap);
+		
+		return "redirect:/adminProductQnaView?qna_num=" + qnum;
+	}
+	
+	@RequestMapping("/adminDeleteProductQna")
+	public String adminDeleteProductQna(HttpServletRequest request,
+			@RequestParam("qna_num") int qnum) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) return "adminLoginForm";
+		
+		as.deleteProductQna(qnum);
+		
+		return "redirect:/adminProduct_Qna";
 	}
 	
 }

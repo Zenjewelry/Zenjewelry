@@ -531,7 +531,7 @@ create or replace procedure getAllCountAdminQna_zen(
 is
     v_count number;
 begin
-    select count(*) into v_count from qnas where subject = p_key or content = p_key;
+    select count(*) into v_count from qnas where subject like '%'||p_key||'%' or content like '%'||p_key||'%';
     p_count := v_count;
 end;
 
@@ -684,6 +684,87 @@ BEGIN
     where pseq=p_pseq;
     commit;    
 END;
+
+
+
+
+-- 04/03
+-- admin
+
+create or replace procedure getAllCountAdminProductQna_zen(
+    p_key in varchar2,
+    p_count out number
+)
+is
+    v_count number;
+begin
+    select count(*) into v_count from product_qna where subject like '%'||p_key||'%' or content like '%'||p_key||'%';
+    p_count := v_count;
+end;
+
+
+
+create or replace procedure getProductQnaList_zen(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, q.* from
+                   ((select * from product_qna where subject like '%'||p_key||'%' or content like '%'||p_key||'%' order by qna_num desc) q)
+            ) where rn >= p_startNum
+        ) where rn <= p_endNum;
+end;
+
+
+
+
+create or replace procedure getProductQnaDetail_zen(
+    p_qnum in product_qna.qna_num%type,
+    p_cur1 out sys_refcursor,
+    p_cur2 out sys_refcursor
+)
+is
+    v_pseq number;
+begin
+    select pseq into v_pseq from product_qna where qna_num = p_qnum;
+    
+    open p_cur1 for
+        select * from products where pseq = v_pseq;
+    
+    open p_cur2 for
+        select * from product_qna where qna_num = p_qnum;
+end;
+
+
+
+create or replace procedure adminProductQnaReplySave_zen(
+    p_qnum in product_qna.qna_num%type,
+    p_reply in varchar2
+)
+is
+begin
+    update product_qna set reply = p_reply, rep=2 where qna_num = p_qnum;
+    commit;
+end;
+
+
+create or replace procedure deleteProductQna_zen(
+    p_qnum in product_qna.qna_num%type
+)
+is
+begin
+    delete from product_qna where qna_num = p_qnum;
+    commit;
+end;
+
+
+
 
 
 

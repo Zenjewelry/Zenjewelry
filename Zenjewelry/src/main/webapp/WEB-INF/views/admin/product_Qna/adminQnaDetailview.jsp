@@ -29,8 +29,14 @@
 	</c:otherwise>
 </c:choose>
 
-<input type="button" class="btn" value="목록" onClick="location.href='shop.do?command=adminProduct_Qna'">
+<input type="button" class="btn" value="목록" onClick="location.href='adminProduct_Qna'">
 <input type="button" value="삭제"  onClick='go_removeQna();'>
+
+<table>
+	<tr><th>문의상품</th><td><a href="productDetail?pseq=${productVO.PSEQ}">${productVO.NAME}</a></td></tr>
+	<tr><td colspan="2"><img src="product_images/${productVO.IMAGE}" style="width:500px;" /></td></tr>
+</table>
+
 </form>
 </article>
 <%@ include file="../../include/adminheaderfooter/footer.jsp" %>
