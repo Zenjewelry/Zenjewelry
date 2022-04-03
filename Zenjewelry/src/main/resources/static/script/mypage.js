@@ -90,11 +90,13 @@ function go_orderDetail(){
 	document.updateDelivery.submit();
 }
 
-function delete_order(){
+function delete_order(odseq){
 	var answer = confirm("주문을 취소하시겠습니까?");
 	if( answer ){
-	document.cartList.action= "deleteOrder";
-	document.cartList.submit();	
+	var url = "deleteOrder?" + odseq;
+	var pop = "toolbar=no, menubar=no, scrollbars=no, "
+	 + "resizable=no, width=550, height=300, top=300, left=300";
+	window.open( url, "deleteOrder", pop );
    }
 }
 	
