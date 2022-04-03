@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class QnasVO {
+public class QnaVO {
 
 		private Integer qseq; 
 		@NotNull (message="제목을 입력하세요")

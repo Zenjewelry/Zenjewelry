@@ -898,6 +898,20 @@ end;
 
 
 
+create or replace procedure insertQna_zen(
+    p_id in qnas.id%type,
+    p_subject in qnas.subject%type,
+    p_content in qnas.content%type
+)
+is
+begin
+    insert into qnas(qseq, subject, content, id)
+    values(qna_seq.nextVal, p_subject, p_content, p_id);
+    commit;
+end;
+
+select * from qnas;
+
 
 
 
