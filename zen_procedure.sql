@@ -787,7 +787,55 @@ END;
 
 
 
+create or replace procedure getMemberList_zen(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, q.* from
+                   ((select * from members where name like '%'||p_key||'%' order by id desc) q)
+            ) where rn >= p_startNum
+        ) where rn <= p_endNum;
+end;
 
+
+
+create or replace procedure getAllCountOrder_zen(
+    p_key in varchar2,
+    p_cnt out number
+)
+IS
+    v_cnt NUMBER;
+BEGIN
+    select count(*) into v_cnt FROM order_views where mname like '%'||p_key||'%';
+    p_cnt:=v_cnt;
+END;
+
+
+
+
+create or replace procedure getOrderList_zen(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, q.* from
+                   ((select * from order_views where mname like '%'||p_key||'%' order by oseq desc) q)
+            ) where rn >= p_startNum
+        ) where rn <= p_endNum;
+end;
 
 
 

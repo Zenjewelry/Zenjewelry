@@ -553,6 +553,74 @@ public class AdminController {
 		paramMap.put("ref_cursor", null);
 		as.getMemberList(paramMap);
 		
+		ArrayList< HashMap<String, Object>> list
+		= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		
+		mav.addObject("memberlist", list);
+		mav.addObject("paging", paging);
+		mav.addObject("key", key);
+		mav.setViewName("admin/member/memberList");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/adminOrderList")
+	public ModelAndView adminOrderList(HttpServletRequest request,
+			@RequestParam("sub") String sub) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
+		
+		if(sub!=null) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}
+		
+		int page = 1;
+		String key = "";
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		}else if(session.getAttribute("page") != null) {
+			page = (Integer)session.getAttribute("page");
+		}else {
+			session.removeAttribute("page");
+		}
+		
+		if(request.getParameter("key") != null) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		}else if(session.getAttribute("key") != null) {
+			key = (String)session.getAttribute("key");
+		}else {
+			session.removeAttribute("key");
+		}
+		
+		Paging paging = new Paging();
+		paging.setPage(page);
+		paramMap.put("key", key);
+		paramMap.put("count", 0);
+		as.getAllCountOrder(paramMap);
+		paging.setTotalCount((Integer)paramMap.get("count"));
+		paging.paging();
+		paramMap.put("startNum", paging.getStartNum());
+		paramMap.put("endNum", paging.getEndNum());
+		paramMap.put("ref_cursor", null);
+		as.getOrderList(paramMap);
+		
+		ArrayList< HashMap<String, Object>> list
+		= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		
+		mav.addObject("orderList", list);
+		mav.addObject("paging", paging);
+		mav.addObject("key", key);
+		mav.setViewName("admin/order/orderList");
+		
+		return mav;
 	}
 	
 }

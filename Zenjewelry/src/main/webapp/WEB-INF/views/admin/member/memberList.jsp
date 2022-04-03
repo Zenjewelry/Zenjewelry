@@ -18,13 +18,13 @@
 
 <form name="frm" method="post">
 <table id="cartList2">
-	<tr><td width="670">회원 이름 <input type="text" name="key" value="${key3}">
+	<tr><td width="670">회원 이름 <input type="text" name="key" value="${key}">
 	<input class="btn" type="button" value="검색" onclick="go_search('adminMemberList')">
 	<input class="btn" type="button" name="btn_total" value="전체보기 "	onClick="go_total('adminMemberList')"></td> </tr>
 </table>
 </form>
 <br>
-<jsp:include page="/admin/paging/paging.jsp">   
+<jsp:include page="../../include/page/paging.jsp">   
 <jsp:param value="adminMemberList" name="command"/>
 </jsp:include>
 

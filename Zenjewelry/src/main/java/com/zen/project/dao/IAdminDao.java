@@ -23,5 +23,8 @@ public interface IAdminDao {
 	void deleteProductQna(int qnum);
 	void deleteProduct(int pseq);
 	void getAllCountMember(HashMap<String, Object> paramMap);
+	void getMemberList(HashMap<String, Object> paramMap);
+	void getAllCountOrder(HashMap<String, Object> paramMap);
+	void getOrderList(HashMap<String, Object> paramMap);
 	
 }

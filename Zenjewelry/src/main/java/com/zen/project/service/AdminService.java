@@ -62,6 +62,15 @@ public class AdminService {
 	public void getAllCountMember(HashMap<String, Object> paramMap) {
 		adao.getAllCountMember(paramMap);
 	}
+	public void getMemberList(HashMap<String, Object> paramMap) {
+		adao.getMemberList(paramMap);
+	}
+	public void getAllCountOrder(HashMap<String, Object> paramMap) {
+		adao.getAllCountOrder(paramMap);
+	}
+	public void getOrderList(HashMap<String, Object> paramMap) {
+		adao.getOrderList(paramMap);
+	}
 	
 		
 }	
