@@ -42,7 +42,7 @@
     <tr><th width="20%"> 연락처 </th>
        	<td style="text-align:left;">${orderDetail.PHONE}</td></tr>
     <tr><th width="20%"> 배송지 </th>
-       	<td style="text-align:left;">${orderDetail.ZIP_NUM} ${orderDetail.ADDRESS} ${orderDetail.ADDRESS2}</td></tr>	
+       	<td style="text-align:left;">${orderDetail.zip_num} ${orderDetail.ADDRESS} ${orderDetail.ADDRESS2}</td></tr>	
 
 </table>
 <br>

@@ -32,7 +32,7 @@ IS
 BEGIN
     OPEN p_curvar FOR 
     SELECT distinct oseq FROM order_views WHERE id=p_id and result='1' order by oseq desc;
-    -- ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ì¹ì?ï¿½ï¿½ ì»¤ì?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë°ë³µ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch?ï¿½ï¿½ ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½. 
+    -- ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½ ?Ã¯Â¿Â½Ã¯Â¿Â½Ã¬Â¹ÂÃ¬ÂÂ?Ã¯Â¿Â½Ã¯Â¿Â½ Ã¬Â»Â¤Ã¬ÂÂ?Ã¯Â¿Â½Ã¯Â¿Â½ ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½ fetch ?Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿?? ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½ Ã«Â°ÂÃ«Â³Âµ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½ fetch?Ã¯Â¿Â½Ã¯Â¿Â½ ?Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿?? ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½. 
 END;
 
 select * from orderss;
@@ -47,7 +47,7 @@ CREATE OR REPLACE PROCEDURE listOrderByOseq_zen(
 IS
 BEGIN
     OPEN p_curvar FOR SELECT * FROM order_views WHERE oseq=p_oseq;
-    -- ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ì¹ì?ï¿½ï¿½ ì»¤ì?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë°ë³µ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ fetch?ï¿½ï¿½ ?ï¿½ï¿½ï¿?? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½. 
+    -- ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½ ?Ã¯Â¿Â½Ã¯Â¿Â½Ã¬Â¹ÂÃ¬ÂÂ?Ã¯Â¿Â½Ã¯Â¿Â½ Ã¬Â»Â¤Ã¬ÂÂ?Ã¯Â¿Â½Ã¯Â¿Â½ ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½ fetch ?Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿?? ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½ Ã«Â°ÂÃ«Â³Âµ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½ fetch?Ã¯Â¿Â½Ã¯Â¿Â½ ?Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿?? ?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½?Ã¯Â¿Â½Ã¯Â¿Â½. 
 END;
 
 
@@ -621,23 +621,23 @@ IS
       v_address2 orders_details.address2%TYPE;
      
 BEGIN
-        -- orders ?��?��블에 ?��코드 추�? 
+        -- orders ??´ë¸ì ? ì½ë ì¶ê? 
         insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-        -- orders ?��?��블에?�� �??�� ?�� oseq 조회 
+        -- orders ??´ë¸ì? ê°??¥ ?° oseq ì¡°í 
         select MAX(oseq) into v_oseq from orderss;
-        -- cart ?��?��블에?�� id �? 목록조회 
+        -- cart ??´ë¸ì? id ë¡? ëª©ë¡ì¡°í 
         OPEN temp_cur FOR select cseq, pseq, quantity from carts where id=p_id AND result='1';
-        -- 목록�? oseq �? order_detail ?��?��블에 ?��코드 추�?
+        -- ëª©ë¡ê³? oseq ë¡? order_detail ??´ë¸ì ? ì½ë ì¶ê?
         OPEN temp_cur2 FOR select zip_num, address, address2 from members where id=p_id;
         LOOP 
-            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  -- 조회?�� 카트?�� 목록?��?�� ?��?��?�� 꺼내?�� 처리 
-            EXIT WHEN temp_cur%NOTFOUND;  -- 조회?�� 카트?�� 목록?�� 모두 ?��진할?��까�? 
+            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  -- ì¡°í? ì¹´í¸? ëª©ë¡?? ???© êº¼ë´? ì²ë¦¬ 
+            EXIT WHEN temp_cur%NOTFOUND;  -- ì¡°í? ì¹´í¸? ëª©ë¡?´ ëª¨ë ?ì§í ?ê¹ì? 
             INSERT INTO orders_details ( odseq, oseq, pseq, quantity, zip_num, address, address2) 
-            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity, v_zip_num, v_address, v_address2);  -- order_detail ?��?��블에 ?��코드 추�?
+            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity, v_zip_num, v_address, v_address2);  -- order_detail ??´ë¸ì ? ì½ë ì¶ê?
             DELETE FROM CARTS WHERE cseq = v_cseq;
         END LOOP;
         COMMIT;
-        -- oseq 값을 out �??��?�� ???��
+        -- oseq ê°ì out ë³??? ???¥
         p_oseq := v_oseq;
 END;
 
@@ -897,6 +897,28 @@ begin
 end;
 
 
+-- order
+
+
+CREATE OR REPLACE PROCEDURE insertOrderOne_zen(
+   p_id IN orderss.id%TYPE,
+   p_address IN orders_details.address%TYPE,
+   p_zip_num IN orders_details.zip_num%TYPE,
+   p_address2 IN orders_details.address2%TYPE,
+   p_pseq IN orders_details.pseq %TYPE,
+   p_quantity IN orders_details.quantity %TYPE,
+   p_oseq OUT orderss.oseq%TYPE
+)
+IS  
+      v_oseq ORDERSS.oseq%TYPE;
+BEGIN
+        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
+        select MAX(oseq) into v_oseq from orderss;
+        insert into orders_details(odseq, oseq, pseq, quantity,address,zip_num,address2)
+        values( orders_details_seq.nextVal, v_oseq, p_pseq, p_quantity,p_address,p_zip_num,p_address2);
+        COMMIT;
+        p_oseq := v_oseq;
+END;
 
 create or replace procedure insertQna_zen(
     p_id in qnas.id%type,
@@ -934,6 +956,7 @@ begin
     delete from orders_details where oseq = p_oseq;
     delete from orderss where oseq = p_oseq;
 end;
+
 
 
 
