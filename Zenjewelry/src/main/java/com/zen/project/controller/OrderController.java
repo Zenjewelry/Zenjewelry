@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -212,11 +213,17 @@ public class OrderController {
 				ArrayList<HashMap<String, Object>> orderListByOseq
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 				int totalPrice = 0;
-				for( HashMap<String, Object> order : orderListByOseq ) 
+				int odseq = 0;
+				for( HashMap<String, Object> order : orderListByOseq ) {
 					totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
 									* Integer.parseInt( order.get("PRICE2").toString());
+					odseq = Integer.parseInt(order.get("ODSEQ").toString()); 
+					}
+				
 					mav.addObject("totalPrice",totalPrice);
 					mav.addObject("orderList",orderListByOseq);
+					mav.addObject("odseq",odseq);
+					System.out.println(odseq);
 					mav.addObject("orderDetail",orderListByOseq.get(0));
 					mav.setViewName("mypage/orderDetailList");
 				
@@ -251,6 +258,67 @@ public class OrderController {
 				
 			}
 			return "redirect:/orderList?oseq="+oseq;
+			
+		}
+		
+		
+		@RequestMapping(value="/deleteOrder")
+		public ModelAndView deleteOrder(@RequestParam(value="odseq", required=false) String odseq) {
+			
+			String odseq1 = null;
+			
+			odseq1 = odseq;
+			ModelAndView mav = new ModelAndView();
+			System.out.println(odseq1);
+			System.out.println(odseq);
+//			mav.addObject("odseq",odseq);
+//			mav.setViewName( "mypage/deleteOrder");
+			mav.setViewName("redirect:/deleteOrderPassWord?" + odseq1 );
+			System.out.println(odseq);
+			return mav;
+		}
+		
+		
+		
+		@RequestMapping(value="/deleteOrderPassWord")
+		public String deleteOrderPassWord(HttpServletRequest request, 
+				 Model model, 
+				@RequestParam(value="repassword", required=false) String repassword,
+				@RequestParam(value="odseq", required=false) String odseq
+				) {
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
+			System.out.println("1.1");
+			HashMap<String, Object> loginUser
+				= (HashMap<String, Object>)session.getAttribute("loginUser");
+			
+			if(loginUser==null) {
+//				mav.setViewName("member/login");
+				return "member/login";
+			} 
+				System.out.println("1.12");
+				if(repassword == "") {
+					System.out.println(repassword);
+				model.addAttribute("message", "비밀번호를 입력해주세요");
+				return "mypage/deleteOrder";
+				
+				} else if(repassword == (String)loginUser.get("PWD")) {
+					
+					
+					
+				} else if(repassword != (String)loginUser.get("PWD")){
+					System.out.println(repassword);
+					model.addAttribute("message", "비밀번호가 다릅니다.");
+					return "mypage/deleteOrder";
+					
+				}
+//				 ( pwdCheck == null || (  pwdCheck != null && !pwdCheck.equals(membervo.getPwd() ) ) ) {
+//						model.addAttribute("message", "비밀번호 확인 일치하지 않습니다");
+//						return "member/joinForm";
+//					}
+				
+			
+			return "member/login";
 			
 		}
 		
