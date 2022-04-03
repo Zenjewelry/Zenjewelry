@@ -123,7 +123,7 @@ public class OrderController {
 			paramMap.put("ref_cursor", null);
 			
 			os.listOrderByOseq(paramMap); // 주문번호에 의한 주문목록 조회
-			
+
 			ArrayList<HashMap<String,Object>> list
 			 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("orderList",list);
