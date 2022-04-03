@@ -22,7 +22,9 @@
 	</select>
 	
 	<insert id="insertQna" statementType="CALLABLE" parameterType="java.util.HashMap" >
-		{ CALL insertQna_zen(  #{id}, #{subject}, #{content}   ) }
+		{ CALL insertQna_zen(
+			#{id}, #{subject}, #{content}
+		)}
 	</insert>
 	
 	<select id="getAllCountQna" statementType="CALLABLE" parameterType="java.util.HashMap">

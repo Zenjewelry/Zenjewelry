@@ -6,8 +6,8 @@
 <form name="formm" method="post"	action="qnaWrite">
 	<fieldset> 
 		<legend>Board Info</legend>
-	    <label>Title</label><input type="text" name="subject"  size="60" ><br>
-		<label>Content</label><textarea rows="8" cols="65" name="content"></textarea>
+	    <label>Title</label><input type="text" name="subject"  size="60" value="${dto.SUBJECT}" /><br>
+		<label>Content</label><textarea rows="8" cols="65" name="content">${dto.CONTENT}</textarea>
 	</fieldset>
 	<div class="clear"></div>
 	<div id="buttons" style="float:right">
@@ -15,6 +15,7 @@
 		<input type="reset"   value="취소"     class="cancel">
 		<input type="button"  value="쇼핑 계속하기"  class="submit" onclick="location.href='/'">
 	</div>
+	${message}
 </form>
 </article>
 <%@ include file="../include/headerfooter/footer.jsp" %>   

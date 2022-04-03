@@ -899,6 +899,7 @@ end;
 
 -- order
 
+
 CREATE OR REPLACE PROCEDURE insertOrderOne_zen(
    p_id IN orderss.id%TYPE,
    p_address IN orders_details.address%TYPE,
@@ -918,6 +919,23 @@ BEGIN
         COMMIT;
         p_oseq := v_oseq;
 END;
+
+create or replace procedure insertQna_zen(
+    p_id in qnas.id%type,
+    p_subject in qnas.subject%type,
+    p_content in qnas.content%type
+)
+is
+begin
+    insert into qnas(qseq, subject, content, id)
+    values(qna_seq.nextVal, p_subject, p_content, p_id);
+    commit;
+end;
+
+select * from qnas;
+
+
+
 
 
 

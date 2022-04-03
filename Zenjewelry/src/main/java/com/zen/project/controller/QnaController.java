@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zen.project.dto.Paging;
-import com.zen.project.dto.QnasVO;
+import com.zen.project.dto.QnaVO;
 import com.zen.project.service.QnaService;
 
 
@@ -110,34 +110,35 @@ public class QnaController {
 		HttpSession session = request.getSession();
 		if( session.getAttribute("loginUser") == null ) return "member/login";
 		
-	    return "Qna/qnaWrite";
+	    return "qna/qnaWrite";
 	}
 
-	@RequestMapping("QnaWrite")
-	public ModelAndView qna_write( @ModelAttribute("dto") @Valid QnasVO qnasvo,
+	@RequestMapping("qnaWrite")
+	public ModelAndView qna_write( @ModelAttribute("dto") @Valid QnaVO qnavo,
 			BindingResult result,  HttpServletRequest request) {
+		
 		ModelAndView mav = new ModelAndView();
+		
 		HttpSession session = request.getSession();
-		HashMap<String, Object> id 
-			= (HashMap<String, Object>) session.getAttribute("id");
-	    if (id == null) 
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>) session.getAttribute("loginUser");
+	    if (loginUser == null) 
 	    	mav.setViewName("member/login");
 	    else {
+	    	mav.setViewName("qna/qnaWrite");
 			if(result.getFieldError("subject") != null ) {
 				mav.addObject("message", result.getFieldError("subject").getDefaultMessage() );
-				mav.setViewName("qnas/qnaWrite");
 				return mav;
 			}else if(result.getFieldError("content") != null ) {
 				mav.addObject("message", result.getFieldError("content").getDefaultMessage());
-				mav.setViewName("qnas/qnaWrite");
 				return mav;
 			}
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
-			paramMap.put("id", id.get("id") );
-			paramMap.put("subject", qnasvo.getSubject() );
-			paramMap.put("content", qnasvo.getContent() );
-			qs.insertQna( paramMap );
-			mav.setViewName("redirect:/qnaList");
+			paramMap.put("id", loginUser.get("ID") );
+			paramMap.put("subject", qnavo.getSubject());
+			paramMap.put("content", qnavo.getContent());
+			qs.insertQna(paramMap);
+			mav.setViewName("redirect:/qnaList?sub='y'");
 	    }
 		return mav;
 	}
