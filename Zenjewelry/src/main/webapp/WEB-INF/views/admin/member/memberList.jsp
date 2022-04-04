@@ -6,9 +6,9 @@
 
 <table id="cartList2">
 
-	<tr><th width="60">아이디</th><th> 이름 </th><th width="120">이메일</th>
-	<th width="90">우편번호</th><th width="400">주소</th><th width="130">전화</th><th width="100">가입일</th>
-	<th width="50">등급</th><th width="80">회원관리</th><th width="100">삭제</th></tr>
+	<tr><th width="100">아이디</th><th width="100"> 이름 </th><th width="120">이메일</th>
+	<th width="90">우편번호</th><th width="400">주소</th><th width="200">전화</th><th width="100">가입일</th>
+	<th width="80">등급</th><th width="100">회원관리</th><th width="100">삭제</th></tr>
 	
 
    <c:forEach items="${memberlist}" var="memberVO">
@@ -32,9 +32,9 @@
           			<option value = "일시정지">일시정지</option>
        			</select>
        		</td>
-       		<td style="width:200px;">
+       		<td style="width:100px;">
        			<form name="formm" action="adminDeleteMember" style="width:0px;">
-       				<input type="hidden" name="id" value="${memberVO.ID}" style="width:200px;" />
+       				<input type="hidden" name="id" value="${memberVO.ID}" style="width:100px;" />
        				<input class="btn" type="submit" value="삭제" onclick="return delete_mem();">
        			</form>
        		</td>
