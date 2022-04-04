@@ -181,6 +181,14 @@ function delete_mem(){
 	}
 }
 
+function save_option_mem(){
+	var answer = confirm("회원정보를 저장하시겠습니까?");
+	if( answer ){
+	 document.formm.action= "saveOptionMember";
+	 document.formm.submit();	
+	}
+}	
+
 
 
 function createPartition(){
