@@ -95,9 +95,6 @@ function find_account(){
 }
 
 
-
-
-
 function go_update(){
    if (document.joinForm.pwd.value == "") {
        alert("비밀번호를 입력해 주세요.");

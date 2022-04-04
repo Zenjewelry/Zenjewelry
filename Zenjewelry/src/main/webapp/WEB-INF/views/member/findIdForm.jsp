@@ -9,7 +9,7 @@
 <body>
 
 <center><h2>아이디 찾기</h2></center>
-<form method="post" name="frm" action="shop.do">
+<form method="post" name="frm" action="findId">
 	<input type="hidden" name="command" value="findIdStep1">
 	<table id="cartlist" align="center" bgcolor="black" cellspacing="1" width="400">
 		<tr align="center" bgcolor="#FFFFFF" >
