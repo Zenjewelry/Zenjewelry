@@ -1007,6 +1007,16 @@ begin
 end;
 
 
+--member
+CREATE OR REPLACE PROCEDURE findId_zen(
+    p_name IN members.name%TYPE, 
+    p_phone IN members.phone%TYPE,
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM members WHERE name=p_name and phone=p_phone;
+END;
 
 
 
