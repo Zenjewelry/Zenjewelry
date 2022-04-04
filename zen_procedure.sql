@@ -1008,6 +1008,26 @@ end;
 
 
 
+-- promotion
+
+create or replace procedure findProduct_zen(
+    p_pseq in number,
+    p_output out number,
+    p_name out varchar2
+)
+is
+    v_output number;
+    v_name varchar2(50);
+begin
+    select pseq, name into v_output, v_name from products where pseq = p_pseq;
+    p_output := v_output;
+    p_name := v_name;
+end;
+
+
+
+
+
 
 
 

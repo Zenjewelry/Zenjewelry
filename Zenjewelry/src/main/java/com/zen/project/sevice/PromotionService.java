@@ -1,5 +1,7 @@
 package com.zen.project.sevice;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,4 +12,8 @@ public class PromotionService {
 
 	@Autowired
 	IPromotionDao pdao;
+
+	public void findProduct(HashMap<String, Object> paramMap) {
+		pdao.findProduct(paramMap);
+	}
 }

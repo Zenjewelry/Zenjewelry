@@ -198,6 +198,15 @@ function createPartition(){
 
 
 
+function findProduct(){
+	var pseq = document.getElementById("find_pseq").value;
+	
+	var opt = "toolbar=no, menubar=no, resizable=no, width=550, height=300";
+	window.open('findProduct?pseq='+pseq, '대표이미지 업로드', opt);
+}
+
+
+
 
 
 
