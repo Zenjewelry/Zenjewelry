@@ -171,7 +171,12 @@ function uploadedDetailImg(){
 }
 
 
-
+function delete_mem(){
+	var answer = confirm("회원을 삭제하시겠습니까?");
+	if( answer ){
+	 document.formm.action= "adminDeleteMember";
+	document.formm.submit();	
+	}
 
 
 

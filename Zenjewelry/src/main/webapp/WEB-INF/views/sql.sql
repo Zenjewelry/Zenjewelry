@@ -556,6 +556,36 @@ alter table members add blockDate date;
 
 
 
+-- 기획전 DB
+create table promotions(
+	prmseq number(10) not null,
+	banner varchar(50) not null,
+	main_subject varchar(50) not null,
+	sub_subject varchar(50),
+	sdate date,
+	edate date,
+	primary key(prmseq)
+);
+
+
+create table promotion_products(
+	prmseq number(10) not null,
+	outnumber number(10) not null,
+	summary varchar2(50),
+	pseq number(5) not null
+);
+
+
+create or replace view promotion_view
+as
+select p.prmseq, p.banner, p.main_subject, p.sub_subject, p.sdate, p.edate, ps.outnumber, ps.summary
+from promotions p, promotion_products ps 
+where p.prmseq = ps.prmseq;
+
+
+
+
+
 
 
 
