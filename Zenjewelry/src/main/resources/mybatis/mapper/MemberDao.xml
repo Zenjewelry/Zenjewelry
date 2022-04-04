@@ -33,4 +33,11 @@
 		) }
 	</insert>
 	
+	<select id="findId" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL findId_zen( 
+			#{name},#{phone},#{email},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)  }
+	</select>
+	
 </mapper>

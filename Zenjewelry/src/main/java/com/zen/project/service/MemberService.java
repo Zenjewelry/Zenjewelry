@@ -31,4 +31,8 @@ public class MemberService {
 	public void updateMember(HashMap<String, Object> paramMap) {
 		mdao.updateMember( paramMap );
 	}
+
+	public void findId(HashMap<String, Object> paramMap) {
+		mdao.findId( paramMap );
+	}
 }
