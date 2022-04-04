@@ -18,7 +18,7 @@ public class VerifyEmail {
  
         // 1. 발신자의 메일 계정과 비밀번호 설정
         final String user = "skwls12@gmail.com";
-        final String password = "najin10210";
+        final String password = "3333333";
  
         // 2. Property에 SMTP 서버 정보 설정
         Properties prop = new Properties();
