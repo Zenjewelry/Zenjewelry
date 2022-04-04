@@ -183,6 +183,13 @@ function delete_mem(){
 
 
 
+function createPartition(){
+	document.frm.action = 'adminPromotionWrite';
+	document.frm.submit();
+}
+
+
+
 
 
 
