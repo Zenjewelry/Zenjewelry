@@ -191,7 +191,12 @@ function save_option_mem(){
 
 
 
+function createPartition(){
+	document.frm.action = 'adminPromotionWrite';
+	document.frm.submit();
 }
+
+
 
 
 
