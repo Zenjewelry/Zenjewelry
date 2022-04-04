@@ -544,10 +544,14 @@ where c.pseq = p.pseq and c.id = m.id;
 
 select * from qnas where subject like '%'||'다'||'%' or content like '%'||'다'||'%';
 
-select * from orderss;
-select * from orders_details;
 
 
+
+-- members useyn
+-- useyn - 1: 사용 2: 휴먼 3: 블랙 4:일시정지
+-- blockDate - 정지 종료일
+alter table members add useyn varchar2(10);
+alter table members add blockDate date;
 
 
 
