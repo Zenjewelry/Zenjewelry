@@ -78,6 +78,7 @@ public class AdminService {
 		adao.deleteMember(id);
 	}
 	
+	
 		
 }	
 	

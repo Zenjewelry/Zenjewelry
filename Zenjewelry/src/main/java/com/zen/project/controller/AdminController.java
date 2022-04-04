@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.zen.project.dto.MemberVO;
 import com.zen.project.dto.Paging;
 import com.zen.project.dto.ProductVO;
 import com.zen.project.service.AdminService;
@@ -649,5 +650,11 @@ public class AdminController {
 		
 		return "redirect:/adminMemberList?sub='y'";
 	}
+	
+	
+	
+	
+	
+	
 	
 }
