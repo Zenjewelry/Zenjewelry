@@ -34,7 +34,7 @@ alter table products modify detail_image varchar2(500)
 alter table products add detail_image varchar2(50);
 
 drop sequence products_seq;
-create sequence products_seq start with 5 increment by 1;
+create sequence products_seq start with 92 increment by 1;
 
 select * from products;
 
@@ -495,7 +495,7 @@ delete from boards
 select * from boards
 
 --------- 수정 --------------
-
+select * from products
 alter table members add address2 varchar(100);
 
 alter table orders_details add zip_num varchar(100);
