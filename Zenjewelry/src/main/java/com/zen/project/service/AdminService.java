@@ -74,6 +74,9 @@ public class AdminService {
 	public void saveOrder(int odseq) {
 		adao.saveOrder(odseq);
 	}
+	public void deleteMember(String id) {
+		adao.deleteMember(id);
+	}
 	
 		
 }	

@@ -27,5 +27,7 @@ public interface IAdminDao {
 	void getAllCountOrder(HashMap<String, Object> paramMap);
 	void getOrderList(HashMap<String, Object> paramMap);
 	void saveOrder(int odseq);
+	void deleteMember(String id);
+	
 	
 }
