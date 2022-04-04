@@ -141,5 +141,8 @@
 		{CALL saveOrder_zen(#{param1})}
 	</update>
 	
+	<delete id="deleteMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL deleteMember_zen(#{param1})}
+	</delete>
 	
 </mapper>
