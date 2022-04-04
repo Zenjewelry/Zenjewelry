@@ -90,7 +90,9 @@ public class OrderController {
 		} else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID"));
-			
+			paramMap.put("address", loginUser.get("ADDRESS"));
+			paramMap.put("zip_num", loginUser.get("ZIP_NUM"));
+			paramMap.put("address2", loginUser.get("ADDRESS2"));
 
 			paramMap.put("oseq", 0);  // OUT 변수로 적용되어서 돌아올 방금 주문한 주문의 주문번호
 			System.out.println(paramMap);
@@ -127,6 +129,7 @@ public class OrderController {
 			ArrayList<HashMap<String,Object>> list
 			 = (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			mav.addObject("orderList",list);
+			mav.addObject("orderList11",list.get(0));
 			
 			int totalPrice = 0;
 			
@@ -246,6 +249,9 @@ public class OrderController {
 		} else {
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("id", loginUser.get("ID"));
+			paramMap.put("address", loginUser.get("ADDRESS"));
+			paramMap.put("zip_num", loginUser.get("ZIP_NUM"));
+			paramMap.put("address2", loginUser.get("ADDRESS2"));
 			paramMap.put("oseq", 0);
 			paramMap.put("pseq", pseq);
 			paramMap.put("quantity", quantity);

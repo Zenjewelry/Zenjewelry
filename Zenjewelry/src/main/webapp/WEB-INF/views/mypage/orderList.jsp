@@ -35,11 +35,11 @@
 <h2> 배송지 정보 </h2>
 
 	<tr><th width="20%"> 수령인 </th>
-       	<td style="text-align:left;">${orderListMember.MNAME}</td></tr>	
+       	<td style="text-align:left;">${orderList11.MNAME}</td></tr>	
     <tr><th width="20%"> 연락처 </th>
-       	<td style="text-align:left;">${orderListMember.PHONE}</td></tr>
+       	<td style="text-align:left;">${orderList11.PHONE}</td></tr>
     <tr><th width="20%"> 배송지 </th>
-       	<td style="text-align:left;">${orderListMember.ZIP_NUM} ${orderListMember.ADDRESS} ${orderListMember.ADDRESS2}</td></tr>	
+       	<td style="text-align:left;">${orderList11.ZIP_NUM} ${orderList11.ADDRESS} ${orderList11.ADDRESS2}</td></tr>	
 
 </table>
 	<div id="buttons" style="float: right">
