@@ -57,9 +57,15 @@ public class MemberController {
 				model.addAttribute("message" , "관리자에게 문의하세요");
 				return "member/login";
 			}else if( membervo.getPwd().equals( (String)mvo.get("PWD") ) ) {
+				
+				if(mvo.get("USEYN").equals("블랙")){
+					model.addAttribute("message" , "블랙리스트 회원입니다 관리자에게 문의하세요");
+					return "member/login";
+				}else {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", mvo);
-				return "redirect:/";
+				return "redirect:/";}
+				
 			}else {
 				model.addAttribute("message" , "비번이 안맞아요");
 				return "member/login";
