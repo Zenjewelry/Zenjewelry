@@ -171,14 +171,30 @@ function uploadedDetailImg(){
 }
 
 
+
 function delete_mem(){
 	var answer = confirm("회원을 삭제하시겠습니까?");
-	if( answer ){
-	 document.formm.action= "adminDeleteMember";
-	document.formm.submit();	
+	if( answer==false ){
+		return false;
+	}else{
+	return true;
 	}
+}
+
+function save_option_mem(){
+	var answer = confirm("회원정보를 저장하시겠습니까?");
+	if( answer ){
+	 document.formm.action= "saveOptionMember";
+	 document.formm.submit();	
+	}
+}	
 
 
+
+function createPartition(){
+	document.frm.action = 'adminPromotionWrite';
+	document.frm.submit();
+}
 
 
 

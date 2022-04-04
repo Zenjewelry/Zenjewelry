@@ -552,7 +552,7 @@ select * from qnas where subject like '%'||'다'||'%' or content like '%'||'다'
 -- blockDate - 정지 종료일
 alter table members add useyn varchar2(10);
 alter table members add blockDate date;
-
+alter table members add grade varchar2(100);
 
 
 
@@ -587,7 +587,7 @@ where p.prmseq = ps.prmseq;
 
 
 
-
+select * from members
 
 
 
