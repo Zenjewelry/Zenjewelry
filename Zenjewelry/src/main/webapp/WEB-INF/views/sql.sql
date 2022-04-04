@@ -587,7 +587,7 @@ where p.prmseq = ps.prmseq;
 
 
 
-
+select * from members
 
 
 

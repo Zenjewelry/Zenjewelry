@@ -636,4 +636,18 @@ public class AdminController {
 		return "redirect:/adminOrderList?sub="+"'y'";
 	}
 	
+	@RequestMapping(value="adminDeleteMember")
+	public String adminDeleteMember(HttpServletRequest request, Model model,
+			@RequestParam("id") String id) {
+		
+		System.out.println(id);
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) return "admin/adminLoginForm";
+		
+		as.deleteMember(id);
+		
+		return "redirect:/adminMemberList?sub='y'";
+	}
+	
 }
