@@ -1030,17 +1030,6 @@ END;
 
 -- 04/05
 
--- promotion
-
-create or replace procedure findProduct_zen(
-    p_pseq in number,
-    p_cur out sys_refcursor
-)
-is
-begin
-    open p_cur for
-        select pseq, name, price2 from products where pseq = p_pseq;
-end;
 
 
 -- member
@@ -1139,6 +1128,66 @@ BEGIN
     OPEN p_cursor FOR SELECT * FROM members where email=p_email and name=p_name and id=p_id;
     commit;
 END;
+
+
+
+
+
+-- promotion
+
+create or replace procedure findProduct_zen(
+    p_pseq in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select pseq, name, price2 from products where pseq = p_pseq;
+end;
+
+
+
+create or replace procedure insertPromotion_zen(
+    p_banner in promotions.banner%type,
+    p_main_subject in promotions.main_subject%type,
+    p_sub_subject in promotions.sub_subject%type,
+    p_sdate in varchar2,
+    p_edate in varchar2,
+    p_prmseq out number
+)
+is
+    v_prmseq number;
+    v_sdate varchar2(20);
+    v_edate varchar2(20);
+begin
+    
+    select to_date(p_sdate, 'yyyy/mm/dd') into v_sdate from dual;
+    select to_date(p_edate, 'yyyy/mm/dd') into v_edate from dual;
+
+    insert into promotions(prmseq, banner, main_subject, sub_subject, sdate, edate)
+    values(promotions_seq.nextVal, p_banner, p_main_subject, p_sub_subject, v_sdate, v_edate);
+    commit;
+    select max(prmseq) into v_prmseq from promotions;
+    p_prmseq := v_prmseq;
+    DBMS_OUTPUT.PUT_LINE(v_sdate);
+    DBMS_OUTPUT.PUT_LINE(v_edate);
+end;
+
+
+
+create or replace procedure insertPromotion_products_zen(
+    p_prmseq in promotion_products.prmseq%type,
+    p_outnumber in promotion_products.outnumber%type,
+    p_summary in promotion_products.summary%type,
+    p_pseq in promotion_products.pseq%type,
+    p_prmprice in promotion_products.prmprice%type
+)
+is
+begin
+    insert into promotion_products(prmseq, outnumber, summary, pseq, prmprice)
+    values(p_prmseq, p_outnumber, p_summary, p_pseq, p_prmprice);
+    commit;
+end;
 
 
 

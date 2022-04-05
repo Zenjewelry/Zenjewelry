@@ -112,6 +112,8 @@ public class PromotionController {
 		else {
 			String sDate = request.getParameter("sYear") + "-" + request.getParameter("sMonth") + "-" + request.getParameter("sDay");
 			String eDate = request.getParameter("eYear") + "-" + request.getParameter("eMonth") + "-" + request.getParameter("eDay");
+			System.out.println(sDate);
+			System.out.println(eDate);
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("prmVO", promotionVO);
 			paramMap.put("prmseq", null);
@@ -123,17 +125,21 @@ public class PromotionController {
 			for(int i=1; i<=promotionVO.getOutnumber(); i++) {
 				String pseq = "pseq" + i;
 				String [] pseqArr = request.getParameterValues(pseq);
-				paramMap.put("pseq", pseqArr[i]);
+				
 				String price2 = "price2" + i;
 				String [] price2Arr = request.getParameterValues(price2);
-				paramMap.put("price2", price2Arr[i]);
+				
 				String summary = "Summary" + i;
 				paramMap.put("summaryImg", request.getParameter(summary));
 				
-				paramMap.put("outnumber", promotionVO.getOutnumber());
-				ps.insertPromotion_products(paramMap);
+				paramMap.put("outnumber", i);
+				for(int j=0; j<pseqArr.length; j++) {
+					paramMap.put("pseq", pseqArr[j]);
+					paramMap.put("price2", price2Arr[j]);
+					ps.insertPromotion_products(paramMap);
+				}
 			}
-			
+			mav.setViewName("redirect:/promotionList");
 		}
 		
 		return mav;

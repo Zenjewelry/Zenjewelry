@@ -8,5 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IPromotionDao {
 
 	void findProduct(HashMap<String, Object> paramMap);
+	void insertPromotion(HashMap<String, Object> paramMap);
+	void insertPromotion_products(HashMap<String, Object> paramMap);
 	
 }

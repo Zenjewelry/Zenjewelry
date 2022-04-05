@@ -14,4 +14,17 @@
 		)}
 	</select>
 	
+	<insert id="insertPromotion" statementType="CALLABLE">
+		{CALL insertPromotion_zen(
+			#{prmVO.banner}, #{prmVO.main_subject}, #{prmVO.sub_subject}, #{sdate, jdbcType=VARCHAR}, #{edate, jdbcType=VARCHAR},
+			#{prmseq, mode=OUT, jdbcType=INTEGER}
+		)}
+	</insert>
+	
+	<insert id="insertPromotion_products" statementType="CALLABLE">
+		{CALL insertPromotion_products_zen(
+			#{prmseq}, #{outnumber}, #{summaryImg}, #{pseq}, #{price2}
+		)}
+	</insert>
+	
 </mapper>

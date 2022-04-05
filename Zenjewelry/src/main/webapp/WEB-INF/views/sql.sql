@@ -572,9 +572,11 @@ create table promotion_products(
 	prmseq number(10) not null,
 	outnumber number(10) not null,
 	summary varchar2(50),
-	pseq number(5) not null
+	pseq number(5) not null,
+	prmprice number(10) not null
 );
 
+alter table promotion_products add prmprice number(10) not null
 
 create or replace view promotion_view
 as
@@ -582,21 +584,26 @@ select p.prmseq, p.banner, p.main_subject, p.sub_subject, p.sdate, p.edate, ps.o
 from promotions p, promotion_products ps 
 where p.prmseq = ps.prmseq;
 
+create sequence promotions_seq start with 1 increment by 1;
+
 
 
 insert into members(id,pwd,name,email,zip_num,address,phone,indate,address2,useyn,blockdate,grade) 
 values('sang1',1234,'홍길동','july@naver.com',1234,1234,'010-1111-1111',null,1234,'블랙',null,null);
 
 
-
 select * from promotions
+select * from promotion_products
+
+delete from promotions;
+delete from promotion_products;
 
 alter table members add useyn varchar2(10) default 'y' not null;
 
 alter table members drop column useyn;
 
 
-
+update promotions set sdate = to_date('2022-02-02', 'yyyy-mm-dd') where prmseq=2;
 
 
 

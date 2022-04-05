@@ -16,4 +16,12 @@ public class PromotionService {
 	public void findProduct(HashMap<String, Object> paramMap) {
 		pdao.findProduct(paramMap);
 	}
+
+	public void insertPromotion(HashMap<String, Object> paramMap) {
+		pdao.insertPromotion(paramMap);
+	}
+
+	public void insertPromotion_products(HashMap<String, Object> paramMap) {
+		pdao.insertPromotion_products(paramMap);
+	}
 }
