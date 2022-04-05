@@ -958,6 +958,8 @@ begin
 end;
 
 
+
+
 -- 4/4
 -- order
 
@@ -992,19 +994,6 @@ BEGIN
     
         p_oseq := v_oseq;
 END;
-
-
-
-
---admin
-create or replace procedure deleteMember_zen(
-    p_id in members.id%type
-)
-is
-begin
-    delete from members where id = p_id;
-    commit;
-end;
 
 
 
