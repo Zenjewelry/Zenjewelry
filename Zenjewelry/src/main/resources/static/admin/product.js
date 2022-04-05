@@ -140,8 +140,8 @@ function go_removeQna(){
 
 	var answer = confirm("Q&A를 삭제하시겠습니까?");
 	if( answer ){
-	 document.frm.action= "adminDeleteProductQna";
-	document.frm.submit();	
+		document.frm.action= "adminDeleteProductQna";
+		document.frm.submit();	
 	}
 
 }
@@ -150,8 +150,8 @@ function delete_mod(){
 
 	var answer = confirm("제품을 삭제하시겠습니까?");
 	if( answer ){
-	 document.formm.action= "adminDeleteProduct";
-	document.formm.submit();	
+		document.formm.action= "adminDeleteProduct";
+		document.formm.submit();	
 	}
 
 }
@@ -198,12 +198,41 @@ function createPartition(){
 
 
 
-function findProduct(){
-	var pseq = document.getElementById("find_pseq").value;
+function findProduct(outnum){
+	var find_pseq = "find_pseq" + outnum;
+	var pseq = document.getElementById(find_pseq).value;
 	
 	var opt = "toolbar=no, menubar=no, resizable=no, width=550, height=300";
-	window.open('findProduct?pseq='+pseq, '대표이미지 업로드', opt);
+	window.open('findProduct?pseq=' + pseq + '&outnum=' + outnum, '상품검색', opt);
 }
+
+
+
+function addProduct(outnum){
+	var accesspseq = 'accesspseq' + outnum;
+	var accessname = 'accessname' + outnum;
+	var accessprice2 = 'accessprice2' + outnum;
+	
+	var pseq = document.getElementById(accesspseq).value;
+	var name = document.getElementById(accessname).value;
+	var price2 = document.getElementById(accessprice2).value;
+	
+	var partition = 'partition' + outnum;
+	
+	var newP = document.createElement('p');
+	
+	var add = '<input type="checkbox" name="pseq' + outnum + '" value="' + pseq + '" checked />&nbsp;&nbsp;' 
+		+ name + '&nbsp;&nbsp;'
+		+ '<input type="text" name="price2' + outnum + '" value="' + price2 + '" />';
+	
+	newP.innerHTML = add;
+	document.getElementById(partition).appendChild(newP);
+	
+}
+
+
+
+
 
 
 

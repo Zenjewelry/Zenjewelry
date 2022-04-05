@@ -46,4 +46,12 @@
 		)}
 	</update>
 	
+	<select id="selectMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL selectMember_zen( 
+			#{name},#{phone},#{email},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)  }
+	</select>
+	
+	
 </mapper>

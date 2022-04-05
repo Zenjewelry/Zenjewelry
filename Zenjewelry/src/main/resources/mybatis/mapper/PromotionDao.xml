@@ -7,12 +7,11 @@
 	
 	<resultMap  id="promotionMap" type="java.util.HashMap"></resultMap>
 	
-	<!-- <select id="findProduct" statementType="CALLABLE">
+	<select id="findProduct" statementType="CALLABLE">
 		{CALL findProduct_zen(
 			#{pseq},
-			#{output, mode=OUT, jdbcType=INTEGER},
-			#{name, mode=OUT, jdbcType=STRING}
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=promotionMap}
 		)}
-	</select> -->
+	</select>
 	
 </mapper>
