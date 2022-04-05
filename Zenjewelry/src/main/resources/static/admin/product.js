@@ -242,6 +242,10 @@ function uploadedImg(comm){
 	document.frm.submit();
 }
 
+function message(msg){
+			alert(msg);
+		}
+
 
 
 

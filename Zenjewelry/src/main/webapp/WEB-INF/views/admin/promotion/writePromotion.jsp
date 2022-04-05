@@ -4,7 +4,13 @@
 <article>
 <h1>프로모션</h1><br>
 
-<form name="frm">
+<c:if test="${not empty message}">
+	<script type="text/javascript">
+		msg('${message}');
+	</script>
+</c:if>
+
+<form name="frm" action="insertPromotion" method="post">
 	<table id="cartList">
 		<tr><th>메인 기획전명</th><td><input type="text" name="main_subject" value="${promotionVO.main_subject}" /></td></tr>
 		<tr><th>서브 기획전명</th><td><input type="text" name="sub_subject" value="${promotionVO.sub_subject}" /></td></tr>
@@ -102,10 +108,10 @@
 		<tr>
 			<th>구분자 개수</th>
 			<td>
-				<select name="outnumber_chk">
+				<select name="outnumber">
 					<c:forEach begin="1" end="10" var="index">
 						<c:choose>
-							<c:when test="${outnumber_chk == index}">
+							<c:when test="${outnumber == index}">
 								<option value="${index}" selected="selected">${index}</option>
 							</c:when>
 							<c:otherwise>
@@ -120,36 +126,31 @@
 	</table>
 	<hr />
 	<!-- 구분자 섹션 -->
-	<c:forEach begin="1" end="${outnumber_chk}" var="outnumber">
-		<table <%-- id="partition${outnumber}" --%>>
+	<c:forEach begin="1" end="${outnumber}" var="outnum">
+		<table>
 			<tr><th>Summary 배너 업로드</th><th>Summary 배너 이미지명</th><th>Summary 배너 미리보기</th></tr>
 			<tr>
-				<td><input type="button" value="찾아보기" onClick="uploadImg('Summary${outnumber}');" /></td>
-				<td><div id="previewSummary${outnumber}Text">${promotionVO.banner}</div></td>
-				<td><img src="/promotion_images/${promotionVO.banner}" id="previewSummary${outnumber}Img" width="300" height="300" style="display:none;" />
-					<input type="text" name="Summary${outnumber}" value="${promotionVO.banner}" /></td>
+				<td><input type="button" value="찾아보기" onClick="uploadImg('Summary${outnum}');" /></td>
+				<td><div id="previewSummary${outnum}Text"></div></td>
+				<td><img src="" id="previewSummary${outnum}Img" width="300" height="300" style="display:none;" />
 			<tr>
 			<tr><td colspan="3" style="background:black;"></td></tr>
 			<tr>
 				<th>추가할 상품코드</th>
-				<td><input type="text" id="find_pseq${outnumber}" onChange="findProduct('${outnumber}');"/></td>
-				<td><div id="product_name${outnumber}"></div><input type="button" value="추가" onClick="addProduct('${outnumber}');" /></td>
+				<td><input type="text" id="find_pseq${outnum}" onChange="findProduct('${outnum}');"/></td>
+				<td><div id="product_name${outnum}"></div><input type="button" value="추가" onClick="addProduct('${outnum}');" /></td>
 			</tr>
 		</table>
-		<div id="partition${outnumber}"></div>
+		<div id="partition${outnum}"></div>
 		<hr />
 	</c:forEach>
 	<div id="hiddenimage">
-		<c:if test="${empty promotionVO.banner}">
+		<c:if test="${not empty promotionVO.banner}">
 			<input type="hidden" name="banner" value="${promotionVO.banner}" />
 		</c:if>
-		<c:if test="${empty Summary1}">
-			<c:forEach items="${outnumber_chk}" var="num">
-				<input type="hidden" name="Summary${num}" value="${Summary${num}}" />
-			</c:forEach>
-		</c:if>
 	</div>
-	
+	<input type="submit" value="프로모션 등록" />
+	<input type="button" value="프로모션 목록" onClick="location.href='promotionList'" />
 </form>
 
 </article>

@@ -1,7 +1,9 @@
 package com.zen.project.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.ServletContext;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -32,7 +35,8 @@ public class PromotionController {
 	
 	@RequestMapping("/adminPromotionWrite")
 	public String adminPromotionWrite(HttpServletRequest request, Model model,
-			@ModelAttribute("promotionVO") PromotionVO promotionVO) {
+			@ModelAttribute("promotionVO") PromotionVO promotionVO,
+			@RequestParam(value="outnumber", required=false) String outnumber) {
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginAdmin") == null) return "admin/adminLoginForm";
@@ -43,24 +47,13 @@ public class PromotionController {
 //		int eYear = Integer.parseInt(request.getParameter("eYear"));
 //		int eMonth = Integer.parseInt(request.getParameter("eMonth"));
 //		int eDay = Integer.parseInt(request.getParameter("eDay"));
-		model.addAttribute("banner", request.getParameter("banner"));
 		model.addAttribute("sYear", request.getParameter("sYear"));
 		model.addAttribute("sMonth", request.getParameter("sMonth"));
 		model.addAttribute("sDay", request.getParameter("sDay"));
 		model.addAttribute("eYear", request.getParameter("eYear"));
 		model.addAttribute("eMonth", request.getParameter("eMonth"));
 		model.addAttribute("eDay", request.getParameter("eDay"));
-		model.addAttribute("outnumber_chk", request.getParameter("outnumber_chk"));
-		
-		String outnumber_chk = request.getParameter("outnumber_chk");
-		
-		if(outnumber_chk!=null||outnumber_chk!="") {
-			int endNum = Integer.parseInt(outnumber_chk);
-			for(int i=1; i<=endNum; i++) {
-				String summary = "Summary" + i;
-				model.addAttribute(summary, request.getParameter(summary));
-			}
-		}
+		model.addAttribute("outnumber", request.getParameter("outnumber"));
 		
 		return "admin/promotion/writePromotion";
 	}
@@ -85,7 +78,6 @@ public class PromotionController {
 	
 	@RequestMapping("/uploadPromotionImg")
 	public String uploadPromotionImg(@RequestParam(value="where", required=false) String where, Model model) {
-		System.out.println(where);
 		model.addAttribute("where", where);
 		return "admin/promotion/uploadImg";
 	}
@@ -93,7 +85,7 @@ public class PromotionController {
 	@RequestMapping(value="/uploadPromotionFile", method=RequestMethod.POST)
 	public String uploadPromotionFile(HttpServletRequest request, Model model,
 			@RequestParam(value="where", required=false) String where) {
-		System.out.println(where);
+		
 		String path = context.getRealPath("/promotion_images");
 		
 		try {
@@ -104,8 +96,47 @@ public class PromotionController {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(0);
+		
 		return "admin/promotion/completeImg";
+	}
+	
+	@RequestMapping(value="/insertPromotion", method=RequestMethod.POST)
+	public ModelAndView insertPromotion(HttpServletRequest request,
+			@ModelAttribute("promotionVO") PromotionVO promotionVO) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("loginAdmin")==null) mav.setViewName("admin/adminLoginForm");
+		else {
+			String sDate = request.getParameter("sYear") + "-" + request.getParameter("sMonth") + "-" + request.getParameter("sDay");
+			String eDate = request.getParameter("eYear") + "-" + request.getParameter("eMonth") + "-" + request.getParameter("eDay");
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("prmVO", promotionVO);
+			paramMap.put("prmseq", null);
+			paramMap.put("sDate", sDate);
+			paramMap.put("eDate", eDate);
+			
+			ps.insertPromotion(paramMap);
+			
+			for(int i=1; i<=promotionVO.getOutnumber(); i++) {
+				String pseq = "pseq" + i;
+				String [] pseqArr = request.getParameterValues(pseq);
+				paramMap.put("pseq", pseqArr[i]);
+				String price2 = "price2" + i;
+				String [] price2Arr = request.getParameterValues(price2);
+				paramMap.put("price2", price2Arr[i]);
+				String summary = "Summary" + i;
+				paramMap.put("summaryImg", request.getParameter(summary));
+				
+				paramMap.put("outnumber", promotionVO.getOutnumber());
+				ps.insertPromotion_products(paramMap);
+			}
+			
+		}
+		
+		return mav;
 	}
 	
 }
