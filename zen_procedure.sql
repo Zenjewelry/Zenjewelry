@@ -1020,23 +1020,29 @@ BEGIN
     OPEN p_curvar FOR SELECT * FROM members WHERE name=p_name and phone=p_phone;
 END;
 
+
+
+
+
+
+
+
+
+-- 04/05
+
 -- promotion
 
 create or replace procedure findProduct_zen(
     p_pseq in number,
-    p_output out number,
-    p_name out varchar2
+    p_cur out sys_refcursor
 )
 is
-    v_output number;
-    v_name varchar2(50);
 begin
-    select pseq, name into v_output, v_name from products where pseq = p_pseq;
-    p_output := v_output;
-    p_name := v_name;
+    open p_cur for
+        select pseq, name, price2 from products where pseq = p_pseq;
 end;
 
--- 4/5
+
 -- member
 
 create or replace PROCEDURE getMember_zen(
