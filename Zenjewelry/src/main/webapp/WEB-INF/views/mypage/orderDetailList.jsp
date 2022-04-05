@@ -14,8 +14,8 @@
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
 			<input  type="hidden" name="oseq" value="${orderVO.OSEQ}">
-			<td ><a href="orderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a></td>        
-			<td><a href="orderDetail?oseq=${orderVO.OSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a></td>
+			<td ><a href="productDetail?pseq=${orderVO.PSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a></td>        
+			<td><a href="productDetail?pseq=${orderVO.PSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a></td>
 			
 			<td><fmt:formatNumber value="${orderVO.PRICE2}" type="currency"/>( ${orderVO.QUANTITY}건 )</td>
        		<td><fmt:formatNumber value="${orderVO.PRICE2*orderVO.QUANTITY}" type="currency"/></td>  
