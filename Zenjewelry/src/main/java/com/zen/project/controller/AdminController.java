@@ -641,8 +641,6 @@ public class AdminController {
 	public String adminDeleteMember(HttpServletRequest request, Model model,
 			@RequestParam("id") String id) {
 		
-		System.out.println(id);
-		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginAdmin")==null) return "admin/adminLoginForm";
 		

@@ -1,4 +1,4 @@
-package com.zen.project.sevice;
+package com.zen.project.service;
 
 import java.util.HashMap;
 
