@@ -365,7 +365,7 @@ public class MemberController {
 		return "member/findPwForm";
 	}
 	
-@RequestMapping(value="/findPwStep1")
+	@RequestMapping(value="/findPwStep1")
 	
 	public String findPwStep1( @RequestParam("email") String email, 
 			@RequestParam("name") String name,
@@ -435,7 +435,19 @@ public class MemberController {
         }
         return "member/findPwForm";		
     }
+	
 
+	@RequestMapping(value="/change_Pwd")
+	public String PWD(@RequestParam("name") String name,
+			@RequestParam("id") String id,
+			Model model)
+	{
+		model.addAttribute("name", name);
+        model.addAttribute("id", id);
+		
+		return "member/PWD";
+	}
+	
 	@RequestMapping(value="/PWD")
 	public String PWD(@RequestParam("name") String name,
 			@RequestParam("id") String id,
@@ -448,15 +460,11 @@ public class MemberController {
 		paramMap.put("id", id);
 		paramMap.put("pwd", pwd);
 		
-		paramMap.put("ref_cursor", null);
-		
+		System.out.println(paramMap);
+
 		ms.findPwd(paramMap);
 		
-		ArrayList <HashMap<String,Object>> list
-			= (ArrayList <HashMap<String,Object>>) paramMap.get("ref_cursor");
-		model.addAttribute("findPwd", list.get(0));
-		
-		return "member/PWD";
+		return "member/login";
 	}
 	
 }
