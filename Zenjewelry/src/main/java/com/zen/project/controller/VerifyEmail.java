@@ -1,6 +1,7 @@
 package com.zen.project.controller;
 
 import java.util.Properties;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -13,12 +14,12 @@ import javax.mail.internet.MimeMessage;
 public class VerifyEmail {
 	
 	public static void main(String[] args) {
-        String recipient = "skwls10@naver.com";
-        String code = "잘도착?------";
+        String recipient = ""; // 인증받을 이메일
+        String code = "잘도착?------"; // 인증번호 난수넣기
  
         // 1. 발신자의 메일 계정과 비밀번호 설정
-        final String user = "skwls12@gmail.com";
-        final String password = "3333333";
+        final String user = "dangadang97@gmail.com";
+        final String password = "ehdwls12!";
  
         // 2. Property에 SMTP 서버 정보 설정
         Properties prop = new Properties();
@@ -45,10 +46,10 @@ public class VerifyEmail {
             // 수신자 메일 주소
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
  
-            // Subject
+            // 제목
             message.setSubject("PLAYDDIT verification code");
  
-            // Text
+            // 내용
             message.setText("Welcome to playddit. your code is ["+code+"]");
  
             Transport.send(message);    // send message

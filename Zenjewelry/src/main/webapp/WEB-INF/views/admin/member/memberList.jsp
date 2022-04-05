@@ -18,7 +18,7 @@
 	    	<td>${memberVO.PHONE}</td><td><fmt:formatDate value="${memberVO.INDATE}"/>
 	    	<td>
 	    		<select name = "Grade">
-          			<option value = "일반" selected>일반</option>
+          			<option value = "일반">일반</option>
           			<option value = "VIP">VIP</option>
           			<option value = "VVIP">VVIP</option>
        			</select>
@@ -26,7 +26,7 @@
        		
        		<td>
        			<select name = "Black">
-          			<option value = "사용" selected>사용</option>
+          			<option value = "사용">사용</option>
           			<option value = "휴면">휴면</option>
           			<option value = "블랙">블랙</option>
           			<option value = "일시정지">일시정지</option>

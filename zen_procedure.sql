@@ -998,6 +998,47 @@ END;
 
 
 
+--admin
+create or replace procedure deleteMember_zen(
+    p_id in members.id%type
+)
+is
+begin
+    delete from members where id = p_id;
+    commit;
+end;
+
+
+--member
+CREATE OR REPLACE PROCEDURE findId_zen(
+    p_name IN members.name%TYPE, 
+    p_phone IN members.phone%TYPE,
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM members WHERE name=p_name and phone=p_phone;
+END;
+
+-- promotion
+
+create or replace procedure findProduct_zen(
+    p_pseq in number,
+    p_output out number,
+    p_name out varchar2
+)
+is
+    v_output number;
+    v_name varchar2(50);
+begin
+    select pseq, name into v_output, v_name from products where pseq = p_pseq;
+    p_output := v_output;
+    p_name := v_name;
+end;
+
+
+
+
 
 
 

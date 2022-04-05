@@ -11,5 +11,6 @@ public interface IMemberDao {
 	void selectAddressByDong(HashMap<String, Object> paramMap);
 	void insertMember(HashMap<String, Object> paramMap);
 	void updateMember(HashMap<String, Object> paramMap);
+	void findId(HashMap<String, Object> paramMap);
 
 }
