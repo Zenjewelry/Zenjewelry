@@ -29,7 +29,7 @@
 	</form>
 </c:if>	
 <c:if test="${result == 1}">
-	<form method="post" name="formm" action="PWD">
+	<form method="post" name="formm" action=change_Pwd>
 		<table id="cartlist" align="center" bgcolor="black" cellspacing="1" width="400">
 			<tr align="center" bgcolor="#FFFFFF" >
 				<td width="430"><h3>아이디<input type="text" name="id" value="${id}" ></h3></td>

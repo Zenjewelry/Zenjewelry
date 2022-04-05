@@ -42,7 +42,7 @@
 	
 	<update id="findPwd" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL findPwd_zen(
-			#{id}, #{pwd}
+			#{name}, #{id}, #{pwd}
 		)}
 	</update>
 	

@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" name="formm" action="changPwd">
+<form method="post" name="formm" action="PWD">
 	<div>
 		<input type=password value="${pwd}" name="pwd">
 		<input type=hidden value="${id}" name="id">
