@@ -35,9 +35,15 @@
 	
 	<select id="findId" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{  CALL findId_zen( 
-			#{name},#{phone},#{email},
+			#{name},#{phone},
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
 		)  }
 	</select>
+	
+	<update id="findPwd" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL findPwd_zen(
+			#{id}, #{pwd}
+		)}
+	</update>
 	
 </mapper>

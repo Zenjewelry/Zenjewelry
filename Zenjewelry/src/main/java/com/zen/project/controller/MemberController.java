@@ -359,4 +359,104 @@ public class MemberController {
 		
 		return "member/ID";
 	}
+	
+	@RequestMapping(value="/findPwForm")
+	public String findPwForm() {
+		return "member/findPwForm";
+	}
+	
+@RequestMapping(value="/findPwStep1")
+	
+	public String findPwStep1( @RequestParam("email") String email, 
+			@RequestParam("name") String name,
+			@RequestParam("id") String id,
+			Model model
+			)  throws Exception{
+		
+		int result=0;
+		
+		Random random = new Random();
+		int checkNum = random.nextInt(888888) + 111111;
+		
+
+		String recipient = email; // 인증받을 이메일
+        int code = checkNum; // 인증번호 난수넣기
+ 
+        if(checkNum !=0) result = 1;
+
+       	model.addAttribute("result", result);
+        model.addAttribute("email", email);
+        model.addAttribute("name", name);
+        model.addAttribute("id", id);
+        model.addAttribute("checkNum", checkNum);
+        
+        // 1. 발신자의 메일 계정과 비밀번호 설정
+        final String user = "dangadang97@gmail.com";
+        final String password = "ehdwls12!";
+ 
+        // 2. Property에 SMTP 서버 정보 설정
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", 465);
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.ssl.enable", "true");
+        prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+ 
+        // 3. SMTP 서버정보와 사용자 정보를 기반으로 Session 클래스의 인스턴스 생성
+        Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(user, password);
+            }
+        });
+ 
+        // 4. Message 클래스의 객체를 사용하여 수신자와 내용, 제목의 메시지를 작성한다.
+        // 5. Transport 클래스를 사용하여 작성한 메세지를 전달한다.
+ 
+        MimeMessage message = new MimeMessage(session);
+        try {
+            message.setFrom(new InternetAddress(user));
+ 
+            // 수신자 메일 주소
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+ 
+            // 제목
+            message.setSubject("PLAYDDIT verification code");
+ 
+            // 내용
+            message.setText("Welcome to playddit. your code is ["+code+"]");
+ 
+            Transport.send(message);    // send message
+ 
+ 
+        } catch (AddressException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return "member/findPwForm";		
+    }
+
+	@RequestMapping(value="/PWD")
+	public String PWD(@RequestParam("name") String name,
+			@RequestParam("id") String id,
+			@RequestParam("pwd") String pwd,
+			Model model) {
+		
+				
+		HashMap<String,Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("name", name);
+		paramMap.put("id", id);
+		paramMap.put("pwd", pwd);
+		
+		paramMap.put("ref_cursor", null);
+		
+		ms.findPwd(paramMap);
+		
+		ArrayList <HashMap<String,Object>> list
+			= (ArrayList <HashMap<String,Object>>) paramMap.get("ref_cursor");
+		model.addAttribute("findPwd", list.get(0));
+		
+		return "member/PWD";
+	}
+	
 }
