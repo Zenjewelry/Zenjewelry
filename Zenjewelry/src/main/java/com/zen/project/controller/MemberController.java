@@ -60,7 +60,6 @@ public class MemberController {
 			paramMap.put("id", membervo.getId() );
 			paramMap.put("ref_cursor", null);
 			ms.getMember(paramMap);
-			System.out.println(paramMap);
 			ArrayList< HashMap<String,Object> > list 
 				= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 			if(list.size() == 0) {  // 입력한 아이디 없다면
