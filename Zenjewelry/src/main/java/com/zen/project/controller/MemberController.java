@@ -386,6 +386,19 @@ public class MemberController {
 			@RequestParam("id") String id,
 			Model model
 			)  throws Exception{
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("email",email);
+		paramMap.put("name",name);
+		paramMap.put("id",id);
+		paramMap.put("ref_cursor", null);
+		ms.selectPwd(paramMap);
+		ArrayList< HashMap<String,Object> > list
+			= ( ArrayList< HashMap<String,Object> >)paramMap.get("ref_cursor");
+		if(list.size()==0) {
+			model.addAttribute("message" , "해당 정보의 아이디가 없어요");
+			return "member/findPwForm";
+		}else {
+		
 		
 		int result=0;
 		
@@ -447,7 +460,8 @@ public class MemberController {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        return "member/findPwForm";		
+        
+        return "member/findPwForm";	}	
     }
 	
 
