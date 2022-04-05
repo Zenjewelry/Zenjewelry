@@ -591,11 +591,6 @@ values('sang',1234,'홍길동','july@naver.com',1234,1234,'010-1111-1111',null,1
 
 select * from members
 
-update 
-
-update members set useyn='y';
-
-
 alter table members add useyn varchar2(10) default 'y' not null;
 
 alter table members drop column useyn;

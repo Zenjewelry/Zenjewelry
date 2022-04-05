@@ -283,6 +283,7 @@ public class MemberController {
 			paramMap.put("email",email);
 			paramMap.put("ref_cursor", null);
 			ms.selectMember(paramMap);
+			
 			ArrayList< HashMap<String,Object> > list
 				= ( ArrayList< HashMap<String,Object> >)paramMap.get("ref_cursor");
 			if(list.size()==0) {
