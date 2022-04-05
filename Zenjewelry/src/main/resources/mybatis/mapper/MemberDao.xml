@@ -53,5 +53,10 @@
 		)  }
 	</select>
 	
-	
+	<select id="selectPwd" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL selectPwd_zen( 
+			#{email},#{name},#{id},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)  }
+	</select>
 </mapper>

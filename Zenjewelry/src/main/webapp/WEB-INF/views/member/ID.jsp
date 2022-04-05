@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function goodId(){	
-		self.close();
+	self.close();
 }
 
 </script>
