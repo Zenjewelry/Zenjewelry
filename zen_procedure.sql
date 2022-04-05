@@ -1042,12 +1042,78 @@ begin
         select pseq, name, price2 from products where pseq = p_pseq;
 end;
 
+-- 4/5
+-- member
 
+create or replace PROCEDURE getMember_zen(
+    p_id IN members.id%TYPE, 
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM members WHERE id=p_id;
+END;
 
+create or replace PROCEDURE selectAddressByDong_zen(
+    p_dong IN member.address%TYPE, 
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM address WHERE dong LIKE '%'||p_dong||'%';
+END;
 
+create or replace PROCEDURE insertMember_zen(
+    p_id IN members.id%TYPE,
+    p_pwd  IN members.pwd%TYPE,
+    p_name  IN members.name%TYPE,
+    p_email  IN members.email%TYPE,
+    p_phone  IN members.phone%TYPE,
+    p_zip_num IN members.zip_num%TYPE,
+    p_address IN members.address%TYPE)
+IS
+BEGIN
+    insert into members(id, pwd, name, email, phone, zip_num, address)
+    values( p_id, p_pwd, p_name, p_email, p_phone, p_zip_num, p_address );
+    commit;    
+END;
 
+create or replace PROCEDURE updateMember_zen(
+    p_id IN members.id%TYPE,
+    p_pwd  IN members.pwd%TYPE,
+    p_name  IN members.name%TYPE,
+    p_email  IN members.email%TYPE,
+    p_phone  IN members.phone%TYPE,
+    p_zip_num IN members.zip_num%TYPE,
+    p_address IN members.address%TYPE,
+    p_address2 IN members.address2%TYPE)
+IS
+BEGIN
+    update members set pwd=p_pwd, name=p_name, email=p_email, phone=p_phone, 
+    zip_num=p_zip_num, address=p_address, address2=p_address2 where id=p_id;
+    commit;    
+END;
 
+create or replace PROCEDURE findId_zen(
+    p_name IN members.name%TYPE, 
+    p_phone IN members.phone%TYPE,
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM members WHERE name=p_name and phone=p_phone;
+END;
 
+create or replace PROCEDURE findPwd_zen(
+    p_name IN members.name%TYPE, 
+    p_id IN members.id%TYPE,
+    p_pwd IN members.pwd%TYPE
+)
+IS
+BEGIN
+    update members set pwd = p_pwd where name = p_name and id = p_id;
+    commit;
+END;
 
 
 

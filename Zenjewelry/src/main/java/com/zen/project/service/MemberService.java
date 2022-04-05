@@ -35,4 +35,9 @@ public class MemberService {
 	public void findId(HashMap<String, Object> paramMap) {
 		mdao.findId( paramMap );
 	}
+
+	public void findPwd(HashMap<String, Object> paramMap) {
+		mdao.findPwd( paramMap );
+		
+	}
 }
