@@ -585,7 +585,7 @@ where p.prmseq = ps.prmseq;
 
 
 insert into members(id,pwd,name,email,zip_num,address,phone,indate,address2,useyn,blockdate,grade) 
-values('sang',1234,'홍길동','july@naver.com',1234,1234,'010-1111-1111',null,1234,'블랙',null,null);
+values('sang1',1234,'홍길동','july@naver.com',1234,1234,'010-1111-1111',null,1234,'블랙',null,null);
 
 
 

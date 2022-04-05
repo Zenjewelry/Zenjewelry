@@ -152,7 +152,7 @@ input:placeholder-shown + label{ color:#aaa; font-size:14pt; top:15px; }
 #RAm5{position: relative; left:-30px; float: right; top : 50px; font-size:23px; }
 
 /* admin 회원정보 */
-#cartList2{margin: 10px 0 0 -400px;   width: 1500px;}
+#cartList2{margin: 10px 0 0 -400px;   width: 1400px;}
 table#cartList2 {border-collapse: collapse;   border-top: 2px solid #333;   border-bottom: 1px solid #333;    
 margin-bottom: 20px; }
 table#cartList2 td {   border-bottom: 1px dotted #333;   text-align: center;  }   
