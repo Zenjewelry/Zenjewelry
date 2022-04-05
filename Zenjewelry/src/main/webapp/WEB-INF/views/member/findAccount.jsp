@@ -17,7 +17,7 @@
 			<div id="buttons"><input type="button" class="submit" value="이동" onClick="location.href='findIdForm'"></div>
 		</td>
 		<td width="230"><h3>비밀번호 찾기</h3><br>
-			<div id="buttons"><input type="button"  class="submit" value="이동" onClick="findPwForm'"></div>
+			<div id="buttons"><input type="button"  class="submit" value="이동" onClick="location.href='findPwForm'"></div>
 		</td>
 	</tr>
 </table>
