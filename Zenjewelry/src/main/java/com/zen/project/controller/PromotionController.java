@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zen.project.dto.PromotionVO;
-import com.zen.project.sevice.PromotionService;
+import com.zen.project.service.PromotionService;
 
 @Controller
 public class PromotionController {
