@@ -108,9 +108,9 @@
 			</td>
 		</tr>
 	</table>
-	
+	<hr />
 	<!-- 구분자 섹션 -->
-	<c:forEach begin="1" end="${outnumber_chk}" var="outnum">
+	<c:forEach begin="1" end="${outnumber_chk}" var="outnumber">
 		<table>
 			<tr><th>Summary 배너 업로드</th><th>Summary 배너 이미지명</th><th>Summary 배너 미리보기</th></tr>
 			<tr>
@@ -122,10 +122,12 @@
 			<tr><td colspan="3" style="background:black;"></td></tr>
 			<tr>
 				<th>추가할 상품코드</th>
-				<td><input type="text" id="find_pseq" onChange="findProduct();"/></td>
-				<td><div id="product_name"></div><input type="button" value="추가" onClick="addProduct();" /></td>
+				<td><input type="text" id="find_pseq" onChange="findProduct('${outnumber}');"/></td>
+				<td><div id="product_name"></div><input type="button" value="추가" onClick="addProduct('${outnumber}');" /></td>
 			</tr>
 		</table>
+		<div id="partition${outnumber}"></div>
+		<hr />
 	</c:forEach>
 	
 </form>

@@ -1,5 +1,6 @@
 package com.zen.project.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ public class PromotionController {
 	@RequestMapping("/adminPromotionWrite")
 	public String adminPromotionWrite(HttpServletRequest request, Model model,
 			@ModelAttribute("promotionVO") PromotionVO promotionVO) {
-		
+		System.out.println(1);
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginAdmin") == null) return "admin/adminLoginForm";
 		
@@ -47,17 +48,21 @@ public class PromotionController {
 	}
 	
 	@RequestMapping("/findProduct")
-	public String findProduct(@RequestParam("pseq") int pseq, Model model) {
+	public String findProduct(@RequestParam("pseq") int pseq,
+			@RequestParam("outnum") int outnum, Model model) {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("pseq", pseq);
-		paramMap.put("output", 0);
-		paramMap.put("name", null);
+		paramMap.put("ref_cursor", null);
 		ps.findProduct(paramMap);
 		
-		model.addAttribute("pseq", (Integer)paramMap.get("output"));
-		model.addAttribute("name", (String)paramMap.get("name"));
+		ArrayList<HashMap<String, Object>> output
+		= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
+		
+		model.addAttribute("output", output.get(0));
+		model.addAttribute("outnum", outnum);
 		
 		return "admin/promotion/checkProduct";
 	}
+	
 }

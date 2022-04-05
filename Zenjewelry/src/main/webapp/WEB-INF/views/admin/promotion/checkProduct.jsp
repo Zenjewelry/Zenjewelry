@@ -5,9 +5,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-
+	
 	opener.document.getElementById('product_name').innerHTML
-		= '${name}&nbsp;${pseq}<input type="hidden" name="pseq" value="${pseq}" />';
+	= '조회된 상품 : '+'<div>' + '${output.NAME}' + '</div>'+
+	'<input type="hidden" id="accessname'+'${outnum}'+'" value="'+'${output.NAME}'+'" />'+
+	'<input type="hidden" id="accesspseq'+'${outnum}'+'" value="'+'${output.PSEQ}'+'" />'+
+	'<input type="hidden" id="accessprice2'+'${outnum}'+'" value="'+'${output.PRICE2}'+'" />';
+	
+	self.close();
+	
 </script>
 </head>
 <body>
