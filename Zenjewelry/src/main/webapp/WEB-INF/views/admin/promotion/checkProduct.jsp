@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	
-	opener.document.getElementById('product_name').innerHTML
+	opener.document.getElementById('product_name${outnum}').innerHTML
 	= '조회된 상품 : '+'<div>' + '${output.NAME}' + '</div>'+
 	'<input type="hidden" id="accessname'+'${outnum}'+'" value="'+'${output.NAME}'+'" />'+
 	'<input type="hidden" id="accesspseq'+'${outnum}'+'" value="'+'${output.PSEQ}'+'" />'+

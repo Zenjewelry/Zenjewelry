@@ -1042,7 +1042,7 @@ begin
         select pseq, name, price2 from products where pseq = p_pseq;
 end;
 
--- 4/5
+
 -- member
 
 create or replace PROCEDURE getMember_zen(

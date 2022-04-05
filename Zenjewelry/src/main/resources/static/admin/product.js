@@ -199,10 +199,11 @@ function createPartition(){
 
 
 function findProduct(outnum){
-	var pseq = document.getElementById("find_pseq").value;
+	var find_pseq = "find_pseq" + outnum;
+	var pseq = document.getElementById(find_pseq).value;
 	
 	var opt = "toolbar=no, menubar=no, resizable=no, width=550, height=300";
-	window.open('findProduct?pseq=' + pseq + '&outnum=' + outnum, '대표이미지 업로드', opt);
+	window.open('findProduct?pseq=' + pseq + '&outnum=' + outnum, '상품검색', opt);
 }
 
 
@@ -218,12 +219,21 @@ function addProduct(outnum){
 	
 	var partition = 'partition' + outnum;
 	
-	var add = '<div><input type="checkbox" name="pseq' + outnum + '" value="' + pseq + '" checked />' 
-		+ '<input type="text" name="name' + outnum + '" value="' + name + '" />'
-		+ '<input type="text" name="price2' + outnum + '" value="' + price2 + '" /></div>';
+	var newP = document.createElement('p');
 	
-	document.getElementById(partition).innerHTML = add;
+	var add = '<input type="checkbox" name="pseq' + outnum + '" value="' + pseq + '" checked />&nbsp;&nbsp;' 
+		+ name + '&nbsp;&nbsp;'
+		+ '<input type="text" name="price2' + outnum + '" value="' + price2 + '" />';
+	
+	newP.innerHTML = add;
+	document.getElementById(partition).appendChild(newP);
+	
 }
+
+
+
+
+
 
 
 
