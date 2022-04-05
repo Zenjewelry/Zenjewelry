@@ -26,6 +26,9 @@
 			<tr align="center" bgcolor="#FFFFFF" >
 				<td width="430"><h3><input type="submit" value="인증번호 전송"></h3></td>
 			</tr>
+			<tr align="center" bgcolor="#FFFFFF" >
+				<td width="430"><h3>${message}</h3></td>
+			</tr>
 		</table>
 	</form>
 </c:if>	

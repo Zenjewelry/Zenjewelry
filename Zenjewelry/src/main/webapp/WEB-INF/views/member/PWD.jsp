@@ -4,14 +4,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function change_Pwd(){
+	if(document.formm.pwd.value == ""){
+		alert('비밀번호를 입력하세요');
+		return
+	}
+	document.formm.action= "PWD";
+	document.formm.submit();
+	self.close();
+}
+
+</script>
 </head>
 <body>
-<form method="post" name="formm" action="PWD">
+<form method="post" name="formm">
 	<div>
 		<input type=password value="${pwd}" name="pwd">
 		<input type=hidden value="${id}" name="id">
 		<input type=hidden value="${name}" name="name">
-		<input type="submit" value="비밀번호 변경">
+		<input type="button" class="submit" value="비밀번호 변경" onClick="change_Pwd();">	
 	</div>
 </form>
 </body>
