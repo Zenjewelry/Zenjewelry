@@ -232,6 +232,18 @@ function addProduct(outnum){
 
 
 
+function uploadImg(comm){
+	var opt = "toolbar=no, menubar=no, resizable=no, width=550, height=300";
+	window.open('uploadPromotionImg?where='+comm, '이미지 업로드', opt);
+}
+
+function uploadedImg(comm){
+	document.frm.action = 'uploadPromotionFile?where=' + comm;
+	document.frm.submit();
+}
+
+
+
 
 
 

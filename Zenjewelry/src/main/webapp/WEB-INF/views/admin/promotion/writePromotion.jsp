@@ -7,10 +7,19 @@
 	<table>
 		<tr><th>메인 기획전명</th><td><input type="text" name="main_subject" value="${promotionVO.main_subject}" /></td></tr>
 		<tr><th>서브 기획전명</th><td><input type="text" name="sub_subject" value="${promotionVO.sub_subject}" /></td></tr>
-		<tr><th>메인 배너 업로드</th><td><input type="button" value="찾아보기" onClick="uploadImg('PromotionMain');" /></td></tr>
-		<tr><th>메인 배너 이미지명</th><td><div id="previewBannerText">${promotionVO.banner}</div></td></tr>
-		<tr><th>메인 배너 미리보기</th><td><img src="/promotion_images/${promotionVO.banner}" id="previewBannerImg" width="300" height="300" style="display:none;" />
-			<input type="hidden" name="banner" value="${promotionVO.banner}" /></td></tr>
+		<tr><th>메인 배너 업로드</th><td><input type="button" value="찾아보기" onClick="uploadImg('banner');" /></td></tr>
+		<tr><th>메인 배너 이미지명</th><td><div id="previewbannerText">${promotionVO.banner}</div></td></tr>
+		<tr><th>메인 배너 미리보기</th>
+			<td>
+				<c:choose>
+					<c:when test="${empty promotionVO.banner}">
+						<img src="/promotion_images/${promotionVO.banner}" id="previewbannerImg" width="300" height="300" style="display:none;" />
+					</c:when>
+					<c:otherwise>
+						<img src="/promotion_images/${promotionVO.banner}" id="previewbannerImg" width="300" height="300" />
+					</c:otherwise>
+				</c:choose>
+			</td></tr>
 		<tr>
 			<th>시작일자 ~ 종료일자</th>
 			<td>
@@ -114,10 +123,10 @@
 		<table <%-- id="partition${outnumber}" --%>>
 			<tr><th>Summary 배너 업로드</th><th>Summary 배너 이미지명</th><th>Summary 배너 미리보기</th></tr>
 			<tr>
-				<td><input type="button" value="찾아보기" onClick="uploadImg('Summary');" /></td>
-				<td><div id="previewBannerText">${promotionVO.banner}</div></td>
-				<td><img src="/promotion_images/${promotionVO.banner}" id="previewBannerImg" width="300" height="300" style="display:none;" />
-					<input type="hidden" name="banner" value="${promotionVO.banner}" /></td>
+				<td><input type="button" value="찾아보기" onClick="uploadImg('Summary${outnumber}');" /></td>
+				<td><div id="previewSummary${outnumber}Text">${promotionVO.banner}</div></td>
+				<td><img src="/promotion_images/${promotionVO.banner}" id="previewSummary${outnumber}Img" width="300" height="300" style="display:none;" />
+					<input type="text" name="Summary${outnumber}" value="${promotionVO.banner}" /></td>
 			<tr>
 			<tr><td colspan="3" style="background:black;"></td></tr>
 			<tr>
@@ -129,6 +138,16 @@
 		<div id="partition${outnumber}"></div>
 		<hr />
 	</c:forEach>
+	<div id="hiddenimage">
+		<c:if test="${empty promotionVO.banner}">
+			<input type="hidden" name="banner" value="${promotionVO.banner}" />
+		</c:if>
+		<c:if test="${empty Summary1}">
+			<c:forEach items="${outnumber_chk}" var="num">
+				<input type="hidden" name="Summary${num}" value="${Summary${num}}" />
+			</c:forEach>
+		</c:if>
+	</div>
 	
 </form>
 

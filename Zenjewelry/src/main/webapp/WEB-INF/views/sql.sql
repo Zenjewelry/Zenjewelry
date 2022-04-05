@@ -589,7 +589,7 @@ values('sang',1234,'홍길동','july@naver.com',1234,1234,'010-1111-1111',null,1
 
 
 
-select * from members
+select * from promotions
 
 update 
 
