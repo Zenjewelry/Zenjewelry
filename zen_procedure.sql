@@ -1128,6 +1128,18 @@ BEGIN
 END;
 
 
+create or replace procedure selectPwd_zen(
+    p_email IN members.email%TYPE,
+    p_name IN members.name%TYPE,
+    p_id IN members.id%TYPE,
+    p_cursor OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cursor FOR SELECT * FROM members where email=p_email and name=p_name and id=p_id;
+    commit;
+END;
+
 
 
 
