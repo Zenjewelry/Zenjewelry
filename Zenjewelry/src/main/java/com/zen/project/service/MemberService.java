@@ -40,4 +40,13 @@ public class MemberService {
 		mdao.findPwd( paramMap );
 		
 	}
+
+	public void selectMember(HashMap<String, Object> paramMap) {
+		mdao.selectMember( paramMap );
+		
+	}
+
+	public void selectPwd(HashMap<String, Object> paramMap) {
+		mdao.selectPwd(paramMap);
+	}
 }

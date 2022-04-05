@@ -24,8 +24,9 @@
 				<td width="430"><h3>전화번호 <input type="text" name="phone"  value="${phone}" ></h3></td>
 			</tr>
 			<tr align="center" bgcolor="#FFFFFF" >
-				<td width="430"><h3><input type="submit" value="인증번호 전송"></h3></td>
+				<td width="430"><h3>${message}<input type="submit" value="인증번호 전송"></h3></td>
 			</tr>
+		
 		</table>
 	</form>
 </c:if>	

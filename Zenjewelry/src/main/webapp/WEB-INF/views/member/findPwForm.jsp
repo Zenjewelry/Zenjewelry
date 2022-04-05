@@ -23,7 +23,8 @@
 				<td width="430"><h3>E-Mail<input type="text" name="email" value="${email}" ></h3></td>
 			</tr>
 			<tr align="center" bgcolor="#FFFFFF" >
-				<td width="430"><h3><input type="submit" value="인증번호 전송"></h3></td>
+				<td width="430"><h3>${message}<input type="submit" value="인증번호 전송"></h3></td>
+				
 			</tr>
 		</table>
 	</form>

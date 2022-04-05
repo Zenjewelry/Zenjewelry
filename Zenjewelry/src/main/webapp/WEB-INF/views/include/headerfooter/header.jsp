@@ -37,7 +37,7 @@
 					<li><a class="Rm" href="contract">JOIN</a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a class= "Id01">${loginUser.NAME}(${loginUser.ID})</a></li>
+					<li><a class= "Id01">${loginUser.NAME}(${loginUser.GRADE})</a></li>
 					<li><a class="Rm" href="myPage">MYPAGE</a></li>
 					<li><a class="Rm" href="editForm">EDIT</a></li>
 					<li><a class="Rm" href="logout">LOGOUT</a></li>

@@ -1115,8 +1115,30 @@ BEGIN
     commit;
 END;
 
+create or replace procedure selectMember_zen(
+    p_name IN members.name%TYPE,
+    p_phone IN members.phone%TYPE,
+    p_email IN members.email%TYPE,
+    p_cursor OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cursor FOR SELECT * FROM members where name=p_name and phone=p_phone and email=p_email;
+    commit;
+END;
 
 
+create or replace procedure selectPwd_zen(
+    p_email IN members.email%TYPE,
+    p_name IN members.name%TYPE,
+    p_id IN members.id%TYPE,
+    p_cursor OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cursor FOR SELECT * FROM members where email=p_email and name=p_name and id=p_id;
+    commit;
+END;
 
 
 
