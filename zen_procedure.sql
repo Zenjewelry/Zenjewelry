@@ -1191,10 +1191,17 @@ end;
 
 
 
-
-
-
-
+CREATE OR REPLACE PROCEDURE saveOptionMember_zen(
+    p_useyn IN members.useyn%TYPE,
+    p_grade IN members.grade%TYPE)
+IS
+BEGIN
+    insert into members(useyn,grade)
+    values( p_useyn, p_grade);
+    commit;    
+    update members set useyn = p_useyn, grade = p_grade
+    commit;
+END;
 
 
 
