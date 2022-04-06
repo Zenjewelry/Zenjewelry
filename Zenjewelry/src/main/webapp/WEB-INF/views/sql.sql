@@ -607,5 +607,7 @@ update promotions set sdate = to_date('2022-2-2', 'yyyy-mm-dd') where prmseq=2;
 
 select * from products
 
+select distinct outnumber, summary from promotion_products where prmseq = 14;
+
 
 

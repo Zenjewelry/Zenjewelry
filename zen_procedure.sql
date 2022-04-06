@@ -1221,11 +1221,35 @@ end;
 
 create or replace procedure getPromotionDetail_zen(
     p_prmseq in promotions.prmseq%type,
+    p_outnum out number,
     p_cur1 out sys_refcursor,
     p_cur2 out sys_refcursor
 )
 is
+    v_outnum number;
 begin
+    open p_cur1 for
+        select * from promotion_view where prmseq = p_prmseq;
+    
+    open p_cur2 for
+        select p.*, pp.prmseq, pp.outnumber, pp.prmprice, pp.summary 
+        from promotion_products pp, products p 
+        where pp.prmseq = p_prmseq and p.pseq = pp.pseq order by pp.outnumber;
+        
+    select max(outnumber) into v_outnum from promotion_products where prmseq = p_prmseq;
+    p_outnum := v_outnum;
+end;
+
+
+
+create or replace procedure getSummary_zen(
+    p_prmseq in promotion_products.prmseq%type,
+    p_summary out sys_refcursor
+)
+is
+begin
+    open p_summary for
+        select distinct outnumber, summary from promotion_products where prmseq = p_prmseq order by outnumber;
 end;
 
 

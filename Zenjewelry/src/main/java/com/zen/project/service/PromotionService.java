@@ -36,4 +36,8 @@ public class PromotionService {
 	public void getPromotionDetail(HashMap<String, Object> paramMap) {
 		pdao.getPromotionDetail(paramMap);
 	}
+
+	public void getSummary(HashMap<String, Object> paramMap) {
+		pdao.getSummary(paramMap);
+	}
 }

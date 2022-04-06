@@ -232,17 +232,26 @@ public class PromotionController {
 			paramMap.put("prmseq", prmseq);
 			paramMap.put("ref_cursor1", null);
 			paramMap.put("ref_cursor2", null);
+			paramMap.put("outnumber", null);
 			
 			ps.getPromotionDetail(paramMap);
+			
+			paramMap.put("summary", null);
+			ps.getSummary(paramMap);
 
 			ArrayList<HashMap<String, Object>> promotionView
 			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
 			
 			ArrayList<HashMap<String, Object>> promotionProductList
-			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
 			
-			mav.addObject("promotionView", promotionView);
+			ArrayList<HashMap<String, Object>> summary
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("summary");
+			
+			mav.addObject("promotionView", promotionView.get(0));
 			mav.addObject("promotionProductList", promotionProductList);
+			mav.addObject("outnumber", paramMap.get("outnumber"));
+			mav.addObject("summary", summary);
 			mav.setViewName("admin/promotion/editPromotion");
 		}
 		

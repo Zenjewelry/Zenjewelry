@@ -46,9 +46,16 @@
 	
 	<select id="getPromotionDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL getPromotionDetail_zen(
-			#{prmseq},
+			#{prmseq}, #{outnumber},
 			#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=promotionMap},
 			#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=promotionMap2}
+		)}
+	</select>
+	
+	<select id="getSummary" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getSummary_zen(
+			#{prmseq}, 
+			#{summary, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=promotionMap}
 		)}
 	</select>
 	

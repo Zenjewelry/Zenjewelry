@@ -13,5 +13,6 @@ public interface IPromotionDao {
 	void getAllCountPromotion(HashMap<String, Object> paramMap);
 	void getPromotionList(HashMap<String, Object> paramMap);
 	void getPromotionDetail(HashMap<String, Object> paramMap);
+	void getSummary(HashMap<String, Object> paramMap);
 	
 }
