@@ -49,4 +49,9 @@ public class MemberService {
 	public void selectPwd(HashMap<String, Object> paramMap) {
 		mdao.selectPwd(paramMap);
 	}
+
+	public void getEmail(HashMap<String, Object> paramMap) {
+		mdao.getEmail(paramMap);
+		
+	}
 }

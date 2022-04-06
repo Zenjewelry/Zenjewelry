@@ -59,4 +59,11 @@
 			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
 		)  }
 	</select>
+	
+	<select id="getEmail" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{  CALL getEmail_zen( 
+			#{email},
+			#{ref_cursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=memberMap}
+		)  }
+	</select>
 </mapper>

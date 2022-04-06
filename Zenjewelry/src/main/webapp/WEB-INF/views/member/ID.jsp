@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function goodId(){	
+	opener.loginFrm.id.value='${findId.ID}';
 	self.close();
 }
 

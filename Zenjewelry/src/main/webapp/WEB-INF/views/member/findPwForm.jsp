@@ -6,6 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/shopping.css" rel="stylesheet">
+<script type="text/javascript">
+function change_Pwd(){
+	if(document.formm.numCheck.value != document.formm.checkNum.value){
+		alert('인증번호가 다릅니다. 인증번호 재전송')
+		return;
+	}
+	document.formm.action= 'change_Pwd';
+	document.formm.submit();
+}
+</script>
 </head>
 <body>
 
@@ -30,7 +40,7 @@
 	</form>
 </c:if>	
 <c:if test="${result == 1}">
-	<form method="post" name="formm" action=change_Pwd>
+	<form method="post" name="formm" >
 		<table id="cartlist" align="center" bgcolor="black" cellspacing="1" width="400">
 			<tr align="center" bgcolor="#FFFFFF" >
 				<td width="430"><h3>아이디<input type="text" name="id" value="${id}" ></h3></td>
@@ -42,11 +52,11 @@
 					<td width="430"><h3>E-Mail<input type="text" name="email" value="${email}" readonly></h3></td>
 				</tr>
 			<tr>
-				<td width="430"><h3>인증번호<input type="text" name="numCheck" value="${numCheck}"></h3></td>
+				<td width="430" bgcolor="#FFFFFF"><h3>인증번호<input type="text" name="numCheck" value="${numCheck}"></h3></td>
 				<input type="hidden" name="checkNum" value="${checkNum}" >
 			</tr>
 			<tr>
-				<td width="430"><h3><input type="submit" value="인증번호 확인" ></h3></td>
+				<td width="430" bgcolor="#FFFFFF"><h3><input type="submit" value="인증번호 확인" onClick="change_Pwd()"></h3></td>
 			</tr>
 		</table>
 	</form>

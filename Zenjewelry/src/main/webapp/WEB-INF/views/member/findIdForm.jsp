@@ -6,7 +6,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/shopping.css" rel="stylesheet">
-
+<script type="text/javascript">
+function ID(){
+	if(document.formm.numCheck.value != document.formm.checkNum.value){
+		alert('인증번호가 다릅니다.')
+		false;
+	}else{
+		document.formm.action='ID';
+		document.formm.submit();
+	}
+	
+}
+</script>
 </head>
 <body>
 
@@ -31,7 +42,7 @@
 	</form>
 </c:if>	
 <c:if test="${result == 1}">
-	<form method="post" name="formm" action="ID">
+	<form method="post" name="formm" >
 		<table id="cartlist" align="center" bgcolor="black" cellspacing="1" width="400">
 		<tr align="center" bgcolor="#FFFFFF" >
 				<td width="430"><h3>성명<input type="text" name="name" value="${name}" readonly></h3></td>
@@ -43,11 +54,11 @@
 				<td width="430"><h3>전화번호 <input type="text" name="phone"  value="${phone}" readonly></h3></td>
 			</tr>
 		<tr>
-			<td width="430"><h3>인증번호<input type="text" name="numCheck" value="${numCheck}"></h3></td>
+			<td width="430" bgcolor="#FFFFFF"><h3>인증번호<input type="text" name="numCheck" value="${numCheck}"></h3></td>
 			<input type="hidden" name="checkNum" value="${checkNum}" >
 		</tr>
 		<tr>
-			<td width="430"><h3><input type="submit" value="인증번호 확인" ></h3></td>
+			<td width="430" bgcolor="#FFFFFF"><h3><input type="submit" value="인증번호 확인" onClick="ID()"></h3></td>
 		</tr>
 	</table>
 </form>
