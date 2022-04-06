@@ -11,11 +11,16 @@
 	    <label>Retype Password</label><input id="username" type="password" name="pwdCheck"><br> 
 	    <label>Name</label><input id="username" type="text"  name="name" value="${dto.name}"><br> 
 	    <label>E-Mail</label><input id="username" type="text"  name="email" value="${dto.email}"><br>
+	    <input id="nbutton" type="button" value="이메일 중복 체크" class="dup" onclick="emailCheck()"><br>
+	    <label>인증번호</label><input id="username" type="text" name="num" readonly><br>
+	    <input id="nbutton" type="button" value="인증번호 전송" class="dup" onclick="numCheck()"><br>
 	    <label>Phone Number</label><input id="username"  type="text" name="phone" value="${dto.phone}"><br>
 	    <label>Zip Code</label><input id="username" type="text" name="zip_num"   size="10" >      
 	    <input  id="nbutton" type="button" value="주소 찾기" class="dup" onclick="post_zip()"><br>
 		<label>Address</label><input id="username" type="text" name="address"   size="50"><br>
 		<label>&nbsp;</label><input id="username" type="text" name="address2"   size="25">
+		<h3>${message}</h3>
+		
 	</fieldset>
 	<div class="clear"></div>
 	<div id="buttons">

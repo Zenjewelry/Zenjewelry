@@ -35,6 +35,27 @@ function idcheck(){
 	window.open(url, "IdCheck", opt);	
 }
 
+function emailCheck(){
+	if(document.formm.email.value==""){
+		alert("이메일을 입력하고 중복체크를 진행하세요");
+		document.formm.email.focus();
+		return;
+	}
+	var url = "EmailCheckForm?email=" + document.formm.email.value;
+	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+	window.open(url, "EmailChekc", opt);
+}
+
+function numCheck(){
+	if(document.formm.email.value==""){
+		alert("이메일을 입력하고 눌러주세요");
+		document.formm.email.focus();
+		return;
+	}
+	var url = "numCkeck?email=" + document.formm.email.value;
+	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+	window.open(url, "numCheck", opt);
+}
 
 
 function post_zip(){

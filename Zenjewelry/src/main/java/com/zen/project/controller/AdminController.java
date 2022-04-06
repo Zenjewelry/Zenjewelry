@@ -94,6 +94,12 @@ public class AdminController {
 		else {
 			int page = 1;
 			String key = "";
+			
+			if(request.getParameter("sub")!=null) {
+				session.removeAttribute("page");
+				session.removeAttribute("key");
+			}
+			
 			if( request.getParameter("first") != null ) {
 				session.removeAttribute("page");
 				session.removeAttribute("key");
@@ -150,6 +156,11 @@ public class AdminController {
 		
 		int page = 1;
 		String key = "";
+		
+		if(request.getParameter("sub")!=null) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}
 		
 		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
 		
@@ -399,6 +410,11 @@ public class AdminController {
 		String key = "";
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		
+		if(request.getParameter("sub")!=null) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}
+		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 			session.setAttribute("page", page);
@@ -567,7 +583,7 @@ public class AdminController {
 	
 	@RequestMapping("/adminOrderList")
 	public ModelAndView adminOrderList(HttpServletRequest request,
-			@RequestParam("sub") String sub) {
+			@RequestParam(value="sub",required=false) String sub) {
 		
 		ModelAndView mav = new ModelAndView();
 		

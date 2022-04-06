@@ -15,5 +15,6 @@ public interface IMemberDao {
 	void findPwd(HashMap<String, Object> paramMap);
 	void selectMember(HashMap<String, Object> paramMap);
 	void selectPwd(HashMap<String, Object> paramMap);
+	void getEmail(HashMap<String, Object> paramMap);
 
 }
