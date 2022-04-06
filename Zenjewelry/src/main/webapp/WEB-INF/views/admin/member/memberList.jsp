@@ -18,6 +18,7 @@
 	    	<td>${memberVO.PHONE}</td><td><fmt:formatDate value="${memberVO.INDATE}"/>
 	    	<td>
 	    		<select name = "Grade">
+	    			<option value ="${memberVO.GRADE }" selected>${memberVO.GRADE }</option>
           			<option value = "일반">일반</option>
           			<option value = "VIP">VIP</option>
           			<option value = "VVIP">VVIP</option>
@@ -26,6 +27,7 @@
        		
        		<td>
        			<select name = "Black">
+       			    <option value ="${memberVO.USEYN }" selected>${memberVO.USEYN }</option>
           			<option value = "사용">사용</option>
           			<option value = "휴면">휴면</option>
           			<option value = "블랙">블랙</option>
@@ -48,7 +50,9 @@
 	<tr><td width="670">회원 이름 <input type="text" name="key" value="${key}">
 	<input class="btn" type="button" value="검색" onclick="go_search('adminMemberList')">
 	<input class="btn" type="button" name="btn_total" value="전체보기 "	onClick="go_total('adminMemberList')">
-	<input class="btn" type="button" value="저장" onclick="save_option_mem();">
+	<input class="btn" type="submit" value="저장" onclick="save_option_mem();">
+	
+	
 	</td> </tr>
 	
 </table>

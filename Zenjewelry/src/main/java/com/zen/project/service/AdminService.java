@@ -77,6 +77,10 @@ public class AdminService {
 	public void deleteMember(String id) {
 		adao.deleteMember(id);
 	}
+	public void saveOptionMember(HashMap<String, Object> paramMap) {
+		adao.saveOptionMember( paramMap );
+		
+	}
 	
 	
 		
