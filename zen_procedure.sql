@@ -1187,6 +1187,19 @@ end;
 
 
 
+
+CREATE OR REPLACE PROCEDURE saveOptionMember_zen(
+    p_useyn IN members.useyn%TYPE,
+    p_grade IN members.grade%TYPE)
+IS
+BEGIN
+    insert into members(useyn,grade)
+    values( p_useyn, p_grade);
+    commit;    
+    update members set useyn = p_useyn, grade = p_grade
+    commit;
+END;
+
 create or replace procedure getAllCountPromotion_zen(
     p_key in varchar2,
     p_cnt out number
@@ -1247,6 +1260,7 @@ begin
     open p_summary for
         select distinct outnumber, summary from promotion_products where prmseq = p_prmseq order by outnumber;
 end;
+
 
 
 

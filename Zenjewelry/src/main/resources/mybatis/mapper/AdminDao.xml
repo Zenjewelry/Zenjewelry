@@ -145,10 +145,10 @@
 		{CALL deleteMember_zen(#{param1})}
 	</delete>
 	
-	<insert id="saveOptionMember" statementType="CALLABLE" parameterType="java.util.HashMap" >
+	<update id="saveOptionMember" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ CALL saveOptionMember_zen( 
-		#{useyn}, #{grade} ) }
-	</insert>
+		#{dto.id}, #{dto.useyn}, #{dto.grade}) }
+	</update>
 	
 	
 	

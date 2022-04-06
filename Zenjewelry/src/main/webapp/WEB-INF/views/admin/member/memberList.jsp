@@ -8,7 +8,7 @@
 
 	<tr><th width="100">아이디</th><th width="100"> 이름 </th><th width="120">이메일</th>
 	<th width="90">우편번호</th><th width="400">주소</th><th width="200">전화</th><th width="100">가입일</th>
-	<th width="80">등급</th><th width="100">회원관리</th><th width="100">삭제</th></tr>
+	<th width="80">등급</th><th width="100">회원관리</th><th width="100">삭제</th><th width="100">수정</th></tr>
 	
 
    <c:forEach items="${memberlist}" var="memberVO">
@@ -17,9 +17,10 @@
 	    	<td>${memberVO.NAME}</td><td>${memberVO.EMAIL}</td><td>${memberVO.ZIP_NUM}</td><td>${memberVO.ADDRESS}</td>
 	    	<td>${memberVO.PHONE}</td><td><fmt:formatDate value="${memberVO.INDATE}"/>
 	    	<td>
-	    		<select name = "Grade">
+	    	<form method="get" action="" class="form">
+	    		<select id ="Grade">
 	    			<option value ="${memberVO.GRADE }" selected>${memberVO.GRADE }</option>
-          			<option value = "일반">일반</option>
+          			<option value = "일반">a</option>
           			<option value = "VIP">VIP</option>
           			<option value = "VVIP">VVIP</option>
        			</select>
@@ -28,17 +29,24 @@
        		<td>
        			<select name = "Black">
        			    <option value ="${memberVO.USEYN }" selected>${memberVO.USEYN }</option>
-          			<option value = "사용">사용</option>
-          			<option value = "휴면">휴면</option>
-          			<option value = "블랙">블랙</option>
-          			<option value = "일시정지">일시정지</option>
+          			<option value = "사용">a</option>
+          			<option value = "휴면">b</option>
+          			<option value = "블랙">c</option>
+          			<option value = "일시정지">d</option>
        			</select>
+       		</form>
        		</td>
        		<td style="width:100px;">
 				<input class="btn" type="button" value="삭제" onclick="delete_mem('${memberVO.ID}');">
        		</td>
        	</tr>
   </c:forEach>
+
+
+
+
+
+
 
 </table>
 

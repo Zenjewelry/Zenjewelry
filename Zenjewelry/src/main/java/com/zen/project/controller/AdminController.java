@@ -672,17 +672,19 @@ public class AdminController {
 			HttpServletRequest request,
 			Model model ) {
 				
-		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("useyn", membervo.getUseyn() );
-		paramMap.put("grade", membervo.getGrade() );
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) return "admin/adminLoginForm";
 		
-		System.out.println("grade");
-		System.out.println("useyn");
+			System.out.println(id);
+			System.out.println(useyn);
+			System.out.println(grade);
 		
 		
-		as.saveOptionMember( paramMap );
-		
-		model.addAttribute("message", "저장되었습니다.");
+			as.saveOptionMember(id);
+			as.saveOptionMember(useyn);
+			as.saveOptionMember(grade);
+			
+			model.addAttribute("message", "저장되었습니다.");
 		
 		return "redirect:/adminMemberList?sub='y'";
 	}
