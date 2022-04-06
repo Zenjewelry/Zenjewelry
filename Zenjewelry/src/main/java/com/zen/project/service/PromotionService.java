@@ -24,4 +24,20 @@ public class PromotionService {
 	public void insertPromotion_products(HashMap<String, Object> paramMap) {
 		pdao.insertPromotion_products(paramMap);
 	}
+
+	public void getAllCountPromotion(HashMap<String, Object> paramMap) {
+		pdao.getAllCountPromotion(paramMap);
+	}
+
+	public void getPromotionList(HashMap<String, Object> paramMap) {
+		pdao.getPromotionList(paramMap);
+	}
+
+	public void getPromotionDetail(HashMap<String, Object> paramMap) {
+		pdao.getPromotionDetail(paramMap);
+	}
+
+	public void getSummary(HashMap<String, Object> paramMap) {
+		pdao.getSummary(paramMap);
+	}
 }

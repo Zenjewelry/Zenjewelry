@@ -567,7 +567,6 @@ create table promotions(
 	primary key(prmseq)
 );
 
-
 create table promotion_products(
 	prmseq number(10) not null,
 	outnumber number(10) not null,
@@ -594,6 +593,7 @@ values('sang1',1234,'홍길동','july@naver.com',1234,1234,'010-1111-1111',null,
 
 select * from promotions
 select * from promotion_products
+select * from promotion_view;
 
 delete from promotions;
 delete from promotion_products;
@@ -603,9 +603,11 @@ alter table members add useyn varchar2(10) default 'y' not null;
 alter table members drop column useyn;
 
 
-update promotions set sdate = to_date('2022-02-02', 'yyyy-mm-dd') where prmseq=2;
+update promotions set sdate = to_date('2022-2-2', 'yyyy-mm-dd') where prmseq=2;
 
+select * from products
 
+select distinct outnumber, summary from promotion_products where prmseq = 14;
 
 
 

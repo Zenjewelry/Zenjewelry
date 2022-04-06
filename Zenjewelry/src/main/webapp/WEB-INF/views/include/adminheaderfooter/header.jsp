@@ -35,7 +35,7 @@
 			<li><a class="LmR" href='adminMemberList?sub="y"'>회원리스트</a></li>
 			<li><a class="LmR" href='adminQnaList?sub="y"'>Q&amp;A리스트</a></li>
 			<li><a class="LmR" href='adminProduct_Qna?sub="y"'>Product Q&amp;A리스트</a></li>
-			<li><a class="LmR" href='adminPromotionWrite?sub="y"'>PromotionWrite</a></li>
+			<li><a class="LmR" href='promotionList?sub="y"'>프로모션리스트</a></li><!-- adminPromotionWrite -->
 		</ul>
 	</nav>
 </header>			

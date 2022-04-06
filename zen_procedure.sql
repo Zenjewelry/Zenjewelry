@@ -1132,7 +1132,7 @@ END;
 
 
 
-
+-- 04/06
 -- promotion
 
 create or replace procedure findProduct_zen(
@@ -1151,27 +1151,23 @@ create or replace procedure insertPromotion_zen(
     p_banner in promotions.banner%type,
     p_main_subject in promotions.main_subject%type,
     p_sub_subject in promotions.sub_subject%type,
-    p_sdate in varchar2,
-    p_edate in varchar2,
+    p_sdate in date,
+    p_edate in date,
     p_prmseq out number
 )
 is
     v_prmseq number;
-    v_sdate varchar2(20);
-    v_edate varchar2(20);
 begin
-    
-    select to_date(p_sdate, 'yyyy/mm/dd') into v_sdate from dual;
-    select to_date(p_edate, 'yyyy/mm/dd') into v_edate from dual;
-
     insert into promotions(prmseq, banner, main_subject, sub_subject, sdate, edate)
-    values(promotions_seq.nextVal, p_banner, p_main_subject, p_sub_subject, v_sdate, v_edate);
+    values(promotions_seq.nextVal, p_banner, p_main_subject, p_sub_subject, p_sdate, p_edate);
     commit;
     select max(prmseq) into v_prmseq from promotions;
     p_prmseq := v_prmseq;
-    DBMS_OUTPUT.PUT_LINE(v_sdate);
-    DBMS_OUTPUT.PUT_LINE(v_edate);
 end;
+
+
+
+
 
 
 
@@ -1188,6 +1184,74 @@ begin
     values(p_prmseq, p_outnumber, p_summary, p_pseq, p_prmprice);
     commit;
 end;
+
+
+
+create or replace procedure getAllCountPromotion_zen(
+    p_key in varchar2,
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from promotion_view where main_subject like '%'||p_key||'%' or sub_subject like '%'||p_key||'%';
+    p_cnt := v_cnt;
+end;
+
+
+
+create or replace procedure getPromotionList_zen(
+    p_key in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, q.* from
+                   ((select * from promotion_view where main_subject like '%'||p_key||'%' or sub_subject like '%'||p_key||'%' order by prmseq desc) q)
+            ) where rn >= p_startNum
+        ) where rn <= p_endNum;
+end;
+
+
+
+create or replace procedure getPromotionDetail_zen(
+    p_prmseq in promotions.prmseq%type,
+    p_outnum out number,
+    p_cur1 out sys_refcursor,
+    p_cur2 out sys_refcursor
+)
+is
+    v_outnum number;
+begin
+    open p_cur1 for
+        select * from promotion_view where prmseq = p_prmseq;
+    
+    open p_cur2 for
+        select p.*, pp.prmseq, pp.outnumber, pp.prmprice, pp.summary 
+        from promotion_products pp, products p 
+        where pp.prmseq = p_prmseq and p.pseq = pp.pseq order by pp.outnumber;
+        
+    select max(outnumber) into v_outnum from promotion_products where prmseq = p_prmseq;
+    p_outnum := v_outnum;
+end;
+
+
+
+create or replace procedure getSummary_zen(
+    p_prmseq in promotion_products.prmseq%type,
+    p_summary out sys_refcursor
+)
+is
+begin
+    open p_summary for
+        select distinct outnumber, summary from promotion_products where prmseq = p_prmseq order by outnumber;
+end;
+
 
 
 
