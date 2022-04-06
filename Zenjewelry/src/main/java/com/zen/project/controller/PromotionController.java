@@ -141,7 +141,6 @@ public class PromotionController {
 			}
 			mav.setViewName("redirect:/promotionList");
 		}
-		
 		return mav;
 	}
 	
