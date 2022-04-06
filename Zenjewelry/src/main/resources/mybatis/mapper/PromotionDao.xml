@@ -6,6 +6,7 @@
 <mapper namespace="com.zen.project.dao.IPromotionDao">
 	
 	<resultMap  id="promotionMap" type="java.util.HashMap"></resultMap>
+	<resultMap  id="promotionMap2" type="java.util.HashMap"></resultMap>
 	
 	<select id="findProduct" statementType="CALLABLE">
 		{CALL findProduct_zen(
@@ -16,7 +17,9 @@
 	
 	<insert id="insertPromotion" statementType="CALLABLE">
 		{CALL insertPromotion_zen(
-			#{prmVO.banner}, #{prmVO.main_subject}, #{prmVO.sub_subject}, #{sdate, jdbcType=VARCHAR}, #{edate, jdbcType=VARCHAR},
+			#{prmVO.banner}, #{prmVO.main_subject}, #{prmVO.sub_subject},
+			#{sdate, mode=IN, jdbcType=DATE},
+			#{edate, mode=IN, jdbcType=DATE},
 			#{prmseq, mode=OUT, jdbcType=INTEGER}
 		)}
 	</insert>
@@ -26,5 +29,27 @@
 			#{prmseq}, #{outnumber}, #{summaryImg}, #{pseq}, #{price2}
 		)}
 	</insert>
+	
+	<select id="getAllCountPromotion" statementType="CALLABLE">
+		{CALL getAllCountPromotion_zen(
+			#{key},
+			#{count, mode=OUT, jdbcType=INTEGER}
+		)}
+	</select>
+	
+	<select id="getPromotionList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getPromotionList_zen(
+			#{key}, #{startNum}, #{endNum},
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=promotionMap}
+		)}
+	</select>
+	
+	<select id="getPromotionDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getPromotionDetail_zen(
+			#{prmseq},
+			#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=promotionMap},
+			#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=promotionMap2}
+		)}
+	</select>
 	
 </mapper>
