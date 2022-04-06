@@ -28,6 +28,8 @@ public class MemberVO {
     private String zip_num;
     private String address;
     private String address2;
+	private String useyn;
+	private String grade;
     
 }
 
