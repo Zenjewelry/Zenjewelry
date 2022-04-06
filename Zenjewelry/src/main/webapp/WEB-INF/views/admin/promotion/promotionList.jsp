@@ -16,10 +16,10 @@
 				<span style="font-weight: bold; color: blue">${promotionVO.PRMSEQ}</span>
 			</td>
 			<td>
-				<a herf="location.href='editPromotion?prmseq=${promotionVO.PRMSEQ}'">${promotionVO.MAIN_SUBJECT}</a>
+				<a href="editPromotion?prmseq=${promotionVO.PRMSEQ}">${promotionVO.MAIN_SUBJECT}</a>
 			</td>
 			<td>
-				<a herf="location.href='editPromotion?prmseq=${promotionVO.PRMSEQ}'">${promotionVO.SUB_SUBJECT}</a>
+				<a href="editPromotion?prmseq=${promotionVO.PRMSEQ}">${promotionVO.SUB_SUBJECT}</a>
 			</td>
 			<td><img src="/promotion_images/${promotionVO.BANNER}" height="150" /></td>
 		</tr>

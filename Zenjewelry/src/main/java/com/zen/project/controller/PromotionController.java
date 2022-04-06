@@ -232,7 +232,6 @@ public class PromotionController {
 			paramMap.put("prmseq", prmseq);
 			paramMap.put("ref_cursor1", null);
 			paramMap.put("ref_cursor2", null);
-			paramMap.put("outnumber", null);
 			
 			ps.getPromotionDetail(paramMap);
 			
@@ -250,11 +249,50 @@ public class PromotionController {
 			
 			mav.addObject("promotionView", promotionView.get(0));
 			mav.addObject("promotionProductList", promotionProductList);
-			mav.addObject("outnumber", paramMap.get("outnumber"));
 			mav.addObject("summary", summary);
 			mav.setViewName("admin/promotion/editPromotion");
 		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/updatePromotion", method=RequestMethod.POST)
+	public ModelAndView updatePromotion(HttpServletRequest request,
+			@ModelAttribute("promotionVO") PromotionVO promotionVO) {
 		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("loginAdmin")==null) mav.setViewName("admin/adminLoginForm");
+		else {
+			String startDate = request.getParameter("sYear") + "-" + request.getParameter("sMonth") + "-" + request.getParameter("sDay") + " 00:00:00";
+			String endDate = request.getParameter("eYear") + "-" + request.getParameter("eMonth") + "-" + request.getParameter("eDay") + " 23:59:59";
+			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("prmVO", promotionVO);
+			paramMap.put("prmseq", null);
+			
+			ps.insertPromotion(paramMap);
+			
+			for(int i=1; i<=promotionVO.getOutnumber(); i++) {
+				String pseq = "pseq" + i;
+				String [] pseqArr = request.getParameterValues(pseq);
+				
+				String price2 = "price2" + i;
+				String [] price2Arr = request.getParameterValues(price2);
+				
+				String summary = "Summary" + i;
+				paramMap.put("summaryImg", request.getParameter(summary));
+				
+				paramMap.put("outnumber", i);
+				for(int j=0; j<pseqArr.length; j++) {
+					paramMap.put("pseq", pseqArr[j]);
+					paramMap.put("price2", price2Arr[j]);
+					ps.insertPromotion_products(paramMap);
+				}
+			}
+			mav.setViewName("redirect:/promotionList");
+		}
 		return mav;
 	}
 	

@@ -669,12 +669,8 @@ public class AdminController {
 	@RequestMapping(value = "/saveOptionMember", method=RequestMethod.POST)
 	public String join( @ModelAttribute("dto") @Valid MemberVO membervo,
 			BindingResult result,
-			@RequestParam(value="reid", required=false) String reid,
-			@RequestParam(value="pwdCheck", required=false) String pwdCheck,
 			HttpServletRequest request,
 			Model model ) {
-		
-		model.addAttribute("reid", reid);
 				
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("useyn", membervo.getUseyn() );

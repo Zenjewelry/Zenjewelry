@@ -10,15 +10,15 @@
 	</script>
 </c:if>
 
-<form name="frm" action="insertPromotion" method="post">
+<form name="frm" action="updatePromotion" method="post">
 	<table id="cartList">
 		<tr><th>메인 기획전명</th><td><input type="text" name="main_subject" value="${promotionView.MAIN_SUBJECT}" /></td></tr>
 		<tr><th>서브 기획전명</th><td><input type="text" name="sub_subject" value="${promotionView.SUB_SUBJECT}" /></td></tr>
 		<tr><th>메인 배너 업로드</th><td><input type="button" value="찾아보기" onClick="uploadImg('banner');" /></td></tr>
-		<tr><th>메인 배너 이미지명</th><td><div id="previewbannerText">${promotionVO.BANNER}</div></td></tr>
+		<tr><th>메인 배너 이미지명</th><td><div id="previewbannerText">${promotionView.BANNER}</div></td></tr>
 		<tr><th>메인 배너 미리보기</th>
 			<td>
-				<img src="/promotion_images/${promotionVO.banner}" id="previewbannerImg" width="300" height="300" />
+				<img src="/promotion_images/${promotionView.BANNER}" id="previewbannerImg" width="300" height="300" />
 			</td></tr>
 		<%-- <tr>
 			<th>시작일자 ~ 종료일자</th>
@@ -97,7 +97,7 @@
 					</c:forEach>
 				</select>
 			</td>
-		</tr> --%>
+		</tr>
 		<tr>
 			<th>구분자 개수</th>
 			<td>
@@ -115,7 +115,7 @@
 				</select>
 				&nbsp;&nbsp;<input type="button" value="구분자 생성" onClick="createPartition();" />
 			</td>
-		</tr>
+		</tr> --%>
 	</table>
 	<hr />
 	<!-- 구분자 섹션 -->
@@ -124,7 +124,7 @@
 			<tr><th>Summary 배너 업로드</th><th>Summary 배너 이미지명</th><th>Summary 배너 미리보기</th></tr>
 			<tr>
 				<td><input type="button" value="찾아보기" onClick="uploadImg('Summary${outnum.count}');" /></td>
-				<td><div id="previewSummary${outnum.count}Text"></div></td>
+				<td><div id="previewSummary${outnum.count}Text">${summary.SUMMARY}</div></td>
 				<td><img src="/promotion_images/${summary.SUMMARY}" id="previewSummary${outnum.count}Img" width="300" height="300" />
 			<tr>
 			<tr><td colspan="3" style="background:black;"></td></tr>
@@ -148,11 +148,12 @@
 		<hr />
 	</c:forEach>
 	<div id="hiddenimage">
-		<c:if test="${not empty promotionVO.banner}">
-			<input type="hidden" name="banner" value="${promotionVO.banner}" />
-		</c:if>
+		<input type="hidden" name="banner" value="${promotionView.BANNER}" />
+			<c:forEach items="${summary}" var="summary" varStatus="outnum" >
+				<input type="hidden" name="Summary${outnum.count}" value="${summary.SUMMARY}" />
+			</c:forEach>
 	</div>
-	<input type="submit" value="프로모션 등록" />
+	<input type="submit" value="프로모션 수정" />
 	<input type="button" value="프로모션 목록" onClick="location.href='promotionList'" />
 </form>
 

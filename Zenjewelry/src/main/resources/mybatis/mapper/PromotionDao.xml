@@ -46,7 +46,7 @@
 	
 	<select id="getPromotionDetail" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL getPromotionDetail_zen(
-			#{prmseq}, #{outnumber},
+			#{prmseq},
 			#{ref_cursor1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=promotionMap},
 			#{ref_cursor2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=promotionMap2}
 		)}

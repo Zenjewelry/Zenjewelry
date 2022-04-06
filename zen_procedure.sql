@@ -1212,7 +1212,8 @@ begin
         select * from (
             select * from (
                 select rownum as rn, q.* from
-                   ((select * from promotion_view where main_subject like '%'||p_key||'%' or sub_subject like '%'||p_key||'%' order by prmseq desc) q)
+                   ((select distinct prmseq, banner, main_subject, sub_subject from promotion_view 
+                   where main_subject like '%'||p_key||'%' or sub_subject like '%'||p_key||'%' order by prmseq desc) q)
             ) where rn >= p_startNum
         ) where rn <= p_endNum;
 end;
@@ -1221,12 +1222,10 @@ end;
 
 create or replace procedure getPromotionDetail_zen(
     p_prmseq in promotions.prmseq%type,
-    p_outnum out number,
     p_cur1 out sys_refcursor,
     p_cur2 out sys_refcursor
 )
 is
-    v_outnum number;
 begin
     open p_cur1 for
         select * from promotion_view where prmseq = p_prmseq;
@@ -1235,9 +1234,6 @@ begin
         select p.*, pp.prmseq, pp.outnumber, pp.prmprice, pp.summary 
         from promotion_products pp, products p 
         where pp.prmseq = p_prmseq and p.pseq = pp.pseq order by pp.outnumber;
-        
-    select max(outnumber) into v_outnum from promotion_products where prmseq = p_prmseq;
-    p_outnum := v_outnum;
 end;
 
 

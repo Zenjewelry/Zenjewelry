@@ -579,7 +579,7 @@ alter table promotion_products add prmprice number(10) not null
 
 create or replace view promotion_view
 as
-select p.prmseq, p.banner, p.main_subject, p.sub_subject, p.sdate, p.edate, ps.outnumber, ps.summary
+select p.prmseq, p.banner, p.main_subject, p.sub_subject, p.sdate, p.edate
 from promotions p, promotion_products ps 
 where p.prmseq = ps.prmseq;
 
@@ -599,7 +599,7 @@ delete from promotions;
 delete from promotion_products;
 
 alter table members add useyn varchar2(10) default 'y' not null;
-
+alter table members add grade varchar2(10)
 alter table members drop column useyn;
 
 
@@ -610,4 +610,8 @@ select * from products
 select distinct outnumber, summary from promotion_products where prmseq = 14;
 
 
+select * from members where id='two';
 
+update members set useyn='y';
+
+update members set grade='';

@@ -172,12 +172,12 @@ function uploadedDetailImg(){
 
 
 
-function delete_mem(){
+function delete_mem(id){
 	var answer = confirm("회원을 삭제하시겠습니까?");
 	if( answer==false ){
 		return false;
 	}else{
-	return true;
+		location.href="adminDeleteMember?id=" + id;
 	}
 }
 
