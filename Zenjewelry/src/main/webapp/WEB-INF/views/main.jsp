@@ -11,7 +11,7 @@
 			<div id="ct">
 				<img src="images/arrow_prev.png" class="rolPBtn" id="prevPromotion" />
 					<div id="mainPromotionView">
-						<div id="promotionsBox" style="width:${promotionListSize*1280}px;">
+						<div id="promotionsBox" style="width:${promotionListSize*1280}px; height:540px;">
 							<c:forEach items="${promotionList}" var="prmList" varStatus="index">
 								<a href="promotionDetail?prmseq=${prmList.PRMSEQ}">
 									<div class="promotionBox">
