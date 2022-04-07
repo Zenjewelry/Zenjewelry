@@ -60,8 +60,6 @@ public class ProductService {
 		pdao.AllCountProduct(paramMap);		
 	}
 
-
-	}
 	public void getMainPromotionList(HashMap<String, Object> paramMap) {
 		pdao.getMainPromotionList(paramMap);
 
