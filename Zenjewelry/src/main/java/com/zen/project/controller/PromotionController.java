@@ -296,4 +296,18 @@ public class PromotionController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/adminPromotionManagement", method=RequestMethod.POST)
+	public String adminPromotionManagement(@RequestParam("apm") String apm,
+			@RequestParam("result") String result,
+			HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("loginAdmin")==null) return "admin/adminLoginForm";
+		
+		ps.changeLive(apm, result);
+		
+		return "redirect:/promotionList?sub='y'";
+	}
+	
 }

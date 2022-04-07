@@ -1283,6 +1283,18 @@ end;
 
 
 
+create or replace procedure changeLive_zen(
+    p_apm varchar2,
+    p_prmseq promotions.prmseq%type
+)
+is
+begin
+    update promotions set live = p_apm where prmseq = p_prmseq;
+    commit;
+end;
+
+
+
 
 
 

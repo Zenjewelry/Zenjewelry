@@ -65,4 +65,8 @@
 		)}
 	</insert>
 	
+	<insert id="changeLive" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL changeLive_zen(#{param1}, #{param2})}
+	</insert>
+	
 </mapper>

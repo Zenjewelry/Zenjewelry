@@ -46,4 +46,8 @@ public class PromotionService {
 	public void updatePromotion(HashMap<String, Object> paramMap) {
 		pdao.updatePromotion(paramMap);
 	}
+
+	public void changeLive(String apm, String result) {
+		pdao.changeLive(apm, result);
+	}
 }
