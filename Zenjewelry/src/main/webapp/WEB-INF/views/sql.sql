@@ -575,7 +575,7 @@ create table promotion_products(
 	prmprice number(10) not null
 );
 
-alter table promotion_products add prmprice number(10) not null
+alter table promotion_products add prmprice number(10) not null;
 alter table promotions add live varchar(10) default 'none';
 
 create or replace view promotion_view
