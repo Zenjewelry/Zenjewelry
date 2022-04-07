@@ -2,59 +2,30 @@
 <%@ include file="../include/headerfooter/header.jsp" %>
 
 <article>
-<h1>프로모션 조회/수정</h1><br>
-
 <form name="frm" action="updatePromotion" method="post">
-	<input type="hidden" name="prmseq" value="${promotionView.PRMSEQ}" />
-	<table id="cartList">
-		<tr><th>메인 기획전명</th><td><input type="text" name="main_subject" value="${promotionView.MAIN_SUBJECT}" /></td></tr>
-		<tr><th>서브 기획전명</th><td><input type="text" name="sub_subject" value="${promotionView.SUB_SUBJECT}" /></td></tr>
-		<tr><th>메인 배너 업로드</th><td><input type="button" value="찾아보기" onClick="uploadImg('banner');" /></td></tr>
-		<tr><th>메인 배너 이미지명</th><td><div id="previewbannerText">${promotionView.BANNER}</div></td></tr>
-		<tr><th>메인 배너 미리보기</th>
-			<td>
-				<img src="/promotion_images/${promotionView.BANNER}" id="previewbannerImg" width="300" height="300" />
-			</td></tr>
-	</table>
-	<hr />
+	<img src="/promotion_images/${promotionView.BANNER}" id="previewbannerImg" width="1920" height="810" />
 	<!-- 구분자 섹션 -->
 	<c:forEach items="${summary}" var="summary" varStatus="outnum">
-		<table>
-			<tr><th>Summary 배너 업로드</th><th>Summary 배너 이미지명</th><th>Summary 배너 미리보기</th></tr>
-			<tr>
-				<td><input type="button" value="찾아보기" onClick="uploadImg('Summary${outnum.count}');" /></td>
-				<td><div id="previewSummary${outnum.count}Text">${summary.SUMMARY}</div></td>
-				<td><img src="/promotion_images/${summary.SUMMARY}" id="previewSummary${outnum.count}Img" width="300" height="300" />
-			<tr>
-			<tr><td colspan="3" style="background:black;"></td></tr>
-			<tr>
-				<th>상품코드</th>
-				<td><input type="text" id="find_pseq${outnum.count}" onChange="findProduct('${outnum.count}');"/></td>
-				<td><div id="product_name${outnum.count}"></div><input type="button" value="추가" onClick="addProduct('${outnum.count}');" /></td>
-			</tr>
-		</table>
-		<div id="partition${outnum.count}">
+		<div style="width:100%; height:200px; background-color:#e9e5da;">
+			<img src="/promotion_images/${summary.SUMMARY}" />
+		</div>
+			<!-- 구분자별 상품 -->
+		<div>
 			<c:forEach items="${promotionProductList}" var="pp">
 				<c:if test="${pp.OUTNUMBER == outnum.count}">
-					<p>
-						<input type="checkbox" name="pseq${outnum.count}" value="${pp.PSEQ}" checked />&nbsp;&nbsp;
-						${pp.NAME}&nbsp;&nbsp;
-						<input type="text" name="price2${outnum.count}" value="${pp.PRMPRICE}" />
-					</p>
+					<a href="productDetail?pseq=${pp.PSEQ}">
+						<div id="items">
+							<img src="product_images/${pp.IMAGE}" id="imgtest"/>
+							<div class="listText">${pp.NAME}</div>
+							<div class="listText1">${pp.CONTENT}</div><br>
+							<div class="listText2"><fmt:formatNumber value="${pp.PRMPRICE}" type="currency"/></div>
+						</div>
+					</a>
 				</c:if>
 			</c:forEach>
 		</div>
 		<hr />
 	</c:forEach>
-	<div id="hiddenimage">
-		<input type="hidden" name="banner" value="${promotionView.BANNER}" />
-			<c:forEach items="${summary}" var="summary" varStatus="outnum" >
-				<input type="hidden" name="Summary${outnum.count}" value="${summary.SUMMARY}" />
-			</c:forEach>
-	</div>
-	<input type="hidden" name="outnumber" value="${outnumber}" />
-	<input type="submit" value="프로모션 수정" />
-	<input type="button" value="프로모션 목록" onClick="location.href='promotionList'" />
 </form>
 
 </article>
