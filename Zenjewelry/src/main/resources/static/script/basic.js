@@ -200,14 +200,7 @@ $(function(){
 		/*console.log(size);*/
 	});
 	
-	$('#promotionsBox:nth-of-type(1)').hover(
-		function(){/*마우스엔터*/
-			$(this).css('transform', 'scale(1.03)').css('transition', '300ms');
-		},
-		function(){/*마우스리브*/
-			$(this).css('transform', 'scale(1)');
-		}
-	);
+	
 	
 	$('.rolPBtn').hover(
 		function(){/*마우스엔터*/
