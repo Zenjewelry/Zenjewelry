@@ -1295,6 +1295,17 @@ end;
 
 
 
+create or replace procedure getPromotionViewList_zen(
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from promotions where live = 'main';
+end;
+
+
+
 
 
 

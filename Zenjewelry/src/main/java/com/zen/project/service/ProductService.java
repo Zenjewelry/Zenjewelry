@@ -48,4 +48,8 @@ public class ProductService {
 	public void deleteProductQna(int qna_num) {
 		pdao.deleteProductQna(qna_num);
 	}
+
+	public void getMainPromotionList(HashMap<String, Object> paramMap) {
+		pdao.getMainPromotionList(paramMap);
+	}
 }

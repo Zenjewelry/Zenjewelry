@@ -16,5 +16,6 @@ public interface IProductDao {
 	void insertProductQna(HashMap<String, Object> paramMap);
 	void getProductQna(HashMap<String, Object> paramMap);
 	void deleteProductQna(int qna_num);
+	void getMainPromotionList(HashMap<String, Object> paramMap);
 
 }

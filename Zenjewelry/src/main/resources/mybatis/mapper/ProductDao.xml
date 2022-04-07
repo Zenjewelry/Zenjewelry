@@ -67,4 +67,10 @@
 		{CALL deleteProductQna_zen(#{param1})}
 	</delete>
 	
+	<select id="getMainPromotionList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getMainPromotionList_zen(
+			#{promotion, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
 </mapper>
