@@ -59,7 +59,7 @@
 		)}
 	</select>
 	
-	<insert id="updatePromotion" statementType="CALLABLE">
+	<insert id="updatePromotion" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL updatePromotion_zen(
 			#{prmVO.prmseq}, #{prmVO.banner}, #{prmVO.main_subject}, #{prmVO.sub_subject}
 		)}

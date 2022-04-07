@@ -154,6 +154,7 @@
 				<input type="hidden" name="Summary${outnum.count}" value="${summary.SUMMARY}" />
 			</c:forEach>
 	</div>
+	<input type="hidden" name="outnumber" value="${outnumber}" />
 	<input type="submit" value="프로모션 수정" />
 	<input type="button" value="프로모션 목록" onClick="location.href='promotionList'" />
 </form>

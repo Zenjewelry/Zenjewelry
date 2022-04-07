@@ -246,10 +246,11 @@ public class PromotionController {
 			
 			ArrayList<HashMap<String, Object>> summary
 			= (ArrayList<HashMap<String, Object>>)paramMap.get("summary");
-			
+			System.out.println(summary.size());
 			mav.addObject("promotionView", promotionView.get(0));
 			mav.addObject("promotionProductList", promotionProductList);
 			mav.addObject("summary", summary);
+			mav.addObject("outnumber", summary.size());
 			mav.setViewName("admin/promotion/editPromotion");
 		}
 		return mav;
@@ -257,7 +258,8 @@ public class PromotionController {
 	
 	@RequestMapping(value="/updatePromotion", method=RequestMethod.POST)
 	public ModelAndView updatePromotion(HttpServletRequest request,
-			@ModelAttribute("promotionVO") PromotionVO promotionVO) {
+			@ModelAttribute("promotionVO") PromotionVO promotionVO,
+			@RequestParam("outnumber") int outnumber) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -268,10 +270,11 @@ public class PromotionController {
 			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("prmVO", promotionVO);
+			paramMap.put("prmseq", promotionVO.getPrmseq());
 			
 			ps.updatePromotion(paramMap);
 			
-			for(int i=1; i<=promotionVO.getOutnumber(); i++) {
+			for(int i=1; i<=outnumber; i++) {
 				String pseq = "pseq" + i;
 				String [] pseqArr = request.getParameterValues(pseq);
 				
