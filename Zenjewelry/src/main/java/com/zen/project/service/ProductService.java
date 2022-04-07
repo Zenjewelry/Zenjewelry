@@ -48,4 +48,13 @@ public class ProductService {
 	public void deleteProductQna(int qna_num) {
 		pdao.deleteProductQna(qna_num);
 	}
+
+	public void productAll(HashMap<String, Object> paramMap) {
+		pdao.productAll(paramMap);
+		
+	}
+
+	public void AllCountProduct(HashMap<String, Object> paramMap) {
+		pdao.AllCountProduct(paramMap);		
+	}
 }

@@ -1265,7 +1265,33 @@ end;
 
 
 
+create or replace procedure productAll_zen(
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, p.* from
+                    ((select * from products) p)
+            ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
 
+
+
+create or replace procedure AllCountProduct_zen(
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from products;
+    p_cnt := v_cnt;
+end;
 
 
 
