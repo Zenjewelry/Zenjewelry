@@ -119,7 +119,6 @@ public class PromotionController {
 				eeDate = sdf.parse(endDate);
 				sDate = new java.sql.Date(ssDate.getTime());
 				eDate = new java.sql.Date(eeDate.getTime());
-				System.out.println(sDate + ", " + eDate);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -246,7 +245,7 @@ public class PromotionController {
 			
 			ArrayList<HashMap<String, Object>> summary
 			= (ArrayList<HashMap<String, Object>>)paramMap.get("summary");
-			System.out.println(summary.size());
+			
 			mav.addObject("promotionView", promotionView.get(0));
 			mav.addObject("promotionProductList", promotionProductList);
 			mav.addObject("summary", summary);
@@ -308,6 +307,41 @@ public class PromotionController {
 		ps.changeLive(apm, result);
 		
 		return "redirect:/promotionList?sub='y'";
+	}
+	
+	@RequestMapping("/promotionDetail")
+	public ModelAndView promotionDetail(@RequestParam("prmseq") int prmseq,
+			HttpServletRequest request, Model model) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("prmseq", prmseq);
+		paramMap.put("ref_cursor1", null);
+		paramMap.put("ref_cursor2", null);
+		
+		ps.getPromotionDetail(paramMap);
+		
+		paramMap.put("summary", null);
+		ps.getSummary(paramMap);
+
+		ArrayList<HashMap<String, Object>> promotionView
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
+		
+		ArrayList<HashMap<String, Object>> promotionProductList
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
+		
+		ArrayList<HashMap<String, Object>> summary
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("summary");
+		
+		mav.addObject("promotionView", promotionView.get(0));
+		mav.addObject("promotionProductList", promotionProductList);
+		mav.addObject("summary", summary);
+		mav.addObject("outnumber", summary.size());
+		mav.setViewName("promotion/promotionDetail");
+		
+		return mav;
 	}
 	
 }

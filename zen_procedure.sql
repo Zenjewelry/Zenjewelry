@@ -1331,3 +1331,13 @@ begin
         ) where rn<=p_endNum;
 end;
 
+
+create or replace procedure getMainPromotionList_zen(
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from promotions where live = 'main';
+end;
+
