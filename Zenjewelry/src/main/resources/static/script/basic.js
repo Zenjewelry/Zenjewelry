@@ -202,7 +202,7 @@ $(function(){
 	
 	$('#promotionsBox:nth-of-type(1)').hover(
 		function(){/*마우스엔터*/
-			$(this).css('transform', 'scale(1.1)').css('transition', '300ms');
+			$(this).css('transform', 'scale(1.03)').css('transition', '300ms');
 		},
 		function(){/*마우스리브*/
 			$(this).css('transform', 'scale(1)');
