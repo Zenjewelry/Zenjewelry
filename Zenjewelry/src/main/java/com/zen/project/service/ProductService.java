@@ -56,7 +56,10 @@ public class ProductService {
 	}
 
 	public void AllCountProduct(HashMap<String, Object> paramMap) {
-		pdao.AllCountProduct(paramMap);
+
+		pdao.AllCountProduct(paramMap);		
+	}
+
 
 	}
 	public void getMainPromotionList(HashMap<String, Object> paramMap) {

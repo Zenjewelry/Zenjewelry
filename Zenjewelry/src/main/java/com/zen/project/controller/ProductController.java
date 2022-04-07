@@ -50,7 +50,6 @@ public class ProductController {
 		model.addAttribute("bestListSize", bestList.size()*320);
 		model.addAttribute("promotionList", promotionList);
 		model.addAttribute("promotionListSize", promotionList.size());
-		System.out.println(promotionList.size());
 		
 		return "main";
 	}
