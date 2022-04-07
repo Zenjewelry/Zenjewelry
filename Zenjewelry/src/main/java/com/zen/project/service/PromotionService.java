@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zen.project.dao.IPromotionDao;
 
@@ -39,5 +40,14 @@ public class PromotionService {
 
 	public void getSummary(HashMap<String, Object> paramMap) {
 		pdao.getSummary(paramMap);
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public void updatePromotion(HashMap<String, Object> paramMap) {
+		pdao.updatePromotion(paramMap);
+	}
+
+	public void changeLive(String apm, String result) {
+		pdao.changeLive(apm, result);
 	}
 }

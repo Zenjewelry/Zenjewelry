@@ -7,6 +7,13 @@
 
 <form name="frm" method="post">
 
+<label>노출 관리</label>
+<select name="apm"><!-- adminPromotionManagement -->
+	<option value="none">비노출</option>
+	<option value="main">메인노출</option>
+</select>
+<input type="button" value="적용" onClick="adminPromotionManagement();" />
+
 <table id="cartList2">
 	<tr><th>(선택)프로모션 번호</th><th>메인 카피라이트</th><th>서브 카피라이트</th><th>메인배너 미리보기</th></tr>
 	<c:forEach items="${promotionList}" var="promotionVO">

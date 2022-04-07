@@ -248,14 +248,19 @@ function message(msg){
 			alert(msg);
 		}
 
-
-
-
-
 var selectBoxChange = function(value){
 		console.log("값변경테스트 : "+value);
 		$("#changeInput").val(value);
 }
+
+function adminPromotionManagement(){
+	document.frm.action = 'adminPromotionManagement';
+	document.frm.submit();
+}
+
+
+
+
 
 
 

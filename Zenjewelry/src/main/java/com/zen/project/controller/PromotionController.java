@@ -246,10 +246,11 @@ public class PromotionController {
 			
 			ArrayList<HashMap<String, Object>> summary
 			= (ArrayList<HashMap<String, Object>>)paramMap.get("summary");
-			
+			System.out.println(summary.size());
 			mav.addObject("promotionView", promotionView.get(0));
 			mav.addObject("promotionProductList", promotionProductList);
 			mav.addObject("summary", summary);
+			mav.addObject("outnumber", summary.size());
 			mav.setViewName("admin/promotion/editPromotion");
 		}
 		return mav;
@@ -257,7 +258,8 @@ public class PromotionController {
 	
 	@RequestMapping(value="/updatePromotion", method=RequestMethod.POST)
 	public ModelAndView updatePromotion(HttpServletRequest request,
-			@ModelAttribute("promotionVO") PromotionVO promotionVO) {
+			@ModelAttribute("promotionVO") PromotionVO promotionVO,
+			@RequestParam("outnumber") int outnumber) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -265,16 +267,14 @@ public class PromotionController {
 		
 		if(session.getAttribute("loginAdmin")==null) mav.setViewName("admin/adminLoginForm");
 		else {
-			String startDate = request.getParameter("sYear") + "-" + request.getParameter("sMonth") + "-" + request.getParameter("sDay") + " 00:00:00";
-			String endDate = request.getParameter("eYear") + "-" + request.getParameter("eMonth") + "-" + request.getParameter("eDay") + " 23:59:59";
 			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("prmVO", promotionVO);
-			paramMap.put("prmseq", null);
+			paramMap.put("prmseq", promotionVO.getPrmseq());
 			
-			ps.insertPromotion(paramMap);
+			ps.updatePromotion(paramMap);
 			
-			for(int i=1; i<=promotionVO.getOutnumber(); i++) {
+			for(int i=1; i<=outnumber; i++) {
 				String pseq = "pseq" + i;
 				String [] pseqArr = request.getParameterValues(pseq);
 				
@@ -294,6 +294,20 @@ public class PromotionController {
 			mav.setViewName("redirect:/promotionList");
 		}
 		return mav;
+	}
+	
+	@RequestMapping(value="/adminPromotionManagement", method=RequestMethod.POST)
+	public String adminPromotionManagement(@RequestParam("apm") String apm,
+			@RequestParam("result") String result,
+			HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("loginAdmin")==null) return "admin/adminLoginForm";
+		
+		ps.changeLive(apm, result);
+		
+		return "redirect:/promotionList?sub='y'";
 	}
 	
 }

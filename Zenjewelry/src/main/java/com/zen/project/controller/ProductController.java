@@ -32,16 +32,24 @@ public class ProductController {
 		paramMap.put("ref_cursor2", null);
 		ps.getBestNewProduct(paramMap);
 		
+		paramMap.put("promotion", null);
+		ps.getMainPromotionList(paramMap);
+		
 		ArrayList<HashMap<String, Object>> bestList
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
 		
 		ArrayList<HashMap<String, Object>> newList
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
 		
+		ArrayList<HashMap<String, Object>> promotionList
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
+		
 		model.addAttribute("newList", newList);
 		model.addAttribute("bestList", bestList);
 		model.addAttribute("newListSize", newList.size()*320);
 		model.addAttribute("bestListSize", bestList.size()*320);
+		model.addAttribute("promotionList", promotionList);
+		model.addAttribute("promotionListSize", promotionList.size());
 		
 		return "main";
 	}

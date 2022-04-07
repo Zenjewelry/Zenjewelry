@@ -59,4 +59,14 @@
 		)}
 	</select>
 	
+	<insert id="updatePromotion" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL updatePromotion_zen(
+			#{prmVO.prmseq}, #{prmVO.banner}, #{prmVO.main_subject}, #{prmVO.sub_subject}
+		)}
+	</insert>
+	
+	<insert id="changeLive" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL changeLive_zen(#{param1}, #{param2})}
+	</insert>
+	
 </mapper>
