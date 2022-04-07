@@ -4,6 +4,13 @@
 <article style="width: 1600px;">
 <h2> Item&nbsp;&nbsp;</h2>
 <input style=float:left type="button" value="전체상품보기" onClick="location.href='/productAll'" />
+<c:when test="${not empty kind}">
+		<jsp:include page="../include/page/pagingForProduct.jsp">
+			<input style=float:left type="button" value="낮은 가격순" onClick="location.href='/productAll'" />
+			<input style=float:left type="button" value="높은 가격순" onClick="location.href='/productAll'" />
+		</jsp:include>
+	</c:when>
+
 <br><br>
 <div style="margin-left:100px;">
 <c:forEach items="${productList}"  var="productVO" >
