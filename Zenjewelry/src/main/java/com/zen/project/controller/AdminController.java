@@ -675,14 +675,14 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginAdmin")==null) return "admin/adminLoginForm";
 		
-			System.out.println(id);
-			System.out.println(useyn);
-			System.out.println(grade);
-		
-		
-			as.saveOptionMember(id);
-			as.saveOptionMember(useyn);
-			as.saveOptionMember(grade);
+//			System.out.println(id);
+//			System.out.println(useyn);
+//			System.out.println(grade);
+//		
+//		
+//			as.saveOptionMember(id);
+//			as.saveOptionMember(useyn);
+//			as.saveOptionMember(grade);
 			
 			model.addAttribute("message", "저장되었습니다.");
 		

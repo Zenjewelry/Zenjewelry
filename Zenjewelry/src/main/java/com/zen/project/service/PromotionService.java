@@ -40,4 +40,8 @@ public class PromotionService {
 	public void getSummary(HashMap<String, Object> paramMap) {
 		pdao.getSummary(paramMap);
 	}
+
+	public void updatePromotion(HashMap<String, Object> paramMap) {
+		pdao.updatePromotion(paramMap);
+	}
 }

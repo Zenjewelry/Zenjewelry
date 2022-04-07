@@ -1196,7 +1196,7 @@ BEGIN
     insert into members(useyn,grade)
     values( p_useyn, p_grade);
     commit;    
-    update members set useyn = p_useyn, grade = p_grade
+    update members set useyn = p_useyn, grade = p_grade;
     commit;
 END;
 
@@ -1260,6 +1260,13 @@ begin
     open p_summary for
         select distinct outnumber, summary from promotion_products where prmseq = p_prmseq order by outnumber;
 end;
+
+
+
+
+
+-- 04/06
+
 
 
 

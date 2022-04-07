@@ -265,14 +265,11 @@ public class PromotionController {
 		
 		if(session.getAttribute("loginAdmin")==null) mav.setViewName("admin/adminLoginForm");
 		else {
-			String startDate = request.getParameter("sYear") + "-" + request.getParameter("sMonth") + "-" + request.getParameter("sDay") + " 00:00:00";
-			String endDate = request.getParameter("eYear") + "-" + request.getParameter("eMonth") + "-" + request.getParameter("eDay") + " 23:59:59";
 			
 			HashMap<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("prmVO", promotionVO);
-			paramMap.put("prmseq", null);
 			
-			ps.insertPromotion(paramMap);
+			ps.updatePromotion(paramMap);
 			
 			for(int i=1; i<=promotionVO.getOutnumber(); i++) {
 				String pseq = "pseq" + i;

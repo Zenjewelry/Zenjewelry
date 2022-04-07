@@ -59,4 +59,10 @@
 		)}
 	</select>
 	
+	<insert id="updatePromotion" statementType="CALLABLE">
+		{CALL updatePromotion_zen(
+			#{prmVO.prmseq}, #{prmVO.banner}, #{prmVO.main_subject}, #{prmVO.sub_subject}
+		)}
+	</insert>
+	
 </mapper>

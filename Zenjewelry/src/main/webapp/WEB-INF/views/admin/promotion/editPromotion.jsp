@@ -11,6 +11,7 @@
 </c:if>
 
 <form name="frm" action="updatePromotion" method="post">
+	<input type="hidden" name="prmseq" value="${promotionView.PRMSEQ}" />
 	<table id="cartList">
 		<tr><th>메인 기획전명</th><td><input type="text" name="main_subject" value="${promotionView.MAIN_SUBJECT}" /></td></tr>
 		<tr><th>서브 기획전명</th><td><input type="text" name="sub_subject" value="${promotionView.SUB_SUBJECT}" /></td></tr>
