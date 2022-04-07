@@ -10,7 +10,7 @@
 function ID(){
 	if(document.formm.numCheck.value != document.formm.checkNum.value){
 		alert('인증번호가 다릅니다.')
-		false;
+		return
 	}else{
 		document.formm.action='ID';
 		document.formm.submit();
@@ -58,7 +58,7 @@ function ID(){
 			<input type="hidden" name="checkNum" value="${checkNum}" >
 		</tr>
 		<tr>
-			<td width="430" bgcolor="#FFFFFF"><h3><input type="submit" value="인증번호 확인" onClick="ID()"></h3></td>
+			<td width="430" bgcolor="#FFFFFF"><h3><input type="button" value="인증번호 확인" onClick="ID()"></h3></td>
 		</tr>
 	</table>
 </form>

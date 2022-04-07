@@ -3,7 +3,7 @@
 
 <article style="width: 1600px;">
 <h2> Item&nbsp;&nbsp;</h2>
-<input style=float:left type="button" value="전체상품보기" onClick="productList'" />
+<input style=float:left type="button" value="전체상품보기" onClick="location.href='/productAll'" />
 <br><br>
 <div style="margin-left:100px;">
 <c:forEach items="${productList}"  var="productVO" >
@@ -29,9 +29,14 @@
 			<jsp:param name="command" value="bestProductList" />
 		</jsp:include>
 	</c:when>
+	<c:when test="${not empty all}">
+		<jsp:include page="../include/page/paging.jsp">
+			<jsp:param name="command" value="productAll" />
+		</jsp:include>
+	</c:when>
 	<c:otherwise>
 		<jsp:include page="../include/page/paging.jsp">
-			<jsp:param name="command" value="productList" />
+			<jsp:param name="command" value="productAll" />
 		</jsp:include>
 	</c:otherwise>
 </c:choose>

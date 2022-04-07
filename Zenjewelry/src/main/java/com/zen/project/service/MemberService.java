@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zen.project.dao.IMemberDao;
 
@@ -23,11 +24,13 @@ public class MemberService {
 		
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void insertMember(HashMap<String, Object> paramMap) {
 		mdao.insertMember( paramMap );
 		
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void updateMember(HashMap<String, Object> paramMap) {
 		mdao.updateMember( paramMap );
 	}
@@ -46,6 +49,7 @@ public class MemberService {
 		
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public void selectPwd(HashMap<String, Object> paramMap) {
 		mdao.selectPwd(paramMap);
 	}

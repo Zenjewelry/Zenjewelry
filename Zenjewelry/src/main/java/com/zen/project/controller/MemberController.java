@@ -145,6 +145,7 @@ public class MemberController {
 			BindingResult result,
 			@RequestParam(value="reid", required=false) String reid,
 			@RequestParam(value="pwdCheck", required=false) String pwdCheck,
+			@RequestParam(value="num", required=false) String num,
 			HttpServletRequest request,
 			Model model ) {
 		
@@ -152,6 +153,9 @@ public class MemberController {
 				
 		if( result.getFieldError("id") != null ) {
 			model.addAttribute("message", result.getFieldError("id").getDefaultMessage() );
+			return "member/joinForm";
+		} else if(  num == null ) {
+			model.addAttribute("message", "이메일 인증을 해주세요." );
 			return "member/joinForm";
 		} else if( result.getFieldError("pwd") != null ) {
 			model.addAttribute("message", result.getFieldError("pwd").getDefaultMessage() );
@@ -162,7 +166,7 @@ public class MemberController {
 		} else if( result.getFieldError("email") != null ) {
 			model.addAttribute("message", result.getFieldError("email").getDefaultMessage() );
 			return "member/joinForm";
-		} else if( result.getFieldError("phone") != null ) {
+		}  else if( result.getFieldError("phone") != null ) {
 			model.addAttribute("message", result.getFieldError("phone").getDefaultMessage() );
 			return "member/joinForm";
 		} else if( reid == null || (   reid != null && !reid.equals(membervo.getId() )  )  ) {

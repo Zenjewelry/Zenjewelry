@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.zen.project.dto.Paging;
+import com.zen.project.dto.PagingforProduct;
 import com.zen.project.dto.Product_QnaVO;
 import com.zen.project.service.ProductService;
 
@@ -90,7 +90,7 @@ public class ProductController {
 			session.removeAttribute("key");
 		}
 		
-		Paging paging = new Paging();
+		PagingforProduct paging = new PagingforProduct();
 		paging.setPage(page);
 		paramMap.put("count", 0);
 		paramMap.put("command", kind);
@@ -141,7 +141,7 @@ public class ProductController {
 			session.removeAttribute("key");
 		}
 		
-		Paging paging = new Paging();
+		PagingforProduct paging = new PagingforProduct();
 		paging.setPage(page);
 		paramMap.put("count", 0);
 		ps.getBestAllCount(paramMap);
@@ -236,6 +236,58 @@ public class ProductController {
 		mav.setViewName("redirect:/productDetail");
 		
 		return mav;
+	}
+	
+	@RequestMapping("/productAll")
+	public String productAll(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		
+		model.addAttribute("all", "y");
+		
+		if(request.getParameter("sub")!=null) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}
+		int page = 1;
+		String key = "";
+		
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("page", page);
+		}else if(session.getAttribute("page") != null) {
+			page = (Integer)session.getAttribute("page");
+		}else {
+			session.removeAttribute("page");
+		}
+		
+		if(request.getParameter("key") != null) {
+			key = request.getParameter("key");
+			session.setAttribute("key", key);
+		}else if(session.getAttribute("key") != null) {
+			key = (String)session.getAttribute("key");
+		}else {
+			session.removeAttribute("key");
+		}
+		
+		PagingforProduct paging = new PagingforProduct();
+		paging.setPage(page);
+		paramMap.put("count", 0);
+		ps.AllCountProduct(paramMap);
+		
+		paging.setTotalCount((Integer)paramMap.get("count"));
+		paging.paging();
+		paramMap.put("startNum", paging.getStartNum());
+		paramMap.put("endNum", paging.getEndNum());
+		paramMap.put("ref_cursor", null);
+		ps.productAll(paramMap);
+		
+		ArrayList<HashMap<String, Object>> productList
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+		
+		model.addAttribute("productList", productList);
+		model.addAttribute("paging", paging);
+		return "product/productList";
 	}
 	
 }

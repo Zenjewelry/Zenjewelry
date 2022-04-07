@@ -56,7 +56,7 @@ function change_Pwd(){
 				<input type="hidden" name="checkNum" value="${checkNum}" >
 			</tr>
 			<tr>
-				<td width="430" bgcolor="#FFFFFF"><h3><input type="submit" value="인증번호 확인" onClick="change_Pwd()"></h3></td>
+				<td width="430" bgcolor="#FFFFFF"><h3><input type="button" value="인증번호 확인" onClick="change_Pwd()"></h3></td>
 			</tr>
 		</table>
 	</form>

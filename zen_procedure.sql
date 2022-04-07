@@ -1196,7 +1196,7 @@ BEGIN
     insert into members(useyn,grade)
     values( p_useyn, p_grade);
     commit;    
-    update members set useyn = p_useyn, grade = p_grade;
+    update members set useyn = p_useyn, grade = p_grade
     commit;
 END;
 
@@ -1265,32 +1265,20 @@ end;
 
 
 
--- 04/06
--- promotion
-create or replace procedure updatePromotion_zen(
-    p_prmseq in promotion_products.prmseq%type,
-    p_banner in promotions.banner%type,
-    p_main_subject in promotions.main_subject%type,
-    p_sub_subject in promotions.sub_subject%type
+create or replace procedure productAll_zen(
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
 )
 is
 begin
-    update promotions set banner = p_banner, main_subject = p_main_subject, sub_subject = p_sub_subject where prmseq = p_prmseq;
-    
-    delete from promotion_products where prmseq = p_prmseq;
-    commit;
-end;
-
-
-
-create or replace procedure changeLive_zen(
-    p_apm varchar2,
-    p_prmseq promotions.prmseq%type
-)
-is
-begin
-    update promotions set live = p_apm where prmseq = p_prmseq;
-    commit;
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, p.* from
+                    ((select * from products) p)
+            ) where rn>=p_startNum
+        ) where rn<=p_endNum;
 end;
 
 
@@ -1307,9 +1295,15 @@ end;
 
 
 
-
-
-
+create or replace procedure AllCountProduct_zen(
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from products;
+    p_cnt := v_cnt;
+end;
 
 
 
