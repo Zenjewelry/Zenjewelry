@@ -383,3 +383,23 @@ table#cartList3 th, td {      text-align: center;  }
 	color:black; transition:300ms ease all;
 }
 .ddBtn:hover  a{color:#B3B3B3;}
+
+
+
+#promotionsBox{position:relative; height:540px;}
+.promotionBox{float:left; position:relative; height:540px; width:1280px;}
+.rolPBtn{float:left; width:80px; height:540px; line-height:540px; cursor:pointer; text-align:center;}
+#mainPromotionView{position:relative; width:1280px; height:540px; overflow:hidden; float:left;}
+
+
+
+
+
+
+
+
+
+
+
+
+

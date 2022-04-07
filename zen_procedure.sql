@@ -1295,7 +1295,7 @@ end;
 
 
 
-create or replace procedure getPromotionViewList_zen(
+create or replace procedure getMainPromotionList_zen(
     p_cur out sys_refcursor
 )
 is
