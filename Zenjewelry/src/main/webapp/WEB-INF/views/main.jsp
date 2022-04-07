@@ -4,12 +4,39 @@
 
 
 <!-- 메인 이미지 시작 -->
-<div id="main_img">
-	<img src="images/main_img.png" > 
-</div>
+
+<c:choose>
+	<c:when test="${not empty promotionList}">
+		<div id=itembox >
+			<div id="ct">
+				<img src="images/arrow_prev.png" class="rolPBtn" id="prevPromotion" />
+					<div id="mainPromotionView">
+						<div id="promotionsBox" style="width:${promotionListSize*1280}px;">
+							<c:forEach items="${promotionList}" var="prmList" varStatus="index">
+								<a href="promotionDetail?prmseq=${prmList.PRMSEQ}">
+									<div class="promotionBox">
+										<img src="/promotion_images/${prmList.BANNER}" />
+									</div>
+								</a>
+							</c:forEach>
+							<div>/${promotionListSize}</div>
+						</div>
+					</div>
+				<img src="images/arrow_next.png" class="rolPBtn" id="nextPromotion" /><input type="hidden" id="pnls" value="${promotionListSize*1280}" />
+			</div>
+		</div>
+	</c:when>
+	<c:otherwise>
+		<div id="main_img">
+			<img src="images/main_img.png" >
+		</div>
+	</c:otherwise>
+</c:choose>
+
+<div class="clear"></div>
 
 <!-- 신상품 --> 
-<div id=itembox>
+<div id=itembox >
 	<div id="ct">
 		<div id="boxtext1">NEW PRODUCT</div><br>
 		<div id="boxtext2">A NEW DESING</div>

@@ -42,7 +42,7 @@ public class ProductController {
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
 		
 		ArrayList<HashMap<String, Object>> promotionList
-		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("promotion");
 		
 		model.addAttribute("newList", newList);
 		model.addAttribute("bestList", bestList);
@@ -50,6 +50,7 @@ public class ProductController {
 		model.addAttribute("bestListSize", bestList.size()*320);
 		model.addAttribute("promotionList", promotionList);
 		model.addAttribute("promotionListSize", promotionList.size());
+		System.out.println(promotionList.size());
 		
 		return "main";
 	}

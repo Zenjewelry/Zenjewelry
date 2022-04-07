@@ -180,6 +180,50 @@ function deleteProductQna(){
 
 
 
+// 프로모션 jQuery
+$(function(){
+	var defPRol = 0;
+	$('#prevPromotion').click(function(){
+		if(defPRol!=0){
+			defPRol+=1280;
+			$('#promotionsBox').animate({left:defPRol}, 500);
+		}
+	});
+	
+	$('#nextPromotion').click(function(){
+		var size = $('#pnls').val();
+		var ck = defPRol - 1280;
+		if((size*-1)<ck){
+			defPRol-=1280;
+			$('#promotionsBox').animate({left:defPRol}, 500);
+		}
+		/*console.log(size);*/
+	});
+	
+	$('#promotionsBox:nth-of-type(1)').hover(
+		function(){/*마우스엔터*/
+			$(this).css('transform', 'scale(1.1)').css('transition', '300ms');
+		},
+		function(){/*마우스리브*/
+			$(this).css('transform', 'scale(1)');
+		}
+	);
+	
+	$('.rolPBtn').hover(
+		function(){/*마우스엔터*/
+			$(this).css('transform', 'scale(1.4)').css('transition', '300ms');
+		},
+		function(){/*마우스리브*/
+			$(this).css('transform', 'scale(1)');
+		}
+	);
+	
+});
+
+
+
+
+
 
 
 
