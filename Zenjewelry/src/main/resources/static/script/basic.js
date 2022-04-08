@@ -1,12 +1,12 @@
 function go_search(frm){
 	if(frm=="bdfrm" && document.bdfrm.key.value == "") alert("검색어를 입력하세요.");
-	else if(frm=="hdfrm" && document.hdfrm.searchProduct.value == "") alert("검색어를 입력하세요.");
+	else if(frm=="hdfrm" && document.hdfrm.key.value == "") alert("검색어를 입력하세요.");
 	else{
 		if(frm=="bdfrm"){
 			document.bdfrm.action = "boardList";
 			document.bdfrm.submit();
 		}else if(frm=="hdfrm"){
-			document.hdfrm.action = "productList";
+			document.hdfrm.action = "productList?kind=0";
 			document.hdfrm.submit();
 		}
 	}

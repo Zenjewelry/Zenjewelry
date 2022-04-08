@@ -64,4 +64,12 @@ public class ProductService {
 		pdao.getMainPromotionList(paramMap);
 
 	}
+
+	public void getSearchCount(HashMap<String, Object> paramMap) {
+		pdao.getSearchCount(paramMap);
+	}
+
+	public void getSearchProductList(HashMap<String, Object> paramMap) {
+		pdao.getSearchProductList(paramMap);
+	}
 }
