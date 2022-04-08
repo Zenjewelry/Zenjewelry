@@ -25,7 +25,7 @@ function check(){
 				<input type="hidden" name="checkNum" value="${checkNum}" >
 			</tr>
 			<tr>
-				<td width="430"><h3><input type="button" onClick="check();"></h3></td>
+				<td width="430"><h3>확인<input type="button" onClick="check();"></h3></td>
 			</tr>
 		</table>
 	</form>
