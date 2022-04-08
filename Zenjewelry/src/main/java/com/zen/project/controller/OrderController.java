@@ -59,14 +59,14 @@ public class OrderController {
 				
 				HashMap<String,Object> orderFirst = orderListByOseq.get(0);  // 주문 상품들 중 첫번째 주문 추출
 				orderFirst.put("PNAME",(String)orderFirst.get("PNAME")+"포함" + orderListByOseq.size()+"건");
-				// 추출한 첫번째 상품의 상품명을 "XXX 포함 X건"이라고 수정
-				int totalPrice = 0;
-				for( HashMap<String, Object> order : orderListByOseq ) {
-					totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
-									* Integer.parseInt( order.get("SELLPRICE").toString());
-				}
-				orderFirst.put("sellprice",totalPrice); // 추출한 첫번째 상품의 가격을 총 가격으로 수정
-				//  주변 번호별 대표 상품 (첫번째 상품)을 별도의 리스트로 모아서 model 에 저장
+//				// 추출한 첫번째 상품의 상품명을 "XXX 포함 X건"이라고 수정
+//				int totalPrice = 0;
+//				for( HashMap<String, Object> order : orderListByOseq ) {
+//					totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
+//									* Integer.parseInt( order.get("SELLPRICE").toString());
+//				}
+//				orderFirst.put("totalPrice",totalPrice); // 추출한 첫번째 상품의 가격을 총 가격으로 수정
+//				//  주변 번호별 대표 상품 (첫번째 상품)을 별도의 리스트로 모아서 model 에 저장
 				finalList.add(orderFirst);
 			}
 			mav.addObject("orderList",finalList);
@@ -95,9 +95,7 @@ public class OrderController {
 			paramMap.put("address2", loginUser.get("ADDRESS2"));
 
 			paramMap.put("oseq", 0);  // OUT 변수로 적용되어서 돌아올 방금 주문한 주문의 주문번호
-			System.out.println(paramMap);
 			os.insertOrder(paramMap);
-			System.out.println(paramMap);
 			// 아이디로 카트 검색 
 			// 검색내용으로 orders 와 order_detail 테이블에 레코드 추가 
 			// oseq 에 주문번호를 넣어 갖고 되돌아옵니다. 
@@ -255,7 +253,7 @@ public class OrderController {
 			paramMap.put("zip_num", loginUser.get("ZIP_NUM"));
 			paramMap.put("address2", loginUser.get("ADDRESS2"));
 			paramMap.put("oseq", 0);
-			paramMap.put("sellprice", sellprice);
+			paramMap.put("sellprice", sellprice * quantity);
 			paramMap.put("pseq", pseq);
 			paramMap.put("quantity", quantity);
 			

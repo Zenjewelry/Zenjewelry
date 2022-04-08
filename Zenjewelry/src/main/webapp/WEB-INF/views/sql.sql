@@ -594,9 +594,16 @@ create sequence promotions_seq start with 1 increment by 1;
 -- members update
 alter table members add useyn varchar2(10) default 'y' not null;
 alter table members add grade varchar2(10)
-alter table members drop column useyn;
+
+alter table members drop column grade;
 
 
+
+
+select * from members;
+alter table members add useyn varchar2(10);
+
+alter table members modify useyn varchar2(100);
 
 -- cart_views 수정
 alter table carts add sellprice number(10);
@@ -614,11 +621,11 @@ select * from carts
 -- order_derails 수정 
 alter table orders_details add sellprice number(10);
 
--- order_views 수정
+-- order_views 수정2
 create or replace view order_views
 as
 select d.odseq, o.oseq, o.indate,  o.id, 
-         m.name as mname, m.zip_num, m.address, m.phone, m.address2,
+         m.name as mname, d.zip_num, d.address, m.phone, d.address2,
          d.pseq,  p.name as pname, d.sellprice, d.quantity, d.result
 from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
