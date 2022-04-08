@@ -1066,19 +1066,6 @@ end;
 
 
 
-
-CREATE OR REPLACE PROCEDURE saveOptionMember_zen(
-    p_useyn IN members.useyn%TYPE,
-    p_grade IN members.grade%TYPE)
-IS
-BEGIN
-    insert into members(useyn,grade)
-    values( p_useyn, p_grade);
-    commit;    
-    update members set useyn = p_useyn, grade = p_grade;
-    commit;
-END;
-
 create or replace procedure getAllCountPromotion_zen(
     p_key in varchar2,
     p_cnt out number
@@ -1329,3 +1316,13 @@ BEGIN
     
         p_oseq := v_oseq;
 END;
+
+CREATE OR REPLACE PROCEDURE saveOptionMember_zen(
+    p_id IN members.id%TYPE,
+    p_black IN members.id%TYPE)
+IS
+BEGIN
+    update members set useyn=p_black where id = p_id;
+    commit;
+END;
+
