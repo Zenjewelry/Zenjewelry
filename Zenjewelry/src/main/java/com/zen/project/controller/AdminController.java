@@ -685,6 +685,7 @@ public class AdminController {
 				String black = "black" + i;
 				paramMap.put("black", request.getParameter(black));
 				
+				
 				System.out.println(request.getParameter(userid) + " : " + request.getParameter(black));
 				as.saveOptionMember(paramMap);
 			}
