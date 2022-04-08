@@ -49,12 +49,12 @@ public class DeliveryController {
 			
 			mav.addObject("orderList",list.get(0));
 			
-			int totalPrice = 0;
-			for( HashMap<String, Object> cart : list) {
-				totalPrice += Integer.parseInt(cart.get("QUANTITY").toString() )
-								* Integer.parseInt( cart.get("PRICE2").toString() );
-		}  // 리스트의 내용으로 총금액 계산
-			mav.addObject("totalPrice",totalPrice);
+//			int totalPrice = 0;
+//			for( HashMap<String, Object> cart : list) {
+//				totalPrice += Integer.parseInt(cart.get("QUANTITY").toString() )
+//								* Integer.parseInt( cart.get("PRICE2").toString() );
+//		}  // 리스트의 내용으로 총금액 계산
+//			mav.addObject("totalPrice",totalPrice);
 			
 			
 			mav.setViewName("mypage/deliveryForm");
