@@ -58,7 +58,7 @@ public class OrderController {
 				= (ArrayList<HashMap<String, Object>>) paramMap2.get("ref_cursor");
 				
 				HashMap<String,Object> orderFirst = orderListByOseq.get(0);  // 주문 상품들 중 첫번째 주문 추출
-				orderFirst.put("PNAME",(String)orderFirst.get("PNAME")+"포함" + orderListByOseq.size()+"건");
+				orderFirst.put("PNAME",(String)orderFirst.get("PNAME")+" 포함" + orderListByOseq.size()+"건");
 //				// 추출한 첫번째 상품의 상품명을 "XXX 포함 X건"이라고 수정
 //				int totalPrice = 0;
 //				for( HashMap<String, Object> order : orderListByOseq ) {

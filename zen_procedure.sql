@@ -196,20 +196,6 @@ BEGIN
     OPEN p_curvar FOR SELECT * FROM address WHERE dong LIKE '%'||p_dong||'%';
 END;
 
-CREATE OR REPLACE PROCEDURE insertMember_zen(
-    p_id IN members.id%TYPE,
-    p_pwd  IN members.pwd%TYPE,
-    p_name  IN members.name%TYPE,
-    p_email  IN members.email%TYPE,
-    p_phone  IN members.phone%TYPE,
-    p_zip_num IN members.zip_num%TYPE,
-    p_address IN members.address%TYPE)
-IS
-BEGIN
-    insert into members(id, pwd, name, email, phone, zip_num, address)
-    values( p_id, p_pwd, p_name, p_email, p_phone, p_zip_num, p_address );
-    commit;    
-END;
 
 -- board 
 create or replace procedure deleteBoard_zen(
@@ -931,20 +917,7 @@ BEGIN
     OPEN p_curvar FOR SELECT * FROM address WHERE dong LIKE '%'||p_dong||'%';
 END;
 
-create or replace PROCEDURE insertMember_zen(
-    p_id IN members.id%TYPE,
-    p_pwd  IN members.pwd%TYPE,
-    p_name  IN members.name%TYPE,
-    p_email  IN members.email%TYPE,
-    p_phone  IN members.phone%TYPE,
-    p_zip_num IN members.zip_num%TYPE,
-    p_address IN members.address%TYPE)
-IS
-BEGIN
-    insert into members(id, pwd, name, email, phone, zip_num, address)
-    values( p_id, p_pwd, p_name, p_email, p_phone, p_zip_num, p_address );
-    commit;    
-END;
+
 
 create or replace PROCEDURE updateMember_zen(
     p_id IN members.id%TYPE,
@@ -1327,3 +1300,28 @@ BEGIN
     commit;
 END;
 
+
+CREATE OR REPLACE PROCEDURE getEmail_zen(
+    p_email IN members.email%TYPE, 
+    p_curvar OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_curvar FOR SELECT * FROM members WHERE email=p_email;
+END;
+
+create or replace PROCEDURE insertMember_zen(
+    p_id IN members.id%TYPE,
+    p_pwd  IN members.pwd%TYPE,
+    p_name  IN members.name%TYPE,
+    p_email  IN members.email%TYPE,
+    p_phone  IN members.phone%TYPE,
+    p_zip_num IN members.zip_num%TYPE,
+    p_address IN members.address%TYPE,
+    p_address2 IN members.address2%TYPE )
+IS
+BEGIN
+    insert into members(id, pwd, name, email, phone, zip_num, address,address2)
+    values( p_id, p_pwd, p_name, p_email, p_phone, p_zip_num, p_address,p_address2 );
+    commit;    
+END;

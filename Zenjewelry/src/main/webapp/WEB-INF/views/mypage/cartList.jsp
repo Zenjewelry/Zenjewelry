@@ -17,7 +17,7 @@
 						</a></td>
 						<td><a href="productDetail?pseq=${cartVO.PSEQ}" target="_blank" >
 							<h3> ${cartVO.PNAME} </h3></a></td><td> ${cartVO.QUANTITY} </td>
-						<td><fmt:formatNumber value="${cartVO.SELLPRICE*cartVO.QUANTITY}"	type="currency"/></td>
+						<td><fmt:formatNumber value="${cartVO.SELLPRICE}"	type="currency"/></td>
 					
 						</tr>
 					</c:forEach>

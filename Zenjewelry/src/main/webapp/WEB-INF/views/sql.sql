@@ -614,19 +614,21 @@ select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sel
 from carts c, products p, members m
 where c.pseq = p.pseq and c.id = m.id;
 
+delete from carts 
 
-
-select * from carts
+select * from members
 
 -- order_derails 수정 
 alter table orders_details add sellprice number(10);
 
--- order_views 수정2
+-- order_views 수정3 
 create or replace view order_views
 as
 select d.odseq, o.oseq, o.indate,  o.id, 
          m.name as mname, d.zip_num, d.address, m.phone, d.address2,
-         d.pseq,  p.name as pname, d.sellprice, d.quantity, d.result
+         d.pseq,  p.name as pname, d.sellprice, d.quantity, d.result , p.image
 from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
+
+
 

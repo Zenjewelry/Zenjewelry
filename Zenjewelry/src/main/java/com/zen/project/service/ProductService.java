@@ -72,4 +72,13 @@ public class ProductService {
 	public void getSearchProductList(HashMap<String, Object> paramMap) {
 		pdao.getSearchProductList(paramMap);
 	}
+
+	public void bestUpList(HashMap<String, Object> paramMap) {
+		pdao.bestUpList(paramMap);
+		
+	}
+
+	public void upBestList(HashMap<String, Object> paramMap) {
+		pdao.upBestList(paramMap);
+	}
 }

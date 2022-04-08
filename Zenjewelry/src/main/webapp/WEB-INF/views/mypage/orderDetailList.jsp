@@ -18,7 +18,7 @@
 			<td><a href="productDetail?pseq=${orderVO.PSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a></td>
 			
 			<td><fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency"/>( ${orderVO.QUANTITY}건 )</td>
-       		<td><fmt:formatNumber value="${orderVO.SELLPRICE*orderVO.QUANTITY}" type="currency"/></td>  
+       		<td><fmt:formatNumber value="${orderVO.PRICE2*orderVO.QUANTITY}" type="currency"/></td>  
        		<%-- ${orderVO.ZIP_NUM}   ${orderVO.ADDRESS}
        		${orderVO.ADDRESS2} --%>
        	</tr>
