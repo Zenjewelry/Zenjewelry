@@ -54,34 +54,6 @@ END;
 select * from order_views;
 
 
-CREATE OR REPLACE PROCEDURE insertOrder_zen(
-    p_id IN orderss.id%TYPE,
-    p_oseq out orderss.oseq%TYPE)
-IS  
-      v_oseq ORDERSS.oseq%TYPE;
-      temp_cur SYS_REFCURSOR;
-      v_cseq carts.cseq%TYPE;
-      v_pseq carts.pseq%TYPE;
-      v_quantity carts.quantity%TYPE;
-BEGIN
-      
-        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-       
-        select MAX(oseq) into v_oseq from orderss;
-    
-        OPEN temp_cur FOR select cseq, pseq, quantity from carts where id=p_id AND result='1';
-       
-        LOOP 
-            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  
-            EXIT WHEN temp_cur%NOTFOUND; 
-            INSERT INTO orders_details ( odseq, oseq, pseq, quantity) 
-            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity );  
-            DELETE FROM CARTS WHERE cseq = v_cseq;
-        END LOOP;
-        COMMIT;
-    
-        p_oseq := v_oseq;
-END;
 
 
 CREATE OR REPLACE PROCEDURE listOrderByIdAll_zen (
@@ -95,23 +67,6 @@ END;
 
 select * from order_views;
 
-
-CREATE OR REPLACE PROCEDURE insertOrderOne_zen(
-   p_id IN orderss.id%TYPE,
-   p_pseq IN orders_details.pseq %TYPE,
-   p_quantity IN orders_details.quantity %TYPE,
-   p_oseq OUT orderss.oseq%TYPE
-)
-IS  
-      v_oseq ORDERSS.oseq%TYPE;
-BEGIN
-        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-        select MAX(oseq) into v_oseq from orderss;
-        insert into orders_details(odseq, oseq, pseq, quantity)
-        values( orders_details_seq.nextVal, v_oseq, p_pseq, p_quantity);
-        COMMIT;
-        p_oseq := v_oseq;
-END;
 
 select * from cart;
 select * from cart_views;
@@ -606,40 +561,6 @@ end;
 
 -- order
 
-CREATE OR REPLACE PROCEDURE insertOrder_zen(
-    p_id IN orderss.id%TYPE,
-    p_oseq out orderss.oseq%TYPE)
-IS  
-      v_oseq orderss.oseq%TYPE;
-      temp_cur SYS_REFCURSOR;
-      v_cseq carts.cseq%TYPE;
-      v_pseq carts.pseq%TYPE;
-      v_quantity carts.quantity%TYPE;
-      temp_cur2 SYS_REFCURSOR;
-      v_zip_num orders_details.zip_num%TYPE;
-      v_address orders_details.address%TYPE;
-      v_address2 orders_details.address2%TYPE;
-     
-BEGIN
-        -- orders ??´ë¸ì ? ì½ë ì¶ê? 
-        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-        -- orders ??´ë¸ì? ê°??¥ ?° oseq ì¡°í 
-        select MAX(oseq) into v_oseq from orderss;
-        -- cart ??´ë¸ì? id ë¡? ëª©ë¡ì¡°í 
-        OPEN temp_cur FOR select cseq, pseq, quantity from carts where id=p_id AND result='1';
-        -- ëª©ë¡ê³? oseq ë¡? order_detail ??´ë¸ì ? ì½ë ì¶ê?
-        OPEN temp_cur2 FOR select zip_num, address, address2 from members where id=p_id;
-        LOOP 
-            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  -- ì¡°í? ì¹´í¸? ëª©ë¡?? ???© êº¼ë´? ì²ë¦¬ 
-            EXIT WHEN temp_cur%NOTFOUND;  -- ì¡°í? ì¹´í¸? ëª©ë¡?´ ëª¨ë ?ì§í ?ê¹ì? 
-            INSERT INTO orders_details ( odseq, oseq, pseq, quantity, zip_num, address, address2) 
-            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity, v_zip_num, v_address, v_address2);  -- order_detail ??´ë¸ì ? ì½ë ì¶ê?
-            DELETE FROM CARTS WHERE cseq = v_cseq;
-        END LOOP;
-        COMMIT;
-        -- oseq ê°ì out ë³??? ???¥
-        p_oseq := v_oseq;
-END;
 
 
 
@@ -952,38 +873,6 @@ end;
 
 -- 4/4
 -- order
-
-CREATE OR REPLACE PROCEDURE insertOrder_zen(
-    p_id IN orderss.id%TYPE,
-    p_address IN orders_details.address%TYPE,
-   p_zip_num IN orders_details.zip_num%TYPE,
-   p_address2 IN orders_details.address2%TYPE,
-    p_oseq out orderss.oseq%TYPE)
-IS  
-      v_oseq ORDERSS.oseq%TYPE;
-      temp_cur SYS_REFCURSOR;
-      v_cseq carts.cseq%TYPE;
-      v_pseq carts.pseq%TYPE;
-      v_quantity carts.quantity%TYPE;
-BEGIN
-      
-        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-       
-        select MAX(oseq) into v_oseq from orderss;
-    
-        OPEN temp_cur FOR select cseq, pseq, quantity from carts where id=p_id AND result='1';
-       
-        LOOP
-            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  
-            EXIT WHEN temp_cur%NOTFOUND; 
-            INSERT INTO orders_details ( odseq, oseq, pseq, quantity,address, zip_num, address2) 
-            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity,p_address,p_zip_num,p_address2 );  
-            DELETE FROM CARTS WHERE cseq = v_cseq;
-        END LOOP;
-        COMMIT;
-    
-        p_oseq := v_oseq;
-END;
 
 
 
@@ -1402,5 +1291,41 @@ BEGIN
         insert into orders_details(odseq, oseq, pseq, quantity,address,zip_num,address2,sellprice)
         values( orders_details_seq.nextVal, v_oseq, p_pseq, p_quantity,p_address,p_zip_num,p_address2,p_sellprice);
         COMMIT;
+        p_oseq := v_oseq;
+END;
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE insertOrder_zen(
+    p_id IN orderss.id%TYPE,
+    p_address IN orders_details.address%TYPE,
+   p_zip_num IN orders_details.zip_num%TYPE,
+   p_address2 IN orders_details.address2%TYPE,
+    p_oseq out orderss.oseq%TYPE)
+IS  
+      v_oseq ORDERSS.oseq%TYPE;
+      temp_cur SYS_REFCURSOR;
+      v_cseq carts.cseq%TYPE;
+      v_pseq carts.pseq%TYPE;
+      v_quantity carts.quantity%TYPE;
+BEGIN
+      
+        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
+       
+        select MAX(oseq) into v_oseq from orderss;
+    
+        OPEN temp_cur FOR select cseq, pseq, quantity, sellprice from carts where id=p_id AND result='1';
+       
+        LOOP
+            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  
+            EXIT WHEN temp_cur%NOTFOUND; 
+            INSERT INTO orders_details ( odseq, oseq, pseq, quantity,address, zip_num, address2) 
+            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity,p_address,p_zip_num,p_address2 );  
+            DELETE FROM CARTS WHERE cseq = v_cseq;
+        END LOOP;
+        COMMIT;
+    
         p_oseq := v_oseq;
 END;
