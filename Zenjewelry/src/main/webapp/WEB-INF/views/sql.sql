@@ -609,4 +609,5 @@ where c.pseq = p.pseq and c.id = m.id;
 
 
 
-select * from carts
+select * from cart_views
+delete from carts
