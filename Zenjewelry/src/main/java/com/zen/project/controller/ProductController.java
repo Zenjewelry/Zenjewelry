@@ -124,6 +124,11 @@ public class ProductController {
 		
 		HttpSession session = request.getSession();
 		
+		if(request.getParameter("sub")!=null) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}
+		
 		int page = 1;
 		String key = "";
 		
