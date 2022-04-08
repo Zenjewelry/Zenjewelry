@@ -54,7 +54,8 @@ public class CartController {
 	@RequestMapping(value="/cartInsert")
 	public String cartInsert(HttpServletRequest request, Model model, 
 			@RequestParam("pseq") int pseq, 
-			@RequestParam("quantity") int quantity) {
+			@RequestParam("quantity") int quantity,
+			@RequestParam("sellprice") int sellprice) {
 		HttpSession session = request.getSession();
 		HashMap<String,Object> loginUser
 			= (HashMap<String, Object>) session.getAttribute("loginUser");
@@ -66,6 +67,7 @@ public class CartController {
 			paramMap.put("id", loginUser.get("ID"));
 			paramMap.put("pseq", pseq);
 			paramMap.put("quantity", quantity);
+			paramMap.put("sellprice", sellprice);
 			
 			cs.insertCart(paramMap);
 		}

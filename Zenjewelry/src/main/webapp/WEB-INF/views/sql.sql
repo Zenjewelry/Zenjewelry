@@ -598,6 +598,15 @@ alter table members drop column useyn;
 
 
 
+-- cart_views 수정
+alter table carts add sellprice number(10);
+
+create or replace view cart_views
+as
+select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sellprice, c.result, c.indate
+from carts c, products p, members m
+where c.pseq = p.pseq and c.id = m.id;
 
 
-select * from promotions
+
+select * from carts
