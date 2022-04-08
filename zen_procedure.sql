@@ -1263,7 +1263,7 @@ end;
 
 
 
--- 04/06
+-- 04/07
 -- promotion
 create or replace procedure updatePromotion_zen(
     p_prmseq in promotion_products.prmseq%type,
@@ -1340,4 +1340,10 @@ begin
     open p_cur for
         select * from promotions where live = 'main';
 end;
+
+
+
+
+
+-- 04/08
 
