@@ -23,7 +23,7 @@
 	<form method="post" name="hdfrm">
 		<div id="search"><!-- 돋보기모양 검색창 -->
 			<!-- <img  id= "s-img" src="images/search1.png" width="30px" /> -->
-			<input id= "s-box" type="text" name="searchProduct" value="${searchProduct}" />
+			<input id= "s-box" type="text" name="key" value="${key}" />
 			<img  id= "s-img" src="images/search1.png" width="30px" onClick='go_search("hdfrm");' />
 			<!-- <input id="sbutton" type="button" value="검색" onClick='go_search("hdfrm");' /> -->
 		</div>

@@ -21,6 +21,8 @@ public interface IProductDao {
 	void AllCountProduct(HashMap<String, Object> paramMap);
 
 	void getMainPromotionList(HashMap<String, Object> paramMap);
+	void getSearchCount(HashMap<String, Object> paramMap);
+	void getSearchProductList(HashMap<String, Object> paramMap);
 
 
 }

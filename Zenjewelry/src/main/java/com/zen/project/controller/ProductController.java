@@ -92,14 +92,22 @@ public class ProductController {
 		PagingforProduct paging = new PagingforProduct();
 		paging.setPage(page);
 		paramMap.put("count", 0);
-		paramMap.put("command", kind);
-		ps.getAllCount(paramMap);
+		if(key==null || key.equals("")) {
+			paramMap.put("command", kind);
+			ps.getAllCount(paramMap);
+		}else {
+			paramMap.put("command", key);
+			ps.getSearchCount(paramMap);
+		}
+		
 		paging.setTotalCount((Integer)paramMap.get("count"));
 		paging.paging();
 		paramMap.put("startNum", paging.getStartNum());
 		paramMap.put("endNum", paging.getEndNum());
 		paramMap.put("ref_cursor", null);
-		ps.getProductList(paramMap);
+		
+		if(key==null || key.equals("")) ps.getProductList(paramMap);
+		else ps.getSearchProductList(paramMap);
 		
 		ArrayList<HashMap<String, Object>> productList
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");

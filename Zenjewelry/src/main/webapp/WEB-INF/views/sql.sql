@@ -596,3 +596,8 @@ alter table members add useyn varchar2(10) default 'y' not null;
 alter table members add grade varchar2(10)
 alter table members drop column useyn;
 
+
+
+
+
+select * from products where kind = 0;

@@ -410,7 +410,7 @@ begin
         select * from (
             select * from (
                 select rownum as rn, p.* from
-                    ((select * from products where kind = p_comm) p)
+                    ((select * from products where kind like p_comm) p)
             ) where rn>=p_startNum
         ) where rn<=p_endNum;
 end;
@@ -445,11 +445,11 @@ create or replace procedure getAllCountProduct_zen(
 is
     v_cnt number;
 begin
-    select count(*) into v_cnt from products where kind = p_comm;
+    select count(*) into v_cnt from products where kind like p_comm;
     p_cnt := v_cnt;
 end;
 
-
+select count(*) from products where kind = p_comm;
 create or replace procedure getAllCountBestProduct_zen(
     p_cnt out number
 )
@@ -1346,4 +1346,33 @@ end;
 
 
 -- 04/08
+
+create or replace procedure getSearchCount_zen(
+    p_key in varchar2,
+    p_cnt out number
+)
+is
+    v_cnt number;
+begin
+    select count(*) into v_cnt from products where name like '%'||p_key||'%';
+    p_cnt := v_cnt;
+end;
+
+
+create or replace procedure getSearchProductList_zen(
+    p_comm in varchar2,
+    p_startNum in number,
+    p_endNum in number,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from (
+            select * from (
+                select rownum as rn, p.* from
+                    ((select * from products where name like '%'||p_comm||'%') p)
+            ) where rn>=p_startNum
+        ) where rn<=p_endNum;
+end;
 
