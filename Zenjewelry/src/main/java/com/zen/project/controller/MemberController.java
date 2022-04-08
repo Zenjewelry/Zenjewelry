@@ -71,8 +71,10 @@ public class MemberController {
 				model.addAttribute("message" , "관리자에게 문의하세요");
 				return "member/login";
 			}else if( membervo.getPwd().equals( (String)mvo.get("PWD") ) ) {
+				if(membervo.getUseyn().equals("사용")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", mvo);
+				}
 				return "redirect:/";}
 			else {
 				model.addAttribute("message" , "비번이 안맞아요");
