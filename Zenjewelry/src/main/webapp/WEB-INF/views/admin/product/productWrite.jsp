@@ -6,8 +6,15 @@
 			<fieldset class="input-box"><legend>상품등록</legend>
 			<label>상품분류</label><select name="kind">
 				<option value="">선택</option>	
-				<c:forEach items="${kindList}" var="kind" varStatus="status">
-	    				<option value="${status.count}">${kind}</option>
+					<c:forEach items="${kindList}" var="kindString" varStatus="status">
+						<c:choose>
+							<c:when test="${status.count == kind}">
+								<option value="${status.count}" selected="selected">${kindString}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${status.count}">${kindString}</option>
+							</c:otherwise>
+						</c:choose>
 	   				</c:forEach></select>
 				<br><hr>
 			<label>상품명</label><input type="text" name="name" size="47" maxlength="100" value="${dto.name}">
@@ -29,6 +36,24 @@
 				<div style="float:left;" >N</div><input type="checkbox" name="bestyn" value="n" checked="checked" />
 		</fieldset>
 		<div class="clear"></div>
+		<fieldset>
+			<label>순도(,로 구분해주세요.)</label><input type="text" name="optionParam1" />
+			<label>사이즈(,로 구분해주세요.)</label><input type="text" name="optionParam2" />
+			<label>색상(,로 구분해주세요.)</label><input type="text" name="optionParam3" />
+			<input type="button" value="옵션 조합하기" onClick="createOptions();">
+			<table>
+				<tr><th>순번</th><th>옵션명</th><th>옵션별 가격</th><th>재고</th></tr>
+				<c:forEach items="${optionList}" var="option" varStatus="index">
+					<tr>
+						<td>${index.count}</td>
+						<td><input type="hidden" name="option${index.count}" value="${option}" />${option}</td>
+						<td><input type="text" name="changePrice${index.count}" value="0" /></td>
+						<td><input type="text" name="sku${index.count}" value="10" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</fieldset>
+		<input type="hidden" name="optionSize" value="${optionSize}" />
 		<div id="buttons">
 			<input class="submit" type="submit" value="등록" >
 			<input class="cancel" type="button" value="목록" onClick="go_mov()">

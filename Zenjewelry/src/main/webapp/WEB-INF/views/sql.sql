@@ -630,3 +630,30 @@ select d.odseq, o.oseq, o.indate,  o.id,
 from orderss o, orders_details d, members m, products p
 where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
 
+
+-- 상품 옵션테이블 업데이트
+create table product_options(
+	pseq number(10),
+	option1 varchar2(50),	-- 순도
+	option2 varchar2(50),	-- 사이즈
+	option3 varchar2(50),	-- 색상
+	sku number(10) default 10,
+	changePrice number(10) default 0
+);
+
+select * from products
+select * from product_options;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
