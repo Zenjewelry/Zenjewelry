@@ -66,8 +66,9 @@ public class PromotionController {
 		ArrayList<HashMap<String, Object>> output
 		= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 		
-		model.addAttribute("output", output.get(0));
+		model.addAttribute("size", output.size());
 		model.addAttribute("outnum", outnum);
+		if(output.size() != 0) model.addAttribute("output", output.get(0));
 		
 		return "admin/promotion/checkProduct";
 	}
