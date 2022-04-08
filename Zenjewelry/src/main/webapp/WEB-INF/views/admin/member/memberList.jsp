@@ -3,8 +3,7 @@
 <article>
 <h1>회원리스트</h1>  <br>
 
-
-
+<form name="formm" method="post">
 <table id="cartList2">
 
 	<tr><th width="100">아이디</th><th width="100"> 이름 </th><th width="120">이메일</th>
@@ -43,16 +42,15 @@
 			</select>
        		</td>
        		<td style="width:100px;">
-       			<form name="formm" action="adminDeleteMember" style="width:0px;">
-       				<input type="hidden" name="id" value="${memberVO.ID}" style="width:100px;" />
-       				<input class="btn" type="submit" value="삭제" onclick="return delete_mem();">
-       			</form>
+
        			<form name="formm" action="saveOptionMember" style="width:0px;">
        				<input type="hidden" name="id" value="${memberVO.ID}" style="width:100px;" />
        				<input type="hidden" name="useyn" value="${}"  style="width:100px;" />
        				<input type="hidden" name="grade" value="${memberVO.USEYN} " style="width:100px;" />
        				<input class="btn" type="submit" value="저장" onclick="save_option_mem();">
        			</form>
+
+				<input class="btn" type="button" value="삭제" onclick="delete_mem('${memberVO.ID}');">
        		</td>
        	</tr>
   </c:forEach>
@@ -65,13 +63,13 @@
 
 </table>
 
-<form name="frm" method="post">
+
 <table id="cartList2">
 	<tr><td width="670">회원 이름 <input type="text" name="key" value="${key}">
 	<input class="btn" type="button" value="검색" onclick="go_search('adminMemberList')">
 	<input class="btn" type="button" name="btn_total" value="전체보기 "	onClick="go_total('adminMemberList')">
-</td> </tr>
-	
+	<input class="btn" type="submit" value="저장" onclick="save_option_mem();">
+	</td> </tr>
 </table>
 </form>
 <br>

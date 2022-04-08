@@ -677,6 +677,7 @@ public class AdminController {
 			@RequestParam("grade")String grade, 
 			@RequestParam("Black")String useyn
 			) {
+	
 				
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginAdmin")==null) return "admin/adminLoginForm";
