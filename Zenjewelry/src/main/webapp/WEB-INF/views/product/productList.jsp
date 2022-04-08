@@ -37,7 +37,7 @@
 	</c:when>
 	<c:otherwise>
 		<jsp:include page="../include/page/paging.jsp">
-			<jsp:param name="command" value="productAll" />
+			<jsp:param name="command" value="ProductList" />
 		</jsp:include>
 	</c:otherwise>
 </c:choose>
