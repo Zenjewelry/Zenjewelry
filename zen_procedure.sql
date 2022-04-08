@@ -553,23 +553,6 @@ end;
 
 -- 04/02
 -- adminProduct
-CREATE OR REPLACE PROCEDURE insertProduct_zen(
-    p_name IN products.name%TYPE,
-    p_kind  IN products.kind%TYPE,
-    p_price1  IN products.price1%TYPE,
-    p_price2  IN products.price2%TYPE,
-    p_content IN products.content%TYPE,
-    p_image IN products.image%TYPE,
-    p_detail_image IN products.detail_image%TYPE,
-    p_newyn IN products.newyn%TYPE,
-    p_bestyn IN products.bestyn%TYPE
-)
-IS
-BEGIN
-    insert into products(pseq, name, kind, price1, price2, content, image, detail_image, newyn, bestyn) 
-    values(products_seq.nextVal, p_name, p_kind, p_price1, p_price2, p_content, p_image, p_detail_image, p_newyn, p_bestyn);
-    commit;    
-END;
 
 
 
@@ -872,6 +855,8 @@ begin
     delete from members where id = p_id;
     commit;
 end;
+
+
 
 
 --member
@@ -1325,3 +1310,59 @@ BEGIN
     values( p_id, p_pwd, p_name, p_email, p_phone, p_zip_num, p_address,p_address2 );
     commit;    
 END;
+
+
+
+select
+    constraint_name,
+    table_name,
+    r_constraint_name
+from
+    user_constraints
+where
+    constraint_name = 'SYS_C007370';
+
+select * from QNAS
+
+CREATE OR REPLACE PROCEDURE insertProduct_zen(
+    p_name IN products.name%TYPE,
+    p_kind  IN products.kind%TYPE,
+    p_price1  IN products.price1%TYPE,
+    p_price2  IN products.price2%TYPE,
+    p_content IN products.content%TYPE,
+    p_image IN products.image%TYPE,
+    p_detail_image IN products.detail_image%TYPE,
+    p_newyn IN products.newyn%TYPE,
+    p_bestyn IN products.bestyn%TYPE,
+    p_pseq out number
+)
+IS
+    v_pseq number;
+BEGIN
+    insert into products(pseq, name, kind, price1, price2, content, image, detail_image, newyn, bestyn) 
+    values(products_seq.nextVal, p_name, p_kind, p_price1, p_price2, p_content, p_image, p_detail_image, p_newyn, p_bestyn);
+    
+    select max(pseq) into v_pseq from products;
+    p_pseq := v_pseq;
+    commit;
+END;
+
+
+create or replace procedure insertOption_zen(
+    p_pseq in product_options.pseq%type,
+    p_option1 in product_options.option1%type,
+    p_option2 in product_options.option2%type,
+    p_option3 in product_options.option3%type,
+    p_changePrice in product_options.changePrice%type,
+    p_sku in product_options.sku%type
+)
+is
+begin
+    insert into product_options(pseq, option1, option2, option3, changePrice, sku)
+    values(p_pseq, p_option1, p_option2, p_option3, p_changePrice, p_sku);
+    commit;
+end;
+
+
+
+
