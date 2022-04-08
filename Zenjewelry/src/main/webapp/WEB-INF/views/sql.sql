@@ -603,7 +603,7 @@ alter table carts add sellprice number(10);
 
 create or replace view cart_views
 as
-select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sellprice, c.result, c.indate
+select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sellprice, c.result, c.indate, p.image
 from carts c, products p, members m
 where c.pseq = p.pseq and c.id = m.id;
 

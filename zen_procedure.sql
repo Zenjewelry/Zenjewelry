@@ -934,17 +934,7 @@ end;
 
 
 
-create or replace procedure insertCart_zen(
-    p_id in orderss.id%type,
-    p_pseq in orders_details.pseq%type,
-    p_quan in orders_details.quantity%type
-)
-is
-begin
-    insert into carts(cseq, id, pseq, quantity)
-    values(carts_seq.nextVal, p_id, p_pseq, p_quan);
-    commit;
-end;
+
 
 
 
@@ -1376,3 +1366,18 @@ begin
         ) where rn<=p_endNum;
 end;
 
+
+create or replace procedure insertCart_zen(
+    p_id in orderss.id%type,
+    p_pseq in orders_details.pseq%type,
+    p_quan in orders_details.quantity%type,
+    p_sellprice in orders_details.quantity%type
+)
+is
+begin
+    insert into carts(cseq, id, pseq, quantity, sellprice)
+    values(carts_seq.nextVal, p_id, p_pseq, p_quan, p_sellprice);
+    commit;
+end;
+
+select * from orders_details
