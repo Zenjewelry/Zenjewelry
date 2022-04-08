@@ -21,11 +21,12 @@ function check(){
 
 	<form method="post" name="formm" >
 		<table id="cartlist" align="center"  cellspacing="1" width="400">
+			<tr>
 				<td width="430"><h3>인증번호<input type="text" name="numCheck" value="${numCheck}"></h3></td>
 				<input type="hidden" name="checkNum" value="${checkNum}" >
 			</tr>
 			<tr>
-				<td width="430"><h3><input type="button" onClick="check();"></h3></td>
+				<td width="430"><h3>인증번호 확인<input type="button" onClick="check();"></h3></td>
 			</tr>
 		</table>
 	</form>
