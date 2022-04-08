@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.zen.project.dto.MemberVO;
 import com.zen.project.dto.Paging;
 import com.zen.project.dto.ProductVO;
 import com.zen.project.service.AdminService;
@@ -524,13 +523,16 @@ public class AdminController {
 	
 	@RequestMapping("/adminMemberList")
 	public ModelAndView adminMemberList(HttpServletRequest request,
-			@RequestParam("sub") String sub) {
+			@RequestParam("sub") String sub,
+			Model model) {
 		
 		ModelAndView mav = new ModelAndView();
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
 		
+		String BlackList[] = {"y" ,"A", "B", "C"};
+		model.addAttribute("BlackList", BlackList);
 		if(sub!=null) {
 			session.removeAttribute("page");
 			session.removeAttribute("key");
@@ -573,6 +575,7 @@ public class AdminController {
 		ArrayList< HashMap<String, Object>> list
 		= (ArrayList<HashMap<String, Object>>) paramMap.get("ref_cursor");
 		
+		mav.addObject("memListSize", list.size());
 		mav.addObject("memberlist", list);
 		mav.addObject("paging", paging);
 		mav.addObject("key", key);
@@ -665,25 +668,27 @@ public class AdminController {
 		return "redirect:/adminMemberList?sub='y'";
 	}
 	
-	
-	@RequestMapping(value = "/saveOptionMember", method=RequestMethod.POST)
-	public String join( @ModelAttribute("dto") @Valid MemberVO membervo,
-			BindingResult result,
-			HttpServletRequest request,
-			Model model ) {
+
+	@RequestMapping(value = "/saveOptionMember")
+	public String saveOptionMember( HttpServletRequest request, Model model
+			
+			) {
 				
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginAdmin")==null) return "admin/adminLoginForm";
 		
-//			System.out.println(id);
-//			System.out.println(useyn);
-//			System.out.println(grade);
-//		
-//		
-//			as.saveOptionMember(id);
-//			as.saveOptionMember(useyn);
-//			as.saveOptionMember(grade);
-			
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+
+			for(int i=1; i<=Integer.parseInt(request.getParameter("memListSize")); i++) {
+				String userid = "id" + i;
+				paramMap.put("id", request.getParameter(userid) );
+				String black = "black" + i;
+				paramMap.put("black", request.getParameter(black));
+				
+				System.out.println(request.getParameter(userid) + " : " + request.getParameter(black));
+				as.saveOptionMember(paramMap);
+			}
+					
 			model.addAttribute("message", "저장되었습니다.");
 		
 		return "redirect:/adminMemberList?sub='y'";
