@@ -29,6 +29,7 @@ public interface IAdminDao {
 	void saveOrder(int odseq);
 	void deleteMember(String id);
 	void saveOptionMember(HashMap<String, Object> paramMap);
+	void insertOption(HashMap<String, Object> paramMap);
 	
 	
 }

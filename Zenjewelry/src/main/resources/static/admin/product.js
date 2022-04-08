@@ -260,6 +260,16 @@ function adminPromotionManagement(){
 
 
 
+function createOptions(){
+	document.frm.action = 'createOptions';
+	document.frm.submit();
+}
+
+
+
+
+
+
 
 
 

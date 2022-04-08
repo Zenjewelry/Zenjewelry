@@ -62,7 +62,8 @@
 	<insert id="insertProduct" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ CALL insertProduct_zen( 
 			#{pvo.name}, #{pvo.kind}, #{pvo.price1}, #{pvo.price2}, #{pvo.content},
-			#{pvo.image}, #{pvo.detail_image}, #{pvo.newyn}, #{pvo.bestyn}
+			#{pvo.image}, #{pvo.detail_image}, #{pvo.newyn}, #{pvo.bestyn},
+			#{pseq, mode=OUT, jdbcType=INTEGER}
 		) }
 	</insert>
 	
@@ -151,6 +152,10 @@
 		) }
 	</update>
 	
-	
+	<insert id="insertOption" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL insertOption_zen(
+			#{pseq},#{option1},#{option2},#{option3},#{changePrice},#{sku}
+		)}
+	</insert>
 	
 </mapper>

@@ -81,6 +81,9 @@ public class AdminService {
 		adao.saveOptionMember(paramMap);
 		
 	}
+	public void insertOption(HashMap<String, Object> paramMap) {
+		adao.insertOption(paramMap);
+	}
 	
 	
 		

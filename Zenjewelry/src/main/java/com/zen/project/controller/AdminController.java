@@ -340,7 +340,24 @@ public class AdminController {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		
 		paramMap.put("pvo", pvo);
+		paramMap.put("pseq", null);
 		as.insertProduct(paramMap);
+		
+		for(int i=1; i<=Integer.parseInt(request.getParameter("optionSize")); i++) {
+			String options = "option" + i;
+			String [] sltOption = request.getParameter(options).split("/");
+			String option1 = sltOption[0];
+			String option2 = sltOption[1];
+			String option3 = sltOption[2];
+			paramMap.put("option1", option1);
+			paramMap.put("option2", option2);
+			paramMap.put("option3", option3);
+			String changePrice = "changePrice" + i;
+			paramMap.put("changePrice", request.getParameter(changePrice));
+			String sku = "sku" + i;
+			paramMap.put("sku", request.getParameter(sku));
+			as.insertOption(paramMap);
+		}
 		
 		mav.setViewName("redirect:/adminproductList");
 		
@@ -696,7 +713,42 @@ public class AdminController {
 		return "redirect:/adminMemberList?sub='y'";
 	}
 	
-	
+	@RequestMapping("/createOptions")
+	public ModelAndView createOptions(@ModelAttribute("dto") @Valid ProductVO pvo,
+			@RequestParam("optionParam1") String optionParam1,
+			@RequestParam("optionParam2") String optionParam2,
+			@RequestParam("optionParam3") String optionParam3,
+			HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginAdmin")==null) {
+			mav.setViewName("adminLoginForm");
+		}else {
+			
+			String kindList[] = {"RING", "EARRINGS", "NECKLACE",  "BRACELET"};
+			mav.addObject("kindList", kindList);
+		
+			String [] options1 = optionParam1.split(",");
+			String [] options2 = optionParam2.split(",");
+			String [] options3 = optionParam3.split(",");
+			
+			ArrayList<String> optionList = new ArrayList<String>();
+			
+			for(int i=0; i<options1.length; i++) {
+				for(int j=0; j<options2.length; j++) {
+					for(int k=0; k<options3.length; k++) {
+						optionList.add(options1[i] + "/" + options2[j] + "/" + options3[k]); 
+					}
+				}
+			}
+			mav.addObject("optionSize", optionList.size());
+			mav.addObject("optionList", optionList);
+			mav.setViewName("admin/product/productWrite");
+		}
+		return mav;
+	}
 	
 	
 }
