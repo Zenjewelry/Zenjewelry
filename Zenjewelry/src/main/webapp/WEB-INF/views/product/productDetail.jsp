@@ -10,7 +10,17 @@
 			<img  src="product_images/${productVO.IMAGE}" 
 			style="width: 350px; height: 350px; object-fit: cover;"/></span>              
        	<h2> ${productVO.NAME} </h2>  
-		<label>가 격 : </label><p> <fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원</p>  
+		<label>가 격 : </label>
+		<p>
+			<c:choose>
+				<c:when test="${not empty prmprice}">
+					<fmt:formatNumber value="${prmprice}" type="currency"/> 원
+				</c:when>
+				<c:otherwise>
+					<fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원
+				</c:otherwise>
+			</c:choose>
+		</p>  
        	<label>수 량 : </label><input  type="text" name="quantity" size="2" value="1"><br>
        	<label>제품설명 : </label><label>${productVO.CONTENT}</label><br>
        	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}"><br>

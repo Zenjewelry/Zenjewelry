@@ -170,7 +170,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/productDetail")
-	public ModelAndView productDetail(@RequestParam("pseq") int pseq) {
+	public ModelAndView productDetail(@RequestParam("pseq") int pseq,
+			@RequestParam(value="prmprice", required=false) int prmprice) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -184,7 +185,8 @@ public class ProductController {
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
 		ArrayList<HashMap<String, Object>> product_QnaVO
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
-		
+		System.out.println("prmprice : " + prmprice);
+		mav.addObject("prmprice", prmprice);
 		mav.addObject("productVO", productVO.get(0));
 		mav.addObject("product_QnaVO", product_QnaVO);
 		mav.setViewName("product/productDetail");

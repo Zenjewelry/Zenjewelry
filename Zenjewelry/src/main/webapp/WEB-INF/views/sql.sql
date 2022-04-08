@@ -600,4 +600,4 @@ alter table members drop column useyn;
 
 
 
-select * from products where kind = 0;
+select * from promotions
