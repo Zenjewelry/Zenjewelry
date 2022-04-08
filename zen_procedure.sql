@@ -1381,3 +1381,26 @@ begin
 end;
 
 select * from orders_details
+
+
+
+CREATE OR REPLACE PROCEDURE insertOrderOne_zen(
+   p_id IN orderss.id%TYPE,
+   p_address IN orders_details.address%TYPE,
+   p_zip_num IN orders_details.zip_num%TYPE,
+   p_address2 IN orders_details.address2%TYPE,
+   p_pseq IN orders_details.pseq %TYPE,
+   p_quantity IN orders_details.quantity %TYPE,
+   p_sellprice IN orders_details.sellprice %TYPE,
+   p_oseq OUT orderss.oseq%TYPE
+)
+IS  
+      v_oseq ORDERSS.oseq%TYPE;
+BEGIN
+        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
+        select MAX(oseq) into v_oseq from orderss;
+        insert into orders_details(odseq, oseq, pseq, quantity,address,zip_num,address2,sellprice)
+        values( orders_details_seq.nextVal, v_oseq, p_pseq, p_quantity,p_address,p_zip_num,p_address2,p_sellprice);
+        COMMIT;
+        p_oseq := v_oseq;
+END;

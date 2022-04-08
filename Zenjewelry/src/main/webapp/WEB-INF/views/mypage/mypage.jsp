@@ -10,7 +10,7 @@
     <tr style="margin-top: 100px">
     	<td style="margin:30px auto"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 200px; height: 200px; object-fit: cover;"/>
     	<td style="width:1000px; margin-left:50px"><a href="orderDetail?oseq=${orderVO.OSEQ}"><h3>${orderVO.PNAME}</h3></a>
-    	<td style=width:700px><fmt:formatNumber value="${orderVO.PRICE2}" type="currency" /></td>
+    	<td style=width:700px><fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency" /></td>
     	<td style=width:700px><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
     	
         <%-- 	<td>${orderVO.OSEQ} </td> --%>
