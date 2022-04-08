@@ -13,7 +13,7 @@
 		<div>
 			<c:forEach items="${promotionProductList}" var="pp">
 				<c:if test="${pp.OUTNUMBER == outnum.count}">
-					<a href="productDetail?pseq=${pp.PSEQ}">
+					<a href="productDetail?pseq=${pp.PSEQ}&prmprice=${pp.PRMPRICE}">
 						<div id="items">
 							<img src="product_images/${pp.IMAGE}" id="imgtest"/>
 							<div class="listText">${pp.NAME}</div>

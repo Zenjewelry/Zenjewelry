@@ -63,9 +63,9 @@ public class OrderController {
 				int totalPrice = 0;
 				for( HashMap<String, Object> order : orderListByOseq ) {
 					totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
-									* Integer.parseInt( order.get("PRICE2").toString());
+									* Integer.parseInt( order.get("SELLPRICE").toString());
 				}
-				orderFirst.put("PRICE2",totalPrice); // 추출한 첫번째 상품의 가격을 총 가격으로 수정
+				orderFirst.put("sellprice",totalPrice); // 추출한 첫번째 상품의 가격을 총 가격으로 수정
 				//  주변 번호별 대표 상품 (첫번째 상품)을 별도의 리스트로 모아서 model 에 저장
 				finalList.add(orderFirst);
 			}
@@ -135,7 +135,7 @@ public class OrderController {
 			
 			for( HashMap<String,Object> cart : list) {
 				totalPrice += Integer.parseInt(cart.get("QUANTITY").toString())
-						* Integer.parseInt(cart.get("PRICE2").toString());
+						* Integer.parseInt(cart.get("SELLPRICE").toString());
 			}  // 리스트의 내용으로 총금액 계산
 			mav.addObject("totalPrice",totalPrice);
 			mav.setViewName("mypage/orderList");
@@ -182,9 +182,9 @@ public class OrderController {
 			int totalPrice = 0;
 			for( HashMap<String, Object> order : orderListByOseq ) {
 				totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
-								* Integer.parseInt( order.get("PRICE2").toString());
+								* Integer.parseInt( order.get("SELLPRICE").toString());
 			}
-			orderFirst.put("PRICE2",totalPrice); // 추출한 첫번째 상품의 가격을 총 가격으로 수정
+			orderFirst.put("SELLPRICE",totalPrice); // 추출한 첫번째 상품의 가격을 총 가격으로 수정
 			//  주변 번호별 대표 상품 (첫번째 상품)을 별도의 리스트로 모아서 model 에 저장
 			finalList.add(orderFirst);
 		}
@@ -219,7 +219,7 @@ public class OrderController {
 			int odseq = 0;
 			for( HashMap<String, Object> order : orderListByOseq ) {
 				totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
-								* Integer.parseInt( order.get("PRICE2").toString());
+								* Integer.parseInt( order.get("SELLPRICE").toString());
 				odseq = Integer.parseInt(order.get("ODSEQ").toString()); 
 				}
 			
@@ -236,7 +236,9 @@ public class OrderController {
 	@RequestMapping(value="/orderOne")
 	public String orderInsertOne(HttpServletRequest request, 
 			@RequestParam("pseq") int pseq,
-			@RequestParam("quantity") int quantity) {
+			@RequestParam("quantity") int quantity,
+			@RequestParam("sellprice") int sellprice
+			) {
 		
 		int oseq = 0;
 		
@@ -253,6 +255,7 @@ public class OrderController {
 			paramMap.put("zip_num", loginUser.get("ZIP_NUM"));
 			paramMap.put("address2", loginUser.get("ADDRESS2"));
 			paramMap.put("oseq", 0);
+			paramMap.put("sellprice", sellprice);
 			paramMap.put("pseq", pseq);
 			paramMap.put("quantity", quantity);
 			

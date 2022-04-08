@@ -596,3 +596,30 @@ alter table members add useyn varchar2(10) default 'y' not null;
 alter table members add grade varchar2(10)
 alter table members drop column useyn;
 
+
+
+-- cart_views 수정
+alter table carts add sellprice number(10);
+
+create or replace view cart_views
+as
+select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sellprice, c.result, c.indate, p.image
+from carts c, products p, members m
+where c.pseq = p.pseq and c.id = m.id;
+
+
+
+select * from carts
+
+-- order_derails 수정 
+alter table orders_details add sellprice number(10);
+
+-- order_views 수정
+create or replace view order_views
+as
+select d.odseq, o.oseq, o.indate,  o.id, 
+         m.name as mname, m.zip_num, m.address, m.phone, m.address2,
+         d.pseq,  p.name as pname, d.sellprice, d.quantity, d.result
+from orderss o, orders_details d, members m, products p
+where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
+

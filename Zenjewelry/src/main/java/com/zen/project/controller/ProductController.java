@@ -92,14 +92,22 @@ public class ProductController {
 		PagingforProduct paging = new PagingforProduct();
 		paging.setPage(page);
 		paramMap.put("count", 0);
-		paramMap.put("command", kind);
-		ps.getAllCount(paramMap);
+		if(key==null || key.equals("")) {
+			paramMap.put("command", kind);
+			ps.getAllCount(paramMap);
+		}else {
+			paramMap.put("command", key);
+			ps.getSearchCount(paramMap);
+		}
+		
 		paging.setTotalCount((Integer)paramMap.get("count"));
 		paging.paging();
 		paramMap.put("startNum", paging.getStartNum());
 		paramMap.put("endNum", paging.getEndNum());
 		paramMap.put("ref_cursor", null);
-		ps.getProductList(paramMap);
+		
+		if(key==null || key.equals("")) ps.getProductList(paramMap);
+		else ps.getSearchProductList(paramMap);
 		
 		ArrayList<HashMap<String, Object>> productList
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
@@ -115,6 +123,11 @@ public class ProductController {
 	public String bestProductList(Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
+		
+		if(request.getParameter("sub")!=null) {
+			session.removeAttribute("page");
+			session.removeAttribute("key");
+		}
 		
 		int page = 1;
 		String key = "";
@@ -162,7 +175,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/productDetail")
-	public ModelAndView productDetail(@RequestParam("pseq") int pseq) {
+	public ModelAndView productDetail(HttpServletRequest request, @RequestParam("pseq") int pseq) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -177,6 +190,9 @@ public class ProductController {
 		ArrayList<HashMap<String, Object>> product_QnaVO
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
 		
+		
+		if(request.getParameter("prmprice") != null)
+			mav.addObject("prmprice", request.getParameter("prmprice"));
 		mav.addObject("productVO", productVO.get(0));
 		mav.addObject("product_QnaVO", product_QnaVO);
 		mav.setViewName("product/productDetail");
