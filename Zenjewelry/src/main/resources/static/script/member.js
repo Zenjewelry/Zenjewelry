@@ -43,7 +43,7 @@ function emailCheck(){
 	}
 	var url = "EmailCheckForm?email=" + document.formm.email.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
-	window.open(url, "EmailChekc", opt);
+	window.open(url, "EmailCheck", opt);
 }
 
 function numCheck(){
