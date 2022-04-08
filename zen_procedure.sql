@@ -1288,8 +1288,8 @@ END;
 CREATE OR REPLACE PROCEDURE insertOrder_zen(
     p_id IN orderss.id%TYPE,
     p_address IN orders_details.address%TYPE,
-   p_zip_num IN orders_details.zip_num%TYPE,
-   p_address2 IN orders_details.address2%TYPE,
+    p_zip_num IN orders_details.zip_num%TYPE,
+    p_address2 IN orders_details.address2%TYPE,
     p_oseq out orderss.oseq%TYPE)
 IS  
       v_oseq ORDERSS.oseq%TYPE;
@@ -1297,6 +1297,7 @@ IS
       v_cseq carts.cseq%TYPE;
       v_pseq carts.pseq%TYPE;
       v_quantity carts.quantity%TYPE;
+      v_sellprice carts.sellprice%type;
 BEGIN
       
         insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
@@ -1306,10 +1307,10 @@ BEGIN
         OPEN temp_cur FOR select cseq, pseq, quantity, sellprice from carts where id=p_id AND result='1';
        
         LOOP
-            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity;  
+            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity, v_sellprice;
             EXIT WHEN temp_cur%NOTFOUND; 
-            INSERT INTO orders_details ( odseq, oseq, pseq, quantity,address, zip_num, address2) 
-            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity,p_address,p_zip_num,p_address2 );  
+            INSERT INTO orders_details ( odseq, oseq, pseq, quantity,address, zip_num, address2, sellprice) 
+            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity,p_address,p_zip_num,p_address2, v_sellprice);  
             DELETE FROM CARTS WHERE cseq = v_cseq;
         END LOOP;
         COMMIT;

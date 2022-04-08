@@ -79,9 +79,12 @@ public class MemberController {
 			}else if(mvo.get("USEYN").equals("휴면")) {
 				model.addAttribute("message" , "휴면계정 입니다 관리자에게 문의하세요 Zenjewelry@naver.com");
 				return "member/login";
+
 			}else if( membervo.getPwd().equals( (String)mvo.get("PWD"))&&(mvo.get("USEYN").equals("사용"))) {
+
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", mvo);
+				}
 				return "redirect:/";}
 			else {
 				model.addAttribute("message" , "비번이 안맞아요");
