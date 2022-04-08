@@ -594,9 +594,16 @@ create sequence promotions_seq start with 1 increment by 1;
 -- members update
 alter table members add useyn varchar2(10) default 'y' not null;
 alter table members add grade varchar2(10)
-alter table members drop column useyn;
+
+alter table members drop column grade;
 
 
+
+
+select * from members;
+alter table members add useyn varchar2(10);
+
+alter table members modify useyn varchar2(100);
 
 -- cart_views 수정
 alter table carts add sellprice number(10);

@@ -147,7 +147,8 @@
 	
 	<update id="saveOptionMember" statementType="CALLABLE" parameterType="java.util.HashMap" >
 		{ CALL saveOptionMember_zen( 
-		#{id}, #{useyn}, #{grade}) }
+		#{id}, #{black}
+		) }
 	</update>
 	
 	
