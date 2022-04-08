@@ -459,7 +459,7 @@ public class MemberController {
             e.printStackTrace();
         }
         
-        return "member/findPwForm";	}	
+        return "/findPwForm";	}	
     }
 	
 
