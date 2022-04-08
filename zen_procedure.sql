@@ -888,6 +888,8 @@ begin
 end;
 
 
+
+
 --member
 CREATE OR REPLACE PROCEDURE findId_zen(
     p_name IN members.name%TYPE, 
@@ -1327,3 +1329,15 @@ BEGIN
     commit;
 END;
 
+
+
+select
+    constraint_name,
+    table_name,
+    r_constraint_name
+from
+    user_constraints
+where
+    constraint_name = 'SYS_C007370';
+
+select * from QNAS

@@ -84,14 +84,14 @@ public class MemberController {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", mvo);
-				}
-				return "redirect:/";}
-			else {
+				return "redirect:/";
+			}else {
 				model.addAttribute("message" , "비번이 안맞아요");
 				return "member/login";
 			}
 		}
 	}
+	
 	
 	@RequestMapping(value="/logout")
 	public String logout(HttpServletRequest request) {
