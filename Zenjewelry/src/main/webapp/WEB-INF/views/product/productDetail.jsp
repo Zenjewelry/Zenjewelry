@@ -15,9 +15,11 @@
 			<c:choose>
 				<c:when test="${not empty prmprice}">
 					<fmt:formatNumber value="${prmprice}" type="currency"/> 원
+					<input type="hidden" name="sellprice" value="${prmprice}" />
 				</c:when>
 				<c:otherwise>
 					<fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원
+					<input type="hidden" name="sellprice" value="${productVO.PRICE2}" />
 				</c:otherwise>
 			</c:choose>
 		</p>  
