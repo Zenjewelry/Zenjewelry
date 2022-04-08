@@ -18,24 +18,29 @@
 	    	<td>${memberVO.NAME}</td><td>${memberVO.EMAIL}</td><td>${memberVO.ZIP_NUM}</td><td>${memberVO.ADDRESS}</td>
 	    	<td>${memberVO.PHONE}</td><td><fmt:formatDate value="${memberVO.INDATE}"/>
 	    	<td>
-	    	<form method="get" action="" class="form">
-	    		<select id ="Grade">
-	    			<option value ="${memberVO.GRADE }" selected>${memberVO.GRADE }</option>
-          			<option value = "일반">a</option>
-          			<option value = "VIP">VIP</option>
-          			<option value = "VVIP">VVIP</option>
-       			</select>
+	    		<select name="grade"><option value="">선택</option>	
+				<c:forEach items="${gradeList}" var="grade" varStatus="status">
+					<c:choose>
+						<c:when test="${memberVO.GRADE==status.count}">
+							<option value="${status.count}" selected="selected">${grade}</option>
+						</c:when>
+	          			<c:otherwise><option value="${status.count}">${grade}</option></c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>
        		</td>
        		
        		<td>
-       			<select name = "Black">
-       			    <option value ="${memberVO.USEYN }" selected>${memberVO.USEYN }</option>
-          			<option value = "사용">a</option>
-          			<option value = "휴면">b</option>
-          			<option value = "블랙">c</option>
-          			<option value = "일시정지">d</option>
-       			</select>
-       		</form>
+       			<select name="black"><option value="">선택</option>	
+				<c:forEach items="${BlackList}" var="Black" varStatus="status">
+					<c:choose>
+						<c:when test="${memberVO.USEYN==status.count}">
+							<option value="${status.count}" selected="selected">${Black}</option>
+						</c:when>
+	          			<c:otherwise><option value="${status.count}">${Black}</option></c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select>
        		</td>
        		<td style="width:100px;">
        			<form name="formm" action="adminDeleteMember" style="width:0px;">
@@ -44,8 +49,8 @@
        			</form>
        			<form name="formm" action="saveOptionMember" style="width:0px;">
        				<input type="hidden" name="id" value="${memberVO.ID}" style="width:100px;" />
-       				<input type="hidden" name="useyn" value=  style="width:100px;" />
-       				<input type="hidden" name="grade" value=  style="width:100px;" />
+       				<input type="hidden" name="useyn" value="${}"  style="width:100px;" />
+       				<input type="hidden" name="grade" value="${memberVO.USEYN} " style="width:100px;" />
        				<input class="btn" type="submit" value="저장" onclick="save_option_mem();">
        			</form>
        		</td>

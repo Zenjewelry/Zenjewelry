@@ -188,7 +188,6 @@ function save_option_mem(){
 	 document.formm.action= "saveOptionMember";
 	 document.formm.submit();	
 	}
-	else return false;
 }	
 
 

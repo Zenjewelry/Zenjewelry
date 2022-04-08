@@ -524,13 +524,18 @@ public class AdminController {
 	
 	@RequestMapping("/adminMemberList")
 	public ModelAndView adminMemberList(HttpServletRequest request,
-			@RequestParam("sub") String sub) {
+			@RequestParam("sub") String sub,
+			Model model) {
 		
 		ModelAndView mav = new ModelAndView();
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginAdmin")==null) mav.setViewName("adminLoginForm");
+		String gradeList[] = {"일반", "VIP", "VVIP"};
+		model.addAttribute("gradeList", gradeList);
 		
+		String BlackList[] = {"y" ,"A", "B", "C"};
+		model.addAttribute("BlackList", BlackList);
 		if(sub!=null) {
 			session.removeAttribute("page");
 			session.removeAttribute("key");
@@ -665,10 +670,12 @@ public class AdminController {
 		return "redirect:/adminMemberList?sub='y'";
 	}
 	
-	
+
 	@RequestMapping(value = "/saveOptionMember")
 	public String saveOptionMember(HttpServletRequest request, Model model,
-			@RequestParam("id") String id, String grade, String useyn
+			@RequestParam("id") String id, 
+			@RequestParam("grade")String grade, 
+			@RequestParam("Black")String useyn
 			) {
 				
 		HttpSession session = request.getSession();
