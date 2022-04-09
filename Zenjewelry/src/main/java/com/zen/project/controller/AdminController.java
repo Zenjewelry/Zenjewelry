@@ -718,7 +718,7 @@ public class AdminController {
 			@RequestParam("optionParam1") String optionParam1,
 			@RequestParam("optionParam2") String optionParam2,
 			@RequestParam("optionParam3") String optionParam3,
-			HttpServletRequest request) {
+			HttpServletRequest request, BindingResult result) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -727,24 +727,31 @@ public class AdminController {
 			mav.setViewName("adminLoginForm");
 		}else {
 			
-			String kindList[] = {"RING", "EARRINGS", "NECKLACE",  "BRACELET"};
-			mav.addObject("kindList", kindList);
-		
-			String [] options1 = optionParam1.split(",");
-			String [] options2 = optionParam2.split(",");
-			String [] options3 = optionParam3.split(",");
+			if(result.getFieldError("name")!=null)
+				mav.addObject("message", result.getFieldError("name"));
+			else if(result.getFieldError("name")!=null)
+				mav.addObject("message", result.getFieldError("name"));
+			else {
 			
-			ArrayList<String> optionList = new ArrayList<String>();
+				String kindList[] = {"RING", "EARRINGS", "NECKLACE",  "BRACELET"};
+				mav.addObject("kindList", kindList);
 			
-			for(int i=0; i<options1.length; i++) {
-				for(int j=0; j<options2.length; j++) {
-					for(int k=0; k<options3.length; k++) {
-						optionList.add(options1[i] + "/" + options2[j] + "/" + options3[k]); 
+				String [] options1 = optionParam1.split(",");
+				String [] options2 = optionParam2.split(",");
+				String [] options3 = optionParam3.split(",");
+				
+				ArrayList<String> optionList = new ArrayList<String>();
+				
+				for(int i=0; i<options1.length; i++) {
+					for(int j=0; j<options2.length; j++) {
+						for(int k=0; k<options3.length; k++) {
+							optionList.add(options1[i] + "/" + options2[j] + "/" + options3[k]); 
+						}
 					}
 				}
+				mav.addObject("optionSize", optionList.size());
+				mav.addObject("optionList", optionList);
 			}
-			mav.addObject("optionSize", optionList.size());
-			mav.addObject("optionList", optionList);
 			mav.setViewName("admin/product/productWrite");
 		}
 		return mav;

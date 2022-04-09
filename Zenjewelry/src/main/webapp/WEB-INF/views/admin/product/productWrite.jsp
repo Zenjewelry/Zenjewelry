@@ -4,18 +4,20 @@
 <article>
 	<form name="frm" method="post" action="adminProductWrite">
 			<fieldset class="input-box"><legend>상품등록</legend>
-			<label>상품분류</label><select name="kind">
-				<option value="">선택</option>	
+			<label>상품분류</label>
+				<select name="kind">
+					<option value="">선택</option>	
 					<c:forEach items="${kindList}" var="kindString" varStatus="status">
 						<c:choose>
-							<c:when test="${status.count == kind}">
+							<c:when test="${status.count == dto.kind}">
 								<option value="${status.count}" selected="selected">${kindString}</option>
 							</c:when>
 							<c:otherwise>
 								<option value="${status.count}">${kindString}</option>
 							</c:otherwise>
 						</c:choose>
-	   				</c:forEach></select>
+	   				</c:forEach>
+	   			</select>
 				<br><hr>
 			<label>상품명</label><input type="text" name="name" size="47" maxlength="100" value="${dto.name}">
 			<label>원가[A]</label><input type="text" name="price1" size="11" onkeyup="cal();" value="${dto.price1}">

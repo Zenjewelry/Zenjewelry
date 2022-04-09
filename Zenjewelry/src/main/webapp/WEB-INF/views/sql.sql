@@ -34,7 +34,7 @@ alter table products modify detail_image varchar2(500)
 alter table products add detail_image varchar2(50);
 
 drop sequence products_seq;
-create sequence products_seq start with 92 increment by 1;
+create sequence products_seq start with 41 increment by 1;
 
 select * from products;
 
