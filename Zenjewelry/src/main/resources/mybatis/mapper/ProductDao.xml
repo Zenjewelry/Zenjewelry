@@ -110,9 +110,43 @@
 	
 	<select id="upBestList" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL upBestList_zen(
-			#{key}, #{startNum}, #{endNum}, 
+			#{startNum}, #{endNum}, 
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
 		)}
 	</select>
 
+	<select id="downBestList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL downBestList_zen(
+			#{startNum}, #{endNum}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
+	<select id="allUpList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL allUpList_zen(
+			#{startNum}, #{endNum}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
+	<select id="allDownList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL allDownList_zen(
+			#{startNum}, #{endNum}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
+	<select id="kindUpList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL kindUpList_zen(
+			#{command}, #{startNum}, #{endNum}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
+	<select id="kindDownList" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL kindDownList_zen(
+			#{command}, #{startNum}, #{endNum}, 
+			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
 </mapper>

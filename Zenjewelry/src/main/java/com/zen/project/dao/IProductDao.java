@@ -26,6 +26,11 @@ public interface IProductDao {
 	
 	void bestUpList(HashMap<String, Object> paramMap);
 	void upBestList(HashMap<String, Object> paramMap);
+	void downBestList(HashMap<String, Object> paramMap);
+	void allUpList(HashMap<String, Object> paramMap);
+	void allDownList(HashMap<String, Object> paramMap);
+	void kindUpList(HashMap<String, Object> paramMap);
+	void kindDownList(HashMap<String, Object> paramMap);
 
 
 }

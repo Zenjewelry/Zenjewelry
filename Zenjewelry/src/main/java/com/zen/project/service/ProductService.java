@@ -81,4 +81,29 @@ public class ProductService {
 	public void upBestList(HashMap<String, Object> paramMap) {
 		pdao.upBestList(paramMap);
 	}
+
+	public void downBestList(HashMap<String, Object> paramMap) {
+		pdao.downBestList(paramMap);
+		
+	}
+
+	public void allUpList(HashMap<String, Object> paramMap) {
+		pdao.allUpList(paramMap);
+		
+	}
+
+	public void allDownList(HashMap<String, Object> paramMap) {
+		pdao.allDownList(paramMap);
+		
+	}
+
+	public void kindUpList(HashMap<String, Object> paramMap) {
+		pdao.kindUpList(paramMap);
+		
+	}
+
+	public void kindDownList(HashMap<String, Object> paramMap) {
+		pdao.kindDownList(paramMap);
+		
+	}
 }

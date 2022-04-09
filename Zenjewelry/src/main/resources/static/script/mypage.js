@@ -90,6 +90,8 @@ function go_orderDetail(){
 	document.updateDelivery.submit();
 }
 
+
+
 function delete_order(oseq){
 	var answer = confirm("주문을 취소하시겠습니까?");
 	if( answer ){

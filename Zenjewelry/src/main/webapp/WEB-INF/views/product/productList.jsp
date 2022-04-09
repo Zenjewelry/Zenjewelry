@@ -5,19 +5,17 @@
 <h2> Item&nbsp;&nbsp;</h2>
 <input style=float:left type="button" value="전체상품보기" onClick="location.href='/productAll'" />
 <c:choose>
-	<c:when test="${not empty kind}">
-		<input type="hidden" name="key" value="${kind}" />
-		<a href="">높은가격순</a>
-		<a href="">낮은가격순</a>
+	<c:when test="${not empty kind || not empty kindUpList || not empty kindDownList}">
+		<a href="kindUpList?kind=${kind}&sub'y'">높은가격순</a>
+		<a href="kindDownList?kind=${kind}&sub'y'">낮은가격순</a>
 	</c:when>
-	<c:when test="${not empty best} && ${not empty bestuplist} ">
-		<a href="bestUplist">높은가격순<input type="hidden" name="key" value="up" /></a>
-		<a href="bestUplist">낮은가격순<input type="hidden" name="key" value="down" /></a>
+	<c:when test="${not empty best || not empty bestUpList || not empty bestDownList}">
+		<a href="bestUpList?sub='y'">높은가격순</a>
+		<a href="bestDownList?sub='y'">낮은가격순</a>
 	</c:when>
-	<c:when test="${not empty all}">
-		<input type="hidden" name="key" value="${all}" />
-		<a href="">높은가격순</a>
-		<a href="">낮은가격순</a>
+	<c:when test="${not empty all || not empty allUpList || not empty allDownList}">
+		<a href="allUpList?sub='y'">높은가격순</a>
+		<a href="allDownList?sub='y'">낮은가격순</a>
 	</c:when>
 </c:choose>
 <br><br>
@@ -40,14 +38,39 @@
 			<jsp:param name="command" value="productList?kind=${kind}" />
 		</jsp:include>
 	</c:when>
+	<c:when test="${not empty kindUpList}">
+		<jsp:include page="../include/page/pagingForProduct.jsp">
+			<jsp:param name="command" value="kindUpList?kind=${kind}" />
+		</jsp:include>
+	</c:when>
+	<c:when test="${not empty kindDownList}">
+		<jsp:include page="../include/page/paging.jsp">
+			<jsp:param name="command" value="kindDownList?kind=${kind}" />
+		</jsp:include>
+	</c:when>
 	<c:when test="${not empty best}">
 		<jsp:include page="../include/page/paging.jsp">
 			<jsp:param name="command" value="bestProductList" />
 		</jsp:include>
 	</c:when>
-	<c:when test="${not empty bestuplist}">
+	<c:when test="${not empty bestUpList}">
 		<jsp:include page="../include/page/paging.jsp">
-			<jsp:param name="command" value="bestUplist" />
+			<jsp:param name="command" value="bestUpList" />
+		</jsp:include>
+	</c:when>
+	<c:when test="${not empty bestDownList}">
+		<jsp:include page="../include/page/paging.jsp">
+			<jsp:param name="command" value="bestDownList" />
+		</jsp:include>
+	</c:when>
+	<c:when test="${not empty allUpList}">
+		<jsp:include page="../include/page/paging.jsp">
+			<jsp:param name="command" value="bestDownList" />
+		</jsp:include>
+	</c:when>
+	<c:when test="${not empty allDownList}">
+		<jsp:include page="../include/page/paging.jsp">
+			<jsp:param name="command" value="bestDownList" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty all}">
