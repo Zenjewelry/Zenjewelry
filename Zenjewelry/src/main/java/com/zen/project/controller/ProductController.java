@@ -185,16 +185,23 @@ public class ProductController {
 		paramMap.put("ref_cursor2", null);
 		ps.getProduct(paramMap);
 		
+		paramMap.put("options", null);
+		ps.getProductOption(paramMap);
+		
 		ArrayList<HashMap<String, Object>> productVO
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
 		ArrayList<HashMap<String, Object>> product_QnaVO
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
+		ArrayList<HashMap<String, Object>> options
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("options");
 		
 		
 		if(request.getParameter("prmprice") != null)
 			mav.addObject("prmprice", request.getParameter("prmprice"));
+		
 		mav.addObject("productVO", productVO.get(0));
 		mav.addObject("product_QnaVO", product_QnaVO);
+		mav.addObject("options", options);
 		mav.setViewName("product/productDetail");
 		
 		return mav;
