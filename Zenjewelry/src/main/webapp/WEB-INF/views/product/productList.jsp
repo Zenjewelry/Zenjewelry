@@ -6,8 +6,8 @@
 <input style=float:left type="button" value="전체상품보기" onClick="location.href='/productAll'" />
 <c:choose>
 	<c:when test="${not empty kind || not empty kindUpList || not empty kindDownList}">
-		<a href="kindUpList?kind=${kind}&sub'y'">높은가격순</a>
-		<a href="kindDownList?kind=${kind}&sub'y'">낮은가격순</a>
+		<a href="kindUpList?kind=${kind}&sub='y'">높은가격순</a>
+		<a href="kindDownList?kind=${kind}&sub='y'">낮은가격순</a>
 	</c:when>
 	<c:when test="${not empty best || not empty bestUpList || not empty bestDownList}">
 		<a href="bestUpList?sub='y'">높은가격순</a>
@@ -33,21 +33,22 @@
 <div class="clear"></div>
 <br/><br/><br/><br/><br/><br/>
 <c:choose>
-	<c:when test="${not empty kind}">
-		<jsp:include page="../include/page/pagingForProduct.jsp">
-			<jsp:param name="command" value="productList?kind=${kind}" />
-		</jsp:include>
-	</c:when>
 	<c:when test="${not empty kindUpList}">
 		<jsp:include page="../include/page/pagingForProduct.jsp">
 			<jsp:param name="command" value="kindUpList?kind=${kind}" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty kindDownList}">
-		<jsp:include page="../include/page/paging.jsp">
+		<jsp:include page="../include/page/pagingForProduct.jsp">
 			<jsp:param name="command" value="kindDownList?kind=${kind}" />
 		</jsp:include>
 	</c:when>
+	<c:when test="${not empty kind}">
+		<jsp:include page="../include/page/pagingForProduct.jsp">
+			<jsp:param name="command" value="productList?kind=${kind}" />
+		</jsp:include>
+	</c:when>
+	
 	<c:when test="${not empty best}">
 		<jsp:include page="../include/page/paging.jsp">
 			<jsp:param name="command" value="bestProductList" />
