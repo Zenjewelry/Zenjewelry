@@ -556,24 +556,6 @@ end;
 
 
 
-CREATE OR REPLACE PROCEDURE updateProduct_zen(
-    p_pseq IN products.pseq%TYPE,
-    p_name IN products.name%TYPE,
-    p_kind  IN products.kind%TYPE,
-    p_price1  IN products.price1%TYPE,
-    p_price2  IN products.price2%TYPE,
-    p_content IN products.content%TYPE,
-    p_image IN products.image%TYPE,
-    p_detail_image IN products.detail_image%TYPE,
-    p_newyn IN products.newyn%TYPE,
-    p_bestyn IN products.bestyn%TYPE
-)
-IS
-BEGIN
-    update products set name=p_name, kind=p_kind, price1=p_price1, price2=p_price2, content=p_content, image=p_image, detail_image=p_detail_image, newyn=p_newyn, bestyn=p_bestyn 
-    where pseq=p_pseq;
-    commit;    
-END;
 
 
 
@@ -1504,6 +1486,62 @@ begin
                     ((select * from products where kind = p_comm order by price2 ) p)
             ) where rn>=p_startNum
         ) where rn<=p_endNum;
+end;
+
+
+
+
+-- 04/10
+
+-- product
+create or replace procedure getProductOption_zen(
+    p_pseq in product_options.pseq%type,
+    p_cur out sys_refcursor
+)
+is
+begin
+    open p_cur for
+        select * from product_options where pseq = p_pseq order by option1, option2, option3;
+end;
+
+
+CREATE OR REPLACE PROCEDURE updateProduct_zen(
+    p_pseq IN products.pseq%TYPE,
+    p_name IN products.name%TYPE,
+    p_kind  IN products.kind%TYPE,
+    p_price1  IN products.price1%TYPE,
+    p_price2  IN products.price2%TYPE,
+    p_content IN products.content%TYPE,
+    p_image IN products.image%TYPE,
+    p_detail_image IN products.detail_image%TYPE,
+    p_newyn IN products.newyn%TYPE,
+    p_bestyn IN products.bestyn%TYPE
+)
+IS
+BEGIN
+    update products set name=p_name, kind=p_kind, price1=p_price1, price2=p_price2, content=p_content, image=p_image, detail_image=p_detail_image, newyn=p_newyn, bestyn=p_bestyn 
+    where pseq=p_pseq;
+    
+    delete from product_options where pseq = p_pseq;
+    commit;    
+END;
+
+
+
+create or replace procedure getDistinctProductOption_zen(
+    p_pseq in product_options.pseq%type,
+    p_option1 out sys_refcursor,
+    p_option2 out sys_refcursor,
+    p_option3 out sys_refcursor
+)
+is
+begin
+    open p_option1 for
+        select distinct option1, pseq from product_options where pseq = p_pseq order by option1;
+    open p_option2 for
+        select distinct option2, pseq from product_options where pseq = p_pseq order by option2;
+    open p_option3 for
+        select distinct option3, pseq from product_options where pseq = p_pseq order by option3;
 end;
 
 

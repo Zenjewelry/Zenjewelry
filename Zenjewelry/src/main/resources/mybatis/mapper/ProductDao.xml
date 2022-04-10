@@ -7,6 +7,7 @@
 	
 	<resultMap  id="productMap1" type="java.util.HashMap"></resultMap>
 	<resultMap  id="productMap2" type="java.util.HashMap"></resultMap>
+	<resultMap  id="productMap3" type="java.util.HashMap"></resultMap>
 	
 	<select id="getBestNewProduct" statementType="CALLABLE" parameterType="java.util.HashMap">
 		{CALL getBestNewProduct_zen(
@@ -149,4 +150,21 @@
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
 		)}
 	</select>
+	
+	<select id="getProductOption" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProductOption_zen(
+			#{pseq},
+			#{options, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
+		)}
+	</select>
+	
+	<select id="getDistinctProductOption" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getDistinctProductOption_zen(
+			#{pseq},
+			#{option1, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1},
+			#{option2, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap2},
+			#{option3, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap3}
+		)}
+	</select>
+	
 </mapper>

@@ -46,7 +46,25 @@
 	<label>상세이미지</label><input type="button" value="상품상세이미지 업로드" onClick="uploadAdminImg('Detail');">
 			<label>상세이미지 파일명</label><div id="previewDetailText">${productVO.DETAIL_IMAGE}</div>
 			<label>Preview</label><img src="/product_images/${productVO.DETAIL_IMAGE}" id="previewDetailImg" width="300" height="300" /><br />
-			<input type="hidden" name="detail_image" value="${productVO.DETAIL_IMAGE}"/> 
+			<input type="hidden" name="detail_image" value="${productVO.DETAIL_IMAGE}"/>
+			
+	<!-- <button id="optionButton">Option List</button> -->
+	<div id="optionTable">
+		<table>
+			<tr><th>순번</th><th>옵션1</th><th>옵션2</th><th>옵션3</th><th>옵션별 가격</th><th>재고</th></tr>
+			<c:forEach items="${options}" var="option" varStatus="index">
+				<tr>
+					<td>${index.count}</td>
+					<td><input type="text" name="option1${index.count}" value="${option.OPTION1}" /></td>
+					<td><input type="text" name="option2${index.count}" value="${option.OPTION2}" /></td>
+					<td><input type="text" name="option3${index.count}" value="${option.OPTION3}" /></td>
+					<td><input type="text" name="changePrice${index.count}" value="${option.CHANGEPRICE}" /></td>
+					<td><input type="text" name="sku${index.count}" value="${option.SKU}" /></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+	<input type="hidden" name="optionSize" value="${optionSize}" />
 </fieldset>
 	
 	<div id="buttons">

@@ -380,10 +380,18 @@ public class AdminController {
 		paramMap.put("ref_cursor2", null);
 		ps.getProduct(paramMap);
 		
-		ArrayList<HashMap<String, Object>> pvo
-			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
+		paramMap.put("options", null);
+		ps.getProductOption(paramMap);
 		
+		ArrayList<HashMap<String, Object>> pvo
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
+		
+		ArrayList<HashMap<String, Object>> options
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("options");
+	
 		model.addAttribute("productVO", pvo.get(0));
+		model.addAttribute("options", options);
+		model.addAttribute("optionSize", options.size());
 		
 		return "admin/product/productUpdate";
 	}
@@ -411,6 +419,22 @@ public class AdminController {
 		
 		paramMap.put("pvo", pvo);
 		as.updateProduct(paramMap);
+		
+		paramMap.put("pseq", pvo.getPseq());
+		for(int i=1; i<=Integer.parseInt(request.getParameter("optionSize")); i++) {
+			String option1 = "option1" + i;
+			String option2 = "option2" + i;
+			String option3 = "option3" + i;
+			String changePrice = "changePrice" + i;
+			String sku = "sku" + i;
+			paramMap.put("option1", request.getParameter(option1));
+			paramMap.put("option2", request.getParameter(option2));
+			paramMap.put("option3", request.getParameter(option3));
+			paramMap.put("changePrice", request.getParameter(changePrice));
+			paramMap.put("sku", request.getParameter(sku));
+			as.insertOption(paramMap);
+		}
+		
 		mav.setViewName("redirect:/adminProductDetail?pseq=" + pvo.getPseq());
 		
 		return mav;

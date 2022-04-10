@@ -266,7 +266,17 @@ function createOptions(){
 }
 
 
+/*
+$(function(){
+	$('#optionButton').click(function(){
+		$('#optionTable').slideToggle();
+	});
+});
+*/
 
+$('#optionButton').click(function(){
+		$('#optionTable').slideToggle();
+});
 
 
 

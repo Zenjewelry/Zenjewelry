@@ -14,18 +14,43 @@
 		<p>
 			<c:choose>
 				<c:when test="${not empty prmprice}">
-					<fmt:formatNumber value="${prmprice}" type="currency"/> 원
+					<p id="sellprice"><fmt:formatNumber value="${prmprice}" type="currency" /> 원</p>
 					<input type="hidden" name="sellprice" value="${prmprice}" />
+					<input type="hidden" name="firstsellprice" value="${prmprice}" />
 				</c:when>
 				<c:otherwise>
-					<fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원
+					<p id="sellprice"><fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원</p>
 					<input type="hidden" name="sellprice" value="${productVO.PRICE2}" />
+					<input type="hidden" name="firstsellprice" value="${productVO.PRICE2}" />
 				</c:otherwise>
 			</c:choose>
-		</p>  
+		</p>
+		<label>순 도 : </label>
+			<select name="option1" onChange="updatePrice();"><option value="">선택(필수)</option>
+				<c:forEach items="${option1}" var="option">
+					<option value="${option.OPTION1}">${option.OPTION1}</option>
+				</c:forEach>
+			</select>
+		<label>사이즈 : </label>
+			<select name="option2" onChange="updatePrice();"><option value="">선택(필수)</option>
+				<c:forEach items="${option2}" var="option">
+					<option value="${option.OPTION2}">${option.OPTION2}</option>
+				</c:forEach>
+			</select>
+		<label>색 상 : </label>
+			<select name="option3" onChange="updatePrice();"><option value="">선택(필수)</option>
+				<c:forEach items="${option3}" var="option">
+					<option value="${option.OPTION3}">${option.OPTION3}</option>
+				</c:forEach>
+			</select>
        	<label>수 량 : </label><input  type="text" name="quantity" size="2" value="1"><br>
+       	<label>재 고 : </label><p id="sku"></p><br>
        	<label>제품설명 : </label><label>${productVO.CONTENT}</label><br>
        	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}"><br>
+	<c:forEach items="${options}" var="option">
+		<input type="hidden" name="${option.OPTION1}${option.OPTION2}${option.OPTION3}" value="${option.CHANGEPRICE}" />
+		<input type="hidden" name="${option.OPTION1}${option.OPTION2}${option.OPTION3}_sku" value="${option.SKU}" />
+	</c:forEach>
 	</fieldset>
 	<div class="clear"></div>
 	<div id="buttons">
