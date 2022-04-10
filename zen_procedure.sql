@@ -1537,11 +1537,11 @@ create or replace procedure getDistinctProductOption_zen(
 is
 begin
     open p_option1 for
-        select distinct option1 from product_options where pseq = p_pseq order by option1;
+        select distinct option1, pseq from product_options where pseq = p_pseq order by option1;
     open p_option2 for
-        select distinct option2 from product_options where pseq = p_pseq order by option2;
+        select distinct option2, pseq from product_options where pseq = p_pseq order by option2;
     open p_option3 for
-        select distinct option3 from product_options where pseq = p_pseq order by option3;
+        select distinct option3, pseq from product_options where pseq = p_pseq order by option3;
 end;
 
 

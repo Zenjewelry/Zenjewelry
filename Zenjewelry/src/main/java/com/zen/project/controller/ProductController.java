@@ -209,9 +209,6 @@ public class ProductController {
 		if(request.getParameter("prmprice") != null)
 			mav.addObject("prmprice", request.getParameter("prmprice"));
 		
-		for(int i=0; i<option1.size(); i++)
-			System.out.println(option1.get(i));
-		
 		mav.addObject("productVO", productVO.get(0));
 		mav.addObject("product_QnaVO", product_QnaVO);
 		mav.addObject("options", options);

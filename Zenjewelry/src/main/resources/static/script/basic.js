@@ -215,6 +215,25 @@ $(function(){
 
 
 
+function updatePrice(){
+
+	var optionName
+		= document.ElementsByName('option1').value + 
+		document.ElementsByName('option2').value + 
+		document.ElementsByName('option3').value;
+	
+	document.ElementById('sellprice').innerHTML
+		= '<fmt:formatNumber value="'
+		+ (document.ElementsByName('firstsellprice').value + document.ElementsByName(optionName).value)
+		+ '" type="currency" />';
+	
+	document.ElementsByName('sellprice').value
+		= document.ElementsByName('firstsellprice').value + document.ElementsByName(optionName).value;
+		
+	document.ElementById('sku').innerHTML = document.ElementsByName(optionName+'_sku').value;
+	
+}
+
 
 
 
