@@ -171,5 +171,15 @@ function go_removeQna(){
 }
 
 
+function Switch_dormant_account(){
+	var answer = confirm("계정을 활성화 하시겠습니까?");
+	if( answer ){
+	 document.formm.action= "Switch_dormant_account";
+	 document.formm.submit();	
+	}
+	else return false;
+}	
+
+
 
 
