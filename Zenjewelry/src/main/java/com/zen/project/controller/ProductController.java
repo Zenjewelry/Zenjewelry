@@ -401,7 +401,7 @@ public class ProductController {
 	@RequestMapping("/allUpList")
 	public String allUpList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		model.addAttribute("all", "y");
+		model.addAttribute("allUpList", "y");
 		
 		if(request.getParameter("sub")!=null) {
 			session.removeAttribute("page");
@@ -443,7 +443,7 @@ public class ProductController {
 	@RequestMapping("/allDownList")
 	public String allDownList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		model.addAttribute("all", "y");
+		model.addAttribute("allUpList", "y");
 		
 		if(request.getParameter("sub")!=null) {
 			session.removeAttribute("page");

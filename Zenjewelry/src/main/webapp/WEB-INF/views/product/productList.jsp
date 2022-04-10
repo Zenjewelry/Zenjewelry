@@ -66,12 +66,12 @@
 	</c:when>
 	<c:when test="${not empty allUpList}">
 		<jsp:include page="../include/page/paging.jsp">
-			<jsp:param name="command" value="bestDownList" />
+			<jsp:param name="command" value="allUpList" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty allDownList}">
 		<jsp:include page="../include/page/paging.jsp">
-			<jsp:param name="command" value="bestDownList" />
+			<jsp:param name="command" value="allDownList" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty all}">
