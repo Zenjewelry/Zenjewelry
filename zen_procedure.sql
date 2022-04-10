@@ -1362,25 +1362,6 @@ end;
 select * from products
 
 
-
-create or replace procedure upBestList_zen(
-    p_key in varchar2,
-    p_startNum in number,
-    p_endNum in number,
-    p_cur out sys_refcursor
-)
-is
-begin
-    open p_cur for
-        select * from (
-            select * from (
-                select rownum as rn, p.* from
-                    ((select * from products where bestyn='y' order by price2) p)
-            ) where rn>=p_startNum
-        ) where rn<=p_endNum;
-end;
-
-
 select * from products where bestyn='y' order by price2 desc ; 
 
 update products set bestyn='y' ;
