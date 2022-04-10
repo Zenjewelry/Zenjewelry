@@ -149,4 +149,12 @@
 			#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap1}
 		)}
 	</select>
+	
+	<select id="getProductOption" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{CALL getProductOption_zen(
+			#{pseq},
+			#{options, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=adminMap}
+		)}
+	</select>
+	
 </mapper>

@@ -106,4 +106,8 @@ public class ProductService {
 		pdao.kindDownList(paramMap);
 		
 	}
+
+	public void getProductOption(HashMap<String, Object> paramMap) {
+		pdao.getProductOption(paramMap);
+	}
 }

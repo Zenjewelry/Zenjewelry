@@ -31,6 +31,7 @@ public interface IProductDao {
 	void allDownList(HashMap<String, Object> paramMap);
 	void kindUpList(HashMap<String, Object> paramMap);
 	void kindDownList(HashMap<String, Object> paramMap);
+	void getProductOption(HashMap<String, Object> paramMap);
 
 
 }

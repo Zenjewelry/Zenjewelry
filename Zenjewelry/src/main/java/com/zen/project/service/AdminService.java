@@ -84,8 +84,6 @@ public class AdminService {
 	public void insertOption(HashMap<String, Object> paramMap) {
 		adao.insertOption(paramMap);
 	}
-	
-	
 		
 }	
 	

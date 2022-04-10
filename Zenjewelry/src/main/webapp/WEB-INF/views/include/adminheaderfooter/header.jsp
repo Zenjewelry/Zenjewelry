@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="../script/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="../css/shopping.css">
 <script type="text/javascript" src="../admin/product.js"></script>
 </head>
