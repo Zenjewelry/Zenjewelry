@@ -26,19 +26,19 @@
 			</c:choose>
 		</p>
 		<label>순 도 : </label>
-			<select name="option1" onKeyup="updatePrice();"><option value="">선택(필수)</option>
+			<select name="option1" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option1}" var="option">
 					<option value="${option.OPTION1}">${option.OPTION1}</option>
 				</c:forEach>
 			</select>
 		<label>사이즈 : </label>
-			<select name="option2" onKeyup="updatePrice();"><option value="">선택(필수)</option>
+			<select name="option2" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option2}" var="option">
 					<option value="${option.OPTION2}">${option.OPTION2}</option>
 				</c:forEach>
 			</select>
 		<label>색 상 : </label>
-			<select name="option3" onKeyup="updatePrice();"><option value="">선택(필수)</option>
+			<select name="option3" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option3}" var="option">
 					<option value="${option.OPTION3}">${option.OPTION3}</option>
 				</c:forEach>
