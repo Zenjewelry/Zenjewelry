@@ -234,9 +234,8 @@ function updatePrice(){
 		
 	document.getElementById('sku').innerHTML = document.getElementById(optionName+'_sku').value;
 	
-	alert('final');
-	
 }
+
 
 
 

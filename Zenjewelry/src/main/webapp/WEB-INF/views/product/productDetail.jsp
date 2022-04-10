@@ -44,7 +44,7 @@
 				</c:forEach>
 			</select>
        	<label>수 량 : </label><input  type="text" name="quantity" size="2" value="1"><br>
-       	<label>재 고 : </label><p id="sku"></p><br>
+       	<label>재 고 : </label><p id="sku"></p>
        	<label>제품설명 : </label><label>${productVO.CONTENT}</label><br>
        	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}"><br>
 	<c:forEach items="${options}" var="option">
