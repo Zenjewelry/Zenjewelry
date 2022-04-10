@@ -22,7 +22,25 @@
 					<input type="hidden" name="sellprice" value="${productVO.PRICE2}" />
 				</c:otherwise>
 			</c:choose>
-		</p>  
+		</p>
+		<label>순 도 : </label>
+			<select name="option1"><option value="">선택(필수)</option>
+				<c:forEach items="${option1}" var="option">
+					<option value="${option}">${option}</option>
+				</c:forEach>
+			</select>
+		<label>사이즈 : </label>
+			<select name="option2"><option value="">선택(필수)</option>
+				<c:forEach items="${option2}" var="option">
+					<option value="${option}">${option}</option>
+				</c:forEach>
+			</select>
+		<label>색 상 : </label>
+			<select name="option3"><option value="">선택(필수)</option>
+				<c:forEach items="${option3}" var="option">
+					<option value="${option}">${option}</option>
+				</c:forEach>
+			</select>
        	<label>수 량 : </label><input  type="text" name="quantity" size="2" value="1"><br>
        	<label>제품설명 : </label><label>${productVO.CONTENT}</label><br>
        	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}"><br>

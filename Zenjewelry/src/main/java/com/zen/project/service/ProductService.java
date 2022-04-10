@@ -110,4 +110,8 @@ public class ProductService {
 	public void getProductOption(HashMap<String, Object> paramMap) {
 		pdao.getProductOption(paramMap);
 	}
+
+	public void getDistinctProductOption(HashMap<String, Object> paramMap) {
+		pdao.getDistinctProductOption(paramMap);
+	}
 }

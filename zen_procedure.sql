@@ -1527,3 +1527,21 @@ BEGIN
 END;
 
 
+
+create or replace procedure getDistinctProductOption_zen(
+    p_pseq in product_options.pseq%type,
+    p_option1 out sys_refcursor,
+    p_option2 out sys_refcursor,
+    p_option3 out sys_refcursor
+)
+is
+begin
+    open p_option1 for
+        select distinct option1 from product_options where pseq = p_pseq order by option1;
+    open p_option2 for
+        select distinct option2 from product_options where pseq = p_pseq order by option2;
+    open p_option3 for
+        select distinct option3 from product_options where pseq = p_pseq order by option3;
+end;
+
+

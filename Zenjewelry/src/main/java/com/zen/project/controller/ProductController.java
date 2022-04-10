@@ -188,20 +188,36 @@ public class ProductController {
 		paramMap.put("options", null);
 		ps.getProductOption(paramMap);
 		
+		paramMap.put("option1", null);
+		paramMap.put("option2", null);
+		paramMap.put("option3", null);
+		ps.getDistinctProductOption(paramMap);
+		
 		ArrayList<HashMap<String, Object>> productVO
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
 		ArrayList<HashMap<String, Object>> product_QnaVO
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
 		ArrayList<HashMap<String, Object>> options
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("options");
-		
+		ArrayList<HashMap<String, Object>> option1
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("option1");
+		ArrayList<HashMap<String, Object>> option2
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("option2");
+		ArrayList<HashMap<String, Object>> option3
+		= (ArrayList<HashMap<String, Object>>)paramMap.get("option3");
 		
 		if(request.getParameter("prmprice") != null)
 			mav.addObject("prmprice", request.getParameter("prmprice"));
 		
+		for(int i=0; i<option1.size(); i++)
+			System.out.println(option1.get(i));
+		
 		mav.addObject("productVO", productVO.get(0));
 		mav.addObject("product_QnaVO", product_QnaVO);
 		mav.addObject("options", options);
+		mav.addObject("option1", option1);
+		mav.addObject("option2", option2);
+		mav.addObject("option3", option3);
 		mav.setViewName("product/productDetail");
 		
 		return mav;

@@ -640,5 +640,7 @@ create table product_options(
 select * from products
 select * from product_options;
 
+select distinct option1 from product_options where pseq = 24;
+
 
 
