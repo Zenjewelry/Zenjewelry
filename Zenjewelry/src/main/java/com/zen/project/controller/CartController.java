@@ -67,6 +67,9 @@ public class CartController {
 			paramMap.put("id", loginUser.get("ID"));
 			paramMap.put("pseq", pseq);
 			paramMap.put("quantity", quantity);
+			paramMap.put("option1", request.getParameter("option1"));
+			paramMap.put("option2", request.getParameter("option2"));
+			paramMap.put("option3", request.getParameter("option3"));
 			paramMap.put("sellprice", sellprice * quantity);
 			
 			cs.insertCart(paramMap);

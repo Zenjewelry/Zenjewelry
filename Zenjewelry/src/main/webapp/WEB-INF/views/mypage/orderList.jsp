@@ -18,7 +18,7 @@
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
 			<td ><a href="orderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a></td>        
-			<td colspan="2"><a href="orderDetail?oseq=${orderVO.OSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a></td>
+			<td colspan="2"><a href="orderDetail?oseq=${orderVO.OSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a>${orderVO.OPTION1} / ${orderVO.OPTION2} / ${orderVO.OPTION3}</td>
 			<td>${orderVO.SELLPRICE}</td>
 			<td> ${orderVO.QUANTITY}</td>
 			

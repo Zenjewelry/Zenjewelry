@@ -16,7 +16,9 @@
 						<img src="product_images/${cartVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/>
 						</a></td>
 						<td><a href="productDetail?pseq=${cartVO.PSEQ}" target="_blank" >
-							<h3> ${cartVO.PNAME} </h3></a></td><td> ${cartVO.QUANTITY} </td>
+							<h3> ${cartVO.PNAME} </h3>
+							<p>${cartVO.OPTION1} / ${cartVO.OPTION2} / ${cartVO.OPTION3}</p></a></td>
+						<td> ${cartVO.QUANTITY} </td>
 						<td><fmt:formatNumber value="${cartVO.SELLPRICE}"	type="currency"/></td>
 					
 						</tr>

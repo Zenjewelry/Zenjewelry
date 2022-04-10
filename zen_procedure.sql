@@ -772,25 +772,6 @@ end;
 -- order
 
 
-CREATE OR REPLACE PROCEDURE insertOrderOne_zen(
-   p_id IN orderss.id%TYPE,
-   p_address IN orders_details.address%TYPE,
-   p_zip_num IN orders_details.zip_num%TYPE,
-   p_address2 IN orders_details.address2%TYPE,
-   p_pseq IN orders_details.pseq %TYPE,
-   p_quantity IN orders_details.quantity %TYPE,
-   p_oseq OUT orderss.oseq%TYPE
-)
-IS  
-      v_oseq ORDERSS.oseq%TYPE;
-BEGIN
-        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-        select MAX(oseq) into v_oseq from orderss;
-        insert into orders_details(odseq, oseq, pseq, quantity,address,zip_num,address2)
-        values( orders_details_seq.nextVal, v_oseq, p_pseq, p_quantity,p_address,p_zip_num,p_address2);
-        COMMIT;
-        p_oseq := v_oseq;
-END;
 
 create or replace procedure insertQna_zen(
     p_id in qnas.id%type,
@@ -1183,80 +1164,15 @@ begin
 end;
 
 
-create or replace procedure insertCart_zen(
-    p_id in orderss.id%type,
-    p_pseq in orders_details.pseq%type,
-    p_quan in orders_details.quantity%type,
-    p_sellprice in orders_details.quantity%type
-)
-is
-begin
-    insert into carts(cseq, id, pseq, quantity, sellprice)
-    values(carts_seq.nextVal, p_id, p_pseq, p_quan, p_sellprice);
-    commit;
-end;
-
 select * from orders_details
 
 
 
-CREATE OR REPLACE PROCEDURE insertOrderOne_zen(
-   p_id IN orderss.id%TYPE,
-   p_address IN orders_details.address%TYPE,
-   p_zip_num IN orders_details.zip_num%TYPE,
-   p_address2 IN orders_details.address2%TYPE,
-   p_pseq IN orders_details.pseq %TYPE,
-   p_quantity IN orders_details.quantity %TYPE,
-   p_sellprice IN orders_details.sellprice %TYPE,
-   p_oseq OUT orderss.oseq%TYPE
-)
-IS  
-      v_oseq ORDERSS.oseq%TYPE;
-BEGIN
-        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-        select MAX(oseq) into v_oseq from orderss;
-        insert into orders_details(odseq, oseq, pseq, quantity,address,zip_num,address2,sellprice)
-        values( orders_details_seq.nextVal, v_oseq, p_pseq, p_quantity,p_address,p_zip_num,p_address2,p_sellprice);
-        COMMIT;
-        p_oseq := v_oseq;
-END;
 
 
 
 
 
-CREATE OR REPLACE PROCEDURE insertOrder_zen(
-    p_id IN orderss.id%TYPE,
-    p_address IN orders_details.address%TYPE,
-    p_zip_num IN orders_details.zip_num%TYPE,
-    p_address2 IN orders_details.address2%TYPE,
-    p_oseq out orderss.oseq%TYPE)
-IS  
-      v_oseq ORDERSS.oseq%TYPE;
-      temp_cur SYS_REFCURSOR;
-      v_cseq carts.cseq%TYPE;
-      v_pseq carts.pseq%TYPE;
-      v_quantity carts.quantity%TYPE;
-      v_sellprice carts.sellprice%type;
-BEGIN
-      
-        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
-       
-        select MAX(oseq) into v_oseq from orderss;
-    
-        OPEN temp_cur FOR select cseq, pseq, quantity, sellprice from carts where id=p_id AND result='1';
-       
-        LOOP
-            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity, v_sellprice;
-            EXIT WHEN temp_cur%NOTFOUND; 
-            INSERT INTO orders_details ( odseq, oseq, pseq, quantity,address, zip_num, address2, sellprice) 
-            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity,p_address,p_zip_num,p_address2, v_sellprice);  
-            DELETE FROM CARTS WHERE cseq = v_cseq;
-        END LOOP;
-        COMMIT;
-    
-        p_oseq := v_oseq;
-END;
 
 CREATE OR REPLACE PROCEDURE saveOptionMember_zen(
     p_id IN members.id%TYPE,
@@ -1526,3 +1442,86 @@ begin
 end;
 
 
+create or replace procedure insertCart_zen(
+    p_id in orderss.id%type,
+    p_pseq in orders_details.pseq%type,
+    p_quan in orders_details.quantity%type,
+    p_sellprice in orders_details.quantity%type,
+    p_option1 in carts.option1%type,
+    p_option2 in carts.option2%type,
+    p_option3 in carts.option3%type
+)
+is
+begin
+    insert into carts(cseq, id, pseq, quantity, sellprice, option1, option2, option3)
+    values(carts_seq.nextVal, p_id, p_pseq, p_quan, p_sellprice, p_option1, p_option2, p_option3);
+    commit;
+end;
+
+
+CREATE OR REPLACE PROCEDURE insertOrder_zen(
+    p_id IN orderss.id%TYPE,
+    p_address IN orders_details.address%TYPE,
+    p_zip_num IN orders_details.zip_num%TYPE,
+    p_address2 IN orders_details.address2%TYPE,
+    p_oseq out orderss.oseq%TYPE)
+IS  
+      v_oseq ORDERSS.oseq%TYPE;
+      temp_cur SYS_REFCURSOR;
+      v_cseq carts.cseq%TYPE;
+      v_pseq carts.pseq%TYPE;
+      v_quantity carts.quantity%TYPE;
+      v_sellprice carts.sellprice%type;
+      v_option1 orders_details.option1%type;
+      v_option2 orders_details.option2%type;
+      v_option3 orders_details.option3%type;
+BEGIN
+      
+        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
+       
+        select MAX(oseq) into v_oseq from orderss;
+    
+        OPEN temp_cur FOR select cseq, pseq, quantity, sellprice, option1, option2, option3 from carts where id=p_id AND result='1';
+       
+        LOOP
+            FETCH temp_cur INTO v_cseq, v_pseq, v_quantity, v_sellprice, v_option1, v_option2, v_option3;
+            EXIT WHEN temp_cur%NOTFOUND; 
+            INSERT INTO orders_details ( odseq, oseq, pseq, quantity,address, zip_num, address2, sellprice, option1, option2, option3) 
+            VALUES( orders_details_seq.nextVal, v_oseq, v_pseq, v_quantity,p_address,p_zip_num,p_address2, v_sellprice, v_option1, v_option2, v_option3);  
+            DELETE FROM CARTS WHERE cseq = v_cseq;
+        END LOOP;
+        COMMIT;
+    
+        p_oseq := v_oseq;
+END;
+
+
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE insertOrderOne_zen(
+   p_id IN orderss.id%TYPE,
+   p_address IN orders_details.address%TYPE,
+   p_zip_num IN orders_details.zip_num%TYPE,
+   p_address2 IN orders_details.address2%TYPE,
+   p_pseq IN orders_details.pseq %TYPE,
+   p_quantity IN orders_details.quantity %TYPE,
+   p_sellprice IN orders_details.sellprice %TYPE,
+   p_option1 IN orders_details.option1%TYPE,
+   p_option2 IN orders_details.option2%TYPE,
+   p_option3 IN orders_details.option3%TYPE,
+   p_oseq OUT orderss.oseq%TYPE
+)
+IS  
+      v_oseq ORDERSS.oseq%TYPE;
+BEGIN
+        insert into orderss(oseq, id) values(orders_seq.nextVal, p_id);
+        select MAX(oseq) into v_oseq from orderss;
+        insert into orders_details(odseq, oseq, pseq, quantity,address,zip_num,address2,sellprice, option1, option2, option3)
+        values( orders_details_seq.nextVal, v_oseq, p_pseq, p_quantity,p_address,p_zip_num,p_address2,p_sellprice, p_option1, p_option2, p_option3);
+        COMMIT;
+        p_oseq := v_oseq;
+END;

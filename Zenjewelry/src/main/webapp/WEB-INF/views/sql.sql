@@ -640,7 +640,35 @@ create table product_options(
 select * from products
 select * from product_options;
 
-select distinct option1, pseq from product_options where pseq = 24;
+
+-- carts 옵션 추가
+
+alter table carts add option1 varchar2(50);
+alter table carts add option2 varchar2(50);
+alter table carts add option3 varchar2(50);
+
+create or replace view cart_views
+as
+select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sellprice, c.result, c.indate, c.option1, c.option2, c.option3
+from carts c, products p, members m
+where c.pseq = p.pseq and c.id = m.id;
 
 
+
+-- order 옵션 추가
+alter table orders_details add option1 varchar2(50);
+alter table orders_details add option2 varchar2(50);
+alter table orders_details add option3 varchar2(50);
+
+create or replace view order_views
+as
+select d.odseq, o.oseq, o.indate,  o.id, 
+         m.name as mname, d.zip_num, d.address, m.phone, d.address2,
+         d.pseq,  p.name as pname, d.sellprice, d.quantity, d.result , p.image, d.option1, d.option2, d.option3
+from orderss o, orders_details d, members m, products p
+where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
+
+
+select * from orders_details
+select * from members
 

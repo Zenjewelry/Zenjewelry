@@ -101,7 +101,6 @@ public class OrderController {
 			// oseq 에 주문번호를 넣어 갖고 되돌아옵니다. 
 			
 			oseq = Integer.parseInt(paramMap.get("oseq").toString());
-			System.out.println(oseq);
 
 			return "redirect:/orderList?oseq="+oseq;
 		}
@@ -235,7 +234,10 @@ public class OrderController {
 	public String orderInsertOne(HttpServletRequest request, 
 			@RequestParam("pseq") int pseq,
 			@RequestParam("quantity") int quantity,
-			@RequestParam("sellprice") int sellprice
+			@RequestParam("sellprice") int sellprice,
+			@RequestParam("option1") String option1,
+			@RequestParam("option2") String option2,
+			@RequestParam("option3") String option3
 			) {
 		
 		int oseq = 0;
@@ -254,6 +256,9 @@ public class OrderController {
 			paramMap.put("address2", loginUser.get("ADDRESS2"));
 			paramMap.put("oseq", 0);
 			paramMap.put("sellprice", sellprice * quantity);
+			paramMap.put("option1", option1);
+			paramMap.put("option2", option2);
+			paramMap.put("option3", option3);
 			paramMap.put("pseq", pseq);
 			paramMap.put("quantity", quantity);
 			

@@ -15,7 +15,7 @@
 	</select>
 	
 	<insert id="insertCart" statementType="CALLABLE" parameterType="java.util.HashMap">
-		{  CALL insertCart_zen ( #{id}, #{pseq} , #{quantity}, #{sellprice}  )  } 
+		{  CALL insertCart_zen ( #{id}, #{pseq} , #{quantity}, #{sellprice}, #{option1}, #{option2}, #{option3}  )  } 
 	</insert>
 	
 	<delete id="deleteCart" statementType="CALLABLE" parameterType="java.util.HashMap">
