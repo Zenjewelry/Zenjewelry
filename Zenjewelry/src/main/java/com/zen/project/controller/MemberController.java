@@ -595,5 +595,16 @@ public class MemberController {
         return "member/numCkeck";	
         }
 
-	
+@RequestMapping(value = "/Switch_dormant_account")
+public String Switch_dormant_account( HttpServletRequest request, Model model) {
+	HttpSession session = request.getSession();
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+
+			
+		model.addAttribute("message", "계정이 활성화 되었습니다.");
+		return "redirect:/loginForm";
+	}
+
+
 }
+
