@@ -11,6 +11,7 @@
 <script src="/script/member.js"></script>
 <script src="/script/mypage.js"></script>
 <script src="/script/basic.js"></script>
+<script src="/script/mobile.js"></script>
 </head>
 <body>
 
