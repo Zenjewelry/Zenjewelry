@@ -4,20 +4,22 @@
 <article style="width: 1600px;">
 <h2> Item&nbsp;&nbsp;</h2>
 <input style=float:left type="button" value="전체상품보기" onClick="location.href='/productAll'" />
+<div style="float: right; margin-right:20px;">
 <c:choose>
 	<c:when test="${not empty kind || not empty kindUpList || not empty kindDownList}">
-		<a href="kindUpList?kind=${kind}&sub='y'">높은가격순</a>
+		<a href="kindUpList?kind=${kind}&sub='y'">높은가격순&nbsp;&nbsp;</a>
 		<a href="kindDownList?kind=${kind}&sub='y'">낮은가격순</a>
 	</c:when>
 	<c:when test="${not empty best || not empty bestUpList || not empty bestDownList}">
-		<a href="bestUpList?sub='y'">높은가격순</a>
+		<a href="bestUpList?sub='y'">높은가격순&nbsp;&nbsp;</a>
 		<a href="bestDownList?sub='y'">낮은가격순</a>
 	</c:when>
 	<c:when test="${not empty all || not empty allUpList || not empty allDownList}">
-		<a href="allUpList?sub='y'">높은가격순</a>
+		<a href="allUpList?sub='y'">높은가격순&nbsp;&nbsp;</a>
 		<a href="allDownList?sub='y'">낮은가격순</a>
 	</c:when>
 </c:choose>
+</div>
 <br><br>
 <div style="margin-left:100px;">
 <c:forEach items="${productList}"  var="productVO" >

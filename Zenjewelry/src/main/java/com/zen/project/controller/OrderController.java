@@ -131,8 +131,7 @@ public class OrderController {
 			int totalPrice = 0;
 			
 			for( HashMap<String,Object> cart : list) {
-				totalPrice += Integer.parseInt(cart.get("QUANTITY").toString())
-						* Integer.parseInt(cart.get("SELLPRICE").toString());
+				totalPrice += Integer.parseInt(cart.get("SELLPRICE").toString());
 			}  // 리스트의 내용으로 총금액 계산
 			mav.addObject("totalPrice",totalPrice);
 			mav.setViewName("mypage/orderList");
@@ -215,8 +214,7 @@ public class OrderController {
 			int totalPrice = 0;
 			int odseq = 0;
 			for( HashMap<String, Object> order : orderListByOseq ) {
-				totalPrice += Integer.parseInt( order.get("QUANTITY").toString())
-								* Integer.parseInt( order.get("SELLPRICE").toString());
+				totalPrice += Integer.parseInt( order.get("SELLPRICE").toString());
 				odseq = Integer.parseInt(order.get("ODSEQ").toString()); 
 				}
 			

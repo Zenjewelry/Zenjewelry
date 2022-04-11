@@ -41,8 +41,7 @@ public class CartController {
 			
 			int totalPrice = 0;
 			for(HashMap<String,Object> cart:list) {
-				totalPrice += Integer.parseInt(cart.get("QUANTITY").toString())
-						* Integer.parseInt(cart.get("SELLPRICE").toString());
+				totalPrice += Integer.parseInt(cart.get("SELLPRICE").toString());
 			}
 			mav.addObject("totalPrice", totalPrice);
 			mav.setViewName("mypage/cartList");
