@@ -649,7 +649,7 @@ alter table carts add option3 varchar2(50);
 
 create or replace view cart_views
 as
-select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sellprice, c.result, c.indate, c.option1, c.option2, c.option3
+select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sellprice, c.result, c.indate, c.option1, c.option2, c.option3, p.image
 from carts c, products p, members m
 where c.pseq = p.pseq and c.id = m.id;
 
@@ -673,3 +673,11 @@ select * from orders_details
 select * from members
 
 update members set useyn='사용'
+
+
+-- 04/11 image 수정
+create or replace view cart_views
+as
+select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sellprice, c.result, c.indate, c.option1, c.option2, c.option3, p.image
+from carts c, products p, members m
+where c.pseq = p.pseq and c.id = m.id;
