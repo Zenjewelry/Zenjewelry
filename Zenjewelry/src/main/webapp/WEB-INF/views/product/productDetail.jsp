@@ -14,14 +14,10 @@
 		<p>
 			<c:choose>
 				<c:when test="${not empty prmprice}">
-					<p id="viewPrice"><fmt:formatNumber value="${prmprice}" type="currency" /> 원</p>
-					<input type="hidden" name="sellprice" id="sellprice" value="${prmprice}" />
-					<input type="hidden" id="firstsellprice" value="${prmprice}" />
+					<p><fmt:formatNumber value="${prmprice}" type="currency" /> 원</p>
 				</c:when>
 				<c:otherwise>
-					<p id="viewPrice"><fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원</p>
-					<input type="hidden" name="sellprice" id="sellprice" value="${productVO.PRICE2}" />
-					<input type="hidden" id="firstsellprice" value="${productVO.PRICE2}" />
+					<p><fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원</p>
 				</c:otherwise>
 			</c:choose>
 		</p>
@@ -43,8 +39,23 @@
 					<option value="${option.OPTION3}">${option.OPTION3}</option>
 				</c:forEach>
 			</select>
-       	<label>수 량 : </label><input  type="text" name="quantity" size="2" value="1"><br>
+       	<label>수 량 : </label><input  type="text" name="quantity" id="quan" size="2" value="1" onChange="updatePrice();"><br>
        	<label>재 고 : </label><p id="sku"></p>
+       	<label>최종 결제가격 : </label>
+       		<p>
+				<c:choose>
+					<c:when test="${not empty prmprice}">
+						<p id="viewPrice"><fmt:formatNumber value="" type="currency" /> 원</p>
+						<input type="hidden" name="sellprice" id="sellprice" value="${prmprice}" />
+						<input type="hidden" id="firstsellprice" value="${prmprice}" />
+					</c:when>
+					<c:otherwise>
+						<p id="viewPrice"><fmt:formatNumber value="" type="currency"/> 원</p>
+						<input type="hidden" name="sellprice" id="sellprice" value="${productVO.PRICE2}" />
+						<input type="hidden" id="firstsellprice" value="${productVO.PRICE2}" />
+					</c:otherwise>
+				</c:choose>
+			</p>
        	<label>제품설명 : </label><label>${productVO.CONTENT}</label><br>
        	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}"><br>
 	<c:forEach items="${options}" var="option">

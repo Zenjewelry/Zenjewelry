@@ -22,7 +22,7 @@
 			<td>${orderVO.SELLPRICE}</td>
 			<td> ${orderVO.QUANTITY}</td>
 			
-       		<td><fmt:formatNumber value="${orderVO.SELLPRICE*orderVO.QUANTITY}" type="currency"/></td>      
+       		<td><fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency"/></td>      
        		<%-- <td><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
       		<td> 처리 진행 중 </td> --%></tr>
 	</c:forEach>

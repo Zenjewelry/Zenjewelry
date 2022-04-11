@@ -224,13 +224,16 @@ function updatePrice(){
 	
 	var fsp = parseInt(document.getElementById('firstsellprice').value);
 	var on = parseInt(document.getElementById(optionName).value);
+	var quan = parseInt(document.getElementById('quan').value);
 	
-	var sellprice = fsp + on;
+	var sellprice = (fsp + on) * quan;
+	
+	var sellpriceOne = fsp + on;
 	
 	document.getElementById('viewPrice').firstChild.nodeValue
 		= sellprice;
 	
-	document.getElementById('sellprice').value = sellprice;
+	document.getElementById('sellprice').value = sellpriceOne;
 		
 	document.getElementById('sku').innerHTML = document.getElementById(optionName+'_sku').value;
 	

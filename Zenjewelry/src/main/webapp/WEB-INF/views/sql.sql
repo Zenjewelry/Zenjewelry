@@ -672,3 +672,4 @@ where o.oseq=d.oseq and o.id=m.id and d.pseq=p.pseq;
 select * from orders_details
 select * from members
 
+update members set useyn='사용'
