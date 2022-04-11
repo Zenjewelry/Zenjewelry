@@ -24,7 +24,14 @@ public class ProductController {
 	@Autowired
 	ProductService ps;
 	
+	
 	@RequestMapping("/")
+	public String start(HttpServletRequest request, Model model) {
+		return "index";
+	}
+	
+	
+	@RequestMapping("/webmain")
 	public String main(Model model) {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
