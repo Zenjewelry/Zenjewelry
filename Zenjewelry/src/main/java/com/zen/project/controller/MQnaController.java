@@ -1,0 +1,147 @@
+
+package com.zen.project.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.zen.project.dto.Paging;
+import com.zen.project.dto.QnaVO;
+import com.zen.project.service.QnaService;
+
+
+
+@Controller
+public class MQnaController {
+
+
+	@Autowired
+	QnaService qs;
+	
+	@RequestMapping(value="/mqnaList")
+	public ModelAndView qna_list(Model model, HttpServletRequest request,
+			@RequestParam(value="sub", required=false) String sub) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		if( loginUser == null ) mav.setViewName("mobile/member/login");
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			
+			if(sub != null) {
+				session.removeAttribute("page");
+			}
+			
+			int page = 1;
+			
+			if(request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			}else if(session.getAttribute("page") != null) {
+				page = (Integer)session.getAttribute("page");
+			}else {
+				session.removeAttribute("page");
+			}
+			
+			Paging paging = new Paging();
+			paging.setPage(page);
+			paramMap.put("id", loginUser.get("ID"));
+			paramMap.put("count", 0);
+			qs.getAllCountQna(paramMap);
+			paging.setTotalCount((Integer)paramMap.get("count"));
+			paging.paging();
+			paramMap.put("startNum", paging.getStartNum());
+			paramMap.put("endNum", paging.getEndNum());
+			paramMap.put("ref_cursor", null);
+			qs.getQnaList(paramMap);
+			
+			ArrayList<HashMap<String, Object>> list
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+			
+			mav.addObject("qnaList", list);
+			mav.addObject("paging", paging);
+			mav.setViewName("mobile/qna/qnaList");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/mqnaView")
+	public ModelAndView qna_view(Model model, HttpServletRequest request,
+			@RequestParam("qseq") int qseq) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser = (HashMap<String, Object>)session.getAttribute("loginUser");
+		
+		if( loginUser == null ) mav.setViewName("mobile/member/login");
+		else {
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("qseq", qseq );
+			paramMap.put("ref_cursor", null);
+			qs.getQnaDetail( paramMap );
+			
+			ArrayList<HashMap<String, Object>> list 
+			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
+
+			mav.addObject("qnaVO", list.get(0));
+			mav.setViewName("mobile/qna/qnaView");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/mqnaWriteForm")
+	public String qna_writre_form( HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		if( session.getAttribute("loginUser") == null ) return "mobile/member/login";
+		
+	    return "mobile/qna/qnaWrite";
+	}
+
+	@RequestMapping("mqnaWrite")
+	public ModelAndView qna_write( @ModelAttribute("dto") @Valid QnaVO qnavo,
+			BindingResult result,  HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		HashMap<String, Object> loginUser
+			= (HashMap<String, Object>) session.getAttribute("loginUser");
+	    if (loginUser == null) 
+	    	mav.setViewName("mobile/member/login");
+	    else {
+	    	mav.setViewName("mobile/qna/qnaWrite");
+			if(result.getFieldError("subject") != null ) {
+				mav.addObject("message", result.getFieldError("subject").getDefaultMessage() );
+				return mav;
+			}else if(result.getFieldError("content") != null ) {
+				mav.addObject("message", result.getFieldError("content").getDefaultMessage());
+				return mav;
+			}
+			HashMap<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("id", loginUser.get("ID") );
+			paramMap.put("subject", qnavo.getSubject());
+			paramMap.put("content", qnavo.getContent());
+			qs.insertQna(paramMap);
+			mav.setViewName("redirect:/mqnaList?sub='y'");
+	    }
+		return mav;
+	}
+	
+}
+
