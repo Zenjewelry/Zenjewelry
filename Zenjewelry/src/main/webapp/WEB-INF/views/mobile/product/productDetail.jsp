@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 
 <article style="width: 700px;" >
 <div id="itemdetail"  style="float:left;">
@@ -88,7 +88,7 @@
 	<tr>	<th>번호</th><th>제목</th><th>내용</th><th>등록일</th><th>답변 여부</th></tr>
 		<c:forEach items="${product_QnaVO}" var="product_QnaVO">
 		<tr ><td><input  type="hidden" name="qnanum"  value="${product_QnaVO.QNA_NUM}"> ${product_QnaVO.QNA_NUM}</td>    
-    		<td><a href="productQnaView?qna_num=${product_QnaVO.QNA_NUM}">${product_QnaVO.SUBJECT}</a></td>   
+    		<td><a href="mproductQnaView?qna_num=${product_QnaVO.QNA_NUM}">${product_QnaVO.SUBJECT}</a></td>   
     		<td>${product_QnaVO.CONTENT}</td>      
        		<td><fmt:formatDate value="${product_QnaVO.INDATE}" type="date"/></td>
        		<td><c:choose>
@@ -102,7 +102,7 @@
 <br>
 <br>
 </form>
-<form method="post" action="writeProductqna" style="bottom:1000px;">
+<form method="post" action="mwriteProductqna" style="bottom:1000px;">
 <h2>Q&A 작성</h2>
 <fieldset> 
 	<label>Title</label><input type="text" name="subject"  size="60" ><br>
@@ -119,4 +119,4 @@
 </article>
 
 <br><br><br><br>
-<%@ include file="../include/headerfooter/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>

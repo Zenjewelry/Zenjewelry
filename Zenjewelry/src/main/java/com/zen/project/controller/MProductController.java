@@ -56,7 +56,7 @@ public class MProductController {
 	}
 	
 
-	@RequestMapping("/productList")
+	@RequestMapping("/mproductList")
 	public String productList(@RequestParam(value="kind", required=false) int kind,
 			Model model, HttpServletRequest request) {
 		
@@ -118,10 +118,10 @@ public class MProductController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("key", key);
 		
-		return "product/productList";
+		return "mobile/product/productList";
 	}
 	
-	@RequestMapping("/bestProductList")
+	@RequestMapping("/mbestProductList")
 	public String bestProductList(Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
@@ -173,10 +173,10 @@ public class MProductController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("key", key);
 		
-		return "product/productList";
+		return "mobile/product/productList";
 	}
 	
-	@RequestMapping("/productDetail")
+	@RequestMapping("/mproductDetail")
 	public ModelAndView productDetail(HttpServletRequest request, @RequestParam("pseq") int pseq) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -217,12 +217,12 @@ public class MProductController {
 		mav.addObject("option1", option1);
 		mav.addObject("option2", option2);
 		mav.addObject("option3", option3);
-		mav.setViewName("product/productDetail");
+		mav.setViewName("mobile/product/productDetail");
 		
 		return mav;
 	}
 	
-	@RequestMapping("writeProductqna")
+	@RequestMapping("mwriteProductqna")
 	public String writeProductqna(@ModelAttribute("product_QnaVO") Product_QnaVO pqvo, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
@@ -237,10 +237,10 @@ public class MProductController {
 		paramMap.put("id", loginUser.get("ID"));
 		ps.insertProductQna(paramMap);
 		
-		return "redirect:/productDetail?pseq=" + pqvo.getPseq();
+		return "redirect:/mproductDetail?pseq=" + pqvo.getPseq();
 	}
 	
-	@RequestMapping("/productQnaView")
+	@RequestMapping("/mproductQnaView")
 	public ModelAndView productQnaView(@RequestParam("qna_num") int qna_num) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -254,11 +254,11 @@ public class MProductController {
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor");
 		
 		mav.addObject("product_QnaVO", pqvo.get(0));
-		mav.setViewName("product/product_qna_view");
+		mav.setViewName("mobile/product/product_qna_view");
 		return mav;
 	}
 	
-	@RequestMapping("/deleteProductQna")
+	@RequestMapping("/mdeleteProductQna")
 	public ModelAndView deleteProductQna(@RequestParam("qna_num") int qna_num,
 			@RequestParam("pseq") int pseq, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -270,12 +270,12 @@ public class MProductController {
 		ps.deleteProductQna(qna_num);
 		
 		mav.addObject("pseq", pseq);
-		mav.setViewName("redirect:/productDetail");
+		mav.setViewName("redirect:/mproductDetail");
 		
 		return mav;
 	}
 	
-	@RequestMapping("/productAll")
+	@RequestMapping("/mproductAll")
 	public String productAll(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		
@@ -324,11 +324,11 @@ public class MProductController {
 		
 		model.addAttribute("productList", productList);
 		model.addAttribute("paging", paging);
-		return "product/productList";
+		return "mobile/product/productList";
 	}
 	
 
-	@RequestMapping("/bestUpList")
+	@RequestMapping("/mbestUpList")
 	public String bestUplist(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		
@@ -370,10 +370,10 @@ public class MProductController {
 		
 		model.addAttribute("productList", productList);
 		model.addAttribute("paging", paging);
-		return "product/productList";
+		return "mobile/product/productList";
 	}
 
-	@RequestMapping("/bestDownList")
+	@RequestMapping("/mbestDownList")
 	public String bestDownList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		
@@ -417,10 +417,10 @@ public class MProductController {
 		
 		model.addAttribute("productList", productList);
 		model.addAttribute("paging", paging);
-		return "product/productList";
+		return "mobile/product/productList";
 	}
 
-	@RequestMapping("/allUpList")
+	@RequestMapping("/mallUpList")
 	public String allUpList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		model.addAttribute("allUpList", "y");
@@ -460,9 +460,9 @@ public class MProductController {
 		
 		model.addAttribute("productList", productList);
 		model.addAttribute("paging", paging);
-		return "product/productList";
+		return "mobile/product/productList";
 	}
-	@RequestMapping("/allDownList")
+	@RequestMapping("/mallDownList")
 	public String allDownList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		model.addAttribute("allUpList", "y");
@@ -502,10 +502,10 @@ public class MProductController {
 		
 		model.addAttribute("productList", productList);
 		model.addAttribute("paging", paging);
-		return "product/productList";
+		return "mobile/product/productList";
 	}
 	
-	@RequestMapping("/kindUpList")
+	@RequestMapping("/mkindUpList")
 	public String kindUpList(@RequestParam(value="kind", required=false) int kind,
 			Model model, HttpServletRequest request) {
 		
@@ -564,10 +564,10 @@ public class MProductController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("key", key);
 		
-		return "product/productList";
+		return "mobile/product/productList";
 	}
 	
-	@RequestMapping("/kindDownList")
+	@RequestMapping("/mkindDownList")
 	public String kindDownList(@RequestParam(value="kind", required=false) int kind,
 			Model model, HttpServletRequest request) {
 		
@@ -624,7 +624,7 @@ public class MProductController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("key", key);
 		
-		return "product/productList";
+		return "mobile/product/productList";
 	}
 	
 }
