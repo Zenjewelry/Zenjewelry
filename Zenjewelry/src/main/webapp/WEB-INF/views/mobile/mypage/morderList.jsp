@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <!-- 방금 주문한 주문 목록만 보여주고, 같은 화면이 다시 나타나지 않습니다. 이후 해당내용은 주문내역에서 다른 주문과 함께 볼 수 있습니다 -->
 <article style=width:1000px;>
 <form style=width:1000px>
@@ -52,4 +52,4 @@
 </form>	
 </article>
 
-<%@ include file="../include/headerfooter/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>
