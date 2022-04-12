@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %> 
+<%@ include file="../include/header.jsp" %> 
 <article>
 <h2> 1:1 고객 게시판 </h2>
 <h3> 고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>    
-<form name="formm" method="post"	action="qnaWrite">
+<form name="formm" method="post"	action="mqnaWrite">
 	<fieldset> 
 		<legend>Board Info</legend>
 	    <label>Title</label><input type="text" name="subject"  size="60" value="${dto.SUBJECT}" /><br>
@@ -18,4 +18,4 @@
 	${message}
 </form>
 </article>
-<%@ include file="../include/headerfooter/footer.jsp" %>   
+<%@ include file="../include/footer.jsp" %>   

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/shopping.css" rel="stylesheet">
+<link href="css/mobile.css" rel="stylesheet">
 <script type="text/javascript">
 
 function check(){

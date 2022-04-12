@@ -34,7 +34,7 @@ public class MBoardController {
 	@Autowired
 	ServletContext context;
 	
-	@RequestMapping("boardList")
+	@RequestMapping("mboardList")
 	public ModelAndView boardList(@RequestParam(value="sub", required=false) String sub, HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -94,12 +94,12 @@ public class MBoardController {
 		mav.addObject("boardList", boardList);
 		mav.addObject("paging", paging);
 		mav.addObject("key", key);
-		mav.setViewName("board/boardList");
+		mav.setViewName("mobile/board/boardList");
 		
 		return mav;
 	}
 	
-	@RequestMapping("boardDetail")
+	@RequestMapping("mboardDetail")
 	public ModelAndView boardDetail(@RequestParam("num") int num) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -117,33 +117,33 @@ public class MBoardController {
 		
 		mav.addObject("boardVO", boardVO.get(0));
 		mav.addObject("replyVO", replyVO);
-		mav.setViewName("board/boardDetail");
+		mav.setViewName("mobile/board/boardDetail");
 		
 		return mav;
 	}
 	
-	@RequestMapping(value = "deleteBoard", method = RequestMethod.POST)
+	@RequestMapping(value = "mdeleteBoard", method = RequestMethod.POST)
 	public String deleteBoard(@RequestParam("num") int num) {
 		
 		bs.deleteBoard(num);
 		
-		return "redirect:/boardList";
+		return "redirect:/mboardList";
 	}
 	
-	@RequestMapping("writeBoardForm")
+	@RequestMapping("mwriteBoardForm")
 	public String writeBoardForm(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("loginUser") == null) return "member/login";
-		else return "board/writeBoard";
+		if(session.getAttribute("loginUser") == null) return "mobile/member/login";
+		else return "mobile/board/writeBoard";
 	}
 	
-	@RequestMapping("/uploadImg")
+	@RequestMapping("/muploadImg")
 	public String uploadImg() {
-		return "board/uploadImg";
+		return "mobile/board/uploadImg";
 	}
 	
-	@RequestMapping(value="/uploadFile", method=RequestMethod.POST)
+	@RequestMapping(value="/muploadFile", method=RequestMethod.POST)
 	public String uploadFile(HttpServletRequest request, Model model) {
 		
 		String path = context.getRealPath("/board_images");
@@ -155,10 +155,10 @@ public class MBoardController {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		return "board/completeImg";
+		return "mobile/board/completeImg";
 	}
 	
-	@RequestMapping(value="go_writeBoard", method=RequestMethod.POST)
+	@RequestMapping(value="mgo_writeBoard", method=RequestMethod.POST)
 	public String go_writeBoard(@ModelAttribute("dto") @Valid BoardVO dto,
 			BindingResult result, Model model, HttpServletRequest request) {
 		
@@ -173,10 +173,10 @@ public class MBoardController {
 		session.removeAttribute("page");
 		session.removeAttribute("key");
 		
-		return "redirect:/boardList";
+		return "redirect:/mboardList";
 	}
 	
-	@RequestMapping("/editBoard")
+	@RequestMapping("/meditBoard")
 	public ModelAndView editBoard(@RequestParam("num") int num,
 			HttpServletRequest request) {
 		
@@ -184,7 +184,7 @@ public class MBoardController {
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("loginUser") == null) {
-			mav.setViewName("member/login");
+			mav.setViewName("mobile/member/login");
 		}
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -198,12 +198,12 @@ public class MBoardController {
 			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
 		
 		mav.addObject("boardVO", dto.get(0));
-		mav.setViewName("board/editBoard");
+		mav.setViewName("mobile/board/editBoard");
 		
 		return mav;
 	}
 	
-	@RequestMapping(value="/go_editBoard", method=RequestMethod.POST)
+	@RequestMapping(value="/mgo_editBoard", method=RequestMethod.POST)
 	public ModelAndView go_editBoard(@ModelAttribute("dto") @Valid BoardVO dto,
 			BindingResult result) {
 		
@@ -219,12 +219,12 @@ public class MBoardController {
 		bs.editBoard(paramMap);
 
 		mav.addObject("num", dto.getNum());
-		mav.setViewName("redirect:/boardDetailWithoutCount");
+		mav.setViewName("redirect:/mboardDetailWithoutCount");
 		
 		return mav;
 	}
 	
-	@RequestMapping("boardDetailWithoutCount")
+	@RequestMapping("mboardDetailWithoutCount")
 	public ModelAndView boardDetailWithoutCount(@RequestParam("num") int num) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -242,19 +242,19 @@ public class MBoardController {
 		
 		mav.addObject("boardVO", boardVO.get(0));
 		mav.addObject("replyVO", replyVO);
-		mav.setViewName("board/boardDetail");
+		mav.setViewName("board/mboardDetail");
 		
 		return mav;
 	}
 	
-	@RequestMapping("writeReply")
+	@RequestMapping("mwriteReply")
 	public String writeReply(@RequestParam("reply") String content, @RequestParam("boardnum") int boardnum,
 			HttpServletRequest request, Model model) {
 		
 		HttpSession session = request.getSession();
 		HashMap<String, Object> loginUser = (HashMap<String, Object>)session.getAttribute("loginUser");
 		if(session.getAttribute("loginUser")==null) {
-			return "member/login";
+			return "mobile/member/login";
 		}
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -263,21 +263,21 @@ public class MBoardController {
 		paramMap.put("userid", loginUser.get("ID"));
 		bs.insertReply(paramMap);
 		
-		return "redirect:/boardDetailWithoutCount?num=" + boardnum;
+		return "redirect:/mboardDetailWithoutCount?num=" + boardnum;
 	}
 	
-	@RequestMapping("/deleteReply")
+	@RequestMapping("/mdeleteReply")
 	public String deleteReply(@RequestParam("reply_num") int reply_num,
 			@RequestParam("boardnum") int boardnum, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginUser")==null) {
-			return "member/login";
+			return "mobile/member/login";
 		}
 		
 		bs.deleteReply(reply_num);
 		
-		return "redirect:/boardDetailWithoutCount?num=" + boardnum;
+		return "redirect:/mboardDetailWithoutCount?num=" + boardnum;
 	}
 	
 }

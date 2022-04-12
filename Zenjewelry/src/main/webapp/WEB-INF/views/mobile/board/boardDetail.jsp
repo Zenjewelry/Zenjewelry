@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <article>
 <h2>게시판</h2>
 <form name="formm" method="post" >
@@ -16,7 +16,7 @@
 
 <div id="buttons">
 	<c:if test="${loginUser.ID == boardVO.USERID}">
-		<input class="submit" type="button" value="수정" onClick="location.href='editBoard?num=${boardVO.NUM}'" />
+		<input class="submit" type="button" value="수정" onClick="location.href='meditBoard?num=${boardVO.NUM}'" />
 		<input class="cancel" type="button" value="삭제" onClick="delete_Board()" />
 	</c:if>
 	<input class="cancel" type="button" value="되돌아가기" onClick="go_mov1('List');" />
@@ -43,9 +43,9 @@
 <tr><td>작성자</td><td>내용</td><td>작성일</td><td>삭제하기</td></tr>
 <c:forEach items="${replyVO}" var="rvo">
 	<tr><td>${rvo.USERID}</td><td>${rvo.CONTENT}</td><td>${rvo.WRITEDATE}</td>
-	<td><c:if test="${rvo.USERID == loginUser.ID}"><input type="button" value="삭제" onClick="location.href='deleteReply?reply_num=${rvo.REPLY_NUM}&boardnum=${boardVO.NUM}'" /></c:if></td></tr>
+	<td><c:if test="${rvo.USERID == loginUser.ID}"><input type="button" value="삭제" onClick="location.href='mdeleteReply?reply_num=${rvo.REPLY_NUM}&boardnum=${boardVO.NUM}'" /></c:if></td></tr>
 </c:forEach>
 </table>
 </article>
 
-<%@ include file="../include/headerfooter/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>

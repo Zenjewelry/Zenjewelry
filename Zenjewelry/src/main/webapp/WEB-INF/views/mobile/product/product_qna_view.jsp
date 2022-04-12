@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 
 <article>
 <form name="qnalist">
@@ -17,7 +17,7 @@
 				<c:when test="${product_QnaVO.REP==2}"><span style="font-weight:bold; color:red; text-align:left;" > 답변완료 </span></c:when>
 			</c:choose></td></tr>
 <tr><td colspan="2">
-	<input type="button" value="되돌아가기" onClick="location.href='productDetail?pseq=${product_QnaVO.PSEQ}'" />
+	<input type="button" value="되돌아가기" onClick="location.href='mproductDetail?pseq=${product_QnaVO.PSEQ}'" />
 	<c:if test="${loginUser.ID == product_QnaVO.ID}">
 		<input type="button" value="문의 삭제하기" onClick="deleteProductQna();" />
 	</c:if>
@@ -26,4 +26,4 @@
 </form>
 </article>
 
-<%@ include file="../include/headerfooter/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/shopping.css" rel="stylesheet">
+<link href="css/mobile.css" rel="stylesheet">
 <script type="text/javascript">
 function ID(){
 	if(document.formm.numCheck.value != document.formm.checkNum.value){
@@ -23,7 +23,7 @@ function ID(){
 
 <center><h2>아이디 찾기</h2></center>
 <c:if test="${result != 1}">
-<form method="post" name="formm" action="findIdStep1">
+<form method="post" name="formm" action="mfindIdStep1">
 	<table id="cartlist" align="center" bgcolor="black" cellspacing="1" width="400">
 			<tr align="center" bgcolor="#FFFFFF" >
 				<td width="430"><h3>성명<input type="text" name="name" value="${name}" ></h3></td>
