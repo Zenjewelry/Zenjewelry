@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>header.jsp</title>
+<title>ZEN Jewerly</title>
 <link href="/css/mobile.css" rel="stylesheet">  
 <script src="/script/jquery-3.6.0.js"></script>
 <script src="/script/mobile.js"></script>
