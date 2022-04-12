@@ -82,7 +82,7 @@
 		</jsp:include>
 	</c:when>
 	<c:otherwise>
-		<jsp:include page="../include/page/paging.jsp">
+		<jsp:include page="../include/paging.jsp">
 			<jsp:param name="command" value="mProductList" />
 		</jsp:include>
 	</c:otherwise>
