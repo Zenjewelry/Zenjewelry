@@ -9,7 +9,7 @@
 		<tr><td>${bvo.NUM}</td><td><a href="mboardDetail?num=${bvo.NUM}">${bvo.TITLE}&nbsp;[${bvo.REPLYCOUNT}]</a></td><td>${bvo.USERID}</td><td>${bvo.READCOUNT}</td><td>${bvo.WRITEDATE}</td></tr>
 	</c:forEach>
 </table>
-<form method="post" name="bdfrm" style="margin:0 auto">
+<form method="post" name="bdfrm">
 	<input type="text" name="key" value="${key}" />
 	<input  type="button" value="검색" onClick='go_search("bdfrm");' />
 	<input  type="button" value="글쓰기" onClick='go_write("Board");' />
