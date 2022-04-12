@@ -66,7 +66,7 @@ public class MPromotionController {
 		mav.addObject("promotionProductList", promotionProductList);
 		mav.addObject("summary", summary);
 		mav.addObject("outnumber", summary.size());
-		mav.setViewName("promotion/mpromotionDetail");
+		mav.setViewName("mobile/promotion/promotionDetail");
 		
 		return mav;
 	}
