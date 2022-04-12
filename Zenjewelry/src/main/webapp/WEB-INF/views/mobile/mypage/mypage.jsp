@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 
-<article style=width:1000px>
+<article>
 <h2>${title}</h2>
 <form>
-<table  id="cartList" style=width:1000px>
+<table  id="cartList">
 	<tr></tr>
     <c:forEach items="${orderList}"  var="orderVO">
     <tr style="margin-top: 100px">
     	<td style="margin:30px auto"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 200px; height: 200px; object-fit: cover;"/>
-    	<td style="width:1000px; margin-left:50px"><a href="orderDetail?oseq=${orderVO.OSEQ}"><h3>${orderVO.PNAME}</h3></a>
+    	<td style="width:1000px; margin-left:50px"><a href="morderDetail?oseq=${orderVO.OSEQ}"><h3>${orderVO.PNAME}</h3></a>
     	<td style=width:700px><fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency" /></td>
     	<td style=width:700px><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
     	

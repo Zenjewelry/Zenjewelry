@@ -110,7 +110,7 @@ form input {	height: 40px; margin: 5px 0; 	border: 1px solid #999; 	background-c
 
 
 /* 카트리스트 테이블 CSS */
-table#cartList {/* border-collapse: collapse; */   border-top: 2px solid #333;   border-bottom: 1px solid #333; width: 90%;   
+table#cartList {/* border-collapse: collapse; */   border-top: 2px solid #333;   border-bottom: 1px solid #333; width: 100%;   
 margin-bottom: 20px; }
 table#cartList td {border-bottom: 1px dotted #333; text-align:center; height:80px;}   
 table#cartList th {background:#474160; color:white;   border-bottom:  1px dotted #333;   text-align: center;  height:50px;}

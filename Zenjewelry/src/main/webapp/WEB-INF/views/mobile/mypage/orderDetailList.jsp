@@ -2,14 +2,14 @@
 <%@ include file="../include/header.jsp" %>
 
 
-<article style=width:1000px;>
-<form name="cartList1" method="post" style=width:1000px>
-<h2> 주문 상세정보 </h2>
-<h2><fmt:formatDate value="${orderDetail.INDATE}" type="date"/></h2>
+<article>
+<form name="cartList1" method="post">
+<h2 style="text-align:left"> 주문 상세정보 / <fmt:formatDate value="${orderDetail.INDATE}" type="date"/></h2>
+
 <br>
 
 
-<table id="cartList" style=width:1000px>	
+<table id="cartList">	
 	<tr><th colspan="2">상품 정보</th><th>상품금액</th><th>주문금액</th></tr>
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
