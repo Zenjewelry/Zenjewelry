@@ -97,7 +97,7 @@ padding: 10px;	text-align: center; margin:0 auto;}
 
 
 /* 로그인 회원가입.. 그런 창들 */
-form {	margin: 10px 0 0 0;	width: 670px;}
+form {	margin: 10px 0 0 0;}
 form fieldset {	padding: 10px 0 20px 5px;	border: none;}
 form fieldset legend {	font-size: 20px;	border-bottom: 1px dotted #666;	width: 600px; 	padding: 5px 0; }
 form label { 	width: 140px; 	float: left; 	margin: 0 auto; }
@@ -109,10 +109,9 @@ form input {	margin: 5px 0; 	border: 1px solid #999; 	background-color: #FFFFFF;
 
 
 /* 카트리스트 테이블 CSS */
-#itemdetail  img { width: 300px;      margin-right: 20px;  }
-table#cartList {border-collapse: collapse;   border-top: 2px solid #333;   border-bottom: 1px solid #333; width: 100%;   
+table#cartList {/* border-collapse: collapse; */   border-top: 2px solid #333;   border-bottom: 1px solid #333; width: 90%;   
 margin-bottom: 20px; }
-table#cartList td {border-bottom: 1px dotted #333; text-align:center; height:90px;}   
+table#cartList td {border-bottom: 1px dotted #333; text-align:center; height:80px;}   
 table#cartList th {background:#474160; color:white;   border-bottom:  1px dotted #333;   text-align: center;  height:50px;}
 
 
