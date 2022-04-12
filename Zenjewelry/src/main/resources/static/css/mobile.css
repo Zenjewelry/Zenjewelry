@@ -16,7 +16,7 @@ body{  margin:0; padding:0;   background:#f7f7f7;}
 #logo { float: left; margin: 10px 0 0 20px;}
 
 /* 헤더에 있는 돋보기모양 검색창 */
-#search { position:absolute; top: 88px; left:-50px;}
+#search { position:absolute; top: 115px; left:-50px;}
 #sbutton{ background: transparent;  height: 35px; width: 50px;
 cursor : pointer; position : absolute; border-radius: 10px;
  left: 650px; color:white; font-weight:bold; border: 1px solid #bbb;}
@@ -101,7 +101,7 @@ form {	margin: 10px 0 0 0;	width: 100%; text-align:center;}
 
 form fieldset {	padding: 10px 0 20px 5px;	border: none;}
 form fieldset legend {	font-size: 20px;	border-bottom: 1px dotted #666;	width: 600px; 	padding: 5px 0; }
-form label { 	width: 140px; 	float: left; 	margin: 0 auto; }
+form label { float: left; 	margin: 0 auto; font-size:25px;}
 form input {	height: 40px; margin: 5px 0; 	border: 1px solid #999; 	background-color: #FFFFFF; }
 
 /* 메인 이미지 */
@@ -111,7 +111,7 @@ form input {	height: 40px; margin: 5px 0; 	border: 1px solid #999; 	background-c
 
 /* 카트리스트 테이블 CSS */
 table#cartList {/* border-collapse: collapse; */   border-top: 2px solid #333;   border-bottom: 1px solid #333; width: 100%;   
-margin-bottom: 20px; }
+margin-bottom: 20px; margin:0 auto;}
 table#cartList td {border-bottom: 1px dotted #333; text-align:center; height:80px;}   
 table#cartList th {background:#474160; color:white;   border-bottom:  1px dotted #333;   text-align: center;  height:50px;}
 
@@ -119,8 +119,8 @@ table#cartList th {background:#474160; color:white;   border-bottom:  1px dotted
 /* 로그인, 회원가입, 정보수정, 보드 Q&A CART ..등등... */
 article h1, div h1 {	font-family: Verdana; 	font-size: 45px; color: #000000;	margin: 20px 0;	font-weight: normal; }
 article {padding-top:100px; margin : 0 auto; width: 90%; font-family: Verdana; font-size: 1em;	line-height: 1.5em; }
-article h2, div h2 {	font-family: Verdana; font-size: 30px;	color: #000000;	padding-bottom: 15px;	border-bottom: 1px dotted #666; }
-
+article h2, div h2 {	font-family: Verdana; font-size: 30px;	color: #000000;	paddng-bottom: 15px;	border-bottom: 1px dotted #666; text-align:center;}
+article h3{ font-family: Verdana; font-size:25px; color:#000000; text-align:center;}
 
 /*로그인, 회원가입.. 등등 입력창들 CSS*/
 .input-box{position : relative; margin : 10px 0;}

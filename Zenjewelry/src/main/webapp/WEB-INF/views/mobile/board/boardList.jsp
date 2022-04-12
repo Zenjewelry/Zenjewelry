@@ -4,12 +4,12 @@
 <h2>게시판</h2>
 <div>
 <table id="cartList">
-	<tr><th>글 번호</th><th>제목</th><th>글쓴이</th><th>조회수</th><th>작성일자</th></tr>
+	<tr><th>글 번호</th><th>제목</th><th>글쓴이</th><th>조회수</th></tr>
 	<c:forEach items="${boardList}" var="bvo">
-		<tr><td>${bvo.NUM}</td><td><a href="mboardDetail?num=${bvo.NUM}">${bvo.TITLE}&nbsp;[${bvo.REPLYCOUNT}]</a></td><td>${bvo.USERID}</td><td>${bvo.READCOUNT}</td><td>${bvo.WRITEDATE}</td></tr>
+		<tr><td>${bvo.NUM}</td><td><a href="mboardDetail?num=${bvo.NUM}">${bvo.TITLE}&nbsp;[${bvo.REPLYCOUNT}]</a></td><td>${bvo.USERID}</td><td>${bvo.READCOUNT}</td></tr>
 	</c:forEach>
 </table>
-<form method="post" name="bdfrm">
+<form method="post" name="bdfrm" style="margin:0 auto;">
 	<input type="text" name="key" value="${key}" />
 	<input  type="button" value="검색" onClick='go_search("bdfrm");' />
 	<input  type="button" value="글쓰기" onClick='go_write("Board");' />
