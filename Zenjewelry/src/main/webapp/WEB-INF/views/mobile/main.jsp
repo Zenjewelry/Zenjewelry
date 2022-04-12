@@ -7,22 +7,23 @@
 
 <c:choose>
 	<c:when test="${not empty promotionList}">
-		<div id=itembox >
+		<div id="itembox" >
 			<div id="ct">
 				<img src="images/arrow_prev.png" class="rolPBtn" id="prevPromotion" />
 					<div id="mainPromotionView">
-						<div id="promotionsBox" style="width:${promotionListSize*1280}px; height:540px;">
+						<div id="promotionsBox">
 							<c:forEach items="${promotionList}" var="prmList" varStatus="index">
 								<a href="mpromotionDetail?prmseq=${prmList.PRMSEQ}">
-									<div class="promotionBox">
+									<div class="promotionBox" id="promotionBox">
 										<img src="/promotion_images/${prmList.BANNER}" />
 									</div>
 								</a>
 							</c:forEach>
-							<div>/${promotionListSize}</div>
 						</div>
 					</div>
-				<img src="images/arrow_next.png" class="rolPBtn" id="nextPromotion" /><input type="hidden" id="pnls" value="${promotionListSize*1280}" />
+				<img src="images/arrow_next.png" class="rolPBtn" id="nextPromotion" />
+				<input type="hidden" id="pnls" value="${promotionListSize*1280}" />
+				<input type="hidden" id="pmls" value="${promotionListSize}" />
 			</div>
 		</div>
 	</c:when>

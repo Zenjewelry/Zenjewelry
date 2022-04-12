@@ -66,12 +66,25 @@ footer #copy {position : relative; display: inline-block; margin: 0 20px 10px 20
 .Id01{position:relative; float:right; top:-20px; font-size:23px; right:-290px;}
 
 /* 메인페이지에 나오는 사진들.. 메인페이지 구성 CSS */
-#itembox{position:relative; width: 100%; height:750px; min-height: 750px; max-height: 750px; background-color:#e9e5da;}
+#itembox{position:relative; width: 100%; background-color:#e9e5da;}
+#ct{position:relative; width:100%; height:562px; margin:0 auto;}
+#mainPromotionView{position:relative; width:80%; overflow:hidden; float:left;}
+#promotionsBox{position:relative;}
+.promotionBox{float:left; position:relative;}
+
+.rolPBtn{float:left; width:10%; height:540px; line-height:540px; cursor:pointer; text-align:center;}
+
+
+
+
+
 #boxtext1{position:relative; height:60px;  font-size:50px; text-align:center;   float:center; font-family:Verdana; font-weight:bold;}
 #boxtext2{position:relative; height:40px; font-size:20px; text-align:center; float:center; margin: 20 0 0 0;  font-family:Verdana; font-weight:bold;}
-#mainView{position:relative; width:1330px; height:517px; overflow:hidden; float:left;}
+#mainView{position:relative; width:80%; height:517px; overflow:hidden; float:left;}
 #itemsbox{ position:absolute; height:470px; left:20px; top:21px;}
 #itemsbox1{ position:absolute; height:470px; left:20px; top:21px;}
+
+
 
 #items{float:left; height:470px; width:300px; margin:50px 10px 0px 10px; background-color:#e9e5da;}
 
@@ -80,8 +93,8 @@ footer #copy {position : relative; display: inline-block; margin: 0 20px 10px 20
 .listText2{position:relative; width:300px; text-align:center; color:black;font-size:16px; font-family:Gothic; font-weight:bold; color: black;}  
 #sale{position: relative; width:100px; height:50px; }
 
-.rolBtn{float:left; width:80px; height:470px; line-height:470px; cursor:pointer; text-align:center;}
-#ct{position:relative; width:1500px; height:562px; margin:0 auto; top:65px;}
+.rolBtn{float:left; width:10%; height:470px; line-height:470px; cursor:pointer; text-align:center;}
+
 
 /*productKind CSS*/
 #item2{width:300px;height:300px; position:relative; float:left; margin:10 auto;}
@@ -349,10 +362,7 @@ table#cartList3 th, td {      text-align: center;  }
 
 
 
-#promotionsBox{position:relative; height:540px;}
-.promotionBox{float:left; position:relative; height:540px; width:1280px;}
-.rolPBtn{float:left; width:80px; height:540px; line-height:540px; cursor:pointer; text-align:center;}
-#mainPromotionView{position:relative; width:1280px; height:540px; overflow:hidden; float:left;}
+
 
 
 

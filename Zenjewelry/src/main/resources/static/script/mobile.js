@@ -68,6 +68,7 @@ function next(size){
 }*/
 
 $(function(){
+	
 	var defRol = 0;
 	$('#prev').click(function(){
 		if(defRol!=0){
@@ -182,19 +183,23 @@ function deleteProductQna(){
 
 // 프로모션 jQuery
 $(function(){
+
+	
+	var widthSize = top.window.innerWidth * 0.8;
+
 	var defPRol = 0;
 	$('#prevPromotion').click(function(){
 		if(defPRol!=0){
-			defPRol+=1280;
+			defPRol+=widthSize;
 			$('#promotionsBox').animate({left:defPRol}, 500);
 		}
 	});
 	
 	$('#nextPromotion').click(function(){
-		var size = $('#pnls').val();
-		var ck = defPRol - 1280;
+		var size = $('#pmls').val() * widthSize;
+		var ck = defPRol - widthSize;
 		if((size*-1)<ck){
-			defPRol-=1280;
+			defPRol-=widthSize;
 			$('#promotionsBox').animate({left:defPRol}, 500);
 		}
 		/*console.log(size);*/
@@ -526,8 +531,26 @@ function delete_order(oseq){
 	window.open( url, "주문 취소하기", pop );
    }
 }
+
+
+
+function sizing(){
+
+	var size = top.window.innerWidth;
+	var pnls = parseInt(document.getElementById('pnls').value) / 1280;
+	var pmls = parseInt(document.getElementById('pmls').value);
 	
-	
-	
-	
-	
+	document.getElementById('promotionsBox').style.width = (size * pmls * 0.8) + 'px';
+	document.getElementById('pnls').value = (size * pmls * 0.8) + 'px';
+	document.getElementById('promotionBox').style.width = (size*0.8) + 'px';
+}
+
+
+
+
+
+
+
+
+
+
