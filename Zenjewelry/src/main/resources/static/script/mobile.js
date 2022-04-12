@@ -537,11 +537,9 @@ function delete_order(oseq){
 function sizing(){
 
 	var size = top.window.innerWidth;
-	var pnls = parseInt(document.getElementById('pnls').value) / 1280;
 	var pmls = parseInt(document.getElementById('pmls').value);
 	
 	document.getElementById('promotionsBox').style.width = (size * pmls * 0.8) + 'px';
-	document.getElementById('pnls').value = (size * pmls * 0.8) + 'px';
 	document.getElementById('promotionBox').style.width = (size*0.8) + 'px';
 }
 

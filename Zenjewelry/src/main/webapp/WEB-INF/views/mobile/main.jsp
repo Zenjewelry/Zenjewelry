@@ -22,7 +22,6 @@
 						</div>
 					</div>
 				<img src="images/arrow_next.png" class="rolPBtn" id="nextPromotion" />
-				<input type="hidden" id="pnls" value="${promotionListSize*1280}" />
 				<input type="hidden" id="pmls" value="${promotionListSize}" />
 			</div>
 		</div>
