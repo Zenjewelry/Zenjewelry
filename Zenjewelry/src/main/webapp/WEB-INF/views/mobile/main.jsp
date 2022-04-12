@@ -13,7 +13,7 @@
 					<div id="mainPromotionView">
 						<div id="promotionsBox" style="width:${promotionListSize*1280}px; height:540px;">
 							<c:forEach items="${promotionList}" var="prmList" varStatus="index">
-								<a href="promotionDetail?prmseq=${prmList.PRMSEQ}">
+								<a href="mpromotionDetail?prmseq=${prmList.PRMSEQ}">
 									<div class="promotionBox">
 										<img src="/promotion_images/${prmList.BANNER}" />
 									</div>

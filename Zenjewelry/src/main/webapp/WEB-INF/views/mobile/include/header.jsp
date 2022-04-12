@@ -52,28 +52,28 @@
 	<nav id="catagory_menu"><!-- 카테고리 메뉴 Heels Boots Sandals 등-->
 		<ul>
 			<li><img class="Lm" id="hmBtn" src="images/Hbutton.png" style="cursor:pointer" width="70" height="70" /></li>
-			<li><a class="Lm" href="bestProductList?sub='y'">BEST</a></li>
-			<li><a class="Lm" href="productList?kind=1&sub='y'">RING</a></li>
-			<li><a class="Lm" href="productList?kind=2&sub='y'">EARRINGS</a></li>
-			<li><a class="Lm" href="productList?kind=3&sub='y'">NECKLACE</a></li>
-			<li><a class="Lm" href="productList?kind=4&sub='y'">BRACELET</a></li>
-			<li><a class="LmR" href="cartList">CART</a></li>
-			<li><a class="LmR" href="boardList?sub='y'">BOARD</a></li>
-			<li><a class="LmR" href="qnaList?sub='y'" >Q&amp;A</a></li>
+			<li><a class="Lm" href="mbestProductList?sub='y'">BEST</a></li>
+			<li><a class="Lm" href="mproductList?kind=1&sub='y'">RING</a></li>
+			<li><a class="Lm" href="mproductList?kind=2&sub='y'">EARRINGS</a></li>
+			<li><a class="Lm" href="mproductList?kind=3&sub='y'">NECKLACE</a></li>
+			<li><a class="Lm" href="mproductList?kind=4&sub='y'">BRACELET</a></li>
+			<li><a class="LmR" href="mcartList">CART</a></li>
+			<li><a class="LmR" href="mboardList?sub='y'">BOARD</a></li>
+			<li><a class="LmR" href="mqnaList?sub='y'" >Q&amp;A</a></li>
 		</ul>
 	    
 	</nav>
 	
 	<!-- 햄버거 카테고리 수직메뉴(드롭다운) -->
 <div class="dropdown">    
-	<div class="ddBtn"><a href="bestProductList?sub='y'">&nbsp;&nbsp;&nbsp;BEST</a></div>
-	<div class="ddBtn"><a href="productList?kind=1&sub='y'">&nbsp;&nbsp;&nbsp;RING</a></div>
-	<div class="ddBtn"><a href="productList?kind=2&sub='y'">&nbsp;&nbsp;&nbsp;EARRINGS</a></div>
-	<div class="ddBtn"><a href="productList?kind=3&sub='y'">&nbsp;&nbsp;&nbsp;NECKLACE</a></div>
-	<div class="ddBtn"><a href="productList?kind=4&sub='y'">&nbsp;&nbsp;&nbsp;BRACELET</a></div>
-	<div class="ddBtn"><a href="cartList">&nbsp;&nbsp;&nbsp;CART</a></div>
-	<div class="ddBtn"><a href="boardList?sub='y'">&nbsp;&nbsp;&nbsp;BOARD</a></div>
-	<div class="ddBtn"><a href="qnaList?sub='y'">&nbsp;&nbsp;&nbsp;Q&amp;A</a></div>
+	<div class="ddBtn"><a href="mbestProductList?sub='y'">&nbsp;&nbsp;&nbsp;BEST</a></div>
+	<div class="ddBtn"><a href="mproductList?kind=1&sub='y'">&nbsp;&nbsp;&nbsp;RING</a></div>
+	<div class="ddBtn"><a href="mproductList?kind=2&sub='y'">&nbsp;&nbsp;&nbsp;EARRINGS</a></div>
+	<div class="ddBtn"><a href="mproductList?kind=3&sub='y'">&nbsp;&nbsp;&nbsp;NECKLACE</a></div>
+	<div class="ddBtn"><a href="mproductList?kind=4&sub='y'">&nbsp;&nbsp;&nbsp;BRACELET</a></div>
+	<div class="ddBtn"><a href="mcartList">&nbsp;&nbsp;&nbsp;CART</a></div>
+	<div class="ddBtn"><a href="mboardList?sub='y'">&nbsp;&nbsp;&nbsp;BOARD</a></div>
+	<div class="ddBtn"><a href="mqnaList?sub='y'">&nbsp;&nbsp;&nbsp;Q&amp;A</a></div>
 </div>	
 </header>
 
