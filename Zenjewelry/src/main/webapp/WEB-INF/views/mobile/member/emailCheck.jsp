@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/shopping.css" rel="stylesheet"> 
-<script src="member/member.js"></script>
+<link href="css/mobile.css" rel="stylesheet"> 
+<script src="member/mobile.js"></script>
 <script type="text/javascript">
 function emailok(){
 		opener.formm.email.value="${email}"; 		
@@ -19,7 +19,7 @@ function emailok(){
 
 
 <center><h1>Email 중복확인</h1></center>
-<form method="post" name="name" action="EmailCheckForm">
+<form method="post" name="name" action="mEmailCheckForm">
 	User ID :  <input type="text" name="email" value="${email}" >
 	<input type="submit" value="검색" class="submit"><br><br><br>	
 	<div>

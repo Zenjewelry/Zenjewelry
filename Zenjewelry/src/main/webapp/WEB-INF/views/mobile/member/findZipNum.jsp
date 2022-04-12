@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/shopping.css" rel="stylesheet"> 
+<link href="css/mobile.css" rel="stylesheet"> 
 <script type="text/javascript">
 	function result(zip_num, sido, gugun, dong) {
 	   opener.document.formm.zip_num.value=zip_num;
@@ -18,7 +18,7 @@
 <body>
 <div id="popup">
 	<center><h1>우편번호검색</h1></center>
-	<form method="get" name="formm" action="findZipNum">
+	<form method="get" name="formm" action="mfindZipNum">
 		<center><h3>동 이름 : <input name="dong"  type="text"><input type="submit" value="찾기"  class="submit"></h3></center>
 	</form><br><br>
 	<table id="cartList">

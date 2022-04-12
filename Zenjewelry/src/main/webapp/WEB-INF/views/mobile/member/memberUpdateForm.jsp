@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 
 
 <article>
 <h2>정보수정</h2>
-<form method="post" name="formm" action="memberUpdate">
+<form method="post" name="formm" action="mmemberUpdate">
 	<fieldset class="input-box">
 		<label>User ID</label><input id="username"  type="text" name="id" value="${dto.id}" readonly><br>
 		<label>Password</label><input id="username" type="password"  name="pwd"><br> 
@@ -28,4 +28,4 @@
 
 
 
-<%@ include file="../include/headerfooter/footer.jsp" %> 
+<%@ include file="../include/footer.jsp" %> 

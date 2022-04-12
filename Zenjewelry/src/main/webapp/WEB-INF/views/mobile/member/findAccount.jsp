@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/shopping.css" rel="stylesheet">
+<link href="css/mobile.css" rel="stylesheet">
 </head>
 <body>
 
@@ -14,10 +14,10 @@
 <table align="center" bgcolor="black" cellspacing="1" width="400">
 	<tr align="center" bgcolor="f7f7f7" height="200">
 		<td width="230"><h3>아이디 찾기</h3><br>
-			<div id="buttons"><input type="button" class="submit" value="이동" onClick="location.href='findIdForm'"></div>
+			<div id="buttons"><input type="button" class="submit" value="이동" onClick="location.href='mfindIdForm'"></div>
 		</td>
 		<td width="230"><h3>비밀번호 찾기</h3><br>
-			<div id="buttons"><input type="button"  class="submit" value="이동" onClick="location.href='findPwForm'"></div>
+			<div id="buttons"><input type="button"  class="submit" value="이동" onClick="location.href='mfindPwForm'"></div>
 		</td>
 	</tr>
 </table>

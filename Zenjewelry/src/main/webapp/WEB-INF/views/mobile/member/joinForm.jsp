@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 
 <article>
-<form method="post" name="formm" id="join" action="join">
+<form method="post" name="formm" id="join" action="mjoin">
 	<fieldset class="input-box"><legend>회원가입</legend>
 		<label>User ID</label><input id="username" type="text" name="id" size="12" value="${dto.id}">
 		<input id="username" type="hidden" name="reid" value="${reid}">
@@ -29,4 +29,4 @@
 	</div>
 </form></article>
 
-<%@ include file="../include/headerfooter/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>

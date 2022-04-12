@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/shopping.css" rel="stylesheet">
+<link href="css/mobile.css" rel="stylesheet">
 <script type="text/javascript">
 function change_Pwd(){
 	if(document.formm.numCheck.value != document.formm.checkNum.value){
@@ -21,7 +21,7 @@ function change_Pwd(){
 
 <center><h2>비밀번호 찾기</h2></center>
 <c:if test="${result != 1}">
-<form method="post" name="formm" action="findPwStep1">
+<form method="post" name="formm" action="mfindPwStep1">
 	<table id="cartlist" align="center" bgcolor="black" cellspacing="1" width="400">
 			<tr align="center" bgcolor="#FFFFFF" >
 				<td width="430"><h3>아이디<input type="text" name="id" value="${id}" ></h3></td>

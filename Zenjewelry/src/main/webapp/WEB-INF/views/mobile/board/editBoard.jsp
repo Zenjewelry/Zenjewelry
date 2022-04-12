@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/headerfooter/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <article>
 	<form name="wbfrm" method="post">
 		<input type="hidden" name="num" value="${boardVO.NUM}" />
@@ -20,4 +20,4 @@
 </form>
 </article>
 
-<%@ include file="../include/headerfooter/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>
