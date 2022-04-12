@@ -93,7 +93,7 @@ public class MMemberController {
 	}
 	
 	
-	@RequestMapping(value="/logout")
+	@RequestMapping(value="/mlogout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUser");

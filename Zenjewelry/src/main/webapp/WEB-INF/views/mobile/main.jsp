@@ -47,7 +47,7 @@
 		<div id="mainView">
 			<div id="itemsbox" style="width:${newListSize}px;">
 				<c:forEach items="${newList}" var="nList">
-					<a href="productDetail?pseq=${nList.PSEQ}">
+					<a href="mproductDetail?pseq=${nList.PSEQ}">
 						<div id="items">
 							<img src="product_images/${nList.IMAGE}" id="imgtest"/>
 							<div class="listText">${nList.NAME}</div>
@@ -76,7 +76,7 @@
 		<div id="mainView">
 			<div id="itemsbox1" style="width:${bestListSize}px;">
 				<c:forEach items="${bestList}" var="bList">
-					<a href="productDetail?pseq=${bList.PSEQ}">
+					<a href="mproductDetail?pseq=${bList.PSEQ}">
 						<div id="items">
 							<img src="product_images/${bList.IMAGE}" id="imgtest"/>
 							<div class="listText">${bList.NAME}</div>
