@@ -3,21 +3,21 @@ function go_search(frm){
 	else if(frm=="hdfrm" && document.hdfrm.key.value == "") alert("검색어를 입력하세요.");
 	else{
 		if(frm=="bdfrm"){
-			document.bdfrm.action = "boardList";
+			document.bdfrm.action = "mboardList";
 			document.bdfrm.submit();
 		}else if(frm=="hdfrm"){
-			document.hdfrm.action = "productList?kind=0";
+			document.hdfrm.action = "mproductList?kind=0";
 			document.hdfrm.submit();
 		}
 	}
 }
 
 function go_write(com){
-	location.href = "write" + com + "Form";
+	location.href = "mwrite" + com + "Form";
 }
 
 function go_save1(com){
-	var actions = 'go_' + com + 'Board';
+	var actions = 'mgo_' + com + 'Board';
 	document.wbfrm.method = "post";
 	document.wbfrm.action = actions;
 	document.wbfrm.submit();
@@ -25,9 +25,9 @@ function go_save1(com){
 
 function go_mov1(com){
 	if(com=="Detail"){
-		location.href = "board" + com + "?num=" + document.wbfrm.boardnum.value;
+		location.href = "mboard" + com + "?num=" + document.wbfrm.boardnum.value;
 	}else{
-		location.href = "board" + com;
+		location.href = "mboard" + com;
 	}
 }
 
@@ -39,7 +39,7 @@ function writeReply(){
 	if(document.rpfrm.reply.value==""){
 		alert("댓글을 작성해주세요.");
 	}else{
-		document.rpfrm.action = 'writeReply';
+		document.rpfrm.action = 'mwriteReply';
 		document.rpfrm.submit();
 	}
 }
@@ -47,7 +47,7 @@ function writeReply(){
 function delete_Board(){
    var answer = confirm("게시글을 삭제하시겠습니까?");
    if( answer ){
-	document.formm.action= "deleteBoard";
+	document.formm.action= "mdeleteBoard";
 	document.formm.submit();   
    }
 }
@@ -165,13 +165,13 @@ function deleteProductQna_test(){
 	var pseq = document.qnalist.pseq.value;
 	var qna_num = document.qnalist.qna_num.value;
 	if(con)
-		location.href="'deleteProductQna?qna_num=' + qna_num + '&pseq=' + pseq";
+		location.href="'mdeleteProductQna?qna_num=' + qna_num + '&pseq=' + pseq";
 }
 
 function deleteProductQna(){
 	var con = confirm('상품문의를 삭제하시겠습니까 ?');
 	if(con){
-		document.qnalist.action = 'deleteProductQna';
+		document.qnalist.action = 'mdeleteProductQna';
 		document.qnalist.submit();
 	}
 }
@@ -272,7 +272,7 @@ function idcheck(){
 		documnet.formm.id.focus();
 		return;
 	}
-	var url = "idCheckForm?id=" + document.formm.id.value;
+	var url = "midCheckForm?id=" + document.formm.id.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 	window.open(url, "IdCheck", opt);	
 }
@@ -283,7 +283,7 @@ function emailCheck(){
 		document.formm.email.focus();
 		return;
 	}
-	var url = "EmailCheckForm?email=" + document.formm.email.value;
+	var url = "mEmailCheckForm?email=" + document.formm.email.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 	window.open(url, "EmailCheck", opt);
 }
@@ -294,14 +294,14 @@ function numCheck(){
 		document.formm.email.focus();
 		return;
 	}
-	var url = "numCkeck?email=" + document.formm.email.value;
+	var url = "mnumCkeck?email=" + document.formm.email.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 	window.open(url, "numCheck", opt);
 }
 
 
 function post_zip(){
-	var url = "findZipNum";
+	var url = "mfindZipNum";
 	var pop = "toolbar=no, menubar=no, scrollbars=no, "
 	 + "resizable=no, width=550, height=300, top=300, left=300";
 	window.open( url, "find Zip num", pop );
@@ -350,7 +350,7 @@ function go_save(){
 
 function find_account(){
 
-	var url = "findAccount";
+	var url = "mfindAccount";
 	var opt = "toolbar=no, menubar=no, scrollbars=no, resizable=no, width=700,";
 	opt = opt + "height=500, top=300, left=300";
 	window.open(url, "Find Id/Pw", opt);
@@ -407,7 +407,7 @@ function go_removeQna(){
 	
 	var answer = confirm("Q&A를 삭제하시겠습니까?");
 	if( answer ){
-	 document.qnalist.action= "shop.do?command=deleteProductQna";
+	 document.qnalist.action= "shop.do?command=mdeleteProductQna";
 	document.qnalist.submit();	
 	}
 }
@@ -416,7 +416,7 @@ function go_removeQna(){
 function Switch_dormant_account(){
 	var answer = confirm("계정을 활성화 하시겠습니까?");
 	if( answer ){
-	 document.formm.action= "Switch_dormant_account";
+	 document.formm.action= "mSwitch_dormant_account";
 	 document.formm.submit();	
 	}
 	else return false;
@@ -428,7 +428,7 @@ function go_cart(){
 	    alert("수량을 입력하여 주세요.");
 	    document.formmm.quantity.focus();
 	}else{
-		document.formmm.action ="cartInsert";
+		document.formmm.action ="mcartInsert";
 		document.formmm.submit();
 	}
 }
@@ -453,7 +453,7 @@ function go_cart_delete(){
 	if( count == 0 ){
 		alert("삭제할 항목을 선택해주세요");
 	} else{
-		document.formm.action = "cartDelete";
+		document.formm.action = "mcartDelete";
 	    document.formm.submit();
 	}
 }
@@ -462,7 +462,7 @@ function go_cart_delete(){
 
 function go_order_insert(){
 
-	document.formm.action ="orderInsert";
+	document.formm.action ="morderInsert";
 	document.formm.submit();
 	
 	
@@ -473,7 +473,7 @@ function go_order_insert(){
 
 
 function go_order_one(){
-	document.formmm.action ="orderOne";
+	document.formmm.action ="morderOne";
 	document.formmm.submit();
 }
 
@@ -489,13 +489,13 @@ function zip_update_delivery(){
 	}else if(document.formm.address2.value==""){
 		alert("상세주소를 확인하세요.");
 	}else{
-		document.formm.action = "zipUpdate";
+		document.formm.action = "mzipUpdate";
 		document.formm.submit();
 	}
 }
 
 function post_zip1(){
-	var url = "shop.do?command=findZipNumDv";
+	var url = "shop.do?command=mfindZipNumDv";
 	var opt = "toolbar=no, menubar=no, scrollbars=no, resizable=no, width=550,";
 	opt = opt + " height=300, top=300, left=300";
 	window.open( url, "우편번호 찾기", opt );
@@ -511,7 +511,7 @@ function result1( zipNum, sido, gugun, dong){
 
 
 function go_orderDetail(){
-	document.updateDelivery.action = "orderDetail";
+	document.updateDelivery.action = "morderDetail";
 	document.updateDelivery.submit();
 }
 
@@ -520,7 +520,7 @@ function go_orderDetail(){
 function delete_order(oseq){
 	var answer = confirm("주문을 취소하시겠습니까?");
 	if( answer ){
-	var url = "deleteOrderPassWord?oseq=" + oseq;
+	var url = "mdeleteOrderPassWord?oseq=" + oseq;
 	var pop = "toolbar=no, menubar=no, scrollbars=no, "
 	 + "resizable=no, width=550, height=300, top=300, left=300";
 	window.open( url, "주문 취소하기", pop );
