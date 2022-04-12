@@ -8,9 +8,6 @@
 <title>header.jsp</title>
 <link href="/css/mobile.css" rel="stylesheet">  
 <script src="/script/jquery-3.6.0.js"></script>
-<script src="/script/member.js"></script>
-<script src="/script/mypage.js"></script>
-<script src="/script/basic.js"></script>
 <script src="/script/mobile.js"></script>
 </head>
 <body>
