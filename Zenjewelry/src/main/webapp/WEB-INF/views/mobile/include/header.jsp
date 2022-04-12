@@ -31,14 +31,14 @@
 		<ul>
 			<c:choose>
 				<c:when test="${empty loginUser}">
-					<li><a class="Rm" href="loginForm">LOGIN</a></li>
-					<li><a class="Rm" href="contract">JOIN</a></li>
+					<li><a class="Rm" href="mloginForm">LOGIN</a></li>
+					<li><a class="Rm" href="mcontract">JOIN</a></li>
 				</c:when>
 				<c:otherwise>
 					<li><a class= "Id01">${loginUser.NAME}(${loginUser.ID})</a></li>
-					<li><a class="Rm" href="myPage">MYPAGE</a></li>
-					<li><a class="Rm" href="editForm">EDIT</a></li>
-					<li><a class="Rm" href="logout">LOGOUT</a></li>
+					<li><a class="Rm" href="mmyPage">MYPAGE</a></li>
+					<li><a class="Rm" href="meditForm">EDIT</a></li>
+					<li><a class="Rm" href="mlogout">LOGOUT</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
@@ -49,11 +49,6 @@
 	<nav id="catagory_menu"><!-- 카테고리 메뉴 Heels Boots Sandals 등-->
 		<ul>
 			<li><img class="Lm" id="hmBtn" src="images/Hbutton.png" style="cursor:pointer" width="70" height="70" /></li>
-			<li><a class="Lm" href="mbestProductList?sub='y'">BEST</a></li>
-			<li><a class="Lm" href="mproductList?kind=1&sub='y'">RING</a></li>
-			<li><a class="Lm" href="mproductList?kind=2&sub='y'">EARRINGS</a></li>
-			<li><a class="Lm" href="mproductList?kind=3&sub='y'">NECKLACE</a></li>
-			<li><a class="Lm" href="mproductList?kind=4&sub='y'">BRACELET</a></li>
 			<li><a class="LmR" href="mcartList">CART</a></li>
 			<li><a class="LmR" href="mboardList?sub='y'">BOARD</a></li>
 			<li><a class="LmR" href="mqnaList?sub='y'" >Q&amp;A</a></li>

@@ -2,8 +2,8 @@
 <%@ include file="../include/header.jsp" %>
 
 <article>
-<h1>로그인</h1>
-<form method="post" action="mlogin" name="loginFrm">
+<h1 style=text-align:center>로그인</h1>
+<form style=text-align:center method="post" action="mlogin" name="loginFrm">
 
 	<fieldset class="input-box">
 		<legend></legend>

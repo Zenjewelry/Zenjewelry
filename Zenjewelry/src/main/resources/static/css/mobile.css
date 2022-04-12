@@ -4,6 +4,7 @@
 input:focus {outline:none;}
 /* 좌우로 넘치는 스크롤바 숨기기 */ 
 body{overflow-x:hidden;}
+
 /* body구성 */
 body{  margin:0; padding:0;   background:#f7f7f7;}
 /* #wrap0 { width: 100%;	text-align:left;	margin: 0 auto; background:#FFFFFF; min-height: 10px; min-width:1300px;} */
@@ -103,7 +104,7 @@ form label { 	width: 140px; 	float: left; 	margin: 0 auto; }
 form input {	margin: 5px 0; 	border: 1px solid #999; 	background-color: #FFFFFF; }
 
 /* 메인 이미지 */
-#main_img {text-align: center;min-width:2000px;}
+#main_img {text-align: center;}
 #main_img img {width:100%; margin: 0 auto;}
 
 
@@ -141,15 +142,6 @@ article h2, div h2 {	font-family: Verdana; font-size: 30px;	color: #000000;	padd
 	width:100%; }
 input:placeholder-shown + label{ color:#aaa; font-size:14pt; top:15px; }
 
-
-
-/*어드민 페이지 LoginPage CSS*/
-#wrap_a{ width: 100%;	text-align:center;	margin: 0 auto; background:#474160; min-height: 120px;min-width:1300px;}
-#logo_a{position:relative; margin : 0 auto;}
-/* 어드민 헤더로고 */
-#logoA { float: left;}
-/* 어드민 로그아웃버튼 */
-#RAm5{position: relative; left:-30px; float: right; top : 50px; font-size:23px; }
 
 /* admin 회원정보 */
 #cartList2{margin: 10px 0 0 -400px;   width: 1400px;}
@@ -296,37 +288,6 @@ input[type=button]{
 
 
 
-/* ?? */
-
-/*
-
-
-a { color: #000000;	text-decoration: none; } 
-a:hover {	color: #F90;	 text-decoration: underline; }
-
-#popup{padding: 0 10px; font-family:Verdana;}
-
-table#zipcode{border-collapse:collapse; border-top:3px solid #6F0C78;	border-bottom:3px solid #6F0C78; margin-top:15px; width:100%; 
-font-size:110%;}
-table#zipcode th, table#zipcode td{text-align:center; border-bottom: 1px dotted  #6F0C78;;}
-table th, td{  padding: 10px;}
-table#zipcode  a{display:block; height:20px; text-decoration:none; padding:10px;}
-table#zipcode a:hover{font-weight: bold;}
-
-#kindProduct {	border: solid 1px #FFFFFF;	border-radius: 10px; width: 610px;	min-height: 900px;	background: #ebebeb;	
-padding: 10px;	text-align: center; }
-
-#sub_img {	text-align: center; }
-#sub_img img {	margin: 9px 0 0 0; }
-#sub_menu { width: 250px; 	float: left; 	margin: 20px 0; }
-#sub_menu ul { 	margin: 20px 0 0 16px; 	list-style: none; }
-#sub_menu a {	text-decoration: none;	color: #6F0C78; 	font-family:Verdana ; font-weight: bold;  font-size: 16px;	display: block;	
-height: 15px;	width: 160px; padding: 7px;	border-bottom: 1px dotted #999; background-image: url(../images/bullet.gif); 
-background-repeat: no-repeat; 	background-position: right center; }
-#sub_menu a:hover { background-image: url(../images/bullet_orange.gif);	background-repeat: no-repeat;	background-position: right center; 	
-color: #F90;	font-weight: bold; 	font-size: 16px;	font-family: Arial, Helvetica, sans-serif; }
-*/
-
 .submit:active{
    background-color: #474160;
    box-shadow: 0 5px #666;
@@ -371,10 +332,7 @@ table#cartList3 th, td {      text-align: center;  }
    margin:0 auto;
    padding:0;
 }
-/*
-#hmBtn:hover .ddBtn{
-	display:block;
-}*/
+
 
 .dropdown a{
 	margin:0;
