@@ -257,7 +257,7 @@ function loginCheck(){
 
 function go_next() {
 	if (document.formm.okon[0].checked == true) {
-    	document.formm.action = "joinForm";
+    	document.formm.action = "mjoinForm";
     	document.formm.submit();
   	} else if (document.formm.okon[1].checked == true) {
     	alert('약관에 동의하셔야만 합니다.');
