@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 
-<article style="width: 1600px;">
+<article>
 <h2> Item&nbsp;&nbsp;</h2>
 <input style=float:left type="button" value="전체상품보기" onClick="location.href='/mproductAll'" />
 <div style="float: right; margin-right:20px;">
@@ -21,7 +21,7 @@
 </c:choose>
 </div>
 <br><br>
-<div style="margin-left:100px;">
+<div style="margin-top:30px; margin-left:100px;">
 <c:forEach items="${productList}"  var="productVO" >
 	<div id="item"  style="position:relative; width: 350px; height: 400px; margin:32px auto;">
 		<a href="mproductDetail?pseq=${productVO.PSEQ}">

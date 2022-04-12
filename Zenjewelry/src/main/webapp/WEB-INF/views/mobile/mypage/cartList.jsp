@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<article style=width:1000px;>
+<article>
 <h2 style="text-align:center"> 장바구니 </h2>
 <form name="formm" method="post" action="orderInsert">
 	<c:choose>
@@ -10,16 +10,16 @@
 		<c:otherwise>
 			<table id="cartList" style="margin-right:auto; margin-left:auto;" >
 					<c:forEach items="${cartList}" var="cartVO">
-						<tr><td><input type="checkbox" name="cseq" value="${cartVO.CSEQ}"></td>
-						<td><a href="mproductDetail?pseq=${cartVO.PSEQ}" target="_blank" >
-						<img src="product_images/${cartVO.IMAGE}" style="position:relative; width: 95px; height: 95px; object-fit: cover; margin:10px auto"/>
+						<tr><td style="width:10px;"><input type="checkbox" name="cseq" value="${cartVO.CSEQ}" style="width:30px; height:30px;"></td>
+						<td ><a href="mproductDetail?pseq=${cartVO.PSEQ}" target="_blank" >
+						<img src="product_images/${cartVO.IMAGE}" style="position:relative; width: 300px; height: 300px; object-fit: cover; margin:10px auto; "/>
 						</a></td>
 						<td><a href="productDetail?pseq=${cartVO.PSEQ}" target="_blank" >
 							<h3> ${cartVO.PNAME} </h3>
 							<p>[옵션 : ${cartVO.OPTION1} / ${cartVO.OPTION2} / ${cartVO.OPTION3}]</p></a>
 							<p style="text:bold;"><fmt:formatNumber value="${cartVO.SELLPRICE}"	type="currency"/></p>
 							</td>
-						<td> ${cartVO.QUANTITY} </td>
+						<td colspan="2"> ${cartVO.QUANTITY} </td>
 					
 					
 						</tr>

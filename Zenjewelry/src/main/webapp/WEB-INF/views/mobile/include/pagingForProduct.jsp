@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 	body{text-align:center;}
-	#paging{font-size: 110%;}
+	#paging{font-size: 150%;}
 </style>
 </head>
 <body>
 
-<div id="paging" align="center" style="font-size:110%; font-weight:bold;">
+<div id="paging" align="center" style="font-size:150%; font-weight:bold;">
 		<c:url var="action" value="${param.command}" />
 		<c:if test="${paging.prev}">
 			<a href="${action}&page=${paging.beginPage-1}">＜</a>&nbsp;
