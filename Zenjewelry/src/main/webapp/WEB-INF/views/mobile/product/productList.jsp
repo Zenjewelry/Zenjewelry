@@ -3,7 +3,7 @@
 
 <article style="width: 1600px;">
 <h2> Item&nbsp;&nbsp;</h2>
-<input style=float:left type="button" value="전체상품보기" onClick="location.href='/productAll'" />
+<input style=float:left type="button" value="전체상품보기" onClick="location.href='/mproductAll'" />
 <div style="float: right; margin-right:20px;">
 <c:choose>
 	<c:when test="${not empty kind || not empty kindUpList || not empty kindDownList}">
@@ -36,48 +36,48 @@
 <br/><br/><br/><br/><br/><br/>
 <c:choose>
 	<c:when test="${not empty kindUpList}">
-		<jsp:include page="../include/page/pagingForProduct.jsp">
+		<jsp:include page="../include/pagingForProduct.jsp">
 			<jsp:param name="command" value="mkindUpList?kind=${kind}" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty kindDownList}">
-		<jsp:include page="../include/page/pagingForProduct.jsp">
+		<jsp:include page="../include/pagingForProduct.jsp">
 			<jsp:param name="command" value="mkindDownList?kind=${kind}" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty kind}">
-		<jsp:include page="../include/page/pagingForProduct.jsp">
+		<jsp:include page="../include/pagingForProduct.jsp">
 			<jsp:param name="command" value="mproductList?kind=${kind}" />
 		</jsp:include>
 	</c:when>
 	
 	<c:when test="${not empty best}">
-		<jsp:include page="../include/page/paging.jsp">
+		<jsp:include page="../include/paging.jsp">
 			<jsp:param name="command" value="mbestProductList" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty bestUpList}">
-		<jsp:include page="../include/page/paging.jsp">
+		<jsp:include page="../include/paging.jsp">
 			<jsp:param name="command" value="mbestUpList" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty bestDownList}">
-		<jsp:include page="../include/page/paging.jsp">
+		<jsp:include page="../include/paging.jsp">
 			<jsp:param name="command" value="mbestDownList" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty allUpList}">
-		<jsp:include page="../include/page/paging.jsp">
+		<jsp:include page="../include/paging.jsp">
 			<jsp:param name="command" value="mallUpList" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty allDownList}">
-		<jsp:include page="../include/page/paging.jsp">
+		<jsp:include page="../include/paging.jsp">
 			<jsp:param name="command" value="mallDownList" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty all}">
-		<jsp:include page="../include/page/paging.jsp">
+		<jsp:include page="../include/paging.jsp">
 			<jsp:param name="command" value="mproductAll" />
 		</jsp:include>
 	</c:when>
