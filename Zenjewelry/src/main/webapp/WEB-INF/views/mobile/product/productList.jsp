@@ -36,17 +36,17 @@
 <br/><br/><br/><br/><br/><br/>
 <c:choose>
 	<c:when test="${not empty kindUpList}">
-		<jsp:include page="../include/page/pagingForProduct.jsp">
+		<jsp:include page="../include/pagingForProduct.jsp">
 			<jsp:param name="command" value="mkindUpList?kind=${kind}" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty kindDownList}">
-		<jsp:include page="../include/page/pagingForProduct.jsp">
+		<jsp:include page="../include/pagingForProduct.jsp">
 			<jsp:param name="command" value="mkindDownList?kind=${kind}" />
 		</jsp:include>
 	</c:when>
 	<c:when test="${not empty kind}">
-		<jsp:include page="../include/page/pagingForProduct.jsp">
+		<jsp:include page="../include/pagingForProduct.jsp">
 			<jsp:param name="command" value="mproductList?kind=${kind}" />
 		</jsp:include>
 	</c:when>
