@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../mobile/include/header.jsp" %>
+<%@ include file="../include/headerfooter/header.jsp" %>
 <article>
 <h2>게시판</h2>
 <div>
@@ -23,4 +23,4 @@
 
 </article>
 
-<%@ include file="../mobile/include/footer.jsp" %>
+<%@ include file="../include/headerfooter/footer.jsp" %>
