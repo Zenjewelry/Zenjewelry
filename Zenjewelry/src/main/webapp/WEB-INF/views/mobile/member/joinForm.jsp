@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 
+
 <article>
+<h1 style="text-align:center">회원가입</h1>
 <form method="post" name="formm" id="join" action="mjoin">
-	<fieldset class="input-box"><legend>회원가입</legend>
+	<fieldset class="input-box">
 		<label>User ID</label><input id="username" type="text" name="id" size="12" value="${dto.id}">
 		<input id="username" type="hidden" name="reid" value="${reid}">
 	    <input id="nbutton" type="button" value="중복 체크" class="dup" onclick="idcheck()"><br>

@@ -1,25 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 <article style=width:1000px;>
-<h2> 장바구니 </h2>
+<h2 style="text-align:center"> 장바구니 </h2>
 <form name="formm" method="post" action="orderInsert">
 	<c:choose>
 		<c:when test="${cartList.size() == 0}">
 			<h3 style="color: red;text-align: center;">장바구니가 비었습니다.</h3> 
 		</c:when>
 		<c:otherwise>
-			<table id="cartList" style=width:1000px>
-				<tr><th>선 택</th><th colspan=2>제 품</th><th>수 량</th><th>가 격</th></tr>
+			<table id="cartList" style="margin-right:auto; margin-left:auto;" >
 					<c:forEach items="${cartList}" var="cartVO">
 						<tr><td><input type="checkbox" name="cseq" value="${cartVO.CSEQ}"></td>
-						<td><a href="productDetail?pseq=${cartVO.PSEQ}" target="_blank" >
-						<img src="product_images/${cartVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/>
+						<td><a href="mproductDetail?pseq=${cartVO.PSEQ}" target="_blank" >
+						<img src="product_images/${cartVO.IMAGE}" style="position:relative; width: 95px; height: 95px; object-fit: cover; margin:10px auto"/>
 						</a></td>
 						<td><a href="productDetail?pseq=${cartVO.PSEQ}" target="_blank" >
 							<h3> ${cartVO.PNAME} </h3>
-							<p>${cartVO.OPTION1} / ${cartVO.OPTION2} / ${cartVO.OPTION3}</p></a></td>
+							<p>[옵션 : ${cartVO.OPTION1} / ${cartVO.OPTION2} / ${cartVO.OPTION3}]</p></a>
+							<p style="text:bold;"><fmt:formatNumber value="${cartVO.SELLPRICE}"	type="currency"/></p>
+							</td>
 						<td> ${cartVO.QUANTITY} </td>
-						<td><fmt:formatNumber value="${cartVO.SELLPRICE}"	type="currency"/></td>
+					
 					
 						</tr>
 					</c:forEach>

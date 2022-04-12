@@ -3,9 +3,9 @@
 
 
 <article>
-<h2>회원 가입 약관</h2>
+<h2 style="text-align:center">회원 가입 약관</h2>
 
-<form id="join" method="post" name="formm" action="mjoinForm">
+<form style="text-align:center  id="join" method="post" name="formm" action="mjoinForm">
 
 언제나 새로운 즐거움이 가득한 ZEN JEWELRY의 회원가입 페이지 입니다. <br>
 ZEN JEWELRY의 회원가입은 무료이며, 회원님의 개인신상에 관한 정보는 ‘정보통신망이용촉진 
@@ -333,8 +333,8 @@ ZEN JEWELRY의 회원가입은 무료이며, 회원님의 개인신상에 관한
 
 <br><br>
 <div style="text-align: center;">
-	<input type="radio" name="okon" > 동의함 &nbsp; &nbsp; &nbsp;
-	<input type="radio" name="okon" checked> 동의안함
+	<input style = height:13px; type="radio" name="okon" > 동의함 &nbsp; &nbsp; &nbsp;
+	<input style = height:13px; type="radio" name="okon" checked> 동의안함
 </div>
 
 <input type="button" value="Next" class="submit" onClick="go_next();"	style="float: right;" >
