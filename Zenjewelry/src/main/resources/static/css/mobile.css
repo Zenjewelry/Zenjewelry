@@ -4,7 +4,6 @@
 input:focus {outline:none;}
 /* 좌우로 넘치는 스크롤바 숨기기 */ 
 body{overflow-x:hidden;}
-
 /* body구성 */
 body{  margin:0; padding:0;   background:#f7f7f7;}
 /* #wrap0 { width: 100%;	text-align:left;	margin: 0 auto; background:#FFFFFF; min-height: 10px; min-width:1300px;} */
@@ -97,11 +96,13 @@ padding: 10px;	text-align: center; margin:0 auto;}
 
 
 /* 로그인 회원가입.. 그런 창들 */
-form {	margin: 10px 0 0 0;	width: 670px;}
+
+form {	margin: 10px 0 0 0;	width: 100%; text-align:center;}
+
 form fieldset {	padding: 10px 0 20px 5px;	border: none;}
 form fieldset legend {	font-size: 20px;	border-bottom: 1px dotted #666;	width: 600px; 	padding: 5px 0; }
 form label { 	width: 140px; 	float: left; 	margin: 0 auto; }
-form input {	margin: 5px 0; 	border: 1px solid #999; 	background-color: #FFFFFF; }
+form input {	height: 40px; margin: 5px 0; 	border: 1px solid #999; 	background-color: #FFFFFF; }
 
 /* 메인 이미지 */
 #main_img {text-align: center;}
@@ -109,10 +110,9 @@ form input {	margin: 5px 0; 	border: 1px solid #999; 	background-color: #FFFFFF;
 
 
 /* 카트리스트 테이블 CSS */
-#itemdetail  img { width: 300px;      margin-right: 20px;  }
-table#cartList {border-collapse: collapse;   border-top: 2px solid #333;   border-bottom: 1px solid #333; width: 100%;   
+table#cartList {/* border-collapse: collapse; */   border-top: 2px solid #333;   border-bottom: 1px solid #333; width: 90%;   
 margin-bottom: 20px; }
-table#cartList td {border-bottom: 1px dotted #333; text-align:center; height:90px;}   
+table#cartList td {border-bottom: 1px dotted #333; text-align:center; height:80px;}   
 table#cartList th {background:#474160; color:white;   border-bottom:  1px dotted #333;   text-align: center;  height:50px;}
 
 
@@ -155,6 +155,7 @@ table#cartList2 th {background:#474160; color:white;   border-bottom:  1px dotte
 
 /* submit 버튼과 cancel 버튼  css */
 input[type=button]{
+	height:40px;
 	border-radius: 5px;
 	background:#474160;
 	color:#fff;
@@ -197,6 +198,8 @@ input[type=button]{
   /* 로그인 버튼 (submit) */
   
   input[type=submit]{
+  width:250px;
+	height:40px;
 	border-radius: 5px;
 	background:#474160;
 	color:#fff;
@@ -238,6 +241,8 @@ input[type=button]{
   /* 취소버튼(cancel) */
   
   input[type=reset]{
+  width:250px;
+	height:40px;
 	border-radius: 5px;
 	background:#474160;
 	color:#fff;
@@ -277,7 +282,7 @@ input[type=button]{
   }
   
   .submit{ height:30px;}
-  .cancel{height:30px;}
+  .cancel{height:30px; width:250px;}
   .dup{height:28px;}
 
 
