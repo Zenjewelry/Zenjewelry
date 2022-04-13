@@ -2,7 +2,7 @@
 <%@ include file="../include/header.jsp" %>
 
 <article>
-<h2> Item&nbsp;&nbsp;</h2>
+<h2> Item&nbsp;&nbsp;</h2><hr>
 <input style=float:left type="button" value="전체상품보기" onClick="location.href='/mproductAll'" />
 <div style="float: right; margin-right:20px;">
 <c:choose>

@@ -16,7 +16,7 @@ body{  margin:0; padding:0;   background:#f7f7f7;}
 #logo { float: left; margin: 10px 0 0 20px;}
 
 /* 헤더에 있는 돋보기모양 검색창 */
-#search { position:absolute; top: 115px; left:-50px;}
+#search { position:absolute; top: 50px; left:-50px;}
 #sbutton{ background: transparent;  height: 35px; width: 50px;
 cursor : pointer; position : absolute; border-radius: 10px;
  left: 650px; color:white; font-weight:bold; border: 1px solid #bbb;}
@@ -132,7 +132,7 @@ table#cartList th {background:#474160; color:white;   border-bottom:  1px dotted
 /* 로그인, 회원가입, 정보수정, 보드 Q&A CART ..등등... */
 article h1, div h1 {	font-family: Verdana; 	font-size: 45px; color: #000000;	margin: 20px 0;	font-weight: normal; }
 article {padding-top:100px; margin : 0 auto; width: 90%; font-family: Verdana; font-size: 1em;	line-height: 1.5em; }
-article h2, div h2 {	font-family: Verdana; font-size: 30px;	color: #000000;	paddng-bottom: 15px;	border-bottom: 1px dotted #666; text-align:center;}
+article h2, div h2 {	font-family: Verdana; font-size: 30px;	color: #000000;	paddng-bottom: 15px;	 text-align:center;}
 article h3{ font-family: Verdana; font-size:25px; color:#000000; text-align:center;}
 
 /*로그인, 회원가입.. 등등 입력창들 CSS*/
