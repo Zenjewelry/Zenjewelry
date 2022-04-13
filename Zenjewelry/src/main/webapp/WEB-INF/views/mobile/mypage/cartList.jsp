@@ -8,24 +8,24 @@
 			<h3 style="color: red;text-align: center;">장바구니가 비었습니다.</h3> 
 		</c:when>
 		<c:otherwise>
-			<table id="cartList" style="margin-right:auto; margin-left:auto;" >
+			<table id="cartList" style="margin-right:auto; margin-left:auto; table-layout:fixed;" >
 					<c:forEach items="${cartList}" var="cartVO">
-						<tr><td style="width:10px;"><input type="checkbox" name="cseq" value="${cartVO.CSEQ}" style="width:30px; height:30px;"></td>
-						<td ><a href="mproductDetail?pseq=${cartVO.PSEQ}" target="_blank" >
-						<img src="product_images/${cartVO.IMAGE}" style="position:relative; width: 300px; height: 300px; object-fit: cover; margin:10px auto; "/>
+						<tr><td width="120px"><input type="checkbox" name="cseq" value="${cartVO.CSEQ}" style="width:30px; height:30px;"></td>
+						<td width="300px"><a href="mproductDetail?pseq=${cartVO.PSEQ}" target="_blank" >
+						<img src="product_images/${cartVO.IMAGE}" style="position:relative; width: 300px; height: 300px; object-fit: cover; margin:10px auto;"/>
 						</a></td>
-						<td><a href="productDetail?pseq=${cartVO.PSEQ}" target="_blank" >
-							<h3> ${cartVO.PNAME} </h3>
-							<p>[옵션 : ${cartVO.OPTION1} / ${cartVO.OPTION2} / ${cartVO.OPTION3}]</p></a>
-							<p style="text:bold;"><fmt:formatNumber value="${cartVO.SELLPRICE}"	type="currency"/></p>
-							</td>
-						<td colspan="2"> ${cartVO.QUANTITY} </td>
+						<td colspan="2"><a href="productDetail?pseq=${cartVO.PSEQ}" target="_blank" >
+							<p style="font-size:25px;"> <b>${cartVO.PNAME}</b> </p>
+							<p style="font-size:25px;">[옵션 : ${cartVO.OPTION1} / ${cartVO.OPTION2} / ${cartVO.OPTION3}]</p></a>
+							<p style="text:bold; font-size:20px;"><b><fmt:formatNumber value="${cartVO.SELLPRICE}"	type="currency"/></b></p>
+							<p style="font-size:20px;">수량 : [${cartVO.QUANTITY}] <p>	
+						</td>
 					
 					
 						</tr>
 					</c:forEach>
 				<tr><th width="20%"> 총 액 </th><td colspan="2">
-       				<fmt:formatNumber value="${totalPrice}" type="currency" /></td>
+       				<B style="font-size:25px;"><fmt:formatNumber value="${totalPrice}" type="currency" /></B></td>
        				<td style=font-size:20px;font-weight:bold;><a href="#" onClick="go_cart_delete();">삭제하기</a></td></tr> 
 			</table>
 		</c:otherwise>
