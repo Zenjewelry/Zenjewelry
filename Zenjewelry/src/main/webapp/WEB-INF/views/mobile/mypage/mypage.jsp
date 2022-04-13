@@ -8,11 +8,8 @@
 	<tr></tr>
     <c:forEach items="${orderList}"  var="orderVO">
     <tr style="margin-top: 100px">
-    	<td style="margin:30px auto"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 200px; height: 200px; object-fit: cover;"/>
-    	<td style="width:1000px; margin-left:50px"><a href="morderDetail?oseq=${orderVO.OSEQ}"><h3>${orderVO.PNAME}</h3></a>
-    	<td style=width:700px><fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency" /></td>
-    	<td style=width:700px><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>
-    	
+    	<td style="margin:30px auto"><a href="morderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 200px; height: 200px; object-fit: cover;"/></a>
+    	<td style="width:1000px; margin-left:50px"><a href="morderDetail?oseq=${orderVO.OSEQ}"><h3>${orderVO.PNAME}</h3></a><fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency" /><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>	
         <%-- 	<td>${orderVO.OSEQ} </td> --%>
 			<td style="width:400px;">
 				<c:if test="${orderVO.RESULT=='1'}">배송준비 중</c:if>
