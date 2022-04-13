@@ -684,5 +684,8 @@ where c.pseq = p.pseq and c.id = m.id;
 
 
 
-select * from promotions
+-- promotion banner 사이즈 수정
 alter table promotions modify banner varchar2(500);
+
+
+
