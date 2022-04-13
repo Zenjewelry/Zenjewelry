@@ -39,13 +39,13 @@
 					<option value="${option.OPTION3}">${option.OPTION3}</option>
 				</c:forEach>
 			</select><br>
-       	<label>수 량 : </label><input  type="text" name="quantity" id="quan" size="2" value="1" onChange="updatePrice();"><br>
-       	<label>재 고 : </label><p id="sku"></p>
+       	<label>수 량 : </label><input  style="height:15px;" type="text" name="quantity" id="quan" size="2" value="1" onChange="updatePrice();"><br>
+       	<label>재 고 : </label><p id="sku"></p><br>
        	<label>최종 결제가격 : </label>
        		<p>
 				<c:choose>
 					<c:when test="${not empty prmprice}">
-						<p id="viewPrice"><fmt:formatNumber value="" type="currency" /> 원</p>
+						<p style="margin-top:-15px" id="viewPrice"><fmt:formatNumber value="" type="currency" /> 원</p>
 						<input type="hidden" name="sellprice" id="sellprice" value="${prmprice}" />
 						<input type="hidden" id="firstsellprice" value="${prmprice}" />
 					</c:when>
