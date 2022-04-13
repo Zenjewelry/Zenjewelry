@@ -6,23 +6,13 @@ import java.util.HashMap;
 public class test {
 
 	public static void main(String[] args) {
-		String [] options1 = {"qwegf", "w3egvw", "dfgn"};
-		String [] options2 = {"222qwegf", "222w3egvw", "222dfgn"};
-		String [] options3 = {"333qwegf", "333w3egvw", "333dfgn"};
-		
-		ArrayList<String> optionList = new ArrayList<String>();
-		
-		for(int i=0; i<options1.length; i++) {
-			for(int j=0; j<options2.length; j++) {
-				for(int k=0; k<options3.length; k++) {
-					optionList.add(options1[i] + "/" + options2[j] + "/" + options3[k]); 
-				}
-			}
-		}
-		
-		for(String list : optionList)
-			System.out.println(list);
-		
+
+	     String url = "test159.jpg,26570426ec2cff73cae8635fad72e8c02.jpg,productList_sketch1.jpg,발표_사다리게임.png,26570426ec2cff73cae8635fad72e8c03.jpg";
+	     
+	     int num = url.lastIndexOf(",");
+	     String real = url.substring(num+1);
+	     System.out.println(real);
+	     
 	}
 
 }

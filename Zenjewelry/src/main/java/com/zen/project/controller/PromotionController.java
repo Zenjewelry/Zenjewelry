@@ -272,6 +272,10 @@ public class PromotionController {
 			paramMap.put("prmVO", promotionVO);
 			paramMap.put("prmseq", promotionVO.getPrmseq());
 			
+			int num = promotionVO.getBanner().lastIndexOf(",");
+			String banner = promotionVO.getBanner().substring(num+1);
+			paramMap.put("banner", banner);
+			
 			ps.updatePromotion(paramMap);
 			
 			for(int i=1; i<=outnumber; i++) {

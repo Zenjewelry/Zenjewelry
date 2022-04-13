@@ -19,7 +19,7 @@
 		<tr><th>메인 배너 이미지명</th><td><div id="previewbannerText">${promotionView.BANNER}</div></td></tr>
 		<tr><th>메인 배너 미리보기</th>
 			<td>
-				<img src="/promotion_images/${promotionView.BANNER}" id="previewbannerImg" width="300" height="300" />
+				<img src="/promotion_images/${promotionView.BANNER}" id="previewbannerImg" name="realBanner" width="300" height="300" />
 			</td></tr>
 		<%-- <tr>
 			<th>시작일자 ~ 종료일자</th>
