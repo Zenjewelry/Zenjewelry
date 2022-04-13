@@ -46,8 +46,8 @@ public class MProductController {
 		
 		model.addAttribute("newList", newList);
 		model.addAttribute("bestList", bestList);
-		model.addAttribute("newListSize", newList.size()*320);
-		model.addAttribute("bestListSize", bestList.size()*320);
+		model.addAttribute("newListSize", newList.size());
+		model.addAttribute("bestListSize", bestList.size());
 		model.addAttribute("promotionList", promotionList);
 		model.addAttribute("promotionListSize", promotionList.size());
 
