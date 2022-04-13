@@ -44,18 +44,8 @@
 		</ul>
 	</nav>
 </div>
-<header id="wrap2"><!-- 로고, 주상단메뉴, 카테고리 메뉴 등이 표시되는 영역 -->
 	
-	<nav id="catagory_menu"><!-- 카테고리 메뉴 Heels Boots Sandals 등-->
-		<ul>
-			<li><img class="Lm" id="hmBtn" src="images/Hbutton.png" style="cursor:pointer" width="70" height="70" /></li>
-			<li><a class="LmR" href="mcartList">CART</a></li>
-			<li><a class="LmR" href="mboardList?sub='y'">BOARD</a></li>
-			<li><a class="LmR" href="mqnaList?sub='y'" >Q&amp;A</a></li>
-		</ul>
-	    
-	</nav>
-	
+<img id="hmBtn" src="images/Hbutton_mobile.png" style="cursor:pointer" width="70" height="70" />
 	<!-- 햄버거 카테고리 수직메뉴(드롭다운) -->
 <div class="dropdown">    
 	<div class="ddBtn"><a href="mbestProductList?sub='y'">&nbsp;&nbsp;&nbsp;BEST</a></div>
@@ -66,7 +56,9 @@
 	<div class="ddBtn"><a href="mcartList">&nbsp;&nbsp;&nbsp;CART</a></div>
 	<div class="ddBtn"><a href="mboardList?sub='y'">&nbsp;&nbsp;&nbsp;BOARD</a></div>
 	<div class="ddBtn"><a href="mqnaList?sub='y'">&nbsp;&nbsp;&nbsp;Q&amp;A</a></div>
+	<div class="ddBtn"><a href="mcartList">CART</a></div>
+	<div class="ddBtn"><a href="mboardList?sub='y'">BOARD</a></div>
+	<div class="ddBtn"><a href="mqnaList?sub='y'" >Q&amp;A</a></div>
 </div>	
-</header>
 
 

@@ -12,6 +12,8 @@ body{  margin:0; padding:0;   background:#f7f7f7;}
 
 #wrap3 { width: 100%;	text-align:left;	/* margin: 0 auto; */  background:#474160; min-height: 220px;}
 
+
+
 /* 로고 */
 #logo { float: left; margin: 10px 0 0 20px;}
 
@@ -92,8 +94,8 @@ footer #copy {position : relative; display: inline-block; margin: 0 20px 10px 20
 
 
 
-.listText{position:relative; text-align:left; color:black; font-weight:bold;font-size:16px; font-family:HancomEQN; margin-top:10px; height:50px;} 
-.listText2{position:relative; text-align:left; color:black;font-size:18px; font-family:Gothic; font-weight:bold; color: black; height:50px;}  
+.listText{position:relative; text-align:left; color:black; font-weight:bold;font-size:26px; font-family:HancomEQN; margin-top:10px; height:50px;} 
+.listText2{position:relative; text-align:left; color:black;font-size:26px; font-family:Gothic; font-weight:bold; color: black; height:50px;}  
 #sale{position: relative; width:100px; height:50px; }
 
 
@@ -336,8 +338,8 @@ table#cartList3 th, td {      text-align: center;  }
 
 
 
-
-.dropdown{position:absolute; z-index:1; top:80px;}
+#hmBtn{position:sticky; top:80px; z-index:1;}
+.dropdown{position:absolute; z-index:1; }
 
 .ddBtn{
    opacity:0;
