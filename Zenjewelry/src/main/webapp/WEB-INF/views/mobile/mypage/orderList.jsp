@@ -7,8 +7,6 @@
 <h2> 결제정보 </h2>
 <tr><th width="20%"> 최종결제금액 </th>
        	<td style="text-align:left;"><fmt:formatNumber value="${totalPrice}" type="currency"/></td></tr>
-    <tr><th width="20%"> 결제수단 </th>
-       	<td style="text-align:left;"> </td></tr>
  </table>
 <div></div> 
 <table id="cartList">  <!-- 동일한 css 적용을 위한 id사용 -->
@@ -35,11 +33,11 @@
 <h2> 배송지 정보 </h2>
 
 	<tr><th width="20%"> 수령인 </th>
-       	<td style="text-align:left;">${orderList11.MNAME}</td></tr>	
+       	<td style="text-align:left;"><p>${orderList11.MNAME}</p></td></tr>	
     <tr><th width="20%"> 연락처 </th>
-       	<td style="text-align:left;">${orderList11.PHONE}</td></tr>
+       	<td style="text-align:left;"><p>${orderList11.PHONE}</p></td></tr>
     <tr><th width="20%"> 배송지 </th>
-       	<td style="text-align:left;">${orderList11.ZIP_NUM} ${orderList11.ADDRESS} ${orderList11.ADDRESS2}</td></tr>	
+       	<td style="text-align:left;"><p>${orderList11.ZIP_NUM} ${orderList11.ADDRESS} ${orderList11.ADDRESS2}</p></td></tr>	
 
 </table>
 	<div id="buttons" style="float: right">

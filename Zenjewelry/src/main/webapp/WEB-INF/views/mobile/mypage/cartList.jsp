@@ -2,7 +2,7 @@
 <%@ include file="../include/header.jsp" %>
 <article>
 <h2 style="text-align:center"> 장바구니 </h2>
-<form name="formm" method="post" action="orderInsert">
+<form name="formm" method="post" action="morderInsert">
 	<c:choose>
 		<c:when test="${cartList.size() == 0}">
 			<h3 style="color: red;text-align: center;">장바구니가 비었습니다.</h3> 

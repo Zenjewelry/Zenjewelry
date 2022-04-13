@@ -69,60 +69,42 @@ function next(size){
 
 $(function(){
 	
+	var widthSize = top.window.innerWidth * 0.8;
+	var boxSize = widthSize * 0.5;
+	
 	var defRol = 0;
 	$('#prev').click(function(){
 		if(defRol!=0){
-			defRol+=320;
+			defRol+=boxSize;
 			$('#itemsbox').animate({left:defRol}, 500);
 		}
 	});
 	
 	$('#next').click(function(){
-		var size = $('#nls').val();
-		var ck = defRol - 320;
-		if((size*-1)+1280<=ck){
-			defRol-=320;
+		var size = $('#nls').val() * boxSize;
+		var ck = defRol - boxSize;
+		if((size*-1)+widthSize<=ck){
+			defRol-=boxSize;
 			$('#itemsbox').animate({left:defRol}, 500);
 		}
 		/*console.log(size);*/
 	});
-	
-	$('#items:nth-of-type(1)').hover(
-		function(){/*마우스엔터*/
-			$(this).css('transform', 'scale(1.1)').css('transition', '300ms');
-		},
-		function(){/*마우스리브*/
-			$(this).css('transform', 'scale(1)');
-		}
-	);
-	
-	$('.rolBtn').hover(
-		function(){/*마우스엔터*/
-			$(this).css('transform', 'scale(1.4)').css('transition', '300ms');
-		},
-		function(){/*마우스리브*/
-			$(this).css('transform', 'scale(1)');
-		}
-	);
-	
+		
 	var defRol1 = 0;
    $('#prev1').click(function(){
       if(defRol1!=0){
-         defRol1+=320;
+         defRol1+=boxSize;
          $('#itemsbox1').animate({left:defRol1}, 500);
       }
    });
    
-  
-   
    $('#next1').click(function(){
-      var size = $('#bls').val();
-      var ck = defRol1 - 320;
-      if((size*-1)+1280<=ck){
-         defRol1-=320;
+      var size = $('#bls').val() * boxSize;
+      var ck = defRol1 - boxSize;
+      if((size*-1)+widthSize<=ck){
+         defRol1-=boxSize;
          $('#itemsbox1').animate({left:defRol1}, 500);
       }
-      /*console.log(size);*/
    });
    
    $(document).ready(function(){$('#hmBtn').click();});
@@ -184,7 +166,6 @@ function deleteProductQna(){
 // 프로모션 jQuery
 $(function(){
 
-	
 	var widthSize = top.window.innerWidth * 0.8;
 
 	var defPRol = 0;
@@ -202,19 +183,7 @@ $(function(){
 			defPRol-=widthSize;
 			$('#promotionsBox').animate({left:defPRol}, 500);
 		}
-		/*console.log(size);*/
 	});
-	
-	
-	
-	$('.rolPBtn').hover(
-		function(){/*마우스엔터*/
-			$(this).css('transform', 'scale(1.4)').css('transition', '300ms');
-		},
-		function(){/*마우스리브*/
-			$(this).css('transform', 'scale(1)');
-		}
-	);
 	
 });
 
@@ -535,12 +504,73 @@ function delete_order(oseq){
 
 
 function sizing(){
-
-	var size = top.window.innerWidth;
+	
+	// promotion
+	var size = top.window.innerWidth * 0.8;
 	var pmls = parseInt(document.getElementById('pmls').value);
 	
-	document.getElementById('promotionsBox').style.width = (size * pmls * 0.8) + 'px';
-	document.getElementById('promotionBox').style.width = (size*0.8) + 'px';
+	document.getElementById('prmbox').style.width = top.window.innerWidth + 'px';
+	document.getElementById('prmbox').style.height = (size / 2.37) + 'px';
+	document.getElementById('prmct').style.width = ((size) + (((size / 2.37) / 5.875)*2)) + 'px';
+	document.getElementById('prmct').style.height = (size / 2.37) + 'px';
+	document.getElementById('mainPromotionView').style.width = (size) + 'px';
+	document.getElementById('mainPromotionView').style.height = (size / 2.37) + 'px';
+	
+	document.getElementById('prevPromotion').style.width = ((size / 2.37) / 5.875) + 'px';
+	document.getElementById('prevPromotion').style.height = (size / 2.37) + 'px';
+	document.getElementById('nextPromotion').style.width = ((size / 2.37) / 5.875) + 'px';
+	document.getElementById('nextPromotion').style.height = (size / 2.37) + 'px';
+	
+	document.getElementById('promotionsBox').style.width = (size * pmls) + 'px';
+	document.getElementById('promotionBox').style.width = size + 'px';
+	
+	for(var i=1; i<=pmls; i++){
+		document.getElementById('pImg' + i).setAttribute('width', size + 'px');
+	}
+	
+	
+	// product
+	
+	var nls = parseInt(document.getElementById('nls').value);
+	var bls = parseInt(document.getElementById('bls').value);
+	
+	document.getElementById('itembox').style.width = top.window.innerWidth + 'px';
+	document.getElementById('itembox').style.height = (size / 2 + 200) + 'px';
+	document.getElementById('itemboxb').style.width = top.window.innerWidth + 'px';
+	document.getElementById('itemboxb').style.height = (size / 2 + 200) + 'px';
+	document.getElementById('ct').style.width = (size + (((size / 2) / 5.875)*2)) + 'px';
+	document.getElementById('ct').style.height = (size / 2 + 200) + 'px';
+	document.getElementById('ctb').style.width = (size + (((size / 2) / 5.875)*2)) + 'px';
+	document.getElementById('ctb').style.height = (size / 2 + 200) + 'px';
+	document.getElementById('mainView').style.width = size + 'px';
+	document.getElementById('mainView').style.height = (size / 2 + 100) + 'px';
+	document.getElementById('mainViewb').style.width = size + 'px';
+	document.getElementById('mainViewb').style.height = (size / 2 + 100) + 'px';
+	
+	document.getElementById('prev').style.width = ((size / 2) / 5.875) + 'px';
+	document.getElementById('prev').style.height = (size / 2) + 'px';
+	document.getElementById('next').style.width = ((size / 2) / 5.875) + 'px';
+	document.getElementById('next').style.height = (size / 2) + 'px';
+	document.getElementById('prev1').style.width = ((size / 2) / 5.875) + 'px';
+	document.getElementById('prev1').style.height = (size / 2) + 'px';
+	document.getElementById('next1').style.width = ((size / 2) / 5.875) + 'px';
+	document.getElementById('next1').style.height = (size / 2) + 'px';
+	
+	document.getElementById('itemsbox').style.width = (size * 0.5 * nls) + 'px';
+	for(var i=1; i<=nls; i++){
+		document.getElementById('items'+i).style.width = (size * 0.46) + 'px';
+		document.getElementById('items'+i).style.margin = '0px ' + (size * 0.02) + 'px';
+		document.getElementById('imgtest' + i).setAttribute('width', (size * 0.48) + 'px');
+	}
+	
+	document.getElementById('itemsbox1').style.width = (size * 0.5 * bls) + 'px';
+	for(var i=1; i<=bls; i++){
+		document.getElementById('itemsb'+i).style.width = (size * 0.46) + 'px';
+		document.getElementById('itemsb'+i).style.margin = '0px ' + (size * 0.02) + 'px';
+		document.getElementById('imgtestb' + i).setAttribute('width', (size * 0.48) + 'px');
+	}
+	
+	
 }
 
 

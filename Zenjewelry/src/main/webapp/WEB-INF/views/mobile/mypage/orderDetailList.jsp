@@ -10,15 +10,13 @@
 
 
 <table id="cartList">	
-	<tr><th colspan="2">상품 정보</th><th>상품금액</th><th>주문금액</th></tr>
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
 			<input  type="hidden" name="oseq" value="${orderVO.OSEQ}">
-			<td ><a href="productDetail?pseq=${orderVO.PSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a></td>        
-			<td><a href="productDetail?pseq=${orderVO.PSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a>${orderVO.OPTION1} / ${orderVO.OPTION2} / ${orderVO.OPTION3}</td>
-			
-			<td><fmt:formatNumber value="${orderVO.SELLPRICE / orderVO.QUANTITY}" type="currency"/>( ${orderVO.QUANTITY}건 )</td>
-       		<td><fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency"/></td>  
+			<td style="width:40% "><a href="productDetail?pseq=${orderVO.PSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 230px; height: 230px; object-fit: cover; text-align:left; margin:15px auto;"/></a></td>        
+			<td style="text-align:left; font-size:25px"><a href="productDetail?pseq=${orderVO.PSEQ}" ><p style="font-size:28px"><b>${orderVO.PNAME}</b></p></a><p>옵션 : ${orderVO.OPTION1} / ${orderVO.OPTION2} / ${orderVO.OPTION3}</p> 
+			<p style="font-size:28px"><fmt:formatNumber value="${orderVO.SELLPRICE / orderVO.QUANTITY}" type="currency"/></p><p>주문수량 :  ${orderVO.QUANTITY} </p>
+       		<%-- <fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency"/> --%></td>
        		<%-- ${orderVO.ZIP_NUM}   ${orderVO.ADDRESS}
        		${orderVO.ADDRESS2} --%>
        	</tr>
@@ -27,21 +25,21 @@
 </table>
 <table id="cartList">	
 	<tr><th width="20%"> 총 액 </th>
-       	<td><fmt:formatNumber value="${totalPrice}" type="currency"/></td></tr>	
+       	<td><p style="font-size:28px;"><fmt:formatNumber value="${totalPrice}" type="currency"/><b></p></td></tr>	
 </table>
 
 <br>
 
 <table id="cartList" style="text:left">	
 
-<h2> 배송지 정보 </h2>
+<h2 style="text-align:left;"> 배송지 정보 </h2>
 
 	<tr><th width="20%"> 수령인 </th>
-       	<td style="text-align:left;">${orderDetail.MNAME}</td></tr>	
+       	<td style="text-align:left;"><p style="font-size:25px;">&nbsp;&nbsp;${orderDetail.MNAME}</p></td></tr>	
     <tr><th width="20%"> 연락처 </th>
-       	<td style="text-align:left;">${orderDetail.PHONE}</td></tr>
+       	<td style="text-align:left;"><p style="font-size:25px;">&nbsp;&nbsp;${orderDetail.PHONE}</p></td></tr>
     <tr><th width="20%"> 배송지 </th>
-       	<td style="text-align:left;">${orderDetail.zip_num} ${orderDetail.ADDRESS} ${orderDetail.ADDRESS2}</td></tr>	
+       	<td style="text-align:left;"><p style="font-size:25px;">&nbsp;&nbsp;${orderDetail.zip_num} ${orderDetail.ADDRESS} ${orderDetail.ADDRESS2}</p></td></tr>	
 
 </table>
 <br>
@@ -49,7 +47,7 @@
 <tr>
 	<td>	
   	  <input type="button" value="마이 페이지" class="cancel" onclick="history.go(-1)">   
-  	  <input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='/'">  
+  	  <input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='/'"><br/>  
   	  <c:if test="${orderDetail.RESULT == 1}">
 		<input type="button" value="배송지 변경" class="cancel" onclick="location.href='deliveryForm?oseq=${param.oseq}'">
 	</c:if> 

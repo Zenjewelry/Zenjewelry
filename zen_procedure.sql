@@ -1013,7 +1013,7 @@ begin
             select * from (
                 select rownum as rn, q.* from
                    ((select distinct prmseq, banner, main_subject, sub_subject from promotion_view 
-                   where main_subject like '%'||p_key||'%' or sub_subject like '%'||p_key||'%' order by prmseq desc) q)
+                   where main_subject like '%'||p_key||'%' or sub_subject like '%'||p_key||'%' order by prmseq) q)
             ) where rn >= p_startNum
         ) where rn <= p_endNum;
 end;

@@ -2,22 +2,20 @@
 <%@ include file="../include/header.jsp" %>
 
 <article>
-<h2>${title}</h2>
+<p style="font-size:28px;"><b>${title}</b></p>
 <form>
-<table  id="cartList">
+<table  id="cartList" style="text-align:left; border-spacing: 15px;">
 	<tr></tr>
     <c:forEach items="${orderList}"  var="orderVO">
     <tr style="margin-top: 100px">
-    	<td style="margin:30px auto"><a href="morderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 200px; height: 200px; object-fit: cover;"/></a>
-    	<td style="width:1000px; margin-left:50px"><a href="morderDetail?oseq=${orderVO.OSEQ}"><h3>${orderVO.PNAME}</h3></a><fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency" /><fmt:formatDate value="${orderVO.INDATE}" type="date"/></td>	
-        <%-- 	<td>${orderVO.OSEQ} </td> --%>
-			<td style="width:400px;">
-				<c:if test="${orderVO.RESULT=='1'}">배송준비 중</c:if>
-				<c:if test="${orderVO.RESULT=='2'}">배송 완료</c:if>
-				</td>
+    	<td><a href="morderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 230px; height: 230px; object-fit: cover; margin:20px auto;"/></a>
+    	<td style="width:1000px; text-align:left;">
+    		<a href="morderDetail?oseq=${orderVO.OSEQ}"><p style="font-size:28px;">&nbsp;&nbsp;&nbsp;&nbsp;<b>${orderVO.PNAME}</b></p></a>
+    		<p style="font-size:28px;"><b>&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency" /></b></p ><p style="font-size:25px; text-align:left;;">&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${orderVO.INDATE}" type="date"/><br/></p>
+    	<c:if test="${orderVO.RESULT=='1'}"><p style="font-size:25px;">&nbsp;&nbsp;&nbsp;&nbsp;배송준비 중</p><br/></c:if>
+		<c:if test="${orderVO.RESULT=='2'}"><p style="font-size:25px;">&nbsp;&nbsp;&nbsp;&nbsp;배송 완료</p><br/></c:if>
+    	</td>	
 		</tr>
-		
-		<tr></tr>
 	
     </c:forEach>  
 </table><div class="clear"></div>

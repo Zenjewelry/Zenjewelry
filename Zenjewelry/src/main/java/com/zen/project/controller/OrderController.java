@@ -31,7 +31,7 @@ public class OrderController {
 		ModelAndView mav = new ModelAndView();
 		
 		if(loginUser == null ) {
-			mav.addObject("member/login"); // session에 저장된 값 없으면 login으로 돌아가기
+			mav.setViewName("member/login"); // session에 저장된 값 없으면 login으로 돌아가기
 		} else {
 			ArrayList<HashMap<String,Object>> finalList
 			= new ArrayList<HashMap<String, Object>>();
@@ -148,7 +148,7 @@ public class OrderController {
 		ModelAndView mav = new ModelAndView();
 		
 		if(loginUser == null) {
-			mav.addObject("member/login");
+			mav.setViewName("member/login");
 		} else {
 			ArrayList<HashMap<String, Object>> finalList
 			= new ArrayList<HashMap<String, Object>> ();
@@ -202,7 +202,7 @@ public class OrderController {
 		= (HashMap<String, Object> ) session.getAttribute("loginUser");
 		
 		if(loginUser == null) {
-			mav.addObject("member/login");
+			mav.setViewName("member/login");
 		} else {
 			HashMap<String, Object> paramMap	= new HashMap<String, Object> ();
 			paramMap.put("oseq", oseq);
