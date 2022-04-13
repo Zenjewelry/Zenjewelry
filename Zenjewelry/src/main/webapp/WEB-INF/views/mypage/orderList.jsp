@@ -7,8 +7,6 @@
 <h2> 결제정보 </h2>
 <tr><th width="20%"> 최종결제금액 </th>
        	<td style="text-align:left;"><fmt:formatNumber value="${totalPrice}" type="currency"/></td></tr>
-    <tr><th width="20%"> 결제수단 </th>
-       	<td style="text-align:left;"> </td></tr>
  </table>
 <div></div> 
 <table id="cartList">  <!-- 동일한 css 적용을 위한 id사용 -->
