@@ -681,3 +681,8 @@ as
 select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sellprice, c.result, c.indate, c.option1, c.option2, c.option3, p.image
 from carts c, products p, members m
 where c.pseq = p.pseq and c.id = m.id;
+
+
+
+select * from promotions
+alter table promotions modify banner varchar2(500);

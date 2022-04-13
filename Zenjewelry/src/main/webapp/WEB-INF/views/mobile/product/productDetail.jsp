@@ -26,19 +26,19 @@
 				<c:forEach items="${option1}" var="option">
 					<option value="${option.OPTION1}">${option.OPTION1}</option>
 				</c:forEach>
-			</select>
+			</select><br>
 		<label>사이즈 : </label>
 			<select name="option2" id="option2" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option2}" var="option">
 					<option value="${option.OPTION2}">${option.OPTION2}</option>
 				</c:forEach>
-			</select>
+			</select><br>
 		<label>색 상 : </label>
 			<select name="option3" id="option3" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option3}" var="option">
 					<option value="${option.OPTION3}">${option.OPTION3}</option>
 				</c:forEach>
-			</select>
+			</select><br>
        	<label>수 량 : </label><input  type="text" name="quantity" id="quan" size="2" value="1" onChange="updatePrice();"><br>
        	<label>재 고 : </label><p id="sku"></p>
        	<label>최종 결제가격 : </label>
@@ -66,10 +66,10 @@
 	<div class="clear"></div>
 	<div id="buttons">
 		<!-- <input type="button" value="장바구니에 담기"  onClick="go_cart();"> -->
-		<input class="cancel" type="button" value="장바구니에 담기" onClick="go_cart()" />
-		<input class="cancel" type="button" value="즉시 구매" onClick="go_order_one()" />
+		<input style="width:215px;" class="cancel" type="button" value="장바구니에 담기" onClick="go_cart()" />
+		<input style="width:215px;" class="cancel" type="button" value="즉시 구매" onClick="go_order_one()" />
 	<!-- 	<input type="button" value="즉시 구매"  onClick="go_order();">  -->
-		<input type="reset"  value="취소" 	class="cancel">
+		<input style="width:215px;" type="reset"  value="취소" 	class="cancel">
 		<br><br><br><br>
 		<span style="float: left; margin-right:20px;">
 			<img  src="product_images/${productVO.DETAIL_IMAGE}" 
@@ -105,9 +105,9 @@
 <form method="post" action="mwriteProductqna" style="bottom:1000px;">
 <h2>Q&A 작성</h2>
 <fieldset> 
-	<label>Title</label><input type="text" name="subject"  size="60" ><br>
-	<label>Content</label><textarea rows="8" cols="65" name="content"></textarea>
-	<label>Q&A password</label><input type="password" name="pwd"  size="30" ><br>
+	<label>Title</label><input style="margin-top:-20px;" type="text" name="subject"  size="60" ><br>
+	<label>Content</label><textarea style="margin-left:-30px;" rows="8" cols="65" name="content"></textarea><br>
+	<label style="margin-top:20px">Q&A password</label><input style="margin-left:-90px"  type="password" name="pwd"  size="30" ><br>
 	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}">
 		
 </fieldset>
