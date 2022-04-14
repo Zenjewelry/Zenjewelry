@@ -11,7 +11,6 @@
 			style="width: 350px; height: 350px; object-fit: cover;"/></span>              
        	<h2> ${productVO.NAME} </h2>  
 		<label>가 격 : </label>
-		<p>
 			<c:choose>
 				<c:when test="${not empty prmprice}">
 					<p><fmt:formatNumber value="${prmprice}" type="currency" /> 원</p>
@@ -20,7 +19,6 @@
 					<p><fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원</p>
 				</c:otherwise>
 			</c:choose>
-		</p>
 		<label>순 도 : </label>
 			<select name="option1" id="option1" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option1}" var="option">
@@ -40,22 +38,20 @@
 				</c:forEach>
 			</select>
        	<label>수 량 : </label><input  type="text" name="quantity" id="quan" size="2" value="1" onChange="updatePrice();"><br>
-       	<label>재 고 : </label><p id="sku"></p>
+       	<label>재 고 : </label><p id="sku" style="margin:0 auto;"></p>
        	<label>최종 결제가격 : </label>
-       		<p>
 				<c:choose>
 					<c:when test="${not empty prmprice}">
-						<p id="viewPrice"><fmt:formatNumber value="" type="currency" /> 원</p>
+						<p id="viewPrice" style="margin:0 auto;"><fmt:formatNumber value="" type="currency" /> 원</p>
 						<input type="hidden" name="sellprice" id="sellprice" value="${prmprice}" />
 						<input type="hidden" id="firstsellprice" value="${prmprice}" />
 					</c:when>
 					<c:otherwise>
-						<p id="viewPrice"><fmt:formatNumber value="" type="currency"/> 원</p>
+						<p id="viewPrice" style="margin:0 auto;"><fmt:formatNumber value="" type="currency"/> 원</p>
 						<input type="hidden" name="sellprice" id="sellprice" value="${productVO.PRICE2}" />
 						<input type="hidden" id="firstsellprice" value="${productVO.PRICE2}" />
 					</c:otherwise>
 				</c:choose>
-			</p>
        	<label>제품설명 : </label><label>${productVO.CONTENT}</label><br>
        	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}"><br>
 	<c:forEach items="${options}" var="option">
