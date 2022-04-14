@@ -20,7 +20,7 @@
     </c:forEach>  
 </table><div class="clear"></div>
 <div id="buttons" style="float:left">
-   <input type="button"  value="총 주문 내역"  class="cancel" onclick="location.href='/orderAll'"></div>
+   <input type="button"  value="총 주문 내역"  class="cancel" onclick="location.href='/morderAll'"></div>
 <div id="buttons" style="float:left">
    <input type="button"  value="뒤로가기"  class="cancel" onclick="history.go(-1)'"></div>
 <div id="buttons" style="float:right">

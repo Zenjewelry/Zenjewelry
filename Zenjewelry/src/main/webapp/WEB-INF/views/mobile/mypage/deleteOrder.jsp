@@ -13,7 +13,7 @@ function checkPwd(){
 	}
 	opener.name = 'parentPage';
 	document.formm.target = opener.name;
-	document.formm.action = 'deleteOrder';
+	document.formm.action = 'mdeleteOrder';
 	document.formm.submit();
 	self.close();
 }
