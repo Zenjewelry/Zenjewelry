@@ -3,8 +3,8 @@
 
 <article>
 <h2> Item&nbsp;&nbsp;</h2><hr>
-<input style=float:left type="button" value="전체상품보기" onClick="location.href='/mproductAll'" />
-<a href="mkindUpList?kind=${kind}&sub='y'">높은가격순&nbsp;&nbsp;</a>
+<!-- <input style=float:left type="button" value="전체상품보기" onClick="location.href='/mproductAll'" /> -->
+<div style="float: left; margin-left:20px;"><a href="productAll?sub='y'" style="float: left;">전체상품보기</a></div>
 <div style="float: right; margin-right:20px;">
 <c:choose>
 	<c:when test="${not empty kind || not empty kindUpList || not empty kindDownList}">
