@@ -279,6 +279,41 @@ $('#optionButton').click(function(){
 });
 
 
+function checkPromotion(){
+	if(document.frm.main_subject.value==""){
+		alert('메인 기획전명을 작성해주세요.');
+		return false;
+	}else if(document.frm.sub_subject.value==""){
+		alert('서브 기획전명을 작성해주세요.');
+		return false;
+	}else if(document.frm.banner==undefined){
+		alert('메인 배너를 업로드해주세요.');
+		return false;
+	}else if(document.getElementById('partition1')==undefined){
+		alert('구분자를 생성해주세요.');
+		return false;
+	}
+	
+	for(var i=1; i<=document.frm.outnumber.value; i++){
+		if(document.getElementsByName('Summary' + i)[0]==undefined){
+			alert(i + '번째 Summary 이미지를 업로드해주세요.');
+			return false;
+		}else if(document.getElementsByName('pseq' + i)[0]==undefined){
+			alert(i + '번째 Summary에 상품을 추가해주세요.');
+			return false;
+		}
+		for(var j=0; j<document.getElementsByName('price2' + i).length; j++){
+			if(document.getElementsByName('price2' + i)[j].value==""){
+				alert(i + '번째 Summary의 ' + (j+1) + '번째 상품가격을 입력해주세요.');
+				return false;
+			}
+		}
+	}
+	
+	return true;
+}
+
+
 
 
 
