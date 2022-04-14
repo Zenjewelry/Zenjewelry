@@ -14,7 +14,7 @@
 	<label>원가 [A] : </label><p>${productVO.PRICE1} 원</p>
 	<label>판매가 [B] : </label><p>${productVO.PRICE2} 원</p>
 	<label>제품설명 : </label><label>${productVO.CONTENT}</label><br>
-	<img src="product_images/${productVO.DETAIL_IMAGE}" style="width: 780px; height: 780px;">
+	<img src="product_images/${productVO.DETAIL_IMAGE}" style="width: 780px;">
 </fieldset>
 <div class="clear"></div>
 

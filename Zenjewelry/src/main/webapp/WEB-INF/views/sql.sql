@@ -34,9 +34,9 @@ alter table products modify detail_image varchar2(500)
 alter table products add detail_image varchar2(50);
 
 drop sequence products_seq;
-create sequence products_seq start with 41 increment by 1;
+create sequence products_seq start with 100 increment by 1;
 
-select * from products;
+select * from products_seq;
 
 CREATE TABLE workers(
    id varchar2(20) NOT NULL,   -- 관리자 아이디
@@ -688,7 +688,23 @@ select * from products
 alter table promotions modify banner varchar2(500);
 
 
+
 -- 기존 product 안지워지면 이렇게 하세요!!
+
+-- 제약 조건 확인하기
+SELECT CONSTRAINT_NAME, TABLE_NAME, R_CONSTRAINT_NAME FROM USER_CONSTRAINTS
+WHERE CONSTRAINT_NAME = 'SYS_C007202'
+ 
+-- 제약 조건 지우기
+ ALTER TABLE products 
+DISABLE CONSTRAINT SYS_C007189 CASCADE;
+
+select * from products;
+
+Alter table products modify name varchar2(100);
+Alter table products modify detail_image varchar2(100);
+
+
 SELECT CONSTRAINT_NAME, TABLE_NAME, R_CONSTRAINT_NAME FROM USER_CONSTRAINTS
 WHERE CONSTRAINT_NAME = 'SYS_C007190'
 
