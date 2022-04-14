@@ -688,4 +688,3 @@ where c.pseq = p.pseq and c.id = m.id;
 alter table promotions modify banner varchar2(500);
 
 
-
