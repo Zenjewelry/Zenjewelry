@@ -15,15 +15,13 @@
 <div id="wrap1">
 	<div id="logo"><!-- 메인 로고 이미지 -->
 		<a href="/">
-			<img src="images/logo_yw.png"  height="130" />
+			<img src="images/logo_yw.png"  height="200" />
 		</a>
 	</div>
 	<form method="post" name="hdfrm">
 		<div id="search"><!-- 돋보기모양 검색창 -->
-			<!-- <img  id= "s-img" src="images/search1.png" width="30px" /> -->
 			<input id= "s-box" type="text" name="key" value="${key}" />
-			<img  id= "s-img" src="images/search1.png" width="30px" onClick='go_search("hdfrm");' />
-			<!-- <input id="sbutton" type="button" value="검색" onClick='go_search("hdfrm");' /> -->
+			<img  id= "s-img" src="images/search1.png" width="50px" onClick='go_search("hdfrm");' />
 		</div>
 	</form>
 	
@@ -47,7 +45,7 @@
 	
 <img id="hmBtn" src="images/Hbutton_mobile.png" style="cursor:pointer" width="70" height="70" />
 	<!-- 햄버거 카테고리 수직메뉴(드롭다운) -->
-<div class="dropdown">    
+<div class="dropdown">
 	<div class="ddBtn"><a href="mbestProductList?sub='y'">&nbsp;&nbsp;&nbsp;BEST</a></div>
 	<div class="ddBtn"><a href="mproductList?kind=1&sub='y'">&nbsp;&nbsp;&nbsp;RING</a></div>
 	<div class="ddBtn"><a href="mproductList?kind=2&sub='y'">&nbsp;&nbsp;&nbsp;EARRINGS</a></div>
