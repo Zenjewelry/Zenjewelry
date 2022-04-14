@@ -15,7 +15,7 @@
 							<c:forEach items="${promotionList}" var="prmList" varStatus="index">
 								<a href="promotionDetail?prmseq=${prmList.PRMSEQ}">
 									<div class="promotionBox">
-										<img src="/promotion_images/${prmList.BANNER}" />
+										<img src="/promotion_images/${prmList.BANNER}" width="1280" />
 									</div>
 								</a>
 							</c:forEach>

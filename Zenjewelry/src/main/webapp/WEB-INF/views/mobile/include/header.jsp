@@ -33,10 +33,7 @@
 					<li><a class="Rm" href="mcontract">JOIN</a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a class= "Id01">${loginUser.NAME}(${loginUser.ID})</a></li>
-					<li><a class="Rm" href="mmyPage">MYPAGE</a></li>
-					<li><a class="Rm" href="meditForm">EDIT</a></li>
-					<li><a class="Rm" href="mlogout">LOGOUT</a></li>
+					<li><a class= "Rm">${loginUser.NAME}(${loginUser.ID})</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
@@ -54,6 +51,11 @@
 	<div class="ddBtn"><a href="mcartList">&nbsp;&nbsp;&nbsp;CART</a></div>
 	<div class="ddBtn"><a href="mboardList?sub='y'">&nbsp;&nbsp;&nbsp;BOARD</a></div>
 	<div class="ddBtn"><a href="mqnaList?sub='y'">&nbsp;&nbsp;&nbsp;Q&amp;A</a></div>
+	<c:if test="${not empty loginUser}">
+		<div class="ddBtn"><a href="mmyPage">&nbsp;&nbsp;&nbsp;MYPAGE</a></div>
+		<div class="ddBtn"><a href="meditForm">&nbsp;&nbsp;&nbsp;EDIT</a></div>
+		<div class="ddBtn"><a href="mlogout">&nbsp;&nbsp;&nbsp;LOGOUT</a></div>
+	</c:if>
 </div>	
 
 
