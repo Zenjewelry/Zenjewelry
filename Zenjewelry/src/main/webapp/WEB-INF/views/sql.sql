@@ -682,9 +682,18 @@ select c.cseq, c.id, m.name as mname, c.pseq, p.name as pname, c.quantity, c.sel
 from carts c, products p, members m
 where c.pseq = p.pseq and c.id = m.id;
 
-
+select * from products
 
 -- promotion banner 사이즈 수정
 alter table promotions modify banner varchar2(500);
 
+SELECT CONSTRAINT_NAME, TABLE_NAME, R_CONSTRAINT_NAME FROM USER_CONSTRAINTS
+WHERE CONSTRAINT_NAME = 'SYS_C007190'
 
+ALTER TABLE products 
+DISABLE CONSTRAINT SYS_C007179 CASCADE;
+
+select * from promotion_view
+select * from promotions
+delete from promotions where prmseq=2;
+delete from promotion_view
