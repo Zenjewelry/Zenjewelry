@@ -42,10 +42,10 @@ public class ProductController {
 		paramMap.put("promotion", null);
 		ps.getMainPromotionList(paramMap);
 		
-		ArrayList<HashMap<String, Object>> bestList
+		ArrayList<HashMap<String, Object>> newList
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
 		
-		ArrayList<HashMap<String, Object>> newList
+		ArrayList<HashMap<String, Object>> bestList
 		= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
 		
 		ArrayList<HashMap<String, Object>> promotionList
