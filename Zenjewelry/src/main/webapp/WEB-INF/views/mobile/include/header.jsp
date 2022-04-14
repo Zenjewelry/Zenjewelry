@@ -54,9 +54,6 @@
 	<div class="ddBtn"><a href="mcartList">&nbsp;&nbsp;&nbsp;CART</a></div>
 	<div class="ddBtn"><a href="mboardList?sub='y'">&nbsp;&nbsp;&nbsp;BOARD</a></div>
 	<div class="ddBtn"><a href="mqnaList?sub='y'">&nbsp;&nbsp;&nbsp;Q&amp;A</a></div>
-	<div class="ddBtn"><a href="mcartList">CART</a></div>
-	<div class="ddBtn"><a href="mboardList?sub='y'">BOARD</a></div>
-	<div class="ddBtn"><a href="mqnaList?sub='y'" >Q&amp;A</a></div>
 </div>	
 
 

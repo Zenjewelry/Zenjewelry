@@ -15,7 +15,7 @@ body{  margin:0; padding:0;   background:#f7f7f7;}
 
 
 /* 로고 */
-#logo {position:relative; float: left; height:200px; line-height:470px; margin:0 50px;}
+#logo {position:relative; float: left; height:200px; line-height:470px; margin:0 50px; left:50px;}
 
 /* 헤더에 있는 돋보기모양 검색창 */
 #search { position:relative; width:100px; height:100px; top:150px; margin:0 50px;}
@@ -86,7 +86,7 @@ footer #copy {position : relative; display: inline-block; margin: 0 20px 10px 20
 #itemsbox{position:relative;}
 #itemsbox1{position:relative;}
 .rolBtn{float:left; cursor:pointer; text-align:center;}
-.items{float:left; background-color:#e9e5da;}
+.items{float:left; background-color:#e9e5da; overflow:hidden;}
 
 
 
@@ -337,8 +337,8 @@ table#cartList3 th, td {      text-align: center;  }
 
 
 
-#hmBtn{position:sticky; top:80px; z-index:1;}
-.dropdown{position:absolute; z-index:1; }
+#hmBtn{position:fixed; top:50px; left:30px; z-index:1;}
+.dropdown{position:fixed; top:120px; z-index:1; }
 
 .ddBtn{
    opacity:0;
