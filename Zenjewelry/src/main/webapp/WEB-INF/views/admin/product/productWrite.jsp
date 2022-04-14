@@ -61,5 +61,6 @@
 			<input class="cancel" type="button" value="목록" onClick="go_mov()">
 		</div>
 	</form>
+	${message}
 </article>
 <%@ include file="../../include/adminheaderfooter/footer.jsp" %>
