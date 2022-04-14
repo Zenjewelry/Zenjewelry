@@ -13,8 +13,8 @@
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
 			<input  type="hidden" name="oseq" value="${orderVO.OSEQ}">
-			<td style="width:40% "><a href="productDetail?pseq=${orderVO.PSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 230px; height: 230px; object-fit: cover; text-align:left; margin:15px auto;"/></a></td>        
-			<td style="text-align:left; font-size:25px"><a href="productDetail?pseq=${orderVO.PSEQ}" ><p style="font-size:28px"><b>${orderVO.PNAME}</b></p></a><p>옵션 : ${orderVO.OPTION1} / ${orderVO.OPTION2} / ${orderVO.OPTION3}</p> 
+			<td style="width:40% "><a href="mproductDetail?pseq=${orderVO.PSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 230px; height: 230px; object-fit: cover; text-align:left; margin:15px auto;"/></a></td>        
+			<td style="text-align:left; font-size:25px"><a href="mproductDetail?pseq=${orderVO.PSEQ}" ><p style="font-size:28px"><b>${orderVO.PNAME}</b></p></a><p>옵션 : ${orderVO.OPTION1} / ${orderVO.OPTION2} / ${orderVO.OPTION3}</p> 
 			<p style="font-size:28px"><fmt:formatNumber value="${orderVO.SELLPRICE / orderVO.QUANTITY}" type="currency"/></p><p>주문수량 :  ${orderVO.QUANTITY} </p>
        		<%-- <fmt:formatNumber value="${orderVO.SELLPRICE}" type="currency"/> --%></td>
        		<%-- ${orderVO.ZIP_NUM}   ${orderVO.ADDRESS}
@@ -49,7 +49,7 @@
   	  <input type="button" value="마이 페이지" class="cancel" onclick="history.go(-1)">   
   	  <input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='/'"><br/>  
   	  <c:if test="${orderDetail.RESULT == 1}">
-		<input type="button" value="배송지 변경" class="cancel" onclick="location.href='deliveryForm?oseq=${param.oseq}'">
+		<input type="button" value="배송지 변경" class="cancel" onclick="location.href='mdeliveryForm?oseq=${param.oseq}'">
 	</c:if> 
    	  
 	<c:if test="${orderDetail.RESULT == 1}">

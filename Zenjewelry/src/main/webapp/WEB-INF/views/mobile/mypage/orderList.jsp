@@ -12,11 +12,10 @@
 <table id="cartList">  <!-- 동일한 css 적용을 위한 id사용 -->
        	<br>
     <h2> 주문 상품 정보 </h2>
-	<tr><th>이미지</th><th colspan="2">상품 정보</th><th>판매가</th><th>수량</th><th>합계</th></tr>
 	<c:forEach items="${orderList}" var="orderVO">
 		<tr>
-			<td ><a href="orderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a></td>        
-			<td colspan="2"><a href="orderDetail?oseq=${orderVO.OSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a>${orderVO.OPTION1} / ${orderVO.OPTION2} / ${orderVO.OPTION3}</td>
+			<td ><a href="morderDetail?oseq=${orderVO.OSEQ}"><img src="product_images/${orderVO.IMAGE}" style="position:relative; width: 150px; height: 150px; object-fit: cover; text-align:left;"/></a></td>        
+			<td colspan="2"><a href="morderDetail?oseq=${orderVO.OSEQ}" ><h3 style="center">${orderVO.PNAME}</h3></a>${orderVO.OPTION1} / ${orderVO.OPTION2} / ${orderVO.OPTION3}</td>
 			<td>${orderVO.SELLPRICE}</td>
 			<td> ${orderVO.QUANTITY}</td>
 			
@@ -44,7 +43,7 @@
        <input type="button" value="계속 쇼핑" class="cancel" onclick="location.href='/'">   
    </div>
    <div id="buttons" style="float: right">
-       <input type="button" value="배송지 변경" class="cancel" onclick="location.href='deliveryForm?oseq=${param.oseq}'">
+       <input type="button" value="배송지 변경" class="cancel" onclick="location.href='mdeliveryForm?oseq=${param.oseq}'">
    </div>
   
 </form>	
