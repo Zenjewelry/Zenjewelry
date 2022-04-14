@@ -688,6 +688,9 @@ select * from products
 alter table promotions modify banner varchar2(500);
 
 
+
+-- 기존 product 안지워지면 이렇게 하세요!!
+
 -- 제약 조건 확인하기
 SELECT CONSTRAINT_NAME, TABLE_NAME, R_CONSTRAINT_NAME FROM USER_CONSTRAINTS
 WHERE CONSTRAINT_NAME = 'SYS_C007202'
@@ -701,14 +704,9 @@ select * from products;
 Alter table products modify name varchar2(100);
 Alter table products modify detail_image varchar2(100);
 
+
 SELECT CONSTRAINT_NAME, TABLE_NAME, R_CONSTRAINT_NAME FROM USER_CONSTRAINTS
 WHERE CONSTRAINT_NAME = 'SYS_C007190'
 
 ALTER TABLE products 
 DISABLE CONSTRAINT SYS_C007179 CASCADE;
-
-select * from promotion_view
-select * from promotions
-delete from promotions where prmseq=2;
-delete from promotion_view
-

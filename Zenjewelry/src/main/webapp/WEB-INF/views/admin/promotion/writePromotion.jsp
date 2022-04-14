@@ -145,11 +145,12 @@
 		<hr />
 	</c:forEach>
 	<div id="hiddenimage">
+		<input type="hidden" name="bannertest" value="${promotionVO.banner}" />
 		<c:if test="${not empty promotionVO.banner}">
 			<input type="hidden" name="banner" value="${promotionVO.banner}" />
 		</c:if>
 	</div>
-	<input type="submit" value="프로모션 등록" />
+	<input type="submit" value="프로모션 등록" onClick='return checkPromotion()' />
 	<input type="button" value="프로모션 목록" onClick="location.href='promotionList'" />
 </form>
 
