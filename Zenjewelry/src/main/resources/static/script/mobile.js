@@ -561,6 +561,7 @@ function sizing(){
 		document.getElementById('items'+i).style.width = (size * 0.46) + 'px';
 		document.getElementById('items'+i).style.margin = '0px ' + (size * 0.02) + 'px';
 		document.getElementById('imgtest' + i).setAttribute('width', (size * 0.48) + 'px');
+		document.getElementById('imgtest' + i).setAttribute('height', (size * 0.48) + 'px');
 	}
 	
 	document.getElementById('itemsbox1').style.width = (size * 0.5 * bls) + 'px';
@@ -568,6 +569,7 @@ function sizing(){
 		document.getElementById('itemsb'+i).style.width = (size * 0.46) + 'px';
 		document.getElementById('itemsb'+i).style.margin = '0px ' + (size * 0.02) + 'px';
 		document.getElementById('imgtestb' + i).setAttribute('width', (size * 0.48) + 'px');
+		document.getElementById('imgtestb' + i).setAttribute('height', (size * 0.48) + 'px');
 	}
 	
 	
