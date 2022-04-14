@@ -339,3 +339,6 @@ function checkPromotion(){
 
 
 
+
+
+

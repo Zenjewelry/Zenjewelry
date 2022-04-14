@@ -240,7 +240,13 @@ function updatePrice(){
 }
 
 
+function setHeight(){
 
+	for(var i=1; i<=document.getElementsByClassName('boxSize').length; i++){
+		var leng = Math.ceil(document.getElementsByClassName('itemboxs' + i).length / 4);
+		document.getElementById('boxSize' + i).style.height = (570 * leng) + 'px';
+	}
+}
 
 
 

@@ -12,7 +12,7 @@
 <script src="/script/mypage.js"></script>
 <script src="/script/basic.js"></script>
 </head>
-<body>
+<body onLoad="setHeight();">
 
 <div id="wrap1">
 	<div id="logo"><!-- 메인 로고 이미지 -->

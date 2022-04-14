@@ -10,11 +10,11 @@
 			<img src="/promotion_images/${summary.SUMMARY}" style="height:300px; margin:0 auto;" />
 		</div>
 			<!-- 구분자별 상품 -->
-		<div style="width:1280px; height:570px; margin:0 auto;">
+		<div style="width:1280px; margin:0 auto;" class="boxSize" id="boxSize${outnum.count}">
 			<c:forEach items="${promotionProductList}" var="pp">
 				<c:if test="${pp.OUTNUMBER == outnum.count}">
 					<a href="productDetail?pseq=${pp.PSEQ}&prmprice=${pp.PRMPRICE}">
-						<div id="items">
+						<div id="items" class="itemboxs${outnum.count}">
 							<img src="product_images/${pp.IMAGE}" id="imgtest"/>
 							<div class="listText">${pp.NAME}</div>
 							<div class="listText1">${pp.CONTENT}</div><br>
