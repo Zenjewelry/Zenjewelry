@@ -32,13 +32,18 @@
 			<label>상세이미지 파일명</label><div id="previewDetailText">${dto.detail_image}</div>
 			<label>Preview</label><img src="/product_images/${dto.detail_image}" id="previewDetailImg" width="300" height="300" style="display:none;"/><br />
 			<input type="hidden" name="detail_image" value="${dto.detail_image}"/> 
+			<hr>
+			<div style="margin-bottom:-50px;">
+			<label>신상품 유무</label><div style="float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;<input type="checkbox" name="newyn" value="y" checked="checked" />
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															N&nbsp;&nbsp;<input type="checkbox" name="newyn" value="n" /></div><br>
+			<label>베스트 유무</label><div  style="float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;<input type="checkbox"name="bestyn" value="y" />
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															N&nbsp;&nbsp;<input type="checkbox" name="bestyn" value="n" checked="checked" /></div>
+			</div>
 			
-			<label>신상품 유무</label><div >Y<input type="checkbox" name="newyn" value="y" checked="checked" /></div>
-															<div>N<input type="checkbox" name="newyn" value="n" /></div>
-			<label>베스트 유무</label><div>Y<input type="checkbox"name="bestyn" value="y" /></div>
-															<div>N<input type="checkbox" name="bestyn" value="n" checked="checked" /></div><br>
-				
 		</fieldset>
+		<hr>
 		<div class="clear"></div>
 		<fieldset class="input-box">
 		
