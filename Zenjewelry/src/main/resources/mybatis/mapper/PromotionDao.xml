@@ -69,4 +69,8 @@
 		{CALL changeLive_zen(#{param1}, #{param2})}
 	</insert>
 	
+	<delete id="deletePromotion" statementType="CALLABLE">
+		{CALL deletePromotion_zen(#{param1})}
+	</delete>
+	
 </mapper>

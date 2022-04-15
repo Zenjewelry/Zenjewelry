@@ -254,8 +254,14 @@ var selectBoxChange = function(value){
 }
 
 function adminPromotionManagement(){
-	document.frm.action = 'adminPromotionManagement';
-	document.frm.submit();
+	for(var i=0; i<document.getElementsByName('result').length; i++){
+		if(document.getElementsByName('result')[i].checked){
+			document.frm.action = 'adminPromotionManagement';
+			document.frm.submit();
+			return;
+		}
+	}
+	alert('적용할 프로모션을 선택해주세요.');
 }
 
 
@@ -311,6 +317,16 @@ function checkPromotion(){
 	}
 	
 	return true;
+}
+
+
+function deletePromotion(){
+	var test = confirm('프로모션을 삭제하시겠습니까?');
+	
+	if(test){
+		document.frm.action = 'deletePromotion';
+		document.frm.submit();
+	}
 }
 
 
