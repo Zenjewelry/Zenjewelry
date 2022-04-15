@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/headerfooter/header.jsp" %>
 
-
-<article  >
-<div id="itemdetail"  >
-<h1>Item</h1>
-
+<article style="width:85%;">
+<div id="itemdetail1"  style="width:85%; margin:0 auto;">
 <form  method="post" name="formmm">
 	<fieldset>	<legend> Item detail Info</legend>
 	<br/><br/>
@@ -13,7 +10,7 @@
 			<img  src="product_images/${productVO.IMAGE}" 
 			style="width: 600px; height: 600px; object-fit: cover;"/>
 	</div>
-	<div style="margin-left:20px; float: left;">
+	<div style="margin-left:50px; float: left;">
        	<p style="font-size:24px;"><b> ${productVO.NAME} </b></p>  
 		<p style="">가 격 : &nbsp;&nbsp;
 			<c:choose>
@@ -24,6 +21,7 @@
 					<b><fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원</b></p>
 				</c:otherwise>
 			</c:choose>
+			<p>${productVO.CONTENT}</p>
 		<label style="">순 도 : </label>
 			<select name="option1" id="option1" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option1}" var="option">
@@ -44,7 +42,7 @@
 			</select><br/>
        	<label style="">수 량 : </label><input  type="text" name="quantity" id="quan" size="2" value="1" onChange="updatePrice();"><br>
        
-       	<p>제품설명 : ${productVO.CONTENT}</p>
+       	
        	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}">
 	<c:forEach items="${options}" var="option">
 		<input type="hidden" id="${option.OPTION1}${option.OPTION2}${option.OPTION3}" value="${option.CHANGEPRICE}" />
@@ -66,12 +64,12 @@
 				</c:choose>
 				<br><br><br>
 	</div>
-	<div id="buttons">
+	<div id="buttons" style="margin-left:45px; float: left;">
 		<!-- <input type="button" value="장바구니에 담기"  onClick="go_cart();"> -->
 		<input class="cancel" type="button" value="장바구니에 담기" onClick="go_cart()" />
 		<input class="cancel" type="button" value="즉시 구매" onClick="go_order_one()" />
 	<!-- 	<input type="button" value="즉시 구매"  onClick="go_order();">  -->
-		</div>
+	</div>
 	</fieldset>
 	<div class="clear"></div>
 	
@@ -85,12 +83,10 @@
 </div>
 
 <br><br><br><br>
+<div style="width:70%; margin:0 auto;">
+<h2> Q&A </h2>
 
-
-<h2 style=margin-left:80px;> Q&A </h2>
-
-
-<h3 style=margin-left:80px;> 제품에 대한 질문을 운영자가 답변을 드립니다.</h3>
+<h3> 제품에 대한 질문을 운영자가 답변을 드립니다.</h3>
 <form name="formm" method="post">
 <table id="cartList">
 	<tr>	<th>번호</th><th>제목</th><th>내용</th><th>등록일</th><th>답변 여부</th></tr>
@@ -111,7 +107,7 @@
 <br>
 </form>
 </div>
-<form method="post" action="writeProductqna" style="bottom:1000px;">
+<form method="post" action="writeProductqna" style="width:70%; margin:0 auto;" >
 <h2>Q&A 작성</h2>
 <fieldset> 
 	<label>Title</label><input type="text" name="subject"  size="60" ><br>
