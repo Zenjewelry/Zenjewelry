@@ -8,15 +8,18 @@
 <form name="frm" method="post">
 <input type="hidden" name="qna_num" value="${qnaVO.QNA_NUM}">
 
-<table id="cartList"><!-- 게시물의 내용 -->
+<table id="cartList" style="margin-bottom:0px;"><!-- 게시물의 내용 -->
 	<tr><th width="20%">제목</th><td align="left">${qnaVO.SUBJECT}</td></tr>
 	<tr><th width="20%">아이디</th><td align="left">${qnaVO.ID}</td></tr>
+	<tr><th width="20%">문의상품</th><td><a href="productDetail?pseq=${productVO.PSEQ}">${productVO.NAME}</a></td></tr>
 	<tr><th width="20%">제품번호</th><td align="left">${qnaVO.PSEQ}</td></tr>
 	<tr><th>등록일</th><td align="left"><fmt:formatDate value="${qnaVO.INDATE}"/></td></tr>
 	<tr><th>내용</th><td align="left">${qnaVO.CONTENT}</td></tr>
 </table>
 <!-- 관리자가 쓴 답글 또는 답글 쓰는 입력란 표시 -->
-
+<table style="margin:0 auto">
+	<tr><td colspan="2"><img src="product_images/${productVO.IMAGE}" style="width:500px;" /></td></tr>
+</table>
 <c:choose>
 	<c:when test='${qnaVO.REP=="1"}'><!-- 관리자 답변 전 표시 -->
 		<table id="cartList">
@@ -28,14 +31,11 @@
 		<table id="cartList"><tr><th width="20%">댓글</th><td>${qnaVO.REPLY}</td></tr></table>
 	</c:otherwise>
 </c:choose>
+<div style="margin:0 auto">
+<input type="button"  class="btn" value="목록" onClick="location.href='adminProduct_Qna'">
+<input type="button"  value="삭제"  onClick='go_removeQna();'>
+</div>
 
-<input type="button" class="btn" value="목록" onClick="location.href='adminProduct_Qna'">
-<input type="button" value="삭제"  onClick='go_removeQna();'>
-
-<table>
-	<tr><th>문의상품</th><td><a href="productDetail?pseq=${productVO.PSEQ}">${productVO.NAME}</a></td></tr>
-	<tr><td colspan="2"><img src="product_images/${productVO.IMAGE}" style="width:500px;" /></td></tr>
-</table>
 
 </form>
 </article>

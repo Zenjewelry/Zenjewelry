@@ -41,10 +41,7 @@
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															N&nbsp;&nbsp;<input type="checkbox" name="bestyn" value="n" checked="checked" /></div>
 			</div>
-			
 		</fieldset>
-		<hr>
-		<div class="clear"></div>
 		<fieldset class="input-box">
 		
 			<label>순도</label><input type="text" name="optionParam1" /><br>
