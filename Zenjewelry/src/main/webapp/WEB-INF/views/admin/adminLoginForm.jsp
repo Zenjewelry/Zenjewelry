@@ -29,7 +29,7 @@ function workerCheck(){
 
 <div class="clear"></div>
 <article>
-<h1>ADMIN PAGE</h1>
+<h1 style=margin-left:80px;>ADMIN PAGE</h1>
 	<form name="frm" method="post" action="adminLogin">
 		
 		<fieldset  class="input-box">
