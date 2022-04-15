@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../include/adminheaderfooter/header.jsp" %>
 
+
 <article>
 	<form name="frm" method="post" action="adminProductWrite">
 			<fieldset class="input-box"><legend>상품등록</legend>
@@ -33,13 +34,18 @@
 			<label>Preview</label><img src="/product_images/${dto.detail_image}" id="previewDetailImg" width="300" height="300" style="display:none;"/><br />
 			<input type="hidden" name="detail_image" value="${dto.detail_image}"/> 
 			<hr>
-			<div style="margin-bottom:-50px;">
-			<label>신상품 유무</label><div style="float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;<input type="checkbox" name="newyn" value="y" checked="checked" />
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															N&nbsp;&nbsp;<input type="checkbox" name="newyn" value="n" /></div><br>
-			<label>베스트 유무</label><div  style="float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;<input type="checkbox"name="bestyn" value="y" />
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															N&nbsp;&nbsp;<input type="checkbox" name="bestyn" value="n" checked="checked" /></div>
+			<div>
+														
+				<div>
+					<label>신상품 유무</label><label><input type="radio" name="newyn" value="y" checked="checked"/> Y</label>
+														<label><input type="radio" name="newyn" value="n"/> N</label>
+				</div>
+				<br>
+				<div>
+					<label>베스트 유무</label><label><input type="radio" name="bestyn" value="y"/> Y</label>
+														<label><input type="radio" name="bestyn" value="n" checked="checked"/> N</label>
+				</div>
+      				
 			</div>
 		</fieldset>
 		<fieldset class="input-box">
