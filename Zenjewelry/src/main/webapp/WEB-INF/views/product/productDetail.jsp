@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/headerfooter/header.jsp" %>
 
+
 <article  >
 <div id="itemdetail"  >
 <h1>Item</h1>
+
 <form  method="post" name="formmm">
 	<fieldset>	<legend> Item detail Info</legend>
 	<br/><br/>
@@ -83,10 +85,12 @@
 </div>
 
 <br><br><br><br>
-<div>
-<h2> Q&A </h2>
 
-<h3> 제품에 대한 질문을 운영자가 답변을 드립니다.</h3>
+
+<h2 style=margin-left:80px;> Q&A </h2>
+
+
+<h3 style=margin-left:80px;> 제품에 대한 질문을 운영자가 답변을 드립니다.</h3>
 <form name="formm" method="post">
 <table id="cartList">
 	<tr>	<th>번호</th><th>제목</th><th>내용</th><th>등록일</th><th>답변 여부</th></tr>

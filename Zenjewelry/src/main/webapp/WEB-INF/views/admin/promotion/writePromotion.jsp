@@ -2,7 +2,7 @@
 <%@ include file="../../include/adminheaderfooter/header.jsp" %>
 
 <article>
-<h1>프로모션</h1><br>
+<h1 style=margin-left:80px;>프로모션</h1><br>
 
 <c:if test="${not empty message}">
 	<script type="text/javascript">

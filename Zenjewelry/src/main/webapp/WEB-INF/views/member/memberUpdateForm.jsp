@@ -4,7 +4,7 @@
 
 <article>
 <h2>정보수정</h2>
-<form method="post" name="formm" action="memberUpdate">
+<form method="post" name="formm" action="memberUpdate"style="width:100%">
 	<fieldset class="input-box">
 		<label>User ID</label><input id="username"  type="text" name="id" value="${dto.id}" readonly><br>
 		<label>Password</label><input id="username" type="password"  name="pwd"><br> 

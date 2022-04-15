@@ -3,7 +3,7 @@
 
 <article>
 <div id="itemdetail" style="float:left;">
-<h1>상품 정보</h1>
+<h1 style=margin-left:80px;>상품 정보</h1>
 <form method="post" name="formm"> 
 <fieldset> <legend>Item detail Info</legend>
 	<input type="hidden" name="pseq" value="${productVO.PSEQ}">
