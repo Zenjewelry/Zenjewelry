@@ -43,6 +43,7 @@ public class BoardController {
 		int page = 1;
 		String key = "";
 		HttpSession session = request.getSession();
+		if(session.getAttribute("wocnt")!=null) session.removeAttribute("wocnt");
 		
 		if(sub != null) {
 			session.removeAttribute("page");
@@ -100,20 +101,33 @@ public class BoardController {
 	}
 	
 	@RequestMapping("boardDetail")
-	public ModelAndView boardDetail(@RequestParam("num") int num) {
+	public ModelAndView boardDetail(@RequestParam("num") int num,
+			@RequestParam(value="wocnt", required=false) String wocnt,
+			HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("wocnt")==null || !session.getAttribute("wocnt").equals("y"))
+			session.setAttribute("wocnt", "n");
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("num", num);
 		paramMap.put("ref_cursor1", null);
 		paramMap.put("ref_cursor2", null);
-		bs.getBoard(paramMap);
+		
+		if(session.getAttribute("wocnt").equals("n")) {
+			bs.getBoard(paramMap);
+			session.setAttribute("wocnt", "y");
+		}
+		else bs.getBoardWithoutCount(paramMap);
 		
 		ArrayList<HashMap<String, Object>> boardVO
 			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor1");
 		ArrayList<HashMap<String, Object>> replyVO
 			= (ArrayList<HashMap<String, Object>>)paramMap.get("ref_cursor2");
+		
+		System.out.println(wocnt);
 		
 		mav.addObject("boardVO", boardVO.get(0));
 		mav.addObject("replyVO", replyVO);
@@ -133,6 +147,7 @@ public class BoardController {
 	@RequestMapping("writeBoardForm")
 	public String writeBoardForm(HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		if(session.getAttribute("wocnt")!=null) session.removeAttribute("wocnt");
 		
 		if(session.getAttribute("loginUser") == null) return "member/login";
 		else return "board/writeBoard";
@@ -163,6 +178,7 @@ public class BoardController {
 			BindingResult result, Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
+		if(session.getAttribute("wocnt")!=null) session.removeAttribute("wocnt");
 		
 		if(result.getFieldError("title")!=null)
 			model.addAttribute("message", result.getFieldError("title").getDefaultMessage());
@@ -182,6 +198,7 @@ public class BoardController {
 		
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		if(session.getAttribute("wocnt")!=null) session.removeAttribute("wocnt");
 		
 		if(session.getAttribute("loginUser") == null) {
 			mav.setViewName("member/login");

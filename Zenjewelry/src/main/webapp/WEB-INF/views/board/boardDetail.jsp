@@ -4,7 +4,8 @@
 <h2>게시판</h2>
 <form name="formm" method="post" >
 <table id="cartList">
-<input  type="hidden" name="num" value="${boardVO.NUM}">
+<input  type="hidden" name="num" value="${boardVO.NUM}" />
+<input type="hidden" name="wocnt" value="${wocnt}" /> 
 <tr><th>글 번호</th><td width="500" style="text-align:left;">${boardVO.NUM}</td></tr>
 <tr><th>조회수</th><td width="500" style="text-align:left;">${boardVO.READCOUNT}</td></tr>
 <tr><th>작성일 </th><td width="500" style="text-align:left;">${boardVO.WRITEDATE}</td></tr>
