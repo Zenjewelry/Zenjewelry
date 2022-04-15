@@ -11,7 +11,7 @@
 			style="width: 600px; height: 600px; object-fit: cover;"/>
 	</div>
 	<div style="margin-left:50px; float: left;">
-       	<p style="font-size:24px;"><b> ${productVO.NAME} </b></p>  
+       	<p style="font-size:20px;"><b> ${productVO.NAME} </b></p>  
 		<p style="">가 격 : &nbsp;&nbsp;
 			<c:choose>
 				<c:when test="${not empty prmprice}">

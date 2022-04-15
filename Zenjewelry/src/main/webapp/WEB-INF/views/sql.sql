@@ -592,7 +592,7 @@ create sequence promotions_seq start with 1 increment by 1;
 
 
 -- members update
-alter table members add useyn varchar2(10) default 'y' not null;
+alter table members add useyn varchar2(10) default '사용' not null;
 alter table members add grade varchar2(10);
 alter table members drop column useyn;
 
@@ -710,3 +710,5 @@ WHERE CONSTRAINT_NAME = 'SYS_C007190'
 
 ALTER TABLE products 
 DISABLE CONSTRAINT SYS_C007179 CASCADE;
+
+select * from members
