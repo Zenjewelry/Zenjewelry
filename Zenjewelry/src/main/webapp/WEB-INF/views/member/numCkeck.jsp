@@ -35,8 +35,6 @@ function check(){
 			</tr>
 
 			<tr>
-				<td width="430"><h3><input type="button" value="확인" onClick="check();"></h3></td>
-
 			<tr align="center" bgcolor="f7f7f7" width="500" height="30">
 				<td ><input type="text" name="numCheck" value="${numCheck}"></td>
 				<input type="hidden" name="checkNum" value="${checkNum}" >

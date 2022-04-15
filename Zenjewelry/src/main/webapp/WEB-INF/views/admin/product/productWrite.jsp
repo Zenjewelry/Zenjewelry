@@ -34,8 +34,7 @@
 			<label>Preview</label><img src="/product_images/${dto.detail_image}" id="previewDetailImg" width="300" height="300" style="display:none;"/><br />
 			<input type="hidden" name="detail_image" value="${dto.detail_image}"/> 
 			<hr>
-			<div>
-														
+			<div>									
 				<div>
 					<label>신상품 유무</label><label><input type="radio" name="newyn" value="y" checked="checked"/> Y</label>
 														<label><input type="radio" name="newyn" value="n"/> N</label>
@@ -45,9 +44,7 @@
 					<label>베스트 유무</label><label><input type="radio" name="bestyn" value="y"/> Y</label>
 														<label><input type="radio" name="bestyn" value="n" checked="checked"/> N</label>
 				</div>
-      				
-			</div>
-			
+			</div>			
 		</fieldset>
 		<hr>
 		<div class="clear"></div>
