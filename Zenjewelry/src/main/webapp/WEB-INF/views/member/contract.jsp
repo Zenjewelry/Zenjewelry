@@ -3,7 +3,7 @@
 
 
 <article>
-<h2>회원 가입 약관</h2>
+<h2 style=margin-left:80px;>회원 가입 약관</h2>
 
 <form id="join" method="post" name="formm" action="joinForm">
 
