@@ -10,7 +10,7 @@
 <script src="/script/jquery-3.6.0.js"></script>
 <script src="/script/mobile.js"></script>
 </head>
-<body onLoad="sizing();">
+<body>
 
 <div id="wrap1">
 	<div id="logo"><!-- 메인 로고 이미지 -->
