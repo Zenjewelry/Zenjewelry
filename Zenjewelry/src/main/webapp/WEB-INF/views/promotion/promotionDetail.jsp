@@ -26,7 +26,6 @@
 		</div>
 	</c:forEach>
 </form>
-
 </article>
 
 <%@ include file="../include/headerfooter/footer.jsp" %>

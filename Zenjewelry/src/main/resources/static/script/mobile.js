@@ -502,8 +502,8 @@ function delete_order(oseq){
 }
 
 
-
-function sizing(){
+/*
+document.getElementById('loadmain').onload = function(){
 	
 	// promotion
 	var size = top.window.innerWidth * 0.8;
@@ -573,9 +573,28 @@ function sizing(){
 	}
 	
 	
+	
 }
 
-
+document.getElementById('loadprm').onload = function(){
+	alert('asdf');
+	var size = top.window.innerWidth * 0.8;
+	// promotion
+	alert(size);
+	alert(document.getElementsByClassName('boxSize').length);
+	for(var i=1; i<=document.getElementsByClassName('boxSize').length; i++){
+		var leng = Math.ceil(document.getElementsByClassName('itemboxs' + i).length / 2);
+		document.getElementById('boxSize' + i).style.height = (570 * leng) + 'px';
+	}
+	
+	for(var i=1; i<=document.getElementsByClassName('boxSize').length; i++){
+		document.getElementById('promotionitems' + i).style.width = (size * 0.46) + 'px';
+		document.getElementById('promotionitems' + i).style.margin = '0px ' + (size * 0.02) + 'px';
+		document.getElementById('pimgtest' + i).setAttribute('width', (size * 0.48) + 'px');
+		document.getElementById('pimgtest' + i).setAttribute('height', (size * 0.48) + 'px');
+	}
+}
+*/
 
 
 

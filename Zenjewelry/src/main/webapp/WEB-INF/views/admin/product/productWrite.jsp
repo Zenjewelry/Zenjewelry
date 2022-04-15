@@ -44,10 +44,10 @@
 					<label>베스트 유무</label><label><input type="radio" name="bestyn" value="y"/> Y</label>
 														<label><input type="radio" name="bestyn" value="n" checked="checked"/> N</label>
 				</div>
+
 			</div>			
+
 		</fieldset>
-		<hr>
-		<div class="clear"></div>
 		<fieldset class="input-box">
 		
 			<label>순도</label><input type="text" name="optionParam1" /><br>
