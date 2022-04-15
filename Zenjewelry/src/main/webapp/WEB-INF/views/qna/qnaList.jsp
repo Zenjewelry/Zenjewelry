@@ -3,7 +3,7 @@
 <article>
 <h2> 1:1 고객 게시판 </h2>
 <h3> 고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
-<form name="formm" method="post">
+<form style="width:100%"name="formm" method="post">
 <table id="cartList">
 	<tr>	<th>번호</th><th>제목</th><th>등록일</th><th>답변 여부</th></tr>
 	<c:forEach items="${qnaList}"  var="qnaVO">
