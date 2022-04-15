@@ -320,6 +320,16 @@ function checkPromotion(){
 }
 
 
+function deletePromotion(){
+	var test = confirm('프로모션을 삭제하시겠습니까?');
+	
+	if(test){
+		document.frm.action = 'deletePromotion';
+		document.frm.submit();
+	}
+}
+
+
 
 
 

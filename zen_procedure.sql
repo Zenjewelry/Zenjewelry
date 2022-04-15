@@ -1525,3 +1525,15 @@ BEGIN
         COMMIT;
         p_oseq := v_oseq;
 END;
+
+
+
+
+create or replace procedure deletePromotion_zen(
+    p_prmseq in number
+)
+is
+begin
+    delete from promotions where prmseq = p_prmseq;
+    delete from promotion_products where prmseq = p_prmseq;
+end;

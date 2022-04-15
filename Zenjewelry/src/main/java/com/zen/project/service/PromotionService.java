@@ -50,4 +50,8 @@ public class PromotionService {
 	public void changeLive(String apm, String result) {
 		pdao.changeLive(apm, result);
 	}
+
+	public void deletePromotion(int result) {
+		pdao.deletePromotion(result);
+	}
 }

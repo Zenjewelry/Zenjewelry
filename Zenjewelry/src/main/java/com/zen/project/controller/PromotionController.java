@@ -349,4 +349,12 @@ public class PromotionController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/deletePromotion", method=RequestMethod.POST)
+	public String deletePromotion(@RequestParam("result") int result) {
+		
+		ps.deletePromotion(result);
+		
+		return "redirect:/promotionList";
+	}
+	
 }

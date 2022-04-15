@@ -37,7 +37,8 @@
 		<tr><td width="670">프로모션 검색(메인+서브 카피라이트)<input type="text" name="key" value="${key}" >
 			<input class="btn" type="button" value="검색" 	onClick="go_search('promotionList');">
 			<input class="btn" type="button" name="btn_total" value="전체보기 " onClick="go_total('promotionList');">
-			<input type="button" class="btn" style="width: 200px" value="프로모션 등록" onClick="location.href='adminPromotionWrite'"></td></tr>
+			<input type="button" class="btn" style="width: 200px" value="프로모션 등록" onClick="location.href='adminPromotionWrite'">
+			<input type="button" class="btn" style="width:200px; background-color:red;" value="프로모션 삭제" onClick="deletePromotion();"></td></tr>
 	</table>
 <br>
 

@@ -16,5 +16,6 @@ public interface IPromotionDao {
 	void getSummary(HashMap<String, Object> paramMap);
 	void updatePromotion(HashMap<String, Object> paramMap);
 	void changeLive(String apm, String result);
+	void deletePromotion(int result);
 	
 }
