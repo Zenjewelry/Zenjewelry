@@ -285,8 +285,8 @@ public class PromotionController {
 				String price2 = "price2" + i;
 				String [] price2Arr = request.getParameterValues(price2);
 				
-				String summary = "Summary" + i;
-				paramMap.put("summaryImg", request.getParameter(summary));
+				String summaryImg[] = request.getParameterValues("Summary" + i);
+				paramMap.put("summaryImg", summaryImg[summaryImg.length-1]);
 				
 				paramMap.put("outnumber", i);
 				for(int j=0; j<pseqArr.length; j++) {

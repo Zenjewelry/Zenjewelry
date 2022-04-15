@@ -4,12 +4,6 @@
 <article>
 <h1>프로모션 조회/수정</h1><br>
 
-<c:if test="${not empty message}">
-	<script type="text/javascript">
-		msg('${message}');
-	</script>
-</c:if>
-
 <form name="frm" action="updatePromotion" method="post">
 	<input type="hidden" name="prmseq" value="${promotionView.PRMSEQ}" />
 	<table id="cartList">
