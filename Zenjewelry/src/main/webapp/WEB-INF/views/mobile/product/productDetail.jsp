@@ -8,13 +8,13 @@
 
 	<fieldset style="margin:0 auto;">
 	<div>
-	<p style="font-size:30px;"><b style="font-size:30px; float:left"> ${productVO.NAME} </b></p>  
+	<p style="font-size:30px;"><b style="font-size:30px; float:left"> ${productVO.NAME} </b></p><br><br><br>
 	</div>
 	<div style="margin:0 auto;">
 			<img  src="product_images/${productVO.IMAGE}" 
 			style="width: 700px; height: 700px; object-fit: cover;  margin:0 auto;"/>
 	</div>
-	<div style=" float: left; font-size:30px"><p>가 격 : &nbsp;&nbsp;
+	<div style=" float: left; font-size:30px; width:100%;"><p>
 			<c:choose>
 				<c:when test="${not empty prmprice}">
 					<b><fmt:formatNumber value="${prmprice}" type="currency" /> 원</b></p>
@@ -23,26 +23,26 @@
 					<b><fmt:formatNumber value="${productVO.PRICE2}" type="currency"/> 원</b></p>
 				</c:otherwise>
 			</c:choose>
-			<p>${productVO.CONTENT}</p>
+			<p style="text-align:left;">${productVO.CONTENT}</p>
 		<label style="">순 도 : </label>
-			<select name="option1" id="option1" onChange="updatePrice();"><option value="">선택(필수)</option>
+			<select style="margin-left:-230px; width:150px; height:25px;" name="option1" id="option1" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option1}" var="option">
 					<option value="${option.OPTION1}">${option.OPTION1}</option>
 				</c:forEach>
 			</select><br/>
 		<label style="">사이즈 : </label>
-			<select name="option2" id="option2" onChange="updatePrice();"><option value="">선택(필수)</option>
+			<select style="margin-left:-245px; width:150px; height:25px;" name="option2" id="option2" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option2}" var="option">
 					<option value="${option.OPTION2}">${option.OPTION2}</option>
 				</c:forEach>
 			</select><br/>
 		<label style="">색 상 : </label>
-			<select name="option3" id="option3" onChange="updatePrice();"><option value="">선택(필수)</option>
+			<select style="margin-left:-230px; width:150px; height:25px;" name="option3" id="option3" onChange="updatePrice();"><option value="">선택(필수)</option>
 				<c:forEach items="${option3}" var="option">
 					<option value="${option.OPTION3}">${option.OPTION3}</option>
 				</c:forEach>
 			</select><br/>
-       	<label style="">수 량 : </label><input  type="text" name="quantity" id="quan" size="2" value="1" onChange="updatePrice();"><br>
+       	<label style="">수 량 : </label><input  style="margin-left:-230px; width:140px; height:25px;" type="text" name="quantity" id="quan" size="2" value="1" onChange="updatePrice();"><br>
        
        	
        	<input  type="hidden" name="pseq"	 value="${productVO.PSEQ}">
@@ -51,7 +51,7 @@
 		<input type="hidden" id="${option.OPTION1}${option.OPTION2}${option.OPTION3}_sku" value="${option.SKU}" />
 	</c:forEach>
 	<hr>
-		<label style="">총 상품금액 : </label>
+		<label>총 상품금액 : </label>
 				<c:choose>
 					<c:when test="${not empty prmprice}">
 						<p id="viewPrice" style="margin:0 auto; font-size:24px;"><fmt:formatNumber value="" type="currency" />&nbsp;</p>
@@ -64,7 +64,7 @@
 						<input type="hidden" id="firstsellprice" value="${productVO.PRICE2}" />
 					</c:otherwise>
 				</c:choose>
-				<br><br><br>
+				<br><br>
 	</div>
 	<div id="buttons" style="margin-left:45px; float: left;">
 		<!-- <input type="button" value="장바구니에 담기"  onClick="go_cart();"> -->
