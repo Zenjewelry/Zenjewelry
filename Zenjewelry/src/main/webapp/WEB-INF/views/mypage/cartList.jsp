@@ -8,7 +8,7 @@
 			<h3 style="color: red;text-align: center;">장바구니가 비었습니다.</h3> 
 		</c:when>
 		<c:otherwise>
-			<table id="cartList" style=width:1000px>
+			<table id="cartList" style=width:1000px;margin-left:-100px>
 				<tr><th>선 택</th><th colspan=2>제 품</th><th>수 량</th><th>가 격</th></tr>
 					<c:forEach items="${cartList}" var="cartVO">
 						<tr><td><input type="checkbox" name="cseq" value="${cartVO.CSEQ}"></td>

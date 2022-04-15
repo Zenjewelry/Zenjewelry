@@ -21,7 +21,7 @@
 		</table>
 	</c:when>
 	<c:otherwise><!-- 관리자 답변 완료 후 표시 -->
-		<table id="cartList"><tr><th width="20%">댓글</th><td>${qnaVO.REPLY}</td></tr></table>
+		<table id="cartList" style="margin-top:-5px"><tr><th width="20%">댓글</th><td>${qnaVO.REPLY}</td></tr></table>
 	</c:otherwise>
 </c:choose>
 <input type="button" class="btn" value="목록" onClick="location.href='adminQnaList'">

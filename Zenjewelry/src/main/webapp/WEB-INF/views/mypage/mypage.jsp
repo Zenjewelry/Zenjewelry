@@ -4,7 +4,7 @@
 <article style=width:1000px>
 <h2>${title}</h2>
 <form>
-<table  id="cartList" style=width:1000px>
+<table  id="cartList" style=width:1000px;margin-left:-100px>
 	<tr></tr>
     <c:forEach items="${orderList}"  var="orderVO">
     <tr style="margin-top: 100px">

@@ -117,7 +117,7 @@ table#cartList th {background:#474160; color:white;   border-bottom:  1px dotted
 
 /* 로그인, 회원가입, 정보수정, 보드 Q&A CART ..등등... */
 article h1, div h1 {	font-family: Verdana; 	font-size: 45px; color: #000000;	margin: 20px 0;	font-weight: normal; }
-article {padding-top:100px; margin : 0 auto; width: 80%; font-family: Verdana; font-size: 1em;	line-height: 1.5em; }
+article {padding-top:100px; margin : 0 auto; width: 800px; font-family: Verdana; font-size: 1em;	line-height: 1.5em; }
 article h2, div h2 {	font-family: Verdana; font-size: 30px;	color: #000000;	padding-bottom: 15px;	border-bottom: 1px dotted #666; }
 
 

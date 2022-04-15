@@ -2,7 +2,7 @@
 <%@ include file="../include/headerfooter/header.jsp" %>
 
 <article>
-<h1>로그인</h1>
+<h1 style=margin-left:80px;>로그인</h1>
 <form method="post" action="login" name="loginFrm">
 
 	<fieldset class="input-box">

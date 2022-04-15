@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../include/adminheaderfooter/header.jsp" %>
 
+
 <article>
 	<form name="frm" method="post" action="adminProductWrite">
 			<fieldset class="input-box"><legend>상품등록</legend>
@@ -32,17 +33,28 @@
 			<label>상세이미지 파일명</label><div id="previewDetailText">${dto.detail_image}</div>
 			<label>Preview</label><img src="/product_images/${dto.detail_image}" id="previewDetailImg" width="300" height="300" style="display:none;"/><br />
 			<input type="hidden" name="detail_image" value="${dto.detail_image}"/> 
-			<label>신상품 유무</label><div style="float:left;" >Y</div><input type="checkbox" style="float:left;" name="newyn" value="y" checked="checked" />
-				<div style="float:left;" >N</div><input type="checkbox" name="newyn" value="n" />
-			<label>베스트 유무</label><div style="float:left;" >Y</div><input type="checkbox" style="float:left;" name="bestyn" value="y" />
-				<div style="float:left;" >N</div><input type="checkbox" name="bestyn" value="n" checked="checked" />
+			<hr>
+			<div>
+														
+				<div>
+					<label>신상품 유무</label><label><input type="radio" name="newyn" value="y" checked="checked"/> Y</label>
+														<label><input type="radio" name="newyn" value="n"/> N</label>
+				</div>
+				<br>
+				<div>
+					<label>베스트 유무</label><label><input type="radio" name="bestyn" value="y"/> Y</label>
+														<label><input type="radio" name="bestyn" value="n" checked="checked"/> N</label>
+				</div>
+      				
+			</div>
 		</fieldset>
-		<div class="clear"></div>
-		<fieldset>
-			<label>순도(,로 구분해주세요.)</label><input type="text" name="optionParam1" />
-			<label>사이즈(,로 구분해주세요.)</label><input type="text" name="optionParam2" />
-			<label>색상(,로 구분해주세요.)</label><input type="text" name="optionParam3" />
-			<input type="button" value="옵션 조합하기" onClick="createOptions();">
+		<fieldset class="input-box">
+		
+			<label>순도</label><input type="text" name="optionParam1" /><br>
+			<label>사이즈</label><input type="text" name="optionParam2" /><br>
+			<label>색상</label><input type="text" name="optionParam3" /><br>
+			<input type="button" value="옵션 조합하기" onClick="createOptions();"><br>
+		
 			<table>
 				<tr><th>순번</th><th>옵션명</th><th>옵션별 가격</th><th>재고</th></tr>
 				<c:forEach items="${optionList}" var="option" varStatus="index">

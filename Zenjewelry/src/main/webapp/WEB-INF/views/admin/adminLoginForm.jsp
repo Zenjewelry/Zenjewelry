@@ -29,10 +29,10 @@ function workerCheck(){
 
 <div class="clear"></div>
 <article>
-<h1>ADMIN PAGE</h1>
+<h1 style=margin-left:80px;>ADMIN PAGE</h1>
 	<form name="frm" method="post" action="adminLogin">
 		
-		<fieldset class="input-box">
+		<fieldset  class="input-box">
 			<legend></legend>
 				<label>ADMIN ID</label><input type="text" name="workId" size="10"><br>
 				<label>Password</label><input type="password" name="workPwd" size="10"><br>
