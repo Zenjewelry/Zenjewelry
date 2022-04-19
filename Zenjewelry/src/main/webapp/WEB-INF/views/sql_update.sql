@@ -15,3 +15,5 @@ update products set bestyn='y' where pseq=71;
 update products set bestyn='y' where pseq=68;
 update products set bestyn='y' where pseq=70;
 update products set bestyn='y' where pseq=69;
+
+select * from promotions
